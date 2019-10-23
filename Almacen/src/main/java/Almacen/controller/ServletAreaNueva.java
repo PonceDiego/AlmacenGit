@@ -42,6 +42,7 @@ public class ServletAreaNueva extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre, user;
+		request.setCharacterEncoding("UTF-8");
 		nombre=request.getParameter("inputNombre");
 		user=request.getParameter("inputJefe");
 		AreaManager.createArea(nombre, user);

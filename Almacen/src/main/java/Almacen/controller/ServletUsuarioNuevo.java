@@ -43,6 +43,7 @@ public class ServletUsuarioNuevo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username, rol, area, nombre, apellido, email;
+		request.setCharacterEncoding("UTF-8");
 		username=request.getParameter("inputUsername");
 		rol= request.getParameter("inputRol");
 		area= request.getParameter("inputArea");

@@ -45,16 +45,29 @@ public class ArticuloManager {
 			return;
 		}
 		articuloNuevo.setStock(stock);
-
-		String[] inputProv = proveedor.split(" ");
-		Proveedor prov = ProveedoresDB.getProveedorByStringId(inputProv[0].toString());
+		Proveedor prov=null;
+		if(proveedor.contains("-")) {
+			String[] inputProv = proveedor.split(" ");
+			prov = ProveedoresDB.getProveedorByStringId(inputProv[0].toString());
+			
+			
+		}else {
+			prov=ProveedoresDB.getProveedorByStringId(proveedor);
+			
+		}
 		articuloNuevo.setProveedor(prov);
 
 		articuloNuevo.setNombre(nombre);
+		
+		Subcategoria cat =null;
+		if(categoria.contains("-")) {
+			String[] input = categoria.split(" ");
+			cat = SubcategoriaDB.getCategoriaById(input[0].toString());
+			
+		}else {
+			cat=SubcategoriaDB.getCategoriaById(categoria);
+		}
 
-		String[] input = categoria.split(" ");
-		System.out.println(categoria); System.out.println(input[0]);
-		Subcategoria cat = SubcategoriaDB.getCategoriaById(input[0].toString());
 		articuloNuevo.setSubcategoria(cat);
 
 		if (stock > stockM) {

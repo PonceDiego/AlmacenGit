@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.ProveedorManager;
-import main.java.Almacen.persistence.ArticuloDB;
 
 /**
  * Servlet implementation class ServletProveedorNuevo
@@ -33,10 +32,24 @@ public class ServletProveedorNuevo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession(true);
-		request.getSession().setAttribute("articulosListado", ArticuloDB.getListadoArticulos());
-		response.sendRedirect("view/agregarNuevoProveedor.jsp");
-		request.getSession(false);
+//		request.getSession(true);
+//		request.getSession().setAttribute("articulosListado", ArticuloDB.getListadoArticulos());
+//		response.sendRedirect("view/agregarNuevoProveedor.jsp");
+//		request.getSession(false);
+		
+		String nombre, mail, telefono, contacto, direccion;
+		request.setCharacterEncoding("UTF-8");
+		nombre = request.getParameter("provNombre");
+		mail = request.getParameter("provMail");
+		telefono = request.getParameter("provTel");
+		contacto = request.getParameter("provCont");
+		direccion = request.getParameter("provDire");
+
+		ProveedorManager.createProveedor(nombre, mail, telefono, contacto, direccion);
+		response.getWriter().print("Proveedor cargado");
+		
+		
+		
 	}
 
 	/**
