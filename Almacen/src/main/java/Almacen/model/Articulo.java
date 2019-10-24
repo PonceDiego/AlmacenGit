@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 2/10/2019 11:23:33 AM by Hibernate Tools 5.0.6.Final
+// Generated 24/10/2019 01:28:29 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,6 +33,7 @@ public class Articulo implements java.io.Serializable {
 	private Date fechaAgregado;
 	private int stockMinimo;
 	private int stock;
+	private String codigoQr;
 	private Set<Pedidoxarticulos> pedidoxarticuloses = new HashSet<Pedidoxarticulos>(0);
 
 	public Articulo() {
@@ -51,7 +52,8 @@ public class Articulo implements java.io.Serializable {
 	}
 
 	public Articulo(Estadoarticulo estadoarticulo, Proveedor proveedor, Subcategoria subcategoria, String nombre,
-			double costo, Date fechaAgregado, int stockMinimo, int stock, Set<Pedidoxarticulos> pedidoxarticuloses) {
+			double costo, Date fechaAgregado, int stockMinimo, int stock, String codigoQr,
+			Set<Pedidoxarticulos> pedidoxarticuloses) {
 		this.estadoarticulo = estadoarticulo;
 		this.proveedor = proveedor;
 		this.subcategoria = subcategoria;
@@ -60,6 +62,7 @@ public class Articulo implements java.io.Serializable {
 		this.fechaAgregado = fechaAgregado;
 		this.stockMinimo = stockMinimo;
 		this.stock = stock;
+		this.codigoQr = codigoQr;
 		this.pedidoxarticuloses = pedidoxarticuloses;
 	}
 
@@ -149,6 +152,15 @@ public class Articulo implements java.io.Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	@Column(name = "codigoQR", length = 100)
+	public String getCodigoQr() {
+		return this.codigoQr;
+	}
+
+	public void setCodigoQr(String codigoQr) {
+		this.codigoQr = codigoQr;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articulo")

@@ -116,5 +116,16 @@ public class ArticuloDB {
 			sess.close();
 		}
 	}
+	public static void editarArticulo(String nombre, String qr) {
+		Session sess= null;
+		Articulo articulo = getArticuloByNombre(nombre);
+		articulo.setCodigoQr(qr);
+		try {
+			sess= HibernateUtils.openSession();
+			sess.update(articulo);
+		}finally {
+			sess.close();
+		}
+	}
 
 }

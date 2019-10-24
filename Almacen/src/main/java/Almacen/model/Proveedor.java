@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 2/10/2019 11:23:33 AM by Hibernate Tools 5.0.6.Final
+// Generated 24/10/2019 01:28:29 PM by Hibernate Tools 5.0.6.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -29,8 +29,6 @@ public class Proveedor implements java.io.Serializable {
 	
 	@Expose (serialize = true, deserialize = true) 
 	private String provNombre;
-	
-	
 	private String provTel;
 	private String provContacto;
 	private String provDireccion;

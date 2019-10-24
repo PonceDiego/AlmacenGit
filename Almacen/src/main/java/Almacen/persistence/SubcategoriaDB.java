@@ -48,11 +48,7 @@ public class SubcategoriaDB {
 		
 		try {
 			sess=HibernateUtils.openSession();
-			Query<Categoria> query=sess.createQuery("select c from Categoria c where c.nombre='"+catN+"'");
-			int cat=0;
-			List<Categoria> list=query.getResultList();
-			cat=list.get(0).getCategoriaId();
-			Query<Subcategoria>query1=sess.createQuery("select s from Subcategoria s where s.categoria='"+cat+"'");
+			Query<Subcategoria>query1=sess.createQuery("select s from Subcategoria s where s.categoria='"+catN+"'");
 			subc=query1.getResultList();
 			return subc;
 		}finally {
