@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/pedidoNuevo"
+        style="@style/AppTheme.Button"
+
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevo_pedido" />
+
+    <Button
+        android:id="@+id/articuloNuevo"
+        style="@style/AppTheme.Button"
+
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevo_articulo" />
+
+    <Button
+        android:id="@+id/proveedorNuevo"
+        style="@style/AppTheme.Button"
+
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevo_proveedor" />
+
+
+</LinearLayout>

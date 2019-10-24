@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">AlmacenApp</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="welcome">"Bienvenido! "</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Acceso incorrecto"</string>
+
+    <!-- Strings de content layout -->
+    <string name="btn1">Almacén</string>
+    <string name="btn2">Técnica</string>
+    <string name="btn3">Llaves</string>
+    <string name="btn4">Botón</string>
+    <string name="tituloPedido">Pedido</string>
+    <string name="nuevo_pedido">Nuevo Pedido</string>
+    <string name="nuevo_articulo">Nuevo Artículo</string>
+    <string name="nuevo_proveedor">Nuevo Proveedor</string>
+    <string name="agregar">Agregar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="nombre">Nombre</string>
+    <string name="ipServidor">http://172.16.49.77:8080/Almacen/</string>
+    <string name="categoria">Seleccione una categoría</string>
+    <string name="subcategoria">Seleccione una subcategoría</string>
+    <string name="proveedor">Seleccione un proveedor</string>
+</resources>
