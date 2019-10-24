@@ -51,6 +51,8 @@ public class QrActivity extends AppCompatActivity {
         try {
             urlEncoded=URLEncoder.encode(src, StandardCharsets.UTF_8.toString());
             Log.w("E N C O D E D:",urlEncoded);
+
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -60,13 +62,14 @@ public class QrActivity extends AppCompatActivity {
             public void onClick(View v) {
                 HttpURLConnection urlConnection=null;
                 try{
-                    String urlS = getString(R.string.ipServidor)+"SubirQR?" +
-                            "src="+src +
-                            "&nombreArt="+ finalUrlEncoded;
+                    String urlS = getString(R.string.ipServidor) + "SubirQR?" +
+                            "src="+finalUrlEncoded +
+                            "&nombreArt="+ nombre;
                     URL url= new URL(urlS);
                     urlConnection = (HttpURLConnection)url.openConnection();
-                    Log.w("repuesta<<<<<<<<<<<",urlConnection.getResponseCode()+" ");
-                    if(urlConnection.getResponseCode()==404||urlConnection.getResponseCode()==500){
+                    urlConnection.connect();
+                    Log.w("repuesta<<<<<<<<<<<",urlConnection.getResponseMessage()+" <-Mensaje"+urlConnection.getResponseCode()+"<-- código");
+                    if(urlConnection.getResponseCode()==500){
                         Toast.makeText(getApplicationContext(),"Falló la conexión",Toast.LENGTH_SHORT).show();
                     }
                 }catch (MalformedURLException e) {

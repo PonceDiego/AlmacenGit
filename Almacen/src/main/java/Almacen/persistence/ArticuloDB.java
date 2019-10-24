@@ -55,7 +55,7 @@ public class ArticuloDB {
 		try {
 
 			sess = HibernateUtils.openSession();
-			Query<Articulo> query = sess.createQuery("SELECT a FROM Articulo a WHERE a.nombre='" + nombre + "'");
+			Query<Articulo> query = sess.createQuery("SELECT distinct a FROM Articulo a WHERE a.nombre='" + nombre + "'");
 			articulo = (Articulo) query.getSingleResult();
 
 			return articulo;
@@ -118,12 +118,25 @@ public class ArticuloDB {
 	}
 	public static void editarArticulo(String nombre, String qr) {
 		Session sess= null;
-		Articulo articulo = null;
+		Articulo a=null;
+		System.out.println("E N T R Ó    A L    E D I T A R");
+		//TODO: manejar transaction o algo similar para realizar updates!
+		
 		try {
 			sess= HibernateUtils.openSession();
-			articulo=sess.get(Articulo.class, getArticuloByNombre(nombre).getArticuloId());
-			articulo.setCodigoQr(qr);
-			sess.update(articulo);
+			int id=getArticuloByNombre(nombre).getArticuloId();
+			a= sess.get(Articulo.class,id );
+			System.out.println("primer QR antes de update==="+a.getCodigoQr());
+			System.out.println("qr pasado ="+qr);
+			Query query=sess.createQuery("update Articulo a set codigoQr='"+qr+"' where a.nombre='"+nombre+"'");
+			int resultado = query.executeUpdate();
+			System.out.println(query.getQueryString());
+			a=null;
+			a=sess.get(Articulo.class, getArticuloByNombre(nombre).getArticuloId());
+			
+			System.out.println("pasó query update\n");
+			System.out.println(a.getCodigoQr()+"=== N U E V O   Q R");
+			
 			
 		}finally {
 			sess.close();

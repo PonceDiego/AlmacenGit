@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.Almacen.persistence.ArticuloDB;
+import main.java.Almacen.manager.ArticuloManager;
 
 /**
  * Servlet implementation class ServletSubirQR
@@ -32,11 +32,13 @@ public class ServletSubirQR extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String qrS=request.getParameter("src");
-		String nombreArt=request.getParameter("nombreArt");
+		String qrS, nombreArt;
+		request.setCharacterEncoding("UTF-8");
+		qrS=request.getParameter("src");
+		nombreArt=request.getParameter("nombreArt");
 		
 		String qr= URLDecoder.decode(qrS,StandardCharsets.UTF_8.toString());
-		ArticuloDB.editarArticulo(nombreArt, qr);
+		ArticuloManager.editArticulo(nombreArt, qr);
 		
 		
 	}

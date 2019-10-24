@@ -11,6 +11,9 @@ import main.java.Almacen.persistence.ProveedoresDB;
 import main.java.Almacen.persistence.SubcategoriaDB;
 
 public class ArticuloManager {
+	public static void editArticulo(String nombre, String qr) {
+		ArticuloDB.editarArticulo(nombre, qr);
+	}
 
 	public static void createArticulo(String categoria, String proveedor, String nombre,
 			String stockMinimo, String stockMaximo, String costo) {
