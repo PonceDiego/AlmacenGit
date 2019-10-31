@@ -23,12 +23,14 @@ public class PedidoDB {
 			Hibernate.initialize(pedido.getUsuario());
 			Hibernate.initialize(pedido.getUsuario().getArea());
 
-		} finally {
+			return pedido;
+		} 
+		
+		finally {
 
 			sess.close();
 		}
 
-		return pedido;
 	}
 
 	public static List<Pedido> getPedidosPendientes() {

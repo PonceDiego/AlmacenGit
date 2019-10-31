@@ -17,6 +17,9 @@ public class MenuAlmacenActivity extends AppCompatActivity {
         Button btn5 = findViewById(R.id.pedidoNuevo);
         Button btn6 = findViewById(R.id.articuloNuevo);
         Button proveedorNuevo= findViewById(R.id.proveedorNuevo);
+        Button buscarArticulo = findViewById(R.id.buscarArticulo);
+        Button listaArticulos= findViewById(R.id.listaArticulos);
+        Button listaProveedores= findViewById(R.id.listaProveedores);
 
 //        btn5.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -36,6 +39,24 @@ public class MenuAlmacenActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuAlmacenActivity.this, ProveedorActivity.class));
             }
         });
+        buscarArticulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuAlmacenActivity.this,BusquedaArticuloActivity.class ));
 
+            }
+        });
+        listaArticulos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuAlmacenActivity.this,ListaArticulosActivity.class));
+            }
+        });
+        listaProveedores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuAlmacenActivity.this,ListaProveedoresActivity.class));
+            }
+        });
     }
 }

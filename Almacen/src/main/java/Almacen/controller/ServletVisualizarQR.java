@@ -1,8 +1,6 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.Almacen.manager.ArticuloManager;
+import main.java.Almacen.persistence.ArticuloDB;
 
 /**
- * Servlet implementation class ServletSubirQR
+ * Servlet implementation class ServletVisualizarQR
  */
-@WebServlet("/SubirQR")
-public class ServletSubirQR extends HttpServlet {
+@WebServlet("/Qr")
+public class ServletVisualizarQR extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletSubirQR() {
+    public ServletVisualizarQR() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +29,17 @@ public class ServletSubirQR extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String qrS, nombreArt;
-		request.setCharacterEncoding("UTF-8");
-		qrS=request.getParameter("src");
-		nombreArt=request.getParameter("nombreArt");
+		request.getSession(true);
+		String idS=request.getParameter("articuloID");
+		int id= Integer.parseInt(idS);
 		
-		String qr= URLDecoder.decode(qrS,StandardCharsets.UTF_8.toString());
-		ArticuloManager.editArticuloQr(nombreArt, qr);
+		request.getSession().setAttribute("articuloNombre", ArticuloDB.getArticuloByID(id).getNombre());
+		request.getSession().setAttribute("imageSrc", ArticuloDB.getArticuloByID(id).getCodigoQr());
 		
 		
+		response.sendRedirect("view/mostrarQr.jsp");
+		
+		request.getSession(false);
 	}
 
 	/**

@@ -2821,14 +2821,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-warning {
-	color: #ffc107;
-	border-color: #ffc107
+	color: #f37321;
+	border-color: #f37321
 }
 
 .btn-outline-warning:hover {
 	color: #212529;
-	background-color: #ffc107;
-	border-color: #ffc107
+	background-color: #f37321;
+	border-color: #f37321
 }
 
 .btn-outline-warning.focus, .btn-outline-warning:focus {
@@ -2844,8 +2844,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 	.btn-outline-warning:not (:disabled ):not (.disabled ):active, .show>.btn-outline-warning.dropdown-toggle
 	{
 	color: #212529;
-	background-color: #ffc107;
-	border-color: #ffc107
+	background-color: #f37321;
+	border-color: #f37321
 }
 
 .btn-outline-warning:not (:disabled ):not (.disabled ).active:focus,

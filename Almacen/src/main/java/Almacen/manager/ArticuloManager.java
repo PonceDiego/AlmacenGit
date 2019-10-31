@@ -1,5 +1,8 @@
 package main.java.Almacen.manager;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import main.java.Almacen.model.Articulo;
@@ -11,10 +14,12 @@ import main.java.Almacen.persistence.ProveedoresDB;
 import main.java.Almacen.persistence.SubcategoriaDB;
 
 public class ArticuloManager {
-	public static void editArticulo(String nombre, String qr) {
-		ArticuloDB.editarArticulo(nombre, qr);
+	public static void editArticuloQr(String nombre, String qr) {
+		ArticuloDB.editarArticuloQr(nombre, qr);
 	}
-
+	public static void editArticuloStock(String id,String cantidad) {
+		ArticuloDB.editarArticuloStock(id, cantidad);
+	}
 	public static void createArticulo(String categoria, String proveedor, String nombre,
 			String stockMinimo, String stockMaximo, String costo) {
 
@@ -80,6 +85,14 @@ public class ArticuloManager {
 		
 		Date date=new Date();
 		articuloNuevo.setFechaAgregado(date);
+		
+		String qr="";
+		try {
+			qr = URLEncoder.encode("https://api.qrserver.com/v1/create-qr-code/?data="+nombre,StandardCharsets.UTF_8.toString());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		articuloNuevo.setCodigoQr(qr);
 
 		ArticuloDB.agregarArticuloNuevo(articuloNuevo);
 

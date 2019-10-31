@@ -1,8 +1,6 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.Almacen.manager.ArticuloManager;
 
 /**
- * Servlet implementation class ServletSubirQR
+ * Servlet implementation class ServletActualizarArticuloStock
  */
-@WebServlet("/SubirQR")
-public class ServletSubirQR extends HttpServlet {
+@WebServlet("/ActualizarStock")
+public class ServletActualizarArticuloStock extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletSubirQR() {
+    public ServletActualizarArticuloStock() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +29,13 @@ public class ServletSubirQR extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String qrS, nombreArt;
-		request.setCharacterEncoding("UTF-8");
-		qrS=request.getParameter("src");
-		nombreArt=request.getParameter("nombreArt");
+		request.getSession(true);
+		String cantidad=(String) request.getParameter("cantidad");
+		String id=(String)request.getParameter("articuloID");
 		
-		String qr= URLDecoder.decode(qrS,StandardCharsets.UTF_8.toString());
-		ArticuloManager.editArticuloQr(nombreArt, qr);
-		
-		
+		ArticuloManager.editArticuloStock(id, cantidad);
+		response.sendRedirect("Articulo?articuloID=" + id);
+		request.getSession(false);
 	}
 
 	/**

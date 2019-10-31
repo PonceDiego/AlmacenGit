@@ -34,6 +34,11 @@
 	color: white;
 	font-weight: bold;
 }
+
+.error {
+	border: 2px solid red;
+}
+
 </style>
 </head>
 <body>
@@ -56,7 +61,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
 								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a> <a class="dropdown-item active" href="#">Artículo
+								de artículos</a> <a class="dropdown-item active">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -66,7 +71,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
 								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-								por artículos</a> <a class="dropdown-item disabled" href="#">Proveedor
+								por artículos</a> <a class="dropdown-item" href="../BuscarProveedor">Proveedor
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -96,48 +101,104 @@
 		</div>
 	</nav>
 
-	<form method="post"
-		action="${pageContext.request.contextPath }/Articulo">
+
+	<input type="hidden" name="articuloID" id="articuloID"
+		value="${articuloId}">
+	<h2 class="mt-5 text-center">${articuloNombre}
+		<span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Ver código QR"
+				onclick="window.open('${pageContext.request.contextPath }/Qr?articuloID=${articuloId}','_blank')">
+				<i class="material-icons"> photo </i>
+			</button></span><span>
+			<button class="btn btn-outline-warning" style="cursor: pointer"
+				title="Añadir stock" data-toggle="modal" data-target="#id01">
+				<i class="material-icons">add</i>
+			</button>
+		</span>
+	</h2>
+	<hr>
+	<div class="text-center lead"
+		style="outline: 1px solid black; max-width: 70%; margin: auto">
+
+		<table class="table">
+			<tr>
+				<th>Categoría:</th>
+				<td>${articuloCatPadre}</td>
+				<th>Subcategoría:</th>
+				<td>${articuloCat}</td>
+				<th>Estado:</th>
+				<td>${articuloEstado.getNombreEstado()}</td>
+			</tr>
+			<tr>
+				<th>Fecha agregado:</th>
+				<td>${articuloFecha}</td>
+
+				<th>Stock Mínimo:</th>
+				<td>${articuloStockMinimo}</td>
+				<th>Stock Actual:</th>
+				<td>${articuloStock}</td>
+			</tr>
+			<tr>
+				<th>Costo:</th>
+				<td>$${articuloCosto}</td>
+				<th>Proveedor:</th>
+				<c:forEach items="${artProveedores}" var="prov">
 
 
-		<h2 class="mt-5 text-center">${articuloNombre}</h2>
-		<hr>
-		<div class="text-center lead"
-			style="outline: 1px solid black; max-width: 70%; margin: auto">
-
-			<table class="table">
-				<tr>
-					<th>Categoría:</th>
-					<td>${articuloCatPadre}</td>
-					<th>Subcategoría:</th>
-					<td>${articuloCat}</td>
-					<th>Estado:</th>
-					<td>${articuloEstado.getNombreEstado()}</td>
-				</tr>
-				<tr>
-					<th>Fecha agregado:</th>
-					<td>${articuloFecha}</td>
-
-					<th>Stock Mínimo:</th>
-					<td>${articuloStockMinimo}</td>
-					<th>Stock Actual:</th>
-					<td>${articuloStock}</td>
-				</tr>
-				<tr>
-					<th>Costo:</th>
-					<td>$${articuloCosto}</td>
-					<th>Proveedor:</th>
-					<c:forEach items="${artProveedores}" var="prov">
+					<td><a href="../Proveedor?proveedorId=${prov.getProvId()}">
+							${prov.getProvNombre() }</a></td>
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
 
 
-						<td><a href="../Proveedor?proveedorId=${prov.getProvId()}">
-								${prov.getProvNombre() }</a></td>
-					</c:forEach>
-				</tr>
-			</table>
+	<div id="id01" class="modal modal.fade" aria-hidden="true">
+		<div class="modal-content align-content-md-center		">
+			<div class="modal-header text-center">
+				<h4 class="modal-titlefont-weight-bold">Ingrese la cantidad de
+					stock a agregar</h4>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Cerrar" style="cursor: pointer; background-color: red;">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body mx-3">
+				<form method="get" action="../ActualizarStock">
+					<div class="mb-5 form-inline">
+						<input type="hidden" name="articuloID" id="articuloID"
+							value="${articuloId}"> <input type="text" id="cantidad" name="cantidad"
+							onchange="validarSiNumero(this.value);">
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<button class="btn btn-lg btn-primary btn-block text-uppercase"
+							id="aceptarbutton"
+							style="max-width: 30%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					</div>
+				</form>
+			</div>
+
 		</div>
-	</form>
 
 
+	</div>
+	<script>
+		function validarSiNumero(numero) {
+			if (!/^([0-9,.])*$/.test(numero)) {
+
+				document.getElementById("cantidad").className = document
+						.getElementById("cantidad").className
+						+ " error";
+				document.getElementById("aceptarbutton").disabled = true;
+			} else {
+				document.getElementById("cantidad").className = document
+						.getElementById("cantidad").className.replace(" error",
+						"");
+				document.getElementById("aceptarbutton").disabled = false;
+			}
+
+		}
+	</script>
 </body>
 </html>

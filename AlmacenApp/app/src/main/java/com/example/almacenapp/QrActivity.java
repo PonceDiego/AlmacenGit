@@ -44,7 +44,7 @@ public class QrActivity extends AppCompatActivity {
         tv.setText(nombre);
         Button aceptar= findViewById(R.id.aceptarQR);
         ImageView qr = findViewById(R.id.imageView2);
-        final String src="https://api.qrserver.com/v1/create-qr-code/?data="+nombre;
+        final String src=getString(R.string.qrApi)+nombre;
         Picasso.get().load(src).into(qr);
 
         String urlEncoded="";
@@ -71,6 +71,10 @@ public class QrActivity extends AppCompatActivity {
                     Log.w("repuesta<<<<<<<<<<<",urlConnection.getResponseMessage()+" <-Mensaje"+urlConnection.getResponseCode()+"<-- código");
                     if(urlConnection.getResponseCode()==500){
                         Toast.makeText(getApplicationContext(),"Falló la conexión",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Código QR del artículo "+nombre+" actualizado",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(QrActivity.this, MenuAlmacenActivity.class));
+
                     }
                 }catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -80,8 +84,6 @@ public class QrActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 }
 
-                Toast.makeText(getApplicationContext(),"Código QR del artículo "+nombre+" actualizado",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(QrActivity.this, MenuAlmacenActivity.class));
             }
         });
 

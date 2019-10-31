@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.almacenapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".QrActivity"></activity>
+        <activity android:name=".BusquedaArticuloActivity"/>
+        <activity android:name=".ListaArticulosActivity" />
+        <activity android:name=".ListaProveedoresActivity"/>
+        <activity android:name=".QrActivity" />
         <activity android:name=".ProveedorActivity" />
         <activity
             android:name=".MainActivity"
@@ -34,7 +38,6 @@
         <activity
             android:name=".MenuAlmacenActivity"
             android:label="Almacen" />
-
     </application>
 
 </manifest>

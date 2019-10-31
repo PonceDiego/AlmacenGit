@@ -52,7 +52,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 							<a class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
 							<a class="dropdown-item" href="../ListaArticulos">Lista de
-								artículos</a> <a class="dropdown-item disabled" href="#">Artículo
+								artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -62,7 +62,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
 								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-								por artículos</a> <a class="dropdown-item disabled" href="#">Proveedor
+								por artículos</a> <a class="dropdown-item" href="../BuscarProveedor">Proveedor
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown active"><a
@@ -129,7 +129,7 @@
 							<td><c:set var="Estado" scope="session"
 									value="${pedido.estadopedido.getNombreEstado()}" /> <c:if
 									test="${Estado == 'En Curso'}">
-									<button class="btn btn-large btn-success" type="button"
+									<button class="btn btn-outline-success" type="button"
 										title="Entregar">
 										<i class="material-icons"> check_circle_outline </i>
 									</button>

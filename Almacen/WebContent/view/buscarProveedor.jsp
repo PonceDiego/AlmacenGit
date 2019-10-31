@@ -15,10 +15,20 @@
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/icons/materialicons.css" rel="stylesheet">
-
+<title>Buscar proveedor</title>
 
 <style>
-div.searchable {
+.form-signin .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s;
+}
+
+<
+style>div.searchable {
 	float: left;
 	width: 100%;
 }
@@ -69,112 +79,7 @@ div.searchable {
 	background-color: #e8e8e8;
 	color: #333;
 }
-
-.form-signin {
-	width: 100%;
-}
-
-.form-signin .btn {
-	font-size: 80%;
-	border-radius: 5rem;
-	letter-spacing: .1rem;
-	font-weight: bold;
-	padding: 1rem;
-	transition: all 0.2s;
-}
-
-.form-label-group {
-	position: relative;
-	margin-bottom: 1rem;
-}
-
-.form-label-group input {
-	height: auto;
-	border-radius: 2rem;
-}
-
-.form-label-group>input, .form-label-group>label {
-	padding: var(- -input-padding-y) var(- -input-padding-x);
-}
-
-.form-label-group>label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-	width: 100%;
-	margin-bottom: 0;
-	/* Override default `<label>` margin */
-	line-height: 1.5;
-	color: #495057;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-	transition: all .1s ease-in-out;
-}
-
-.form-label-group input::-webkit-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input:-ms-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::-ms-input-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::-moz-placeholder {
-	color: transparent;
-}
-
-.form-label-group input::placeholder {
-	color: transparent;
-}
-
-.form-label-group input:not (:placeholder-shown )~label {
-	padding-top: calc(var(- -input-padding-y)/3);
-	padding-bottom: calc(var(- -input-padding-y)/3);
-	font-size: 12px;
-	color: #777;
-}
-
-.card-signin {
-	border: 0;
-	border-radius: 1rem;
-	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
-.card-signin .card-title {
-	margin-bottom: 2rem;
-	font-weight: 300;
-	font-size: 1.5rem;
-}
-
-.card-signin .card-body {
-	padding: 2rem;
-}
-
-.column {
-	padding: 10px;
-	flex: 50%;
-}
-
-.form-control {
-	margin-bottom: 1rem;
-	font-size: 18px;
-	border-radius: .25rem;
-}
-
-.error {
-	border: 2px solid red;
-}
 </style>
-<title>Agregar Nuevo Artículo</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 </head>
 <body>
 	<!-- Bootstrap core JavaScript -->
@@ -189,24 +94,24 @@ div.searchable {
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown active"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item active" href="../NuevoArticulo">Nuevo
+							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
 								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
+								de artículos</a> <a class="dropdown-item ">Artículo
 								específico</a>
 						</div></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown  active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Proveedores </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
 								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-								por artículos</a> <a class="dropdown-item" href="../BuscarProveedor">Proveedor
+								por artículos</a> <a class="dropdown-item  active">Proveedor
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -236,6 +141,12 @@ div.searchable {
 		</div>
 	</nav>
 
+
+
+
+
+
+
 	<!-- Page Content   -->
 
 
@@ -245,73 +156,22 @@ div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../NuevoArticulo">
-					<h3 class="text-center">Datos del nuevo artículo</h3>
+				<form class="form-signin" method="post" action="../Articulo">
+					<h3 class="text-center">Nombre del proveedor</h3>
+					<hr class="m-4">
 					<div class="row">
 						<div class="column">
-							<div class="form-label-group>">
-								<input type="text" name="inputNombre" class="form-control"
-									placeholder="Nombre" required>
-							</div>
-							<div class="form-label-group>">
-								<input type="text" name="inputSMinimo"
-									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-									class="form-control" placeholder="Stock Mínimo" required>
-							</div>
-							<div class="form-label-group> searchable">
-								<input type="text" placeholder="Categoría" name="input"
-									id="input" onkeyup="filterFunction(this,event)" required>
-								<c:set var="categoria" value="${categoriasListadas}"
-									scope="application"></c:set>
+							<div class=" form-label-group> searchable">
+								<input type="text" placeholder="Buscar proveedor"
+									name="nombreProveedor" id="nombreProveedor"
+									onkeyup="filterFunction(this,event)" required>
+								<c:set var="proveedor" value="${proveedoresListados }"></c:set>
 								<ul>
-									<c:forEach items="${categoria}" var="categoria">
-										<li>${categoria.categoriaId}-${categoria.nombre }</li>
+									<c:forEach items="${proveedor}" var="prov">
+										<li>${prov.getProvNombre() }</li>
 									</c:forEach>
 								</ul>
 							</div>
-							<div class="form-label-group>">
-								<input type="hidden" name="inputProveedor" id="inputProveedor">
-								<select onchange="selected()" id="provSelect"
-									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
-									required>
-									<option selected disabled>Seleccione un proveedor</option>
-									<c:forEach items="${proveedores}" var="proveedor">
-
-										<option>${proveedor.provId}-${proveedor.provNombre }</option>
-
-									</c:forEach>
-								</select>
-
-							</div>
-
-						</div>
-						<div class="column">
-							<div class="form-label-group>">
-								<input type="text" name="inputCosto" class="form-control"
-									placeholder="Costo" onchange="validarSiNumero(this.value);"
-									id="costoinput" required>
-							</div>
-
-							<div class="form-label-group>">
-								<input type="text" name="inputStock" class="form-control"
-									placeholder="Stock Actual" required>
-							</div>
-							<div class=" form-label-group>" id="divSub">
-								<input type="hidden" name="inputSub" id="inputSub">
-								<select onchange="selected2()"	id="selectSub"
-									style="border-radius: 5px; font-size: 16px; padding: 10px;"
-									required>
-									<option disabled selected>Seleccione una subcategoría</option>
-									<c:forEach items="${subCats}" var="scategoria">
-										<option style="cursor: pointer"
-											class="${scategoria.getCategoria().getNombre()} listaSub">${scategoria.getSubId()}
-											-${scategoria.getSubNombre()}</option>
-									</c:forEach>
-								</select>
-
-							</div>
-
-
 						</div>
 					</div>
 					<hr>
@@ -324,35 +184,6 @@ div.searchable {
 		</div>
 
 	</div>
-	<script>
-		function validarSiNumero(numero) {
-			if (!/^([0-9,.])*$/.test(numero)) {
-
-				document.getElementById("costoinput").className = document
-						.getElementById("costoinput").className
-						+ " error";
-				document.getElementById("aceptarbutton").disabled = true;
-			} else {
-				document.getElementById("costoinput").className = document
-						.getElementById("costoinput").className.replace(
-						" error", "");
-				document.getElementById("aceptarbutton").disabled = false;
-			}
-
-		}
-		function selected() {
-			var x = document.getElementById("provSelect").value;
-
-			document.getElementById("inputProveedor").value = x;
-		}
-		
-	</script>
-	<script >
-	function selected2() {
-		var x = document.getElementById("selectSub").value;
-
-		document.getElementById("inputSub").value = x;
-	}</script>
 	<script>
 		function filterFunction(that, event) {
 			let container, input, filter, li, input_val;
@@ -445,19 +276,7 @@ div.searchable {
 				});
 		function onSelect(val) {
 
-			var x = val.split("-");
-			var y = document.getElementsByClassName('listaSub'), i;
-			var z = document.getElementsByClassName(x[1]);
-
-			for (var i = 0; i < y.length; i++) {
-				y[i].style.display = "none";
-			}
-			for (var i = 0; i < z.length; i++) {
-				z[i].style.display = "block";
-			}
-
 		}
 	</script>
 </body>
-
 </html>

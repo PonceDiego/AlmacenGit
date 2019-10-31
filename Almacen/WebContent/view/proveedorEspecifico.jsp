@@ -56,7 +56,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 							<a class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
 							<a class="dropdown-item" href="../ListaArticulos">Lista de
-								artículos</a> <a class="dropdown-item disabled" href="#">Artículo
+								artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown active"><a
@@ -66,7 +66,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
 								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-								por artículos</a> <a class="dropdown-item active" href="#">Proveedor
+								por artículos</a> <a class="dropdown-item active">Proveedor
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
