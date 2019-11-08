@@ -109,9 +109,12 @@ public class ArticuloDB {
 
 	public static void agregarArticuloNuevo(Articulo ar) {
 		Session sess = null;
+		Transaction tran=null;
 		try {
 			sess = HibernateUtils.openSession();
+			tran=sess.beginTransaction();
 			sess.save(ar);
+			tran.commit();
 
 		} finally {
 			sess.close();

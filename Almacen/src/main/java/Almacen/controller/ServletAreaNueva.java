@@ -31,7 +31,7 @@ public class ServletAreaNueva extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 request.getSession(true);
-	 request.getSession().setAttribute("usuarios", UsuarioDB.getUsers());
+	 request.getSession().setAttribute("usuarios", UsuarioDB.getUsersActivos());
 	 response.sendRedirect("view/agregarNuevaArea.jsp");
 	 request.getSession(false);
 	 

@@ -1,5 +1,6 @@
 package main.java.Almacen.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -46,6 +47,24 @@ public class AreaDB {
 		try {
 			sess=HibernateUtils.openSession();
 			sess.save(a);
+		}finally {
+			sess.close();
+		}
+	}
+	public static List<Area> getAreasByUsuarioJefe(int jefe){
+		Session sess=null;
+		
+		try {
+			sess=HibernateUtils.openSession();
+			Query query= sess.createQuery("select a from Area a where usuario='"+jefe+"'");
+			
+			if(query.getResultList()!=null) {
+				List<Area> areas = new ArrayList<Area>();
+				areas=query.getResultList();
+				return areas;
+				
+			}else return null;
+		
 		}finally {
 			sess.close();
 		}

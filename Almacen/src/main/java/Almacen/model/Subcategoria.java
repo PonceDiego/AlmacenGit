@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 24/10/2019 01:28:29 PM by Hibernate Tools 5.0.6.Final
+// Generated 4/11/2019 12:28:02 PM by Hibernate Tools 5.0.6.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -26,12 +26,11 @@ import com.google.gson.annotations.Expose;
 public class Subcategoria implements java.io.Serializable {
 
 	
+	
 	@Expose (serialize = true, deserialize = true) 
 	private Integer subId;
-	
 	@Expose (serialize = true, deserialize = true) 
 	private Categoria categoria;
-	
 	@Expose (serialize = true, deserialize = true) 
 	private String subNombre;
 	private Set<Articulo> articulos = new HashSet<Articulo>(0);

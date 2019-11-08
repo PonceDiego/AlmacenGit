@@ -37,7 +37,6 @@ public class ServletListaPedidos extends HttpServlet {
 
 
 		request.getSession(true);
-		request.getSession().setAttribute("pedidosPendientes", PedidoDB.getPedidosPendientes());
 		request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
 		response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
 		request.getSession(false);

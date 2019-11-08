@@ -21,4 +21,11 @@ public class UsuarioManager {
 		
 	}
 
+	public static void eliminarUsuario(String id) {
+		UsuarioDB.eliminarUsuarioById(toInt(id));
+	}
+	private static int toInt(String id) {
+		int ids= Integer.parseInt(id);
+		return ids;
+	}
 }

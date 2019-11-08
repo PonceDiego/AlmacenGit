@@ -21,13 +21,20 @@
 <link
 	href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css"
 	rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
 
+<style>
+.color-box {
+	width: 20px;
+	height: 10px;
+	display: inline-block;
+}
+</style>
 </head>
 
 
-<body>
+<body onload="setColor();">
 
 
 	<!-- Bootstrap core JavaScript -->
@@ -38,7 +45,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"> arrow_back </i></a>
+			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -48,9 +55,10 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
-							<a class="dropdown-item active" href="../ListaArticulos">Lista de
-								artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
+							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+								artículo</a> <a class="dropdown-item active"
+								href="../ListaArticulos">Lista de artículos</a> <a
+								class="dropdown-item" href="../BuscarArticulo">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -68,8 +76,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Pedidos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a> <a
-								class="dropdown-item" href="../ListaPedidos">Lista de pedidos</a>
+							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a>
+							<a class="dropdown-item" href="../ListaPedidos">Lista de
+								pedidos</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
@@ -79,9 +88,10 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
 							<a class="dropdown-item" href="../UsuarioNuevo">Nuevo usuario</a>
-							<a class="dropdown-item " href="../ListaUsuarios">Lista de usuarios</a> <a
-								class="dropdown-item" href="../AreaNueva">Nueva área</a> <a
-								class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
+							<a class="dropdown-item " href="../ListaUsuarios">Lista de
+								usuarios</a> <a class="dropdown-item" href="../AreaNueva">Nueva
+								área</a> <a class="dropdown-item" href="../CerrarSesion">Cerrar
+								sesión</a>
 						</div></li>
 				</ul>
 			</div>
@@ -101,22 +111,25 @@
 							<th>Subcategoría</th>
 							<th>Stock</th>
 							<th>Estado</th>
+							<th>Acción</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${listaArticulos}" var="articulo">
 							<tr>
 								<td><span> <a
-										href="../Articulo?articuloID=${articulo.articuloId }"><c:out value="${articulo.getNombre()}" /></a>
+										href="../Articulo?articuloID=${articulo.articuloId }"><c:out
+												value="${articulo.getNombre()}" /></a>
 								</span></td>
 								<td><c:out
-										value="${articulo.getSubcategoria().getCategoria().getNombre()}" /></td>		
+										value="${articulo.getSubcategoria().getCategoria().getNombre()}" /></td>
 								<td><c:out
 										value="${articulo.getSubcategoria().getSubNombre()}" /></td>
 								<td><c:out value="${articulo.getStock()}" /></td>
-								
-								<td><c:out
-										value="${articulo.estadoarticulo.getNombreEstado()}" /></td>
+								<td>
+								<div class="color-box" id="${articulo.getEstadoarticulo().getNombreEstado() }"></div>
+								</td>
+								<td><a href="../EditarArticulo?idEditar=${articuloId}" title="Editar"><i class="material-icons"style="font-size: 18px">edit</i></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -132,8 +145,25 @@
 	<script>
 		$(document).ready(function() {
 
-			$('#tablaArticulos').DataTable();
+			$('#tablaArticulos').DataTable({
+				"columnDefs" : [ {
+					"orderable" : false,
+					"targets" : [ 4,5 ]
+				} ]
+			});
 		});
+	</script>
+	<script>
+		function setColor() {
+			var x = document.getElementsByClassName("color-box");
+			for (var i = 0; i < x.length; i++) {
+				if (x[i].id =="En Stock") {
+					x[i].style.backgroundColor = "#43eb34";
+				} else if (x[i].id == "Sin Stock") {
+					x[i].style.backgroundColor = "#eb4034";
+				}
+			}
+		}
 	</script>
 </body>
 </html>

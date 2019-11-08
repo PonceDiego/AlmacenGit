@@ -30,7 +30,7 @@ public class ServletListaUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession(true);
-		request.getSession().setAttribute("listaUsuarios", UsuarioDB.getUsers());
+		request.getSession().setAttribute("listaUsuarios", UsuarioDB.getUsersActivos());
 		response.sendRedirect("view/listaDeUsuarios.jsp");
 		request.getSession(false);
 	}

@@ -11,7 +11,7 @@
 <title>Proveedor ${proveedorNombre }</title>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
 <style>
 #tableOb {
@@ -44,7 +44,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"> arrow_back </i></a>
+			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -99,7 +99,9 @@
 
 
 		<p></p>
-		<h2 class="mt-5 text-center">${proveedorNombre }</h2>
+		<h2 class="mt-5 text-center">${proveedorNombre }<span>
+				<i class="material-icons" title="Editar"style="font-size: 18px; cursor:pointer">edit</i>
+		</span></h2>
 		<div class="text-center lead"
 			style="outline: 1px solid black; max-width: 70%; margin: auto">
 			

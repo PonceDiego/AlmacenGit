@@ -6,33 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".BusquedaArticuloActivity">
 
+
     <TextView
         android:id="@+id/tituloBusquedaArticulo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/buscarArticulo"
         android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimary" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/qrScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QR"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buscarArticuloEspecifico" />
 
     <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
         android:id="@+id/articulosSpinner"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:DividerHeight="0.5dp"
+        app:DoneSearchTintColor="@color/white"
+        app:ItemsDivider="@color/grisClaro"
+        app:RevealEmptyText="@string/buscarArticulo"
+        app:SearchHintText="Buscar..."
+        app:NoItemsFoundText="No se encontraron artículos"
+        app:SearchViewTextColor="@color/white"
 
+        app:RevealViewBackgroundColor="@color/colorAccent"
+        app:SearchViewBackgroundColor="@color/colorAccent"
+        app:ShowBorders="true"
+        app:SpinnerExpandHeight="300dp"
+        app:StartSearchTintColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal"
-        app:StartSearchTintColor="@android:color/white"
-        app:ShowBorders="false"
-        app:RevealEmptyText="Tocar para seleccionar"
-        >
+        app:layout_constraintTop_toTopOf="@+id/tituloBusquedaArticulo" />
 
-    </gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buscarArticuloEspecifico"
+        android:text="@string/aceptar"
+        style="@style/AppTheme.Button"
+
+        app:layout_constraintBottom_toBottomOf="@+id/tituloBusquedaArticulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/articulosSpinner"
+        app:layout_constraintVertical_bias="0.507" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

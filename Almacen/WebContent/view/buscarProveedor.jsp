@@ -14,7 +14,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 <title>Buscar proveedor</title>
 
 <style>
@@ -89,7 +89,7 @@ style>div.searchable {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"> arrow_back </i></a>
+			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -156,7 +156,7 @@ style>div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../Articulo">
+				<form class="form-signin" method="post" action="../Proveedor">
 					<h3 class="text-center">Nombre del proveedor</h3>
 					<hr class="m-4">
 					<div class="row">

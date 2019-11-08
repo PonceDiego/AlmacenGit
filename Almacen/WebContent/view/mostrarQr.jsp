@@ -11,7 +11,7 @@
 <title>Código QR del artículo ${articuloNombre }</title>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 </head>
 <body>
 

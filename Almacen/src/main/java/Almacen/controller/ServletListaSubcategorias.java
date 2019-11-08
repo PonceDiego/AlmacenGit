@@ -39,15 +39,15 @@ public class ServletListaSubcategorias extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		
 		String inputCat;
 		inputCat= request.getParameter("inputCat");
 		List<Subcategoria> cats = SubcategoriaDB.getSubcategoriasByCat(inputCat);
 		ArrayList<Subcategoria> array = new ArrayList<Subcategoria>();
 		String categoriaJson = null;
-		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 
 		for (Subcategoria cat : cats) {
 			array.add(cat);

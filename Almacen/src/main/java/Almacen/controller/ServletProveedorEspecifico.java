@@ -54,8 +54,18 @@ public class ServletProveedorEspecifico extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getSession(true);
+		String nombre = request.getParameter("nombreProveedor");
+		Proveedor prov = new Proveedor();
+		prov = ProveedoresDB.getProveedorByNombre(nombre);
+		if (prov != null) {
+			int id = prov.getProvId();
+			response.sendRedirect("Proveedor?proveedorId=" + id);
+
+		} else
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+
+		request.getSession(false);
 	}
 
 }

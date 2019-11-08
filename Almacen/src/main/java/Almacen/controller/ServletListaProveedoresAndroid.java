@@ -42,9 +42,9 @@ public class ServletListaProveedoresAndroid extends HttpServlet {
 		List<Proveedor> cats = ProveedoresDB.getProveedores();
 		ArrayList<Proveedor> array = new ArrayList<Proveedor>();
 		String categoriaJson = null;
-		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 
 		for (Proveedor cat : cats) {
 			array.add(cat);

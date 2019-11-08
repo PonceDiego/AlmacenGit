@@ -11,7 +11,7 @@
 <title>Artículo: ${articuloNombre }</title>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
 <style>
 #tableOb {
@@ -49,7 +49,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"> arrow_back </i></a>
+			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -104,15 +104,18 @@
 
 	<input type="hidden" name="articuloID" id="articuloID"
 		value="${articuloId}">
-	<h2 class="mt-5 text-center">${articuloNombre}
+	<h2 class="mt-5 text-center">${articuloNombre} <span> <button onclick="window.location.href=('${pageContext.request.contextPath }/GenerarPedido?articuloAgregar=${articuloNombre}')" title="Añadir a pedido"style= "cursor:pointer"class="btn-outline-info btn">
+				<i class="material-icons" >library_add</i>
+	</button>
+		</span>
 		<span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Ver código QR"
 				onclick="window.open('${pageContext.request.contextPath }/Qr?articuloID=${articuloId}','_blank')">
-				<i class="material-icons"> photo </i>
+				<i class="material-icons"> border_outer </i>
 			</button></span><span>
 			<button class="btn btn-outline-warning" style="cursor: pointer"
 				title="Añadir stock" data-toggle="modal" data-target="#id01">
-				<i class="material-icons">add</i>
+				<i class="material-icons">add_shopping_cart</i>
 			</button>
 		</span>
 	</h2>

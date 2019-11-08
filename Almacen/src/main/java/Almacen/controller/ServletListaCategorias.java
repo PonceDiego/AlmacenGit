@@ -42,9 +42,9 @@ public class ServletListaCategorias extends HttpServlet {
 		List<Categoria> cats = SubcategoriaDB.getCategorias();
 		ArrayList<Categoria> array = new ArrayList<Categoria>();
 		String categoriaJson = null;
-		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 
 		for (Categoria cat : cats) {
 			array.add(cat);

@@ -24,7 +24,7 @@
 <link
 	href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css"
 	rel="stylesheet">
-<link href="../vendor/icons/materialicons.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
 
 </head>
@@ -40,7 +40,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"> arrow_back </i></a>
+			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -132,8 +132,8 @@
 									<i class="material-icons"> edit </i>
 								</button>
 
-								<button class="btn btn-outline-danger" type="button"
-									title="Eliminar">
+								<button class="btn btn-outline-danger" type="button" 
+									title="Eliminar" style="cursor:pointer"onclick="confirmar('${pageContext.request.contextPath }/EliminarUsuario?idEliminado=${usuario.getUsuarioId() }');">
 									<i class="material-icons"> delete </i>
 								</button></td>
 						</tr>
@@ -159,6 +159,14 @@
 				} ]
 			});
 		});
+	</script>
+	<script>
+		function confirmar(url){
+			var r=confirm ("¿Está seguro que desea dar de baja el usuario?");
+			if(r==true){
+				$(location).attr('href',url);
+				}
+			}
 	</script>
 </body>
 </html>

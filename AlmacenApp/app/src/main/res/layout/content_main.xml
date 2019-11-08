@@ -6,34 +6,54 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/activity_main"
+
+    >
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".MainActivity">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@drawable/fondo"
+        >
 
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0px"
             android:layout_weight="0.5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/button1"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:text="@string/btn1" />
+                android:text="@string/btn1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/boton1"
 
+
+                />
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/button2"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:text="@string/btn2" />
+                android:text="@string/btn2"
+                android:adjustViewBounds="true"
+                android:background="@drawable/boton2"
+
+                />
 
         </LinearLayout>
 
@@ -42,24 +62,29 @@
             android:layout_width="fill_parent"
             android:layout_height="0px"
             android:layout_weight="0.5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/button3"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:text="@string/btn3" />
+                android:text="@string/btn3"
+                android:adjustViewBounds="true"
+                android:background="@drawable/boton3"/>
 
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/button4"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:text="@string/btn4" />
+                android:text="@string/btn4"
+                android:adjustViewBounds="true"
+                android:background="@drawable/boton4"/>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

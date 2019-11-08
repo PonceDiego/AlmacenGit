@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ProveedorActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
+
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <TextView
         android:id="@+id/textView4"
@@ -12,53 +23,70 @@
         android:text="@string/nuevo_proveedor"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <View style="@style/Divider" />
+    <View
+        android:id="@+id/view3"
+        style="@style/Divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
     <EditText
         android:id="@+id/nombreProveedor"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textPersonName"
-    android:hint="@string/nombre" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
     <EditText
         android:id="@+id/telefonoProveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Teléfono"
         android:inputType="number"
-        android:hint="Teléfono" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreProveedor" />
+
     <EditText
         android:id="@+id/contactoProveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Persona de contacto"
         android:inputType="textPersonName"
-        android:hint="Persona de contacto" />
+        app:layout_constraintTop_toBottomOf="@+id/telefonoProveedor" />
+
     <EditText
         android:id="@+id/direccionProveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Dirección"
         android:inputType="text"
-        android:hint="Dirección" />
+        app:layout_constraintTop_toBottomOf="@id/contactoProveedor" />
+
     <EditText
         android:id="@+id/mailProveedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="Mail"
-        />
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/direccionProveedor" />
 
 
     <Button
         android:id="@+id/proveedorAgregar"
+        style="@style/AppTheme.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.Button"
         android:text="@string/agregar"
-/>
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/mailProveedor"
+        tools:layout_editor_absoluteX="0dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

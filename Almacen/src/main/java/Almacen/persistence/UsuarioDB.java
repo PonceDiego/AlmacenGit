@@ -5,18 +5,19 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.model.Usuario;
 
 public class UsuarioDB {
 
-	public static List<Usuario> getUsers(){
+	public static List<Usuario> getUsersActivos(){
 		Session sess= null;
 		List<Usuario> usuario ;
 		try {
 			sess=HibernateUtils.openSession();
-			Query<Usuario> query=sess.createQuery("select u from Usuario u where u.usuarioId!=null");
+			Query<Usuario> query=sess.createQuery("select u from Usuario u where u.activo=1");
 			usuario=query.getResultList();
 			for(Usuario u:usuario) {
 				Hibernate.initialize(u.getArea());
@@ -64,6 +65,22 @@ public class UsuarioDB {
 		try {
 			sess=HibernateUtils.openSession();
 			sess.save(user);
+		}finally {
+			sess.close();
+		}
+	}
+	public static void eliminarUsuarioById(int id) {
+		Session sess=null;
+		Transaction tran=null;
+		Usuario user= null;
+		try {
+			sess=HibernateUtils.openSession();
+			tran= sess.beginTransaction();
+			user= getUsuarioByID(id);
+			sess.update(user);
+			user.setActivo(false);
+			
+			tran.commit();
 		}finally {
 			sess.close();
 		}
