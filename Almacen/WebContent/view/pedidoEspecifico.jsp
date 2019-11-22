@@ -44,7 +44,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -98,14 +98,24 @@
 
 		<p></p>
 		<div class="text-center lead" style="outline:1px solid black; max-width: 70%; margin: auto">
-			<p>ID: ${pedidoId } &nbsp;&nbsp; &nbsp;&nbsp; Fecha:
-				${pedidoFecha }&nbsp;&nbsp; &nbsp;&nbsp; Estado: ${pedidoEstado}</p>
-			<p>Usuario: ${pedidoUsuario} &nbsp;&nbsp; &nbsp;&nbsp; Área:
-				${pedidoArea}</p>
-
-			<p></p>
+		<table class="table">
+		<tr>
+			<th>ID: </th>
+			<td>${pedidoId }</td>
+			<th>Fecha: </th>
+			<td>${pedidoFecha }</td>
+			<th>Estado: </th>
+			<td>${pedidoEstado}</td>
+			</tr>
+			<tr>
+			<th>Usuario: </th>
+			<td>${pedidoUsuario}</td>
+			<th>Área: </th>
+			<td>${pedidoArea}</td>
 			
-			<p></p>
+		
+		</table>
+		<hr>
 			
 		<div class="text-center lead" style="width: 100%">
 			<!-- tablita de articulos -->

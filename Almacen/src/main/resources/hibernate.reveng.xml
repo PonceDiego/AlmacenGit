@@ -14,4 +14,5 @@
   <table-filter match-catalog="almacen" match-name="rol"/>
   <table-filter match-catalog="almacen" match-name="subcategoria"/>
   <table-filter match-catalog="almacen" match-name="usuario"/>
+  <table-filter match-catalog="almacen" match-name="usuariosys"/>
 </hibernate-reverse-engineering>

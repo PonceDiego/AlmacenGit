@@ -27,8 +27,7 @@
 	transition: all 0.2s;
 }
 
-<
-style>div.searchable {
+div.searchable {
 	float: left;
 	width: 100%;
 }
@@ -100,7 +99,7 @@ style>div.searchable {
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown active"><a
@@ -162,7 +161,7 @@ style>div.searchable {
 							<div class=" form-label-group> searchable">
 								<input type="text" placeholder="Buscar artículo"
 									name="nombreArticulo" id="nombreArticulo"
-									onkeyup="filterFunction(this,event)" required>
+									onkeyup="filterFunction(this,event)" required autocomplete="off">
 								<c:set var="articulo" value="${articulosLista }"></c:set>
 								<ul id="ulArt">
 									<c:forEach items="${articulo}" var="articulo">

@@ -1,4 +1,4 @@
-package main.java.Almacen.controller;
+	package main.java.Almacen.controller;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -8,10 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.ArticuloDB;
 import main.java.Almacen.persistence.SubcategoriaDB;
+import main.java.Almacen.persistence.UsuarioDB;
 
 /**
  * Servlet implementation class ServletPedidoNuevo
@@ -34,22 +35,35 @@ public class ServletPedidoNuevo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession sess = request.getSession();
-		
-		
-		//TODO: comprobar que no sea el token del usuario cuando se realice el login !
-		Enumeration<String> lista = sess.getAttributeNames();
-		while (lista.hasMoreElements()) {
-			String attrName = lista.nextElement();
-			sess.removeAttribute(attrName);
-		}
-		request.getSession().setAttribute("subcategorias", SubcategoriaDB.getSubcategorias());
-		request.getSession().setAttribute("articulosStock", ArticuloDB.getArticulosEnStock());
-		if (request.getParameter("articuloAgregar") != null) {
-			request.getSession().setAttribute("nombreArt", request.getParameter("articuloAgregar"));
-		}
-		response.sendRedirect("view/agregarNuevoPedido.jsp");
 
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+
+			// TODO: comprobar que no sea el token del usuario cuando se realice el login !
+			Enumeration<String> lista = request.getSession().getAttributeNames();
+			while (lista.hasMoreElements()) {
+				String attrName = lista.nextElement();
+				if (!attrName.equals("usuarioActual") && !attrName.equals("mensaje")) {
+					request.getSession().removeAttribute(attrName);
+				}
+			}
+			Usuario user = new Usuario();
+
+			user = (Usuario) request.getSession().getAttribute("usuarioActual");
+
+			if (user.getRol().getNombreRol().equals("Administrador")
+					|| user.getRol().getNombreRol().equals("SuperAdmin")) {
+				request.getSession().setAttribute("listaUsuario", UsuarioDB.getUsersActivos());
+			}
+
+			request.getSession().setAttribute("subcategorias", SubcategoriaDB.getSubcategorias());
+			request.getSession().setAttribute("articulosStock", ArticuloDB.getArticulosEnStock());
+			if (request.getParameter("articuloAgregar") != null) {
+				request.getSession().setAttribute("nombreArt", request.getParameter("articuloAgregar"));
+			}
+			response.sendRedirect("view/agregarNuevoPedido.jsp");
+		}
 	}
 
 	/**

@@ -31,15 +31,17 @@ public class ServletEntregarPedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession(true);
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+		request.getSession(false);
 		String id = request.getParameter("idEntregado");
 		PedidoManager.entregarPedido(id);
 		
 		
 		response.sendRedirect("ListaPedidos");
-		request.getSession(false);
 
-	}
+	}}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

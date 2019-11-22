@@ -51,7 +51,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown active"><a
@@ -105,7 +105,7 @@
 	<input type="hidden" name="articuloID" id="articuloID"
 		value="${articuloId}">
 	<h2 class="mt-5 text-center">${articuloNombre} <span> <button onclick="window.location.href=('${pageContext.request.contextPath }/GenerarPedido?articuloAgregar=${articuloNombre}')" title="Añadir a pedido"style= "cursor:pointer"class="btn-outline-info btn">
-				<i class="material-icons" >library_add</i>
+				<i class="material-icons" >add_shopping_cart</i>
 	</button>
 		</span>
 		<span><button class="btn btn-outline-dark"
@@ -115,7 +115,7 @@
 			</button></span><span>
 			<button class="btn btn-outline-warning" style="cursor: pointer"
 				title="Añadir stock" data-toggle="modal" data-target="#id01">
-				<i class="material-icons">add_shopping_cart</i>
+				<i class="material-icons">library_add</i>
 			</button>
 		</span>
 	</h2>

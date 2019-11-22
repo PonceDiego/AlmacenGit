@@ -205,139 +205,6 @@ div.searchable {
 	background-color: #e8e8e8;
 	color: #333;
 }
-.form-label-group
-
-
-
- 
-
-
-
-input
-
-
-
-
-
-
-:not
-
-
-
- 
-
-
-
-(
-:placeholder-shown
-
-
-
- 
-
-
-
-){
-padding-top
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-calc
-
-
-
-
-
-
-(
-var
-
-
-
-
-(-
--input-padding-y
-
-
-
-
-
-
-)
-+
-var
-
-
-
-
-
-
-(-
--input-padding-y
-
-
-
-
-
-
-)
-*
-
-
-
-
-
-
-(2/3));
-padding-bottom
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-calc
-
-
-
-
-
-
-(
-var
-
-
-
-
-(-
--input-padding-y
-
-
-
-
-
-
-)/3);
-}
 </style>
 <title>Agregar Nuevo Proveedor</title>
 <script
@@ -355,7 +222,7 @@ var
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -418,11 +285,11 @@ var
 						<div class="column">
 							<div class="form-label-group>">
 								<input type="text" name="provNombre" class="form-control"
-									placeholder="Nombre" required>
+									placeholder="Nombre" required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provTel" class="form-control"
-									placeholder="Teléfono" required>
+									placeholder="Teléfono" required oninput="this.value=this.value.replace(/[^0-9]/g,'');"autocomplete="off">
 							</div>
 
 
@@ -430,15 +297,15 @@ var
 						<div class="column">
 							<div class="form-label-group>">
 								<input type="text" name="provDire" class="form-control"
-									placeholder="Dirección">
+									placeholder="Dirección"required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provMail" class="form-control"
-									placeholder="Mail" required>
+									placeholder="Mail" required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provCont" class="form-control"
-									placeholder="Persona contacto">
+									placeholder="Persona contacto"autocomplete="off">
 							</div>
 
 						</div>

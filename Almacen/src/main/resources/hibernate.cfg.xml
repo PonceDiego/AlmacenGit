@@ -6,7 +6,12 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/almacen</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">almacen.C12</property>
+		
+		
+<!-- 		<property name="hibernate.connection.password">almacen.C12</property> -->
+		
+		
+		
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.search.autoregister_listeners">true</property>
 		<property name="hibernate.show_sql">true</property>
@@ -29,5 +34,6 @@
 		<mapping class="main.java.Almacen.model.Rol" />
 		<mapping class="main.java.Almacen.model.Subcategoria" />
 		<mapping class="main.java.Almacen.model.Usuario" />
+		<mapping class="main.java.Almacen.model.Usuariosys" />
 	</session-factory>
 </hibernate-configuration>

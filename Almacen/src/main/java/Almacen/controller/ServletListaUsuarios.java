@@ -16,29 +16,36 @@ import main.java.Almacen.persistence.UsuarioDB;
 @WebServlet("/ListaUsuarios")
 public class ServletListaUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletListaUsuarios() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true);
-		request.getSession().setAttribute("listaUsuarios", UsuarioDB.getUsersActivos());
-		response.sendRedirect("view/listaDeUsuarios.jsp");
-		request.getSession(false);
+	public ServletListaUsuarios() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession(false);
+			request.getSession().setAttribute("listaUsuarios", UsuarioDB.getUsersActivos());
+			response.sendRedirect("view/listaDeUsuarios.jsp");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

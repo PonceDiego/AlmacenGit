@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.model.Area;
+import main.java.Almacen.model.Usuario;
 
 public class AreaDB {
 
@@ -20,8 +21,8 @@ public class AreaDB {
 			sess = HibernateUtils.openSession();
 			Query<Area> query = sess.createQuery("select r from Area r");
 			roles = query.getResultList();
-			for(Area a:roles) {
-				
+			for (Area a : roles) {
+
 				Hibernate.initialize(a.getUsuario());
 			}
 			return roles;
@@ -29,46 +30,67 @@ public class AreaDB {
 			sess.close();
 		}
 	}
+
 	public static Area getAreaByNombre(String nombre) {
-		Session sess=null;
-		Area rol=null;
+		Session sess = null;
+		Area rol = null;
 		try {
-			sess=HibernateUtils.openSession();
-			Query<Area> query=sess.createQuery("select r from Area r where r.nombreArea='"+nombre+"'");
-			rol=query.getSingleResult();
+			sess = HibernateUtils.openSession();
+			Query<Area> query = sess.createQuery("select r from Area r where r.nombreArea='" + nombre + "'");
+			rol = query.getSingleResult();
 			Hibernate.initialize(rol.getUsuario());
 			return rol;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
-	public static void agregarAreaNueva (Area a) {
-		Session sess=null;
+
+	public static void agregarAreaNueva(Area a) {
+		Session sess = null;
 		try {
-			sess=HibernateUtils.openSession();
+			sess = HibernateUtils.openSession();
 			sess.save(a);
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
-	public static List<Area> getAreasByUsuarioJefe(int jefe){
-		Session sess=null;
-		
+
+	public static List<Area> getAreasByUsuarioJefe(int jefe) {
+		Session sess = null;
+
 		try {
-			sess=HibernateUtils.openSession();
-			Query query= sess.createQuery("select a from Area a where usuario='"+jefe+"'");
-			
-			if(query.getResultList()!=null) {
+			sess = HibernateUtils.openSession();
+			Query query = sess.createQuery("select a from Area a where usuario='" + jefe + "'");
+
+			if (query.getResultList() != null) {
 				List<Area> areas = new ArrayList<Area>();
-				areas=query.getResultList();
+				areas = query.getResultList();
 				return areas;
-				
-			}else return null;
-		
-		}finally {
+
+			} else
+				return null;
+
+		} finally {
 			sess.close();
 		}
 	}
 
+	public static Usuario getUsuarioJefeArea(Integer areaId) {
+		Session sess = null;
+		Usuario u = null;
+		Area a=null;
 
+		try {
+			sess = HibernateUtils.openSession();
+			a= sess.get(Area.class, areaId);
+			u=a.getUsuario();
+			Hibernate.initialize(u);
+			Hibernate.initialize(u.getEmail());
+
+			return u;
+		} finally {
+			sess.close();
+		}
+
+	}
 }

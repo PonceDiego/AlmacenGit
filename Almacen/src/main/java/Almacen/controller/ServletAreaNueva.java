@@ -17,34 +17,40 @@ import main.java.Almacen.persistence.UsuarioDB;
 @WebServlet("/AreaNueva")
 public class ServletAreaNueva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAreaNueva() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 request.getSession(true);
-	 request.getSession().setAttribute("usuarios", UsuarioDB.getUsersActivos());
-	 response.sendRedirect("view/agregarNuevaArea.jsp");
-	 request.getSession(false);
-	 
+	public ServletAreaNueva() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession().setAttribute("usuarios", UsuarioDB.getUsersActivos());
+			response.sendRedirect("view/agregarNuevaArea.jsp");
+
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nombre, user;
 		request.setCharacterEncoding("UTF-8");
-		nombre=request.getParameter("inputNombre");
-		user=request.getParameter("inputJefe");
+		nombre = request.getParameter("inputNombre");
+		user = request.getParameter("inputJefe");
 		AreaManager.createArea(nombre, user);
 		response.sendRedirect("index.html");
 	}

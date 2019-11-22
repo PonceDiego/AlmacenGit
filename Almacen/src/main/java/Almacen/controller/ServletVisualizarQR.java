@@ -16,36 +16,42 @@ import main.java.Almacen.persistence.ArticuloDB;
 @WebServlet("/Qr")
 public class ServletVisualizarQR extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletVisualizarQR() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true);
-		String idS=request.getParameter("articuloID");
-		int id= Integer.parseInt(idS);
-		
-		request.getSession().setAttribute("articuloNombre", ArticuloDB.getArticuloByID(id).getNombre());
-		request.getSession().setAttribute("imageSrc", ArticuloDB.getArticuloByID(id).getCodigoQr());
-		
-		
-		response.sendRedirect("view/mostrarQr.jsp");
-		
-		request.getSession(false);
+	public ServletVisualizarQR() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession(false);
+			String idS = request.getParameter("articuloID");
+			int id = Integer.parseInt(idS);
+
+			request.getSession().setAttribute("articuloNombre", ArticuloDB.getArticuloByID(id).getNombre());
+			request.getSession().setAttribute("imageSrc", ArticuloDB.getArticuloByID(id).getCodigoQr());
+
+			response.sendRedirect("view/mostrarQr.jsp");
+
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -51,8 +51,8 @@ public class ArticuloManager {
 		articuloNuevo.setStock(stock);
 		Proveedor prov=null;
 		if(proveedor.contains("-")) {
-			String[] inputProv = proveedor.split(" ");
-			prov = ProveedoresDB.getProveedorByStringId(inputProv[0].toString());
+			String nombreProv = proveedor.replace("-", "");
+			prov = ProveedoresDB.getProveedorByNombre(nombreProv);
 			
 			
 		}else {
@@ -65,8 +65,8 @@ public class ArticuloManager {
 		
 		Subcategoria cat =null;
 		if(categoria.contains("-")) {
-			String[] input = categoria.split(" ");
-			cat = SubcategoriaDB.getCategoriaById(input[0].toString());
+			String input = categoria.replace("-", "");
+			cat = SubcategoriaDB.getSubcategoriaByNombre(input);
 			
 		}else {
 			cat=SubcategoriaDB.getCategoriaById(categoria);
@@ -87,5 +87,20 @@ public class ArticuloManager {
 
 		ArticuloDB.agregarArticuloNuevo(articuloNuevo);
 
+	}
+	public static void editarArticulo(String ids, String subc, String proveedor, String nombre, String stockMinimoS,
+			String stockMaximoS, String costoS) {
+		int id= Integer.valueOf(ids);
+		double costo= Double.valueOf(costoS);
+		int stockMaximo= Integer.valueOf(stockMaximoS);
+		int stockMinimo= Integer.valueOf(stockMinimoS);
+		if(proveedor.contains("-")) {
+			proveedor=proveedor.substring(1);
+		}
+		if(subc.contains("-")) {
+			subc=subc.substring(1);
+		}
+		ArticuloDB.editarArticulo(id, subc, proveedor,nombre,stockMinimo,stockMaximo,costo);
+		
 	}
 }

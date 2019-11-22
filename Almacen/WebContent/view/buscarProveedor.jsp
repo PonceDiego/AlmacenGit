@@ -91,7 +91,7 @@ style>div.searchable {
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -164,7 +164,7 @@ style>div.searchable {
 							<div class=" form-label-group> searchable">
 								<input type="text" placeholder="Buscar proveedor"
 									name="nombreProveedor" id="nombreProveedor"
-									onkeyup="filterFunction(this,event)" required>
+									onkeyup="filterFunction(this,event)" required autocomplete="off">
 								<c:set var="proveedor" value="${proveedoresListados }"></c:set>
 								<ul>
 									<c:forEach items="${proveedor}" var="prov">

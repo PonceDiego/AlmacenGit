@@ -56,8 +56,13 @@ public class ArticuloDB {
 		try {
 
 			sess = HibernateUtils.openSession();
-			Query<Articulo> query = sess.createQuery("SELECT distinct a FROM Articulo a WHERE a.nombre='"+nombre+"'");
+			Query<Articulo> query = sess
+					.createQuery("SELECT distinct a FROM Articulo a WHERE a.nombre='" + nombre + "'");
 			articulo = (Articulo) query.getSingleResult();
+			Hibernate.initialize(articulo);
+			Hibernate.initialize(articulo.getProveedor());
+			Hibernate.initialize(articulo.getSubcategoria());
+			Hibernate.initialize(articulo.getSubcategoria().getCategoria());
 
 			return articulo;
 
@@ -109,10 +114,10 @@ public class ArticuloDB {
 
 	public static void agregarArticuloNuevo(Articulo ar) {
 		Session sess = null;
-		Transaction tran=null;
+		Transaction tran = null;
 		try {
 			sess = HibernateUtils.openSession();
-			tran=sess.beginTransaction();
+			tran = sess.beginTransaction();
 			sess.save(ar);
 			tran.commit();
 
@@ -120,19 +125,20 @@ public class ArticuloDB {
 			sess.close();
 		}
 	}
+
 	public static void editarArticuloStock(String id, String cantidad) {
-		Session sess= null;
+		Session sess = null;
 		Articulo a = null;
 		try {
-			sess=HibernateUtils.openSession();
-			Transaction tran= sess.beginTransaction();
-			int idI= Integer.parseInt(id);
-			a=sess.get(Articulo.class, idI);
+			sess = HibernateUtils.openSession();
+			Transaction tran = sess.beginTransaction();
+			int idI = Integer.parseInt(id);
+			a = sess.get(Articulo.class, idI);
 			sess.saveOrUpdate(a);
-			int cantidadI=Integer.valueOf(cantidad);
-			a.setStock(a.getStock()+cantidadI);
+			int cantidadI = Integer.valueOf(cantidad);
+			a.setStock(a.getStock() + cantidadI);
 			tran.commit();
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
@@ -141,7 +147,6 @@ public class ArticuloDB {
 		Session sess = null;
 		Articulo a = null;
 
-
 		try {
 			sess = HibernateUtils.openSession();
 			Transaction tran = sess.beginTransaction();
@@ -149,16 +154,43 @@ public class ArticuloDB {
 			int id = getArticuloByNombre(nombre).getArticuloId();
 			a = sess.get(Articulo.class, id);
 
-
 			sess.saveOrUpdate(a);
 
 			a.setCodigoQr(qr);
 
 			tran.commit();
 		} finally {
-			
+
 			sess.close();
 		}
 	}
 
+	public static void editarArticulo(int id, String subc, String proveedor, String nombre, int stockMinimo,
+			int stockMaximo, Double costo) {
+		Session sess = null;
+		Articulo a = null;
+
+		try {
+			sess = HibernateUtils.openSession();
+			Transaction tran = sess.beginTransaction();
+
+			a = getArticuloByID(id);
+			sess.saveOrUpdate(a);
+			a.setCosto(costo);
+			a.setNombre(nombre);
+			a.setProveedor(ProveedoresDB.getProveedorByNombre(proveedor));
+			a.setStock(stockMaximo);
+			a.setStockMinimo(stockMinimo);
+			a.setSubcategoria(SubcategoriaDB.getSubcategoriaByNombre(subc));
+			if(stockMinimo>stockMaximo) {
+				a.setEstadoarticulo(EstadoArticuloDB.getEstadoById(2));
+			}else {
+				a.setEstadoarticulo(EstadoArticuloDB.getEstadoById(1));
+			}
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+
+	}
 }

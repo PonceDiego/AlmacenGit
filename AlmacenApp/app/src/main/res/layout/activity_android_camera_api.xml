@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <com.c12.almacenapp.barcode.camera.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.c12.almacenapp.barcode.camera.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/mostrarQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+    </com.c12.almacenapp.barcode.camera.CameraSourcePreview>
+        <ImageView
+            android:id="@+id/flash_button"
+            android:layout_height="16dp"
+            android:layout_width="16dp"
+            android:contentDescription="@string/cd_flash_button"
+            app:srcCompat="@drawable/camera_flash" />
+
+</LinearLayout>

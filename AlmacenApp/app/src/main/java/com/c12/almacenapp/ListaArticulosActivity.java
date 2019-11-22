@@ -1,8 +1,12 @@
 package com.c12.almacenapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -69,9 +73,27 @@ public class ListaArticulosActivity extends AppCompatActivity {
 
             nombreArt.setText(articulosNombres.get(i).toString());
             stockArt.setText(articulosStock.get(i).toString());
+            nombreArt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BusquedaArticuloActivity.nombreArticuloQR=nombreArt.getText().toString();
+                    startActivity(new Intent(ListaArticulosActivity.this,ArticuloEspecificoActivity.class));
+                }
+            });
+            Button button= new Button(ListaArticulosActivity.this);
+            button.setText("Agregar a pedido");
+            button.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                           startActivity(new Intent(ListaArticulosActivity.this,PedidoActivity.class
+                                           ));
+                                          }
+                                      }
+            );
 
             tr.addView(nombreArt);
             tr.addView(stockArt);
+            tr.addView(button);
 
             tl.addView(tr);
         }

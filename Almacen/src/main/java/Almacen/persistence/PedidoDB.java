@@ -13,14 +13,14 @@ import main.java.Almacen.model.Pedido;
 public class PedidoDB {
 	public static void eliminarPedidoById(int id) {
 		ArticuloPedidoDB.borrarArticulosPedidos(id);
-		Session sess= null;
+		Session sess = null;
 		Transaction tran = null;
 		try {
-			sess=HibernateUtils.openSession();
-			tran=sess.beginTransaction();
-			sess.delete( getPedidoByID(id));
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.delete(getPedidoByID(id));
 			tran.commit();
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
@@ -106,33 +106,57 @@ public class PedidoDB {
 			Transaction tran = sess.beginTransaction();
 
 			p = PedidoDB.getPedidoByID(ids);
-			p.setEstadopedido(EstadoPedidoDB.getEstadoById(2));
 			sess.saveOrUpdate(p);
-			p.setEstadopedido(EstadoPedidoDB.getEstadoById(2));
-			ArticuloPedidoDB.actualizarStock(p);
+			if (ArticuloPedidoDB.actualizarStock(p)) {
+				p.setEstadopedido(EstadoPedidoDB.getEstadoById(2));
+
+			} else {
+				p.setEstadopedido(EstadoPedidoDB.getEstadoById(3));
+				if (!p.getObservaciones().contains(" ##En espera por falta de stock.")) {
+
+					p.setObservaciones(p.getObservaciones() + " ##En espera por falta de stock.");
+				}
+			}
 			tran.commit();
-			
+
 		} finally {
 
 			sess.close();
 
 		}
 	}
+
 	public static Serializable crearPedido(Pedido p) {
-		Session sess=null;
-		Transaction tran=null;
+		Session sess = null;
+		Transaction tran = null;
 		try {
-			sess=HibernateUtils.openSession();
-			tran=sess.beginTransaction();
-			Serializable ret= sess.save(p);
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			Serializable ret = sess.save(p);
 			tran.commit();
 			return ret;
-			
-			
-		}finally {
+
+		} finally {
 			sess.close();
 		}
-		
+
+	}
+
+	public static void editarPedido(int idP, String estado, String observaciones) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			Pedido a = getPedidoByID(idP);
+			tran = sess.beginTransaction();
+			sess.update(a);
+			a.setEstadopedido(EstadoPedidoDB.getEstadoByNombre(estado));
+			a.setObservaciones(observaciones);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+
 	}
 
 }

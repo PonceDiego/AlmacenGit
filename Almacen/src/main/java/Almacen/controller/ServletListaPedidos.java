@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.persistence.PedidoDB;
 
-
-
 /**
  * Servlet implementation class ServletListaPedido
  */
@@ -33,15 +31,16 @@ public class ServletListaPedidos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
 
-		request.getSession(true);
-		request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
-		response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
-		request.getSession(false);
+			request.getSession(false);
+			request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
+			response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+		}
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

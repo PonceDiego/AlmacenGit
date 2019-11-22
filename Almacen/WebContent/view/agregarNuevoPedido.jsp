@@ -108,7 +108,7 @@ div.pedido ul li {
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -167,6 +167,24 @@ div.pedido ul li {
 				<hr class="m-4">
 
 
+				<c:set value="${usuarioActual.getRol().getNombreRol() }"
+					var="rolActual"></c:set>
+				<c:if test="${rolActual=='SuperAdmin'||rolActual=='Administrador'}">
+					<div style="margin: auto; text-align: center;">
+
+						<select id="selectUsuarios" onchange="setUser();"
+							style="border-radius: 5px; padding: 2px;">
+							<option selected disabled>Seleccionar usuario</option>
+							<c:forEach items="${listaUsuario}" var="usuario">
+								<option value="${usuario.getUsuarioId()}">${usuario.getNombreUsuario()}</option>
+							</c:forEach>
+						</select>
+
+						<hr class="m-4">
+
+					</div>
+				</c:if>
+
 
 				<div class="row">
 
@@ -188,17 +206,28 @@ div.pedido ul li {
 								</c:forEach>
 							</c:forEach>
 						</select> <input style="border-radius: 5px" type="text" id="cantidad"
-							placeholder="Cantidad"
+							placeholder="Cantidad" autocomplete="off"
 							oninput="this.value=this.value.replace(/[^0-9]/g,'');"> <span
 							onclick="newElement()" class="addBtn">Agregar</span>
 					</div>
 					<div class="column">
 						<form action="../AgregarPedido" id="nuevoPedido">
-							<button class="aceptarBtn">Aceptar</button>
-								<input type="hidden" id="inputArt" name="inputArt"> <input
-						type="hidden" name="inputCantidad" id="inputCantidad"> <input
-						type="hidden" name="UserId" id="UserId" value="3">
-					<!--  TODO: pasar valor real de userID -->
+							<button class="aceptarBtn" id="aceptar" onmouseover="aceptarBoton(this)">Aceptar</button>
+							<input type="hidden" id="inputArt" name="inputArt"> <input
+								type="hidden" name="inputCantidad" id="inputCantidad"
+								value="${usuario.getUsuarioId() }">
+							<c:choose>
+								<c:when
+									test="${rolActual=='SuperAdmin'||rolActual=='Administrador'}">
+									<input type="hidden" name="UserId" id="UserId"
+										form="nuevoPedido" value="">
+
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" name="UserId" id="UserId"
+										value="${usuarioActual.getUsuarioId() }">
+								</c:otherwise>
+							</c:choose>
 						</form>
 						<textarea rows="2" cols="30" maxlength="140"
 							name="textAreaObservaciones" id="textAreaObservaciones"
@@ -209,22 +238,39 @@ div.pedido ul li {
 				</div>
 				<hr class="m-2">
 				<div class="pedido">
-
 					<ul id="myUL">
-
 					</ul>
-				
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
 
+<script>
+function aceptarBoton(boton) {
+	var ul = document.getElementById("myUL");
+	var lis = ul.getElementsByTagName("li");
+	var contador = 0;
 
+	for (var i = 0; i < lis.length; i++) {
+		if (lis[i].style.display == '') {
+			contador=contador + 1;
+		}
+	}
+	if (contador < 1) {
+		boton.disabled = true;
+	} else {
+		boton.disabled = false;
+	}
+}
+</script>
 
-
+	<script>
+		function setUser() {
+			var x = document.getElementById("selectUsuarios");
+			var y = x.options[x.selectedIndex].value;
+			document.getElementById("UserId").value = y;
+		}
+	</script>
 	<script>
 		// Se crea una x para eliminar el articulo de la lista
 		var myNodelist = document.getElementsByTagName($('#myUl li'));
@@ -264,8 +310,8 @@ div.pedido ul li {
 				} else {
 					document.getElementById("myUL").appendChild(li);
 					//se le asignan los valores de las cantidades y articulos seleccionados a los inputs correspondientes del form.
-					arts.value += inputValue+" - ";
-					cant.value += inputCant+" - ";
+					arts.value += inputValue + " - ";
+					cant.value += inputCant + " - ";
 				}
 
 			}
@@ -290,6 +336,7 @@ div.pedido ul li {
 			var lng = str.length;
 			document.getElementById("charcount").innerHTML = lng + '/140';
 		}
+		
 	</script>
 </body>
 </html>

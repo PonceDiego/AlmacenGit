@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.ArticuloManager;
+import main.java.Almacen.persistence.ArticuloDB;
 import main.java.Almacen.persistence.ProveedoresDB;
 import main.java.Almacen.persistence.SubcategoriaDB;
 
@@ -23,32 +24,50 @@ public class ServletArticuloNuevo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession(false);
+			request.getSession().setAttribute("listaArticulos", ArticuloDB.getListadoArticulos());
+			request.getSession().setAttribute("categoriasListadas", SubcategoriaDB.getCategorias());
+			request.getSession().setAttribute("proveedores", ProveedoresDB.getProveedores());
+			request.getSession().setAttribute("subCats", SubcategoriaDB.getSubcategorias());
+			response.sendRedirect("view/agregarNuevoArticulo.jsp");
 
-		request.getSession(true);
-		request.getSession().setAttribute("categoriasListadas", SubcategoriaDB.getCategorias());
-		request.getSession().setAttribute("proveedores", ProveedoresDB.getProveedores());
-		request.getSession().setAttribute("subCats", SubcategoriaDB.getSubcategorias());
-		response.sendRedirect("view/agregarNuevoArticulo.jsp");
-		request.getSession(false);
-
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		String  proveedor,  nombre, stockMinimo, stockMaximo, costo, subc;
-		request.setCharacterEncoding("UTF-8");
-		proveedor=request.getParameter("inputProveedor");
-		nombre=request.getParameter("inputNombre");
-		stockMinimo=request.getParameter("inputSMinimo");
-		stockMaximo=request.getParameter("inputStock");
-		costo=request.getParameter("inputCosto");
-		subc=request.getParameter("inputSub");
-		
-		ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
-		response.sendRedirect("ListaArticulos");
+		if (request.getParameter("and") != null) {
+			String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
+			request.setCharacterEncoding("UTF-8");
+			proveedor = request.getParameter("inputProveedor");
+			nombre = request.getParameter("inputNombre");
+			stockMinimo = request.getParameter("inputSMinimo");
+			stockMaximo = request.getParameter("inputStock");
+			costo = request.getParameter("inputCosto");
+			subc = request.getParameter("inputSub");
 
+			ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
+		} else {
+			if (request.getSession().getAttribute("usuarioActual") == null) {
+				response.sendRedirect("Index");
+			} else {
+
+				String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
+				request.setCharacterEncoding("UTF-8");
+				proveedor = request.getParameter("inputProveedor");
+				nombre = request.getParameter("inputNombre");
+				stockMinimo = request.getParameter("inputSMinimo");
+				stockMaximo = request.getParameter("inputStock");
+				costo = request.getParameter("inputCosto");
+				subc = request.getParameter("inputSub");
+
+				ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
+				response.sendRedirect("ListaArticulos");
+			}
+		}
 	}
 
 }

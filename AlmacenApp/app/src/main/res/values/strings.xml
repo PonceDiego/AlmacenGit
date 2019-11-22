@@ -5,17 +5,17 @@
     <!--    <string name="ipServidor">http://172.16.49.77:8080/Almacen/</string>-->
 
     <!--    PC DELL COMO TEST-->
-    <!--    <string name="ipServidor">http://172.16.49.77:8088/Almacen/</string>-->
+        <string name="ipServidor">http://172.16.49.77:8088/Almacen/</string>
 
 
     <!--    SERVER-->
-    <string name="ipServidor">http://172.16.49.141:8080/Almacen/</string>
+<!--    <string name="ipServidor">http://172.16.49.141:8080/Almacen/</string>-->
 
     <string name="qrApi">https://api.qrserver.com/v1/create-qr-code/?data=</string>
 
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Usuario</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Ingresar</string>
     <string name="action_sign_in_short">Ingresar</string>
@@ -29,7 +29,7 @@
     <string name="btn1">Almacén</string>
     <string name="btn2">Técnica</string>
     <string name="btn3">Llaves</string>
-    <string name="btn4"> </string>
+    <string name="btn4">Cerrar Sesión</string>
 
 
     <string name="tituloPedido">Pedido</string>
@@ -57,9 +57,6 @@
     <string name="action_reset">Reset</string>
     <string name="no_selection">No ha seleccionado</string>
     <string name="articulo_especifico">Artículo Específico</string>
-
-
-
 
 
     <string name="mode_barcode_live_title">Barcode Scanning</string>
@@ -108,4 +105,6 @@
     <string name="pref_key_delay_loading_barcode_result" translatable="false">barcode_dlbr</string>
     <string name="pref_title_delay_loading_barcode_result">Delay loading barcode result</string>
     <string name="pref_summary_delay_loading_barcode_result">Will show the loading spinner for 2s</string>
+    <string name="mensaje_inicio_camara">Presiona un código para seleccionarlo, utilice dos dedos para ampliar.</string>
+    <string name="title_activity_login">Ingresar</string>
 </resources>

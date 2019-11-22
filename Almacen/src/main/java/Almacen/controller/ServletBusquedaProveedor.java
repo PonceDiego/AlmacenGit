@@ -29,11 +29,13 @@ public class ServletBusquedaProveedor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true);
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+		request.getSession(false);
 		request.getSession().setAttribute("proveedoresListados", ProveedoresDB.getProveedores());
 		response.sendRedirect("view/buscarProveedor.jsp");
-		request.getSession(false);
-	}
+	}}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

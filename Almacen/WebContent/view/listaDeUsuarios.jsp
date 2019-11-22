@@ -42,7 +42,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -103,7 +103,6 @@
 			<table class="table table-striped table-bordered" id="myTable">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Nombre Usuario</th>
 						<th>Rol</th>
 						<th>Área</th>
@@ -117,18 +116,16 @@
 
 					<c:forEach items="${listaUsuarios}" var="usuario">
 						<tr>
-							<td><c:out value="${usuario.getUsuarioId()}" /></td>
 							<td><c:out value="${usuario.getNombreUsuario()}" /></td>
 							<td><c:out value="${usuario.getRol().getNombreRol()}" /></td>
-
 							<td><c:out
 									value="${usuario.getArea().getNombreArea()}" /></td>
 							<td><c:out value="${usuario.getNombre()}" /></td>
 							<td><c:out value="${usuario.getApellido()}" /></td>
 							<td><c:out value="${usuario.getEmail()}" /></td>
 							<td>
-								<button class="btn btn-outline-info" type="button"
-									title="Editar">
+								<button class="btn btn-outline-info" type="button" style="cursor: pointer"
+									title="Editar" onclick="window.location.href='../EditarUsuario?UsEdId=${usuario.getUsuarioId()}'">
 									<i class="material-icons"> edit </i>
 								</button>
 
@@ -155,7 +152,7 @@
 				"responsive" : "true",
 				"columnDefs" : [ {
 					"orderable" : false,
-					"targets" : [ 7 ]
+					"targets" : [ 6 ]
 				} ]
 			});
 		});

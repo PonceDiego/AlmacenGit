@@ -11,7 +11,7 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class PedidoManager {
 
-	public static void createPedido(String obser, String user, String arts, String cants) {
+	public static int createPedido(String obser, String user, String arts, String cants) {
 		Pedido pedido = new Pedido();
 		pedido.setObservaciones(obser);
 		int idU=Integer.parseInt(user);
@@ -31,6 +31,7 @@ public class PedidoManager {
 		for (int i = 0; i < articulos.length; i++) {
 			ArticuloPedidoDB.crearArticuloPedido(cantidades[i], articulos[i], idP);
 		}
+		return idP;
 
 
 	}
@@ -47,6 +48,14 @@ public class PedidoManager {
 	private static int toInt(String id) {
 		int ids = Integer.parseInt(id);
 		return ids;
+	}
+
+	public static void editarPedido(String id, String estado, String cantidades, String nombres, String observaciones) {
+		String[] cantidad=cantidades.split(",");
+		String[] nombre=nombres.split(",");
+		int idP=toInt(id);
+		ArticuloPedidoDB.editarArticulosPedidos(idP, cantidad, nombre);
+		PedidoDB.editarPedido(idP,estado,observaciones);
 	}
 
 }

@@ -26,6 +26,7 @@ import com.google.gson.annotations.Expose;
 @Table(name = "usuario", catalog = "almacen", uniqueConstraints = @UniqueConstraint(columnNames = "NombreUsuario"))
 public class Usuario implements java.io.Serializable {
 
+	@Expose (serialize = true, deserialize = true) 
 	private Integer usuarioId;
 	@Expose (serialize = true, deserialize = true) 
 	private Area area;

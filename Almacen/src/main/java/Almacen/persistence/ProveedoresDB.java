@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.model.Articulo;
@@ -35,9 +36,9 @@ public class ProveedoresDB {
 		Proveedor p = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Proveedor> query = sess.createQuery("from Proveedor where provNombre='"+nombre+"'");
-			List<Proveedor> pp= query.getResultList();
-			p= pp.get(0);
+			Query<Proveedor> query = sess.createQuery("from Proveedor where ProvNombre='" + nombre + "'");
+			List<Proveedor> pp = query.getResultList();
+			p = pp.get(0);
 			Hibernate.initialize(p.getArticulos());
 			return p;
 		} finally
@@ -47,14 +48,15 @@ public class ProveedoresDB {
 		}
 
 	}
+
 	public static Proveedor getProveedorByStringId(String nombre) {
 		Session sess = null;
 		Proveedor p = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Proveedor> query = sess.createQuery("from Proveedor where provId='"+nombre+"'");
-			List<Proveedor> pp= query.getResultList();
-			p= pp.get(0);
+			Query<Proveedor> query = sess.createQuery("from Proveedor where provId='" + nombre + "'");
+			List<Proveedor> pp = query.getResultList();
+			p = pp.get(0);
 			Hibernate.initialize(p.getArticulos());
 			return p;
 		} finally
@@ -93,7 +95,7 @@ public class ProveedoresDB {
 			sess = HibernateUtils.openSession();
 
 			Query<Proveedor> query = sess
-					.createQuery("select distinct p from Proveedor p join p.articulos a where a.nombre='"+s+"'");
+					.createQuery("select distinct p from Proveedor p join p.articulos a where a.nombre='" + s + "'");
 			proveedores = query.getResultList();
 			for (Proveedor p : proveedores) {
 				Hibernate.initialize(p.getArticulos());
@@ -107,15 +109,36 @@ public class ProveedoresDB {
 			sess.close();
 		}
 	}
+
 	public static void agregarProveedorNuevo(Proveedor p) {
-		Session sess=null;
+		Session sess = null;
 		try {
-			sess=HibernateUtils.openSession();
+			sess = HibernateUtils.openSession();
 			sess.save(p);
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
-	
+
+	public static void editarProveedor(String id, String nombre, String direccion, String mail, String telefono,
+			String contacto) {
+
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			Proveedor p = ProveedoresDB.getProveedorByStringId(id);
+			sess.update(p);
+			p.setProvNombre(nombre);
+			p.setProvContacto(contacto);
+			p.setProvDireccion(direccion);
+			p.setProvMail(mail);
+			p.setProvTel(telefono);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
 
 }

@@ -16,32 +16,39 @@ import main.java.Almacen.manager.ArticuloManager;
 @WebServlet("/ActualizarStock")
 public class ServletActualizarArticuloStock extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletActualizarArticuloStock() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession(true);
-		String cantidad=(String) request.getParameter("cantidad");
-		String id=(String)request.getParameter("articuloID");
-		
-		ArticuloManager.editArticuloStock(id, cantidad);
-		response.sendRedirect("Articulo?articuloID=" + id);
-		request.getSession(false);
+	public ServletActualizarArticuloStock() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession(false);
+			String cantidad = (String) request.getParameter("cantidad");
+			String id = (String) request.getParameter("articuloID");
+
+			ArticuloManager.editArticuloStock(id, cantidad);
+			response.sendRedirect("Articulo?articuloID=" + id);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

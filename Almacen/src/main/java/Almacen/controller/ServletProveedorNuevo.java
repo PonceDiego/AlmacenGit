@@ -32,15 +32,17 @@ public class ServletProveedorNuevo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getSession(true);
+		
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+		request.getSession(false);
 		request.getSession().setAttribute("articulosListado", ArticuloDB.getListadoArticulos());
 		response.sendRedirect("view/agregarNuevoProveedor.jsp");
-		request.getSession(false);
 		
 		
 		
-		
+		}
 		
 	}
 
@@ -50,7 +52,9 @@ public class ServletProveedorNuevo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
 		String nombre, mail, telefono, contacto, direccion;
 		request.setCharacterEncoding("UTF-8");
 		nombre = request.getParameter("provNombre");
@@ -61,7 +65,7 @@ public class ServletProveedorNuevo extends HttpServlet {
 
 		ProveedorManager.createProveedor(nombre, mail, telefono, contacto, direccion);
 		response.sendRedirect("ListaProveedores");
-
+		}
 	}
 
 }

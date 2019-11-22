@@ -2,6 +2,7 @@ package com.c12.almacenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -177,9 +178,9 @@ public class ArticuloActivity extends AppCompatActivity {
                     }
 
 
-                    //TODO: db insert.
                     String urlS = getString(R.string.ipServidor) + "NuevoArticulo?" +
                             "inputProveedor=" + proveedorId +
+                            "&and="+1+
                             "&inputNombre=" + nombreArticulo +
                             "&inputSMinimo=" + stockMinArticulo +
                             "&inputStock=" + stockArticulo +
@@ -187,7 +188,6 @@ public class ArticuloActivity extends AppCompatActivity {
                             "&inputSub=" + subcategoriaId;
                     URL url = null;
                     try {
-                        //TODO: Asignar valores reales, no hardcode
                         url = new URL(urlS);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
@@ -198,6 +198,7 @@ public class ArticuloActivity extends AppCompatActivity {
                         urlConnection = (HttpURLConnection) url.openConnection();
                         urlConnection.setDoOutput(true);
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                        Log.e("artAct", urlConnection.getResponseCode()+" <cod");
                         in.close();
 
                     } catch (IOException e) {

@@ -55,6 +55,7 @@ public class QrActivity extends AppCompatActivity {
                     String urlS = getString(R.string.ipServidor) + "SubirQR?" +
                             "src="+finalUrlEncoded +
                             "&nombreArt="+ nombre;
+                    Log.e("src",finalUrlEncoded);
                     URL url= new URL(urlS);
                     urlConnection = (HttpURLConnection)url.openConnection();
                     urlConnection.connect();

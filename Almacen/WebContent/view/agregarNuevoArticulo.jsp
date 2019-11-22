@@ -169,6 +169,58 @@ div.searchable {
 .error {
 	border: 2px solid red;
 }
+
+div.searchable2 {
+	float: left;
+	width: 100%;
+}
+
+.searchable2 input {
+	width: 100%;
+	font-size: 18px;
+	padding: 10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	display: block;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	background:
+		url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+		no-repeat right .75rem center/8px 10px;
+}
+
+.searchable2 ul {
+	display: none;
+	list-style-type: none;
+	background-color: #fff;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #add8e6;
+	border-top: none;
+	max-height: 180px;
+	margin: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0;
+}
+
+.searchable2 ul li {
+	padding: 7px 9px;
+	border-bottom: 1px solid #e1e1e1;
+	cursor: pointer;
+	color: #6e6e6e;
+}
+
+.searchable2 ul li.selected {
+	background-color: #e8e8e8;
+	color: #333;
+}
 </style>
 <title>Agregar Nuevo Artículo</title>
 <script
@@ -184,9 +236,9 @@ div.searchable {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown active"><a
@@ -249,35 +301,47 @@ div.searchable {
 					<h3 class="text-center">Datos del nuevo artículo</h3>
 					<div class="row">
 						<div class="column">
-							<div class="form-label-group>">
-								<input type="text" name="inputNombre" class="form-control"
-									placeholder="Nombre" required>
-							</div>
-							<div class="form-label-group>">
-								<input type="text" name="inputSMinimo"
-									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-									class="form-control" placeholder="Stock Mínimo" required>
-							</div>
-							<div class="form-label-group> searchable">
-								<input type="text" placeholder="Categoría" name="input"
-									id="input" onkeyup="filterFunction(this,event)" required>
-								<c:set var="categoria" value="${categoriasListadas}"
-									scope="application"></c:set>
-								<ul>
-									<c:forEach items="${categoria}" var="categoria">
-										<li>${categoria.categoriaId}-${categoria.nombre }</li>
+							<div id="advertencia" style="color: red"></div>
+							<span><a href="" id="linkEditar"> </a></span>
+							<div class="form-label-group> searchable2">
+								<input type="text" name="inputNombre" id="inputNombre"
+									class="form-control" placeholder="Nombre" required
+									autocomplete="off" onkeyup="filterFunction2(this,event),botonAceptar()">
+								<c:set var="articulo" value="${listaArticulos }"></c:set>
+								<ul id="ulArticulos">
+									<c:forEach items="${articulo }" var="art">
+										<li>${art.getNombre()}</li>
 									</c:forEach>
 								</ul>
 							</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputProveedor" id="inputProveedor">
-								<select onchange="selected()" id="provSelect"
+								<input type="text" name="inputSMinimo"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+									class="form-control" placeholder="Stock Mínimo" required
+									autocomplete="off">
+							</div>
+							<div class="form-label-group> searchable">
+								<input type="text" placeholder="Categoría" name="input"
+									id="input" onkeyup="filterFunction(this,event)" required
+									autocomplete="off">
+								<c:set var="categoria" value="${categoriasListadas}"
+									scope="application"></c:set>
+								<ul>
+									<c:forEach items="${categoria}" var="categoria">
+										<li>-${categoria.nombre }</li>
+									</c:forEach>
+								</ul>
+							</div>
+							<div class="form-label-group>">
+								<input type="hidden" name="inputProveedor" id="inputProveedor"
+									autocomplete="off"> <select onchange="selected()"
+									id="provSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
 									<option selected disabled>Seleccione un proveedor</option>
 									<c:forEach items="${proveedores}" var="proveedor">
 
-										<option>${proveedor.provId}-${proveedor.provNombre }</option>
+										<option>-${proveedor.provNombre }</option>
 
 									</c:forEach>
 								</select>
@@ -288,24 +352,23 @@ div.searchable {
 						<div class="column">
 							<div class="form-label-group>">
 								<input type="text" name="inputCosto" class="form-control"
-									placeholder="Costo" onchange="validarSiNumero(this.value);"
-									id="costoinput" required>
+									placeholder="Costo" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+									id="costoinput" required autocomplete="off">
 							</div>
 
 							<div class="form-label-group>">
 								<input type="text" name="inputStock" class="form-control"
-									placeholder="Stock Actual" required>
+									placeholder="Stock Actual" required autocomplete="off"oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 							</div>
 							<div class=" form-label-group>" id="divSub">
-								<input type="hidden" name="inputSub" id="inputSub">
-								<select onchange="selected2()"	id="selectSub"
+								<input type="hidden" name="inputSub" id="inputSub"> <select
+									onchange="selected2()" id="selectSub"
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<option disabled selected>Seleccione una subcategoría</option>
 									<c:forEach items="${subCats}" var="scategoria">
 										<option style="cursor: pointer"
-											class="${scategoria.getCategoria().getNombre()} listaSub">${scategoria.getSubId()}
-											-${scategoria.getSubNombre()}</option>
+											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getSubNombre()}</option>
 									</c:forEach>
 								</select>
 
@@ -325,34 +388,19 @@ div.searchable {
 
 	</div>
 	<script>
-		function validarSiNumero(numero) {
-			if (!/^([0-9,.])*$/.test(numero)) {
-
-				document.getElementById("costoinput").className = document
-						.getElementById("costoinput").className
-						+ " error";
-				document.getElementById("aceptarbutton").disabled = true;
-			} else {
-				document.getElementById("costoinput").className = document
-						.getElementById("costoinput").className.replace(
-						" error", "");
-				document.getElementById("aceptarbutton").disabled = false;
-			}
-
-		}
 		function selected() {
 			var x = document.getElementById("provSelect").value;
 
 			document.getElementById("inputProveedor").value = x;
 		}
-		
 	</script>
-	<script >
-	function selected2() {
-		var x = document.getElementById("selectSub").value;
+	<script>
+		function selected2() {
+			var x = document.getElementById("selectSub").value;
 
-		document.getElementById("inputSub").value = x;
-	}</script>
+			document.getElementById("inputSub").value = x;
+		}
+	</script>
 	<script>
 		function filterFunction(that, event) {
 			let container, input, filter, li, input_val;
@@ -455,6 +503,124 @@ div.searchable {
 			for (var i = 0; i < z.length; i++) {
 				z[i].style.display = "block";
 			}
+
+		}
+
+		function filterFunction2(that, event) {
+			document.getElementById('advertencia').innerHTML = "";
+			document.getElementById('linkEditar').innerHTML = "";
+			let container, input, filter, li, input_val;
+			container = $(that).closest(".searchable2");
+			input_val = container.find("input").val().toUpperCase();
+
+			if ([ "ArrowDown", "ArrowUp", "Enter" ].indexOf(event.key) != -1) {
+				keyControl(event, container)
+			} else {
+				li = container.find("ul li");
+				li.each(function(i, obj) {
+					if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+						$(this).show();
+					} else {
+						$(this).hide();
+					}
+				});
+
+				container.find("ul li").removeClass("selected");
+				setTimeout(function() {
+					container.find("ul li:visible").first()
+							.addClass("selected");
+				}, 100)
+			}
+		}
+
+		function keyControl(e, container) {
+			if (e.key == "ArrowDown") {
+
+				if (container.find("ul li").hasClass("selected")) {
+					if (container.find("ul li:visible").index(
+							container.find("ul li.selected")) + 1 < container
+							.find("ul li:visible").length) {
+						container.find("ul li.selected")
+								.removeClass("selected").nextAll().not(
+										'[style*="display: none"]').first()
+								.addClass("selected");
+					}
+
+				} else {
+					container.find("ul li:first-child").addClass("selected");
+				}
+
+			} else if (e.key == "ArrowUp") {
+
+				if (container.find("ul li:visible").index(
+						container.find("ul li.selected")) > 0) {
+					container.find("ul li.selected").removeClass("selected")
+							.prevAll().not('[style*="display: none"]').first()
+							.addClass("selected");
+				}
+			} else if (e.key == "Enter") {
+				if (container.find("input").val(
+						container.find("ul li.selected").text) != "") {
+				}
+				container.find("input").val(
+						container.find("ul li.selected").text()).blur();
+				onSelect2(container.find("ul li.selected").text())
+			}
+
+			container.find("ul li.selected")[0].scrollIntoView({
+				behavior : "smooth",
+			});
+		}
+
+		$(".searchable2 input").focus(function() {
+			$(this).closest(".searchable2").find("ul").show();
+			$(this).closest(".searchable2").find("ul li").show();
+		});
+		$(".searchable2 input").blur(function() {
+			let that = this;
+			setTimeout(function() {
+				$(that).closest(".searchable2").find("ul").hide();
+			}, 300);
+		});
+
+		$(document).on(
+				'click',
+				'.searchable2 ul li',
+				function() {
+					$(this).closest(".searchable2").find("input").val(
+							$(this).text()).blur();
+
+					onSelect2($(this).text())
+
+				});
+		function botonAceptar() {
+			var listaMatches = document.findElementById('ulArticulos');
+			var lis = listaMatches.getElementsByTagName('li:visible');
+			var x = document.findElementById('inputNombre')
+			for (var i = 0; i < lis.length; i++) {
+				if (lis[i].value == x.value) {
+					document.findElementById('aceptarbutton').disabled = "true";
+				} else {
+					document.findElementById('aceptarbutton').disabled = "false";
+				}
+			}
+		}
+
+		$(".searchable2 ul li").hover(
+				function() {
+					$(this).closest(".searchable2").find("ul li.selected")
+							.removeClass("selected");
+					$(this).addClass("selected");
+				});
+		function onSelect2(val) {
+
+			var x = document.getElementById('advertencia');
+			var editar = document.getElementById('linkEditar');
+			x.innerHTML = "Ya existe un artículo con el nombre " + val + "!";
+			editar.text = "Editar";
+			editar.href = "../EditarArticulo?nombreEditado=" + val;
+			var y = document.getElementById('aceptarbutton');
+			y.disabled = "disabled";
 
 		}
 	</script>

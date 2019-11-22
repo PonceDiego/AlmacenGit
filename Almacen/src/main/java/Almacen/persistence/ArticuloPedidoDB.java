@@ -1,5 +1,6 @@
 package main.java.Almacen.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -28,22 +29,40 @@ public class ArticuloPedidoDB {
 
 	}
 
-	public static void actualizarStock(Pedido p) {
+	public static boolean actualizarStock(Pedido p) {
 		Session sess = null;
+		List<Integer> pass= new ArrayList<Integer>();
 
 		try {
 			sess = HibernateUtils.openSession();
 			List<Pedidoxarticulos> articulos = getArticulosPedidosByPedido(p.getPedidoId());
-			for (Pedidoxarticulos pxa : articulos) {
-				Transaction tran = sess.beginTransaction();
-
-				Articulo a = pxa.getArticulo();
-
-				sess.saveOrUpdate(a);
-				a.setStock(a.getStock() - pxa.getCantidad());
-
-				tran.commit();
+			Articulo a = null;
+			Transaction tran = null;
+			for (int i = 0; i < articulos.size(); i++) {
+				Pedidoxarticulos pxa = articulos.get(i);
+				a = pxa.getArticulo();
+				if (a.getStock() >= pxa.getCantidad()) {
+					pass.add(0);
+				} else {
+					pass.add(1);
+				}
 			}
+			int total = 0;
+			for (int i = 0; i < pass.size(); i++) {
+				total += pass.get(i);
+			}
+			if (total == 0) {
+				for (Pedidoxarticulos pxa : articulos) {
+					tran=sess.beginTransaction();
+					a=pxa.getArticulo();
+					sess.update(a);
+					a.setStock(a.getStock() - pxa.getCantidad());
+					tran.commit();
+					return true;
+
+				}
+			}
+			return false;
 		} finally {
 			sess.close();
 		}
@@ -86,6 +105,29 @@ public class ArticuloPedidoDB {
 			pxa.setPedido(PedidoDB.getPedidoByID(idP));
 			sess.save(pxa);
 			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void editarArticulosPedidos(int idP, String[] cantidad, String[] nombreA) {
+		Session sess = null;
+		Transaction tran = null;
+		List<Pedidoxarticulos> pxa = null;
+		try {
+			sess = HibernateUtils.openSession();
+			pxa = getArticulosPedidosByPedido(idP);
+			Pedidoxarticulos PXA = null;
+			for (int i = 0; i < pxa.size(); i++) {
+				tran = sess.beginTransaction();
+				PXA = pxa.get(i);
+				sess.update(PXA);
+				int cantidadI = Integer.valueOf(cantidad[i]);
+				PXA.setCantidad(cantidadI);
+				PXA.setArticulo(ArticuloDB.getArticuloByNombre(nombreA[i]));
+				tran.commit();
+			}
+
 		} finally {
 			sess.close();
 		}

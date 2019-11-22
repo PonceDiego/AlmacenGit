@@ -36,7 +36,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -99,22 +99,21 @@
 							<th>Id</th>
 							<th>Nombre</th>
 							<th>Artículos</th>
-							<th>Ver más</th>
+							<th>Mail</th>
 						</tr>
 					</thead>
 					<tbody id="proveedores">
 						<c:forEach items="${listaProveedores}" var="proveedor">
 							<tr>
 								<td id="pID"><c:out value="${proveedor.getProvId()}" /></td>
-								<td id="pNB"><c:out value="${proveedor.getProvNombre()}" /></td>
+								<td id="pNB"><a
+										href="../Proveedor?proveedorId=${proveedor.getProvId()}">${proveedor.getProvNombre()}</a>
 								<td><c:forEach items="${proveedor.getArticulos() }"
 										var="articulo">
 										<c:out value="-${articulo.getNombre()}" />
 										<br>
 									</c:forEach></td>
-								<td><span> <a
-										href="../Proveedor?proveedorId=${proveedor.getProvId()}">Detalle</a>
-								</span></td>
+								<td id="pM"><c:out value="${proveedor.getProvMail() }"/></td>
 							</tr>
 						</c:forEach>
 
@@ -133,8 +132,8 @@
 
 			$('#tablaProveedores').DataTable({
 				"columnDefs" : [ {
-					"orderable" : false, "searchable":false,
-					"targets" : [ 3 ]
+					"orderable" : false,
+					"targets" : [ 2 ]
 				} ]
 			});
 		});

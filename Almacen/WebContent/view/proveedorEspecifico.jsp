@@ -46,7 +46,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -100,7 +100,7 @@
 
 		<p></p>
 		<h2 class="mt-5 text-center">${proveedorNombre }<span>
-				<i class="material-icons" title="Editar"style="font-size: 18px; cursor:pointer">edit</i>
+				<i class="material-icons" onclick="window.location.href=('${pageContext.request.contextPath }/EditarProveedor?PvI=${provID}')" title="Editar"style="font-size: 18px; cursor:pointer">edit</i>
 		</span></h2>
 		<div class="text-center lead"
 			style="outline: 1px solid black; max-width: 70%; margin: auto">

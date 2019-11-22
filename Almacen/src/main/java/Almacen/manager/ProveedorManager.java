@@ -17,4 +17,10 @@ public class ProveedorManager {
 		ProveedoresDB.agregarProveedorNuevo(proveedorNuevo);
 	}
 
+	public static void editarProveedor(String id, String nombre, String direccion, String mail, String telefono,
+			String contacto) {
+		ProveedoresDB.editarProveedor(id, nombre, direccion, mail, telefono, contacto);
+		
+	}
+
 }

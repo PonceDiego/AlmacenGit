@@ -40,9 +40,9 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -126,21 +126,34 @@
 									href="../Pedido?pedidoId=${pedido.pedidoId}">Detalle</a>
 							</span>
 							<td><c:set var="Estado" scope="session"
-									value="${pedido.estadopedido.getNombreEstado()}"/><c:if
-									test="${Estado == 'En Curso'}">
-									<button class="btn btn-outline-success" type="button"
-										title="Entregar" style="cursor: pointer"
-										onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');"><i class="material-icons"> check_circle_outline </i></button>
-								</c:if>
+									value="${pedido.estadopedido.getNombreEstado()}" /> <c:choose>
+									<c:when test="${Estado=='En Espera'}">
+										<button class="btn btn-warning" type="button"
+											title="Entregar" style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											<i class="material-icons" style="width: 18px;font-size: 18px">check_circle_outline</i>
+										</button>
+
+									</c:when>
+									<c:when test="${Estado == 'En Curso'}">
+										<button class="btn btn-outline-success" type="button"
+											title="Entregar" style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											<i class="material-icons" style="width: 18px;font-size: 18px">check_circle_outline</i>
+										</button>
+									</c:when>
+								</c:choose>
 								<button class="btn btn-outline-info" type="button"
-									title="Editar" style="cursor:pointer">
-									<i class="material-icons"> edit </i>
+									title="Editar" style="cursor: pointer"
+									onclick="window.location.href='../EditarPedido?pedidoId=${pedido.pedidoId}'">
+									<i class="material-icons"style="font-size: 18px"> edit </i>
 								</button>
 
 								<button class="btn btn-outline-danger" type="button"
-									id="eliminarPedidoButton" title="Eliminar"style="cursor: pointer"
+									id="eliminarPedidoButton" title="Eliminar"
+									style="cursor: pointer"
 									onclick="confirmar('${pageContext.request.contextPath }/EliminarPedido?idEliminado=${pedido.pedidoId }');">
-									<i class="material-icons"> delete </i>
+									<i class="material-icons"style="font-size: 18px"> delete </i>
 								</button></td>
 						</tr>
 					</c:forEach>
@@ -154,27 +167,29 @@
 
 
 	<script>
-		function alertar(url){
-			alert("Pedido entregado con éxito!");
-			$(location).attr('href',url);
-			}
-	</script>
-	<script>
-		function confirmar(url){
-			var r=confirm ("¿Está seguro que desea eliminar el pedido?");
-			if(r==true){
-				$(location).attr('href',url);
-				}
-			}
+		function alertar(url) {
+			alert("Procesando entrega del pedido..");
+			$(location).attr('href', url);
+		}
 	</script>
 	
+	<script>
+		function confirmar(url) {
+			var r = confirm("¿Está seguro que desea eliminar el pedido?");
+			if (r == true) {
+				$(location).attr('href', url);
+			}
+		}
+	</script>
+
 	<script>
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
 				"columnDefs" : [ {
+					"responsive" : "true",
 					"orderable" : false,
-					"targets" : [ 4,5 ]
+					"targets" : [ 4, 5 ]
 				} ]
 			});
 		});

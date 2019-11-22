@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,9 +22,12 @@ import java.util.ArrayList;
 import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
 
 public class BusquedaArticuloActivity extends AppCompatActivity {
+    public static String TAG= "BusquedaArticuloActivity";
     static ArrayList<String> articulosNombres= new ArrayList<>();
     static ArrayList<String> articulosStock= new ArrayList<>();
     private SearchableSpinner listaArticulos;
+    public static String nombreArticuloQR;
+    public static int largoDelNombre=0;
 
 
     @Override
@@ -36,7 +40,7 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
         qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BusquedaArticuloActivity.this,LiveBarcodeScanningActivity.class));
+                startActivity(new Intent(BusquedaArticuloActivity.this,CameraPreviewToQrActivity.class));
             }
         });
 
@@ -53,9 +57,6 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
                 String stock = jsonObject.get("stock").toString();
                 articulosNombres.add(nombre);
                 articulosStock.add(stock);
-
-                Log.v("nombre", nombre);
-                Log.v("stock", stock);
             }
 
         } catch (JSONException e) {
@@ -69,11 +70,19 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BusquedaArticuloActivity.this,ArticuloEspecificoActivity.class));
+                if(listaArticulos.getSelectedItem()!=null){
+
+                    nombreArticuloQR=listaArticulos.getSelectedItem().toString();
+                    startActivity(new Intent(BusquedaArticuloActivity.this,ArticuloEspecificoActivity.class));
+                }else{
+                    Toast.makeText(getApplicationContext(),"Por favor seleccione un artículo",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-        private static String readUrl(String urlString) throws Exception {
+
+
+    private static String readUrl(String urlString) throws Exception {
             BufferedReader reader = null;
             try {
                 URL url = new URL(urlString);

@@ -45,9 +45,9 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown active"><a
@@ -127,9 +127,16 @@
 										value="${articulo.getSubcategoria().getSubNombre()}" /></td>
 								<td><c:out value="${articulo.getStock()}" /></td>
 								<td>
-								<div class="color-box" id="${articulo.getEstadoarticulo().getNombreEstado() }"></div>
+									<div class="color-box"
+										id="${articulo.getEstadoarticulo().getNombreEstado() }"></div>
 								</td>
-								<td><a href="../EditarArticulo?idEditar=${articuloId}" title="Editar"><i class="material-icons"style="font-size: 18px">edit</i></a></td>
+								<td><a
+									href="../EditarArticulo?nombreEditado=${articulo.getNombre()}"
+									title="Editar"><i class="material-icons"
+										style="font-size: 18px">edit</i></a> <a
+									href="../GenerarPedido?articuloAgregar=${articulo.getNombre()}"
+									title="Añadir a pedido"> <i class="material-icons"style="font-size: 18px">add_shopping_cart</i>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -148,7 +155,7 @@
 			$('#tablaArticulos').DataTable({
 				"columnDefs" : [ {
 					"orderable" : false,
-					"targets" : [ 4,5 ]
+					"targets" : [ 4, 5 ]
 				} ]
 			});
 		});
@@ -157,7 +164,7 @@
 		function setColor() {
 			var x = document.getElementsByClassName("color-box");
 			for (var i = 0; i < x.length; i++) {
-				if (x[i].id =="En Stock") {
+				if (x[i].id == "En Stock") {
 					x[i].style.backgroundColor = "#43eb34";
 				} else if (x[i].id == "Sin Stock") {
 					x[i].style.backgroundColor = "#eb4034";

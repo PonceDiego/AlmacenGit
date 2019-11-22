@@ -38,7 +38,7 @@
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons"style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="../">Inicio</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -110,15 +110,15 @@
 						<div class="column">
 							<div class="form-label-group>">
 								<input type="text" name="inputUsername" class="form-control"
-									placeholder="Nombre de Usuario" required>
+									placeholder="Nombre de Usuario" required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control"
-									placeholder="Nombre" required>
+									placeholder="Nombre" required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputMail" class="form-control"
-									placeholder="eMail" required>
+									placeholder="eMail" required autocomplete="off">
 							</div>
 
 						</div>
@@ -138,7 +138,7 @@
 
 							<div class="form-label-group>">
 								<input type="text" name="inputApellido" class="form-control"
-									placeholder="Apellido" required>
+									placeholder="Apellido" required autocomplete="off">
 							</div>
 							<div class=" form-label-group>" id="area">
 								<select name="inputArea"
