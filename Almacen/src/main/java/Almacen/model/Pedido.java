@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 4/11/2019 12:28:02 PM by Hibernate Tools 5.0.6.Final
+// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -98,7 +98,7 @@ public class Pedido implements java.io.Serializable {
 		this.fecha = fecha;
 	}
 
-	@Column(name = "Observaciones", length = 140)
+	@Column(name = "Observaciones", length = 200)
 	public String getObservaciones() {
 		return this.observaciones;
 	}

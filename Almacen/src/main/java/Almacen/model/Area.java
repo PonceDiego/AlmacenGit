@@ -1,15 +1,13 @@
 package main.java.Almacen.model;
-// Generated 4/11/2019 12:28:02 PM by Hibernate Tools 5.0.6.Final
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

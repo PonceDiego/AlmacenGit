@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="15dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MisPedidosActivity"
+    tools:showIn="@layout/activity_mis_pedidos">
+
+    <TableLayout
+        android:id="@+id/tablaPedidos"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:stretchColumns="*">
+
+        <TableRow android:id="@+id/primeraFilaMisPedidos">
+
+            <TextView
+                android:id="@+id/fechaPedido"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/fecha" />
+
+            <TextView
+                android:id="@+id/estadoPedido"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/estado" />
+
+            <TextView
+                android:id="@+id/detallePedido"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/detalle" />
+        </TableRow>
+
+        <View style="@style/Divider" />
+    </TableLayout>
+</androidx.core.widget.NestedScrollView>

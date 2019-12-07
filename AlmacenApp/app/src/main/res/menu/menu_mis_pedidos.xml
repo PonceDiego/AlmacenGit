@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.c12.almacenapp.MisPedidosActivity">
+    <item
+        android:id="@+id/action_nuevoPedido"
+        android:orderInCategory="100"
+        android:title="@string/nuevo_pedido"
+        android:icon="@drawable/ic_add_black_24dp"
+        compat:showAsAction="always" />
+</menu>

@@ -17,9 +17,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ObservacionesPedidoActivity"
+            android:label="@string/observaciones"/>
+        <activity
+            android:name=".PedidoEspecificoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MisPedidosActivity"
+            android:label="@string/title_activity_mis_pedidos"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +44,12 @@
         <activity android:name=".CameraPreviewToQrActivity" />
         <activity
             android:name=".ListaArticulosActivity"
-            android:label="Lista de Artículos" />
+            android:label="Lista de Artículos"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ListaProveedoresActivity"
-            android:label="Lista de Proveedores" />
+            android:label="Lista de Proveedores"
+            android:screenOrientation="portrait" />
         <activity android:name=".QrActivity" />
         <activity
             android:name=".ProveedorActivity"
@@ -44,7 +57,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PedidoActivity"
             android:label="Pedidos" />

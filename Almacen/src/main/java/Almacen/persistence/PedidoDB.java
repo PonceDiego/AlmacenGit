@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.model.Pedido;
+import main.java.Almacen.model.Usuario;
 
 public class PedidoDB {
 	public static void eliminarPedidoById(int id) {
@@ -73,26 +74,41 @@ public class PedidoDB {
 	}
 
 	public static List<Pedido> getPedidosCompleto() {
-
 		Session sess = null;
 		List<Pedido> pP = null;
-
 		try {
 			sess = HibernateUtils.openSession();
-
 			Query<Pedido> query = sess.createQuery("select p from Pedido p where p.pedidoId!=null");
 			pP = query.getResultList();
 			for (Pedido pedido : pP) {
-
 				Hibernate.initialize(pedido.getEstadopedido());
 				Hibernate.initialize(pedido.getFecha());
 				Hibernate.initialize(pedido.getObservaciones());
 				Hibernate.initialize(pedido.getUsuario());
 				Hibernate.initialize(pedido.getUsuario().getArea());
 			}
-
 			return pP;
-
+		} finally {
+			sess.close();
+		}
+	}
+	public static List<Pedido> getPedidosIndividual(String username){
+		Session sess=null;
+		List<Pedido> p=null;
+		try {
+			sess=HibernateUtils.openSession();
+			Usuario u=UsuarioDB.getUsuarioByNombreUsuario(username);
+			int id= u.getUsuarioId();
+			Query<Pedido> query= sess.createQuery("select p from Pedido p where p.usuario='"+id+"'");
+			p=query.getResultList();
+			for (Pedido pedido : p) {
+				Hibernate.initialize(pedido.getEstadopedido());
+				Hibernate.initialize(pedido.getFecha());
+				Hibernate.initialize(pedido.getObservaciones());
+				Hibernate.initialize(pedido.getUsuario());
+				Hibernate.initialize(pedido.getUsuario().getArea());
+			}
+			return p;
 		} finally {
 			sess.close();
 		}

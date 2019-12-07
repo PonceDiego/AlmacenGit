@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.Almacen.manager.GmailManager;
+import main.java.Almacen.manager.MailManager;
 import main.java.Almacen.manager.PedidoManager;
 import main.java.Almacen.model.Usuario;
 
@@ -41,23 +41,21 @@ public class ServletAgregarPedido extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			Usuario u =(Usuario) request.getSession().getAttribute("usuarioActual");
-			String user, obser;
+			String user, obser,user2;
 			
-			//Si 'UserId' está vacío quiere decir que carga el pedido a su nombre, por lo que se pasa el id del usuarioActual.
-			if(request.getParameter("UserId")=="") {
-				user= u.getUsuarioId().toString();
+			user=request.getParameter("UserId");
+			user2=u.getUsuarioId().toString();
+			if(user.equals(user2)){
 				obser=request.getParameter("textAreaObservaciones");
 			}else {
-				user=request.getParameter("UserId");
 				//Para dejar un registro de quién subió el pedido a nombre de otro usuario se escribe al final de las observaciones.
 				obser=request.getParameter("textAreaObservaciones")+" ##Generado por el usuario "+u.getNombreUsuario();
 			}
 			int idP=PedidoManager.createPedido(obser, user,
 					request.getParameter("inputArt"), request.getParameter("inputCantidad"));
 			try {
-				GmailManager.enviarMail(user,idP);
+				MailManager.enviarMail(user,idP);
 			} catch (MessagingException | GeneralSecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.sendRedirect("ListaPedidos");

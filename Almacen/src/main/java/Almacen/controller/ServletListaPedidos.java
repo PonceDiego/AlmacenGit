@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.PedidoDB;
 
 /**
@@ -35,10 +36,15 @@ public class ServletListaPedidos extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-
-			request.getSession(false);
-			request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
-			response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+			Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
+			if (user.getRol().getNombreRol().equals( "Administrador") || user.getRol().getNombreRol().equals("SuperAdmin")) {
+				request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
+				response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+			} else {
+				request.getSession().setAttribute("pedidosCompleto",
+						PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
+				response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+			}
 		}
 	}
 

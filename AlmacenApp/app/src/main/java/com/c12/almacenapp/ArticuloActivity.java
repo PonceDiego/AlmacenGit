@@ -3,7 +3,7 @@ package com.c12.almacenapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,14 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,9 +41,9 @@ public class ArticuloActivity extends AppCompatActivity {
     private static String categoriaSeleccionada;
 
 
+    final ArrayList<String> idCategorias=new ArrayList<>();
     final ArrayList<String> idSubcategorias=new ArrayList<>();
     final ArrayList<String> idProveedores=new ArrayList<>();
-    final ArrayList<String> idCategorias=new ArrayList<>();
 
     @Override
     public void onBackPressed() {
@@ -71,21 +68,15 @@ public class ArticuloActivity extends AppCompatActivity {
 
 
         //Se trae la lista de categorias de la api y se asignan esos valores al spinner de categorias.
-        try{
-
-            String url = getString(R.string.ipServidor)+"ListaCategorias";
-            JSONArray json = new JSONArray(readUrl(url));
             nombresCategorias=new ArrayList<String>();
-
-            for (int i=0;i<json.length();i++){
-                JSONObject jsonObject= json.getJSONObject(i);
+        try{
+            for (int i=0;i<MenuAlmacenActivity.jsonCategorias.length();i++){
+                JSONObject jsonObject= MenuAlmacenActivity.jsonCategorias.getJSONObject(i);
                 String nombre = jsonObject.get("nombre").toString();
                 nombresCategorias.add(nombre);
                 idCategorias.add(jsonObject.get("categoriaId").toString());
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,11 +119,10 @@ public class ArticuloActivity extends AppCompatActivity {
 
 
         //Se cargan los proveedores
-        try{
 
-            String url = getString(R.string.ipServidor)+"ListaProveedoresAndroid";
-            JSONArray json = new JSONArray(readUrl(url));
-            nombresProveedores=new ArrayList<String>();
+        nombresProveedores=new ArrayList<String>();
+        JSONArray json = MenuAlmacenActivity.jsonProveedores;
+        try{
 
             for (int i=0;i<json.length();i++){
                 JSONObject jsonObject= json.getJSONObject(i);
@@ -229,29 +219,13 @@ public class ArticuloActivity extends AppCompatActivity {
 
 
     }
-    private static String readUrl(String urlString) throws Exception {
-        BufferedReader reader = null;
-        try {
-            URL url = new URL(urlString);
-            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
-            int read;
-            char[] chars = new char[1024];
-            while ((read = reader.read(chars)) != -1)
-                buffer.append(chars, 0, read);
 
-            return buffer.toString();
-        } finally {
-            if (reader != null)
-                reader.close();
-        }
-    }
     private void subcategoriasAdapterNoCat(){
         try{
 
-
-            JSONArray json = new JSONArray(readUrl( getString(R.string.ipServidor)+"ListaSubcategoriasCompleta"));
             nombresSubcategorias=new ArrayList<String>();
+
+            JSONArray json= MenuAlmacenActivity.jsonSubcategoriasCompleta;
 
             for (int i=0;i<json.length();i++){
                 JSONObject jsonObject= json.getJSONObject(i);
@@ -261,8 +235,6 @@ public class ArticuloActivity extends AppCompatActivity {
                 idSubcategorias.add(idSub);
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -274,9 +246,7 @@ public class ArticuloActivity extends AppCompatActivity {
         categoriaSeleccionada=idCategorias.get(position);
         try{
 
-            String url = getString(R.string.ipServidor)+"ListaSubcategorias?inputCat=";
-
-            JSONArray json = new JSONArray(readUrl(url+categoriaSeleccionada));
+            JSONArray json=MenuAlmacenActivity.subsFiltrada(categoriaSeleccionada);
             nombresSubcategorias=new ArrayList<String>();
 
             for (int i=0;i<json.length();i++){

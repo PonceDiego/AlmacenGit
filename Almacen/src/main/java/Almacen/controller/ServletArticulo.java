@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.model.Articulo;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.ArticuloDB;
 import main.java.Almacen.persistence.ProveedoresDB;
 
@@ -25,8 +26,7 @@ public class ServletArticulo extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-
-			request.getSession(false);
+			Usuario user=(Usuario)request.getSession().getAttribute("usuarioActual");
 			String idS = request.getParameter("articuloID");
 			int id = Integer.parseInt(idS);
 
@@ -50,7 +50,10 @@ public class ServletArticulo extends HttpServlet {
 			request.getSession().setAttribute("proveedorArticuloID",
 					ArticuloDB.getArticuloByID(id).getProveedor().getProvId());
 
-			response.sendRedirect("view/articuloEspecifico.jsp");
+			if(user.getRol().getNombreRol().equals("SuperAdmin")||user.getRol().getNombreRol().equals("Administrador")){
+				response.sendRedirect("view/articuloEspecifico.jsp");
+				
+			}else response.sendRedirect("view/articuloEspecificoSimplificado.jsp");
 
 		}
 	}

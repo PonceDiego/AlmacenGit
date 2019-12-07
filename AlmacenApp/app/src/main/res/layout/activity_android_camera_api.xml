@@ -26,11 +26,5 @@
             android:layout_height="wrap_content"
             android:textAlignment="center" />
     </com.c12.almacenapp.barcode.camera.CameraSourcePreview>
-        <ImageView
-            android:id="@+id/flash_button"
-            android:layout_height="16dp"
-            android:layout_width="16dp"
-            android:contentDescription="@string/cd_flash_button"
-            app:srcCompat="@drawable/camera_flash" />
 
 </LinearLayout>

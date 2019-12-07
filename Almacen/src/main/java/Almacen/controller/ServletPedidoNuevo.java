@@ -40,7 +40,7 @@ public class ServletPedidoNuevo extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 
-			// TODO: comprobar que no sea el token del usuario cuando se realice el login !
+			//comprobar que no sea el token del usuario cuando se realice el login !
 			Enumeration<String> lista = request.getSession().getAttributeNames();
 			while (lista.hasMoreElements()) {
 				String attrName = lista.nextElement();

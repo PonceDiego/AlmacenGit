@@ -45,9 +45,7 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
         });
 
         try{
-
-            String url = getString(R.string.ipServidor)+"ListaArticulosAndroid";
-            JSONArray json = new JSONArray(readUrl(url));
+            JSONArray json = MenuAlmacenActivity.jsonArticulos;
             articulosNombres.clear();
             articulosStock.clear();
 
@@ -58,20 +56,18 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
                 articulosNombres.add(nombre);
                 articulosStock.add(stock);
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //TODO: inflar searchableSpinner con los datos del json.
-       listaArticulos.setAdapter(new ArrayAdapter<String>(BusquedaArticuloActivity.this,android.R.layout.simple_spinner_dropdown_item,articulosNombres));
+        listaArticulos.setAdapter(new ArrayAdapter<String>(BusquedaArticuloActivity.this,android.R.layout.simple_spinner_dropdown_item,articulosNombres));
+
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(listaArticulos.getSelectedItem()!=null){
-
                     nombreArticuloQR=listaArticulos.getSelectedItem().toString();
                     startActivity(new Intent(BusquedaArticuloActivity.this,ArticuloEspecificoActivity.class));
                 }else{
@@ -83,20 +79,20 @@ public class BusquedaArticuloActivity extends AppCompatActivity {
 
 
     private static String readUrl(String urlString) throws Exception {
-            BufferedReader reader = null;
-            try {
-                URL url = new URL(urlString);
-                reader = new BufferedReader(new InputStreamReader(url.openStream()));
-                StringBuffer buffer = new StringBuffer();
-                int read;
-                char[] chars = new char[1024];
-                while ((read = reader.read(chars)) != -1)
-                    buffer.append(chars, 0, read);
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
 
-                return buffer.toString();
-            } finally {
-                if (reader != null)
-                    reader.close();
-            }
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
         }
+    }
 }

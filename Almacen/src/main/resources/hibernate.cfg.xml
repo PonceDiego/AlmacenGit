@@ -6,9 +6,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/almacen</property>
 		<property name="hibernate.connection.username">root</property>
-		
-		
-<!-- 		<property name="hibernate.connection.password">almacen.C12</property> -->
+		<property name="hibernate.connection.password">almacen.C12</property>
 		
 		
 		
@@ -35,5 +33,10 @@
 		<mapping class="main.java.Almacen.model.Subcategoria" />
 		<mapping class="main.java.Almacen.model.Usuario" />
 		<mapping class="main.java.Almacen.model.Usuariosys" />
+		<mapping class="main.java.Almacen.model.Registro"/>
+		<mapping class="main.java.Almacen.model.Lugar"/>
+		<mapping class="main.java.Almacen.model.Tipo"/>
+		<mapping class="main.java.Almacen.model.Equipo"/>
+		
 	</session-factory>
 </hibernate-configuration>

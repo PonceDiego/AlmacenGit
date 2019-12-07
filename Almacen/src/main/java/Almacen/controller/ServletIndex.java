@@ -29,13 +29,17 @@ public class ServletIndex extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession(false);
-		if (request.getSession().getAttribute("usuarioActual")==null) {
+
+		System.out.println(request.getSession().toString());
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			System.out.println("UsuarioActual nulo");
 			response.sendRedirect("IniciarSesion?mensaje=Primero%20debe%20iniciar%20sesi%C3%B3n!");
 		} else {
+
 			response.sendRedirect("view/index.jsp");
 		}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)

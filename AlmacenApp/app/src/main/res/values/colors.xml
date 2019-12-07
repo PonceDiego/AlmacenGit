@@ -8,6 +8,7 @@
 
     <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
+    <color name="blueLink">#0645AD</color>
     <color name="lighter_grey">#DDDDDD</color>
     <color name="dark">#9A000000</color>
     <color name="home_page_mode_item_subtitle">#CCFFFFFF</color>

@@ -52,7 +52,7 @@ public class ServletAreaNueva extends HttpServlet {
 		nombre = request.getParameter("inputNombre");
 		user = request.getParameter("inputJefe");
 		AreaManager.createArea(nombre, user);
-		response.sendRedirect("index.html");
+		response.sendRedirect("ListaAreas");
 	}
 
 }

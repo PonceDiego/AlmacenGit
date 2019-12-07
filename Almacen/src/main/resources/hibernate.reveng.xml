@@ -2,17 +2,6 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-schema="almacen" match-name=".*"/>
-  <table-filter match-catalog="almacen" match-name="area"/>
-  <table-filter match-catalog="almacen" match-name="articulo"/>
-  <table-filter match-catalog="almacen" match-name="categoria"/>
-  <table-filter match-catalog="almacen" match-name="estadoarticulo"/>
-  <table-filter match-catalog="almacen" match-name="estadopedido"/>
-  <table-filter match-catalog="almacen" match-name="pedido"/>
-  <table-filter match-catalog="almacen" match-name="pedidoxarticulos"/>
-  <table-filter match-catalog="almacen" match-name="proveedor"/>
-  <table-filter match-catalog="almacen" match-name="rol"/>
-  <table-filter match-catalog="almacen" match-name="subcategoria"/>
-  <table-filter match-catalog="almacen" match-name="usuario"/>
-  <table-filter match-catalog="almacen" match-name="usuariosys"/>
+  <table-filter match-catalog="almacen" match-name="lugar"/>
+  
 </hibernate-reverse-engineering>

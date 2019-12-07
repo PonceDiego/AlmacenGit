@@ -10,77 +10,91 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp">
 
         <Button
             android:id="@+id/pedidoNuevo"
             style="@style/AppTheme.Button"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/nuevo_pedido"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/view"
-        style="@style/Divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pedidoNuevo" />
+        <Button
+            android:id="@+id/listaPedidos"
+            style="@style/AppTheme.Button"
 
-    <Button
-        android:id="@+id/articuloNuevo"
-        style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/mis_pedidos"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pedidoNuevo" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/nuevo_articulo"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        <View
+            android:id="@+id/view"
+            style="@style/Divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listaPedidos" />
 
-    <Button
-        android:id="@+id/buscarArticulo"
-        style="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/buscarArticulo"
-        app:layout_constraintTop_toBottomOf="@+id/articuloNuevo" />
+        <Button
+            android:id="@+id/articuloNuevo"
+            style="@style/AppTheme.Button"
 
-    <Button
-        android:id="@+id/listaArticulos"
-        style="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/listaArticulos"
-        app:layout_constraintTop_toBottomOf="@+id/buscarArticulo" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/nuevo_articulo"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <View
-        android:id="@+id/view2"
-        style="@style/Divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaArticulos" />
+        <Button
+            android:id="@+id/buscarArticulo"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/buscarArticulo"
+            app:layout_constraintTop_toBottomOf="@+id/articuloNuevo" />
 
-    <Button
-        android:id="@+id/proveedorNuevo"
-        style="@style/AppTheme.Button"
+        <Button
+            android:id="@+id/listaArticulos"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/listaArticulos"
+            app:layout_constraintTop_toBottomOf="@+id/buscarArticulo" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/nuevo_proveedor"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        <View
+            android:id="@+id/view2"
+            style="@style/Divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listaArticulos" />
 
-    <Button
-        android:id="@+id/listaProveedores"
-        style="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/listaProveedores"
-        app:layout_constraintTop_toBottomOf="@+id/proveedorNuevo" />
+        <Button
+            android:id="@+id/proveedorNuevo"
+            style="@style/AppTheme.Button"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/nuevo_proveedor"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <Button
+            android:id="@+id/listaProveedores"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@string/listaProveedores"
+            app:layout_constraintTop_toBottomOf="@+id/proveedorNuevo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

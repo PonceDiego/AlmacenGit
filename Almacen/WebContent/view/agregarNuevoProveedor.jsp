@@ -254,6 +254,24 @@ div.searchable {
 								class="dropdown-item" href="../ListaPedidos">Lista de pedidos</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Técnica </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown3">
+							<a class="dropdown-item" href="../ListaEquipos">Lista
+								de equipos</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
+								 <a class="dropdown-item " href="../ListaRegistros">Lista
+								de registros</a>
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
+								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
+							</c:if>
+
+						</div></li>
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="material-icons">perm_identity</i>

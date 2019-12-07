@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h4 id="mensaje"style="color: red;">${mensaje }</h4>
-	<form method="post" action="/Almacen/IniciarSesion">
+	<form method="post" action="../IniciarSesion">
 		Nombre de usuario:<input type="text" name="username" /><br /> Contraseña:<input
 			type="password" name="pass" /><br /> <input type="submit"
 			value="Ingresar" />

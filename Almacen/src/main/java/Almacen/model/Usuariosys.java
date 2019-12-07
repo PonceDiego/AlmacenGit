@@ -1,12 +1,11 @@
 package main.java.Almacen.model;
-// Generated 12/11/2019 01:20:56 PM by Hibernate Tools 5.0.6.Final
+// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,40 +15,28 @@ import javax.persistence.Table;
 @Table(name = "usuariosys", catalog = "almacen")
 public class Usuariosys implements java.io.Serializable {
 
-	private int id;
-	private Rol rol;
+	private Integer id;
 	private String username;
 	private String password;
 
 	public Usuariosys() {
 	}
 
-	public Usuariosys(int id, Rol rol, String username, String password) {
-		this.id = id;
-		this.rol = rol;
+	public Usuariosys(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID", unique = true, nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rol", nullable = false)
-	public Rol getRol() {
-		return this.rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
 	}
 
 	@Column(name = "username", nullable = false, length = 30)

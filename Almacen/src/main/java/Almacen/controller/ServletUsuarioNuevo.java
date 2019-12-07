@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.UsuarioManager;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.AreaDB;
 import main.java.Almacen.persistence.RolDB;
 
@@ -36,9 +37,12 @@ public class ServletUsuarioNuevo extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			request.getSession().setAttribute("roles", RolDB.getRoles());
-			request.getSession().setAttribute("areas", AreaDB.getAreas());
-			response.sendRedirect("view/agregarNuevoUsuario.jsp");
+			Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
+			if (user.getRol().getNombreRol().contentEquals("SuperAdmin")) {
+				request.getSession().setAttribute("roles", RolDB.getRoles());
+				request.getSession().setAttribute("areas", AreaDB.getAreas());
+				response.sendRedirect("view/agregarNuevoUsuario.jsp");
+			}
 		}
 	}
 

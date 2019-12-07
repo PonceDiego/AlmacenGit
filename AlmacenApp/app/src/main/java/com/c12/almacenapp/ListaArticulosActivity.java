@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,7 +29,6 @@ import java.util.ArrayList;
 public class ListaArticulosActivity extends AppCompatActivity {
     static ArrayList<String> articulosNombres= new ArrayList<>();
     static ArrayList<String> articulosStock= new ArrayList<>();
-//    static ArrayList<String> articulosSubcategoria= new ArrayList<>();
 
 
     @Override
@@ -32,20 +37,16 @@ public class ListaArticulosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_articulos);
         try{
 
-            String url = getString(R.string.ipServidor)+"ListaArticulosAndroid";
-            JSONArray json = new JSONArray(readUrl(url));
+            JSONArray json=MenuAlmacenActivity.jsonArticulos;
             articulosNombres.clear();
             articulosStock.clear();
-//            articulosSubcategoria.clear();
 
             for (int i=0;i<json.length();i++){
                 JSONObject jsonObject= json.getJSONObject(i);
                 String nombre = jsonObject.get("nombre").toString();
                 String stock = jsonObject.get("stock").toString();
-//                String subCategoria= jsonObject.get("subcategoria").toString();
                 articulosNombres.add(nombre);
                 articulosStock.add(stock);
-//                articulosSubcategoria.add(subCategoria);
             }
 
         } catch (JSONException e) {
@@ -66,6 +67,7 @@ public class ListaArticulosActivity extends AppCompatActivity {
             nombreArt.setBackground(getDrawable(R.drawable.border));
             nombreArt.setTextSize(18);
             nombreArt.setPadding(5,5,5,5);
+
             TextView stockArt= new TextView(this);
             stockArt.setBackground(getDrawable(R.drawable.border));
             stockArt.setTextSize(18);
@@ -80,13 +82,15 @@ public class ListaArticulosActivity extends AppCompatActivity {
                     startActivity(new Intent(ListaArticulosActivity.this,ArticuloEspecificoActivity.class));
                 }
             });
-            Button button= new Button(ListaArticulosActivity.this);
-            button.setText("Agregar a pedido");
+            TextView button = new TextView(this);
+//            Button button= new Button(ListaArticulosActivity.this);
+            button.setBackgroundResource(R.drawable.ic_add_shopping_cart_black_24dp);
+            button.setMaxWidth(24);
             button.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                           startActivity(new Intent(ListaArticulosActivity.this,PedidoActivity.class
-                                           ));
+                                              startActivity(new Intent(ListaArticulosActivity.this,PedidoActivity.class
+                                              ));
                                           }
                                       }
             );

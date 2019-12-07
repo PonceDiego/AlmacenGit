@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -43,6 +42,7 @@ public class ServletIniciarSesion extends HttpServlet {
 
 		else {
 			request.getSession().setAttribute("mensaje", "Iniciada");
+			
 			response.sendRedirect("Index");
 		}
 	}
@@ -58,13 +58,12 @@ public class ServletIniciarSesion extends HttpServlet {
 		
 		
 		if (username.equals("root") && pass.equals("almacen.C12")) {
-			HttpSession session = request.getSession(true);
 			Usuario user= UsuarioDB.getUsuarioByNombreUsuario(username);
 			
-			System.out.println("\nEl usuario "+username+" inició sesión desde el sistema.\n");
+			System.out.println("\nEl usuario "+user.getNombreUsuario()+" inició sesión desde el sistema.\n");
 			
-			session.setAttribute("usuarioActual", user);
-			session.setAttribute("mensaje", "Iniciada");
+			request.getSession().setAttribute("usuarioActual", user);
+			request.getSession().setAttribute("mensaje", "Iniciada");
 			if(request.getParameter("and")!=null) {
 				response.setCharacterEncoding("UTF-8");
 				out = response.getWriter();
@@ -81,18 +80,18 @@ public class ServletIniciarSesion extends HttpServlet {
 				out.flush();
 				
 			}else {
-				
 				response.sendRedirect("Index");
 			}
 		} else {
 
 			if (UsuarioManager.validarCredenciales(username, pass)) {
-				HttpSession session = request.getSession(true);
+
 				
 				Usuario user=UsuarioDB.getUsuarioByNombreUsuario(username);
-				System.out.println("\nEl usuario "+username+" inició sesión desde LDAP.\n");
-				session.setAttribute("usuarioActual", user);
-				session.setAttribute("mensaje", "Iniciada");
+				System.out.println("\nEl usuario "+user.getNombreUsuario()+" inició sesión desde LDAP.\n");
+				request.getSession().setAttribute("usuarioActual", user);
+				System.out.println("\n"+request.getSession().toString()+"<-- ID de sesión");
+				request.getSession().setAttribute("mensaje", "Iniciada");
 				
 				if(request.getParameter("and")!=null) {
 					response.setCharacterEncoding("UTF-8");
@@ -111,7 +110,6 @@ public class ServletIniciarSesion extends HttpServlet {
 					out.flush();
 					
 				}else {
-					
 					response.sendRedirect("Index");
 				}
 				

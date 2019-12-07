@@ -10,47 +10,50 @@
     >
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
-    <TableLayout
-        android:id="@+id/articulosTabla"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="*"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <TableRow
-            android:id="@+id/primeraFila"
-            android:background="@drawable/border"
-            android:backgroundTint="@color/grisClaro"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
+        android:paddingHorizontal="15dp">
 
-            android:id="@+id/primeraCelda"
+        <TableLayout
+            android:id="@+id/articulosTabla"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:stretchColumns="*"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:text="@string/tituloArticulo"/>
-        <TextView
-            android:id="@+id/segundaCelda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="18dp"
+            <TableRow
+                android:id="@+id/primeraFilaListaArticulos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/grisClaro"
+                android:padding="10dp"
+                android:textAlignment="center">
 
-            android:text="@string/tituloStock"/>
-        </TableRow>
-    </TableLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+
+                    android:id="@+id/primeraCelda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tituloArticulo"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/segundaCelda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tituloStock"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+            </TableRow>
+
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

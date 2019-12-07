@@ -27,7 +27,6 @@ public class ServletArticuloNuevo extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			request.getSession(false);
 			request.getSession().setAttribute("listaArticulos", ArticuloDB.getListadoArticulos());
 			request.getSession().setAttribute("categoriasListadas", SubcategoriaDB.getCategorias());
 			request.getSession().setAttribute("proveedores", ProveedoresDB.getProveedores());

@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 4/11/2019 12:28:02 PM by Hibernate Tools 5.0.6.Final
+// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -41,6 +41,8 @@ public class Usuario implements java.io.Serializable {
 	private boolean activo;
 	private Set<Pedido> pedidos = new HashSet<Pedido>(0);
 	private Set<Area> areas = new HashSet<Area>(0);
+	private Set<Registro> registros = new HashSet<Registro>(0);
+	private Set<Equipo> equipos = new HashSet<Equipo>(0);
 
 	public Usuario() {
 	}
@@ -57,7 +59,7 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	public Usuario(Area area, Rol rol, String nombreUsuario, String nombre, String apellido, String email,
-			boolean activo, Set<Pedido> pedidos, Set<Area> areas) {
+			boolean activo, Set<Registro> registros, Set<Equipo> equipos, Set<Pedido> pedidos, Set<Area> areas) {
 		this.area = area;
 		this.rol = rol;
 		this.nombreUsuario = nombreUsuario;
@@ -65,6 +67,8 @@ public class Usuario implements java.io.Serializable {
 		this.apellido = apellido;
 		this.email = email;
 		this.activo = activo;
+		this.registros = registros;
+		this.equipos = equipos;
 		this.pedidos = pedidos;
 		this.areas = areas;
 	}
@@ -144,6 +148,24 @@ public class Usuario implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<Registro> getRegistros() {
+		return this.registros;
+	}
+
+	public void setRegistros(Set<Registro> registros) {
+		this.registros = registros;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<Equipo> getEquipos() {
+		return this.equipos;
+	}
+
+	public void setEquipos(Set<Equipo> equipos) {
+		this.equipos = equipos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")

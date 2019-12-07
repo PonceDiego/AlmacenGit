@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         usuario = findViewById(R.id.username);
         clave=findViewById(R.id.password);
+
+        usuario.setText("apps");
+        clave.setText("1234");
         logearse=findViewById(R.id.login);
         loading=findViewById(R.id.loading);
         MainActivity.ACTUAL =null;
@@ -64,8 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         pw=validarClave(pass);
 
         if(us&&pw){
-            Log.e("user",user);
-            Log.e("pass",pass);
             RequestQueue queue = Volley.newRequestQueue(this);
             String url= getString(R.string.ipServidor)+"IniciarSesion?username="+user+
                     "&pass="+pass+
@@ -99,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // Do something after 5s = 5000ms
                     loading.setVisibility(View.GONE);
 
                     if(MainActivity.ACTUAL!=null){
@@ -116,8 +116,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginExitoso(){
         Intent goHome = new Intent(this, MainActivity.class);
-        Toast.makeText(getApplicationContext(),"Ingreso correcto",Toast.LENGTH_SHORT).show();
         finish();
+        Toast.makeText(getApplicationContext(),"Bienvenido, usuario "+MainActivity.ACTUAL.getUsername(),Toast.LENGTH_SHORT).show();
         startActivity(goHome);
     }
 

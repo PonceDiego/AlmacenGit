@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 4/11/2019 12:28:02 PM by Hibernate Tools 5.0.6.Final
+// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -22,8 +22,6 @@ import com.google.gson.annotations.Expose;
 @Entity
 @Table(name = "categoria", catalog = "almacen")
 public class Categoria implements java.io.Serializable {
-
-	
 	@Expose (serialize = true, deserialize = true) 
 	private Integer categoriaId;
 	@Expose (serialize = true, deserialize = true) 
