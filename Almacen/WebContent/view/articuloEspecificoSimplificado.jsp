@@ -42,9 +42,9 @@
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -54,21 +54,33 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
-								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a> <a class="dropdown-item active">Artículo
-								específico</a>
+							<a class="dropdown-item active" href="../BuscarArticulo">Buscar
+								artículo</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+
+								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+									artículo</a>
+
+								<a class="dropdown-item" href="../ListaArticulos">Lista de
+									artículos</a>
+							</c:if>
+
 						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Proveedores </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
-								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-								por artículos</a> <a class="dropdown-item" href="../BuscarProveedor">Proveedor
-								específico</a>
-						</div></li>
+					<c:if
+						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Proveedores </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
+									proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
+									por artículos</a> <a class="dropdown-item "
+									href="../BuscarProveedor">Proveedor específico</a>
+							</div></li>
+					</c:if>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -78,24 +90,25 @@
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-						<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
+							<a class="dropdown-item " href="../ListaEquipos">Lista
 								de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
-								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
+								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
 
 						</div></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -103,11 +116,20 @@
 					</a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../UsuarioNuevo">Nuevo usuario</a>
-							<a class="dropdown-item " href="../ListaUsuarios">Lista de
-								usuarios</a> <a class="dropdown-item" href="../AreaNueva">Nueva
-								área</a> <a class="dropdown-item" href="../CerrarSesion">Cerrar
-								sesión</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+								<a class="dropdown-item " href="../ListaUsuarios">Lista de
+									usuarios</a>
+								<c:if
+									test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'}">
+									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
+										usuario</a>
+									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
+									<a class="dropdown-item" href="../ListaAreas">Lista de
+										áreas</a>
+								</c:if>
+							</c:if>
+							<a class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
 						</div></li>
 				</ul>
 			</div>

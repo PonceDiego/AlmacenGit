@@ -88,17 +88,27 @@
 							</c:if>
 
 						</div></li>
-					<li class="nav-item dropdown active"><a
+				<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="material-icons">perm_identity</i>
 					</a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item active" href="../UsuarioNuevo">Nuevo usuario</a>
-							<a class="dropdown-item " href="../ListaUsuarios">Lista de usuarios</a> <a
-								class="dropdown-item" href="../AreaNueva">Nueva área</a> <a
-								class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+								<a class="dropdown-item" href="../ListaUsuarios">Lista
+									de usuarios</a>
+								<c:if
+									test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'}">
+									<a class="dropdown-item active" href="../UsuarioNuevo">Nuevo
+										usuario</a>
+									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
+									<a class="dropdown-item" href="../ListaAreas">Lista de
+										áreas</a>
+								</c:if>
+							</c:if>
+							<a class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
 						</div></li>
 				</ul>
 			</div>

@@ -55,7 +55,7 @@ public class PedidoDB {
 
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Pedido> query = sess.createQuery("select p from Pedido p where p.estadopedido=1");
+			Query<Pedido> query = sess.createQuery("select p from Pedido p where p.estadopedido!=2");
 			pP = query.getResultList();
 			for (Pedido pedido : pP) {
 

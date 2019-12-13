@@ -9,8 +9,8 @@
 
 
     <!--    SERVER-->
-    <string name="ipServidor">http://172.16.49.37:8080/Almacen/</string>
-    <!--    <string name="ipServidor">http://almacen.eldoce.com.ar:8080/Almacen/</string>-->
+<!--    <string name="ipServidor">http://172.16.49.37:8080/Almacen/</string>-->
+        <string name="ipServidor">http://almacen.eldoce.com.ar/</string>
     <string name="qrApi">https://api.qrserver.com/v1/create-qr-code/?data=</string>
 
 
@@ -24,11 +24,6 @@
     <string name="login_failed">"Acceso incorrecto"</string>
 
 
-    <!-- Strings de content layout -->
-    <string name="btn1">Almacén</string>
-    <string name="btn2">Técnica</string>
-    <string name="btn3">Llaves</string>
-    <string name="btn4">Cerrar Sesión</string>
 
 
     <string name="tituloPedido">Pedido</string>

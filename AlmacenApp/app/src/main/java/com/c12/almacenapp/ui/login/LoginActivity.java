@@ -75,6 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     try{
+                        if(response.equals("0")){
+                            loading.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(),"Usuario y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
+                        }
                         JSONObject object= new JSONObject(response);
                         String token= (String) object.get("token");
                         String nombre= (String) object.get("nombre");
@@ -82,8 +86,10 @@ public class LoginActivity extends AppCompatActivity {
                         String area= (String) object.get("area");
                         String rol= (String) object.get("rol");
                         MainActivity.ACTUAL= new Usuario(token,nombre,username,area,rol);
-
+                        loading.setVisibility(View.GONE);
+                        loginExitoso();
                     }catch (Throwable t){
+
                         Log.e("JSON","No se pudo parsear");
                     }
                 }
@@ -96,18 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             queue.add(stringRequest);
             loading.setVisibility(View.VISIBLE);
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    loading.setVisibility(View.GONE);
-
-                    if(MainActivity.ACTUAL!=null){
-                        loginExitoso();
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Usuario y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
-                    }                }
-            }, 2000);
         }else{
             Toast.makeText(getApplicationContext(),"Por favor ingrese un usuario y/o contraseña válidos.", Toast.LENGTH_SHORT).show();
         }
@@ -124,7 +118,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validarUsuario(String usuario){
         boolean resultado = true;
-        //TODO hacer los snack bars
         if(usuario.equals("")){
             Snackbar.make(findViewById(R.id.container),"El campo usuario no puede estar vacío!",Snackbar.LENGTH_SHORT).show();
             resultado=false;

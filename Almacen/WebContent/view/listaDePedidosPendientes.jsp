@@ -17,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Equipos</title>
+<title>Pedidos</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,34 +77,33 @@
 									href="../BuscarProveedor">Proveedor específico</a>
 							</div></li>
 					</c:if>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Pedidos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a>
-							<a class="dropdown-item" href="../ListaPedidos">Lista de
-								pedidos</a>
+							<a class="dropdown-item active" href="../ListaPedidos">Lista
+								de pedidos</a>
 						</div></li>
-					<li class="nav-item dropdown active"><a
+<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item active" href="../ListaEquipos">Lista
+							<a class="dropdown-item" href="../ListaEquipos">Lista
 								de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								<a class="dropdown-item " href="../ListaRegistros">Lista de
-									registros</a>
+								 <a class="dropdown-item " href="../ListaRegistros">Lista
+								de registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
-								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
+								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
 
 						</div></li>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -136,11 +135,7 @@
 
 	<div class="container">
 		<div class="col-lg-12 text-center">
-			<h1 class="mt-5">
-				Lista de equipos.<span><a href="../ListaLugares"
-					style="font-size: small;"> Lugares 🡕</a></span><span><a
-					href="../ListaTipos" style="font-size: small;">Tipos 🡕</a></span>
-			</h1>
+			<h1 class="mt-5">Lista de pedidos sin entregar.</h1>
 
 
 			<hr class="my-4">
@@ -149,63 +144,57 @@
 			<table class="table table-striped table-bordered" id="myTable">
 				<thead>
 					<tr>
-						<th>Nombre</th>
-						<th>Tipo</th>
-						<th>Usuario Actual</th>
-						<th>Lugar</th>
-						<th>Modelo</th>
-						<th>Observaciones</th>
-						<th>Accesorios</th>
+						<th>Fecha</th>
+						<th>Usuario</th>
+						<th>Área</th>
 						<th>Estado</th>
+						<th>Más información</th>
 						<th>Acción</th>
 					</tr>
 				</thead>
-				<tbody id="tablaEquipos">
+				<tbody id="tablaPedidos">
 
-					<c:forEach items="${equipos}" var="equipo">
+					<c:forEach items="${pedidosCompleto}" var="pedido">
 						<tr>
-							<td><c:out value="${equipo.getNombre()}" /></td>
-							<td><c:out value="${equipo.getTipo().getNombre() }" /></td>
-							<td><c:forEach items="${registros }" var="re">
-									<c:if
-										test="${re.getEquipo().getNombre()== equipo.getNombre() }">
-										<c:set var="usuarioEquipo" value="${re.getUsuario()}"></c:set>
-										<c:out
-											value="${re.getUsuario().getNombre() } ${re.getUsuario().getApellido()}"></c:out>
-									</c:if>
-								</c:forEach></td>
-							<td><c:out value="${equipo.getLugar().getNombre()}" /></td>
-							<td><c:out value="${equipo.getModelo()}" /></td>
-							<td><c:out value="${equipo.getObservaciones()}" /></td>
-							<td><c:out value="${equipo.getAccesorios()}" /></td>
+							<td><c:out value="${pedido.fecha}" /></td>
+							<td><c:out value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" /></td>
+							<td><c:out
+									value="${pedido.usuario.getArea().getNombreArea()}" /></td>
+							<td><c:out value="${pedido.estadopedido.getNombreEstado()}" /></td>
+							<td><span> <a
+									href="../Pedido?pedidoId=${pedido.pedidoId}">Detalle</a>
+							</span>
 							<td><c:choose>
-									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<a style="color: green;"><i class="material-icons">check</i></a>
-									</c:when>
-									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<a style="color: red;"><i class="material-icons">clear</i></a>
-									</c:when>
-									<c:otherwise>
-										<a><i class="material-icons">trending_down</i></a>
-									</c:otherwise>
-								</c:choose></td>
-
-							<td><c:choose>
-									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<button class="btn btn-warning" type="button" title="Salida"
+									<c:when test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
+										<button class="btn btn-warning" type="button" title="Entregar"
 											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
-											S</button>
+											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											<i class="material-icons"
+												style="width: 18px; font-size: 18px">check_circle_outline</i>
+										</button>
 
 									</c:when>
-									<c:when test="${equipo.getEstado() == 'En uso'}">
+									<c:when test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
 										<button class="btn btn-outline-success" type="button"
-											title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombreRol() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
-											E</button>
+											title="Entregar" style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											<i class="material-icons"
+												style="width: 18px; font-size: 18px">check_circle_outline</i>
+										</button>
 									</c:when>
-								</c:choose> <a href="../Equipo?equipoId=${equipo.getEquipoId()}"><i
-									class="material-icons">history</i></a></td>
+								</c:choose>
+								<button class="btn btn-outline-info" type="button"
+									title="Editar" style="cursor: pointer"
+									onclick="window.location.href='../EditarPedido?pedidoId=${pedido.pedidoId}'">
+									<i class="material-icons" style="font-size: 18px"> edit </i>
+								</button>
+
+								<button class="btn btn-outline-danger" type="button"
+									id="eliminarPedidoButton" title="Eliminar"
+									style="cursor: pointer"
+									onclick="confirmar('${pageContext.request.contextPath }/EliminarPedido?idEliminado=${pedido.pedidoId }');">
+									<i class="material-icons" style="font-size: 18px"> delete </i>
+								</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -216,37 +205,34 @@
 
 	<script src="../vendor/Datatables/datatables.js"></script>
 
+
 	<script>
 		function alertar(url) {
-				alert("Realizando salida del equipo");
-				$(location).attr('href', url);
-		}
-
-		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
-			if (usernameEquipo == usernameActual
-					|| rolActual == "SuperAdmin"
-					|| rolActual == "Administrador Técnica") {
-				alert("Reingresando el equipo..");
-				$(location).attr('href', url);
-			} else {
-				alert("Solo el usuario que realizó la salida puede volver a ingresarlo!");
-			}
+			alert("Procesando entrega del pedido..");
+			$(location).attr('href', url);
 		}
 	</script>
 
+	<script>
+		function confirmar(url) {
+			var r = confirm("¿Está seguro que desea eliminar el pedido?");
+			if (r == true) {
+				$(location).attr('href', url);
+			}
+		}
+	</script>
 
 	<script>
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
-				"scrollX" : true,
 				"columnDefs" : [ {
 					"responsive" : "true",
 					"orderable" : false,
-					"targets" : [ 5, 6, 7, 8 ]
+					"targets" : [ 4, 5 ]
 				} ],
 				"language" : {
-					"emptyTable" : "No se encontraron equipos a mostrar!"
+					"emptyTable" : "No se encontraron Pedidos a su nombre!"
 				}
 			})
 		});

@@ -38,12 +38,12 @@ public class ServletListaPedidos extends HttpServlet {
 		} else {
 			Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
 			if (user.getRol().getNombreRol().equals( "Administrador") || user.getRol().getNombreRol().equals("SuperAdmin")) {
-				request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
-				response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+				request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
+				response.sendRedirect("view/listaDePedidosPendientes.jsp");
 			} else {
 				request.getSession().setAttribute("pedidosCompleto",
 						PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
-				response.sendRedirect("view/listaDePedidosAdminCompleta.jsp");
+				response.sendRedirect("view/listaDePedidosPendientes.jsp");
 			}
 		}
 	}
