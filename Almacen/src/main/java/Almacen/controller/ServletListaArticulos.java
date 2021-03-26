@@ -51,12 +51,18 @@ public class ServletListaArticulos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<String> respuesta = new ArrayList<String>();
-		List<Articulo> e = ArticuloDB.getListadoArticulos();
-		for (Articulo art : e) {
-			respuesta.add(art.getNombre());
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			request.getSession(false);
+			ArrayList<String> respuesta = new ArrayList<String>();
+			List<Articulo> e = ArticuloDB.getListadoArticulos();
+			for (Articulo art : e) {
+				respuesta.add(art.getNombre());
+			}
+			response.getWriter().print(respuesta);
+
 		}
-		response.getWriter().print(respuesta);
 	}
 
 }

@@ -39,20 +39,24 @@ public class ServletListaCategorias extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Categoria> cats = SubcategoriaDB.getCategorias();
-		ArrayList<Categoria> array = new ArrayList<Categoria>();
-		String categoriaJson = null;
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			List<Categoria> cats = SubcategoriaDB.getCategorias();
+			ArrayList<Categoria> array = new ArrayList<Categoria>();
+			String categoriaJson = null;
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
 
-		for (Categoria cat : cats) {
-			array.add(cat);
-			
+			for (Categoria cat : cats) {
+				array.add(cat);
+
+			}
+			categoriaJson = gson.toJson(array);
+			out.print(categoriaJson);
+			out.flush();
 		}
-		categoriaJson = gson.toJson(array);
-		out.print(categoriaJson);
-		out.flush();
 	}
 
 	/**

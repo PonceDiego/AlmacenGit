@@ -39,24 +39,27 @@ public class ServletListaSubcategoriasCompleta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		List<Subcategoria> cats = SubcategoriaDB.getSubcategorias();
-		ArrayList<Subcategoria> array = new ArrayList<Subcategoria>();
-		String categoriaJson = null;
-		
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
 
-		for (Subcategoria cat : cats) {
-			array.add(cat);
-			
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+			List<Subcategoria> cats = SubcategoriaDB.getSubcategorias();
+			ArrayList<Subcategoria> array = new ArrayList<Subcategoria>();
+			String categoriaJson = null;
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+
+			for (Subcategoria cat : cats) {
+				array.add(cat);
+
+			}
+			categoriaJson = gson.toJson(array);
+			out.print(categoriaJson);
+			out.flush();
 		}
-		categoriaJson = gson.toJson(array);
-		out.print(categoriaJson);
-		out.flush();
+
 	}
 
 	/**

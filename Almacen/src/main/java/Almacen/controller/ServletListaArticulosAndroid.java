@@ -41,7 +41,6 @@ public class ServletListaArticulosAndroid extends HttpServlet {
 	// TODO: incorporar subcategoría object y estado, como anidados en el json.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		List<Articulo> cats = ArticuloDB.getListadoArticulos();
 		ArrayList<Object> array = new ArrayList<Object>();
 

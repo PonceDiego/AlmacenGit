@@ -128,11 +128,11 @@
 		<table class="table">
 			<tr>
 				<th>Usuario Actual:</th>
-				<td>${equipo.getSerial() }
+				<td>${equipo.getUsuario().getNombreUsuario()}</td>
 				<th>Tipo:</th>
 				<td>${equipo.getTipo().getNombre()}</td>
-				<th>Usuario Habitual:</th>
-				<td>${equipo.getUsuario().getNombreUsuario()}</td>
+				<th>Serial:</th>
+				<td>${equipo.getSerial() }
 			</tr>
 			<tr>
 				<th>Lugar Habitual:</th>

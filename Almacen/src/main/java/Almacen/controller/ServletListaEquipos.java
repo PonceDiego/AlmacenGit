@@ -2,6 +2,8 @@ package main.java.Almacen.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +15,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.EquipoManager;
+import main.java.Almacen.model.Articulo;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Usuario;
+import main.java.Almacen.persistence.ArticuloDB;
+import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.RegistroDB;
 
 /**
@@ -43,12 +48,15 @@ public class ServletListaEquipos extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			if(request.getParameter("and")!=null) {
-				String idE=request.getParameter("idEquipo");
-				Equipo equipo= EquipoManager.getEquipo(Integer.parseInt(idE));
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
-				out.print(gson.toJson(equipo));
+				ArrayList<Equipo> respuesta = new ArrayList<Equipo>();
+				List<Equipo> e = EquipoDB.getListaEquipos();
+				for (Equipo art : e) {
+					respuesta.add(art);
+				}
+				out.print(gson.toJson(respuesta));
 				out.flush();
 			}else {
 			Usuario actual=(Usuario)request.getSession().getAttribute("usuarioActual");

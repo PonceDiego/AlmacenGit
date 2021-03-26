@@ -1,6 +1,9 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import main.java.Almacen.model.Equipo;
+import main.java.Almacen.model.Pedido;
 import main.java.Almacen.model.Usuario;
+import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.PedidoDB;
 
 /**
@@ -36,6 +45,19 @@ public class ServletListaPedidos extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
+			if(request.getParameter("and")!=null) {
+				Gson gson=new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				PrintWriter out = response.getWriter();
+				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
+				List<Pedido> e = PedidoDB.getPedidosCompleto();
+				for (Pedido art : e) {
+					respuesta.add(art);
+				}
+				out.print(gson.toJson(respuesta));
+				out.flush();
+			}else {
 			Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
 			if (user.getRol().getNombreRol().equals( "Administrador") || user.getRol().getNombreRol().equals("SuperAdmin")) {
 				request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
@@ -57,5 +79,4 @@ public class ServletListaPedidos extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

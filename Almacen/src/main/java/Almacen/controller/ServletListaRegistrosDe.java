@@ -17,20 +17,20 @@ import com.google.gson.GsonBuilder;
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Registro;
-import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.RegistroDB;
+import main.java.Almacen.persistence.UsuarioDB;
 
 /**
  * Servlet implementation class ServletListaRegistros
  */
-@WebServlet("/ListaRegistros")
-public class ServletListaRegistros extends HttpServlet {
+@WebServlet("/ListaRegistrosDe")
+public class ServletListaRegistrosDe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletListaRegistros() {
+	public ServletListaRegistrosDe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,7 +50,8 @@ public class ServletListaRegistros extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Registro> respuesta = new ArrayList<Registro>();
-				List<Registro> e = RegistroDB.getRegistros();
+				int user = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("username")).getUsuarioId();
+				List<Registro> e = RegistroDB.getRegistrosByUsuario(user);
 				for (Registro art : e) {
 					respuesta.add(art);
 				}
@@ -58,9 +59,8 @@ public class ServletListaRegistros extends HttpServlet {
 				out.flush();
 			} else {
 
-				request.getSession().setAttribute("registros", RegistroManager.getListaRegistros());
-
-				response.sendRedirect("view/listaDeRegistros.jsp");
+//				request.getSession().setAttribute("registros", RegistroManager.getListaRegistros());
+//				response.sendRedirect("view/listaDeRegistros.jsp");
 			}
 		}
 	}
