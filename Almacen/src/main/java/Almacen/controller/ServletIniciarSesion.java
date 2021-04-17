@@ -64,6 +64,10 @@ public class ServletIniciarSesion extends HttpServlet {
 			
 			request.getSession().setAttribute("usuarioActual", user);
 			request.getSession().setAttribute("mensaje", "Iniciada");
+			
+			String sessionid = request.getSession().getId();
+			response.setHeader("SET-COOKIE", "JSESSIONID=" + sessionid + "; HttpOnly");
+			
 			if(request.getParameter("and")!=null) {
 				response.setCharacterEncoding("UTF-8");
 				out = response.getWriter();
