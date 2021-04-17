@@ -4,7 +4,7 @@
 	<session-factory>
 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/almacen</property>
+		<property name="hibernate.connection.url">jdbc:mysql://vps-1791261-x.dattaweb.com:3306/almacen</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">almacen.C12</property>
 		
