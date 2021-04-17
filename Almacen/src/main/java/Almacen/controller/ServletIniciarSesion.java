@@ -65,8 +65,6 @@ public class ServletIniciarSesion extends HttpServlet {
 			request.getSession().setAttribute("usuarioActual", user);
 			request.getSession().setAttribute("mensaje", "Iniciada");
 			
-			String sessionid = request.getSession().getId();
-			response.setHeader("SET-COOKIE", "JSESSIONID=" + sessionid + "; HttpOnly");
 			
 			if(request.getParameter("and")!=null) {
 				response.setCharacterEncoding("UTF-8");
@@ -77,6 +75,7 @@ public class ServletIniciarSesion extends HttpServlet {
 				respuesta.setRol(user.getRol().getNombreRol());
 				respuesta.setToken(user.getUsuarioId().toString());
 				respuesta.setUsername(user.getNombreUsuario());
+				respuesta.setJsessionid(request.getSession().toString());
 				
 				
 				out.print(gson.toJson(respuesta));
@@ -107,7 +106,7 @@ public class ServletIniciarSesion extends HttpServlet {
 					respuesta.setRol(user.getRol().getNombreRol());
 					respuesta.setToken(user.getUsuarioId().toString());
 					respuesta.setUsername(user.getNombreUsuario());
-					
+					respuesta.setJsessionid(request.getSession().toString());
 					
 					out.print(gson.toJson(respuesta));
 					
