@@ -75,7 +75,7 @@ public class ServletIniciarSesion extends HttpServlet {
 				respuesta.setRol(user.getRol().getNombreRol());
 				respuesta.setToken(user.getUsuarioId().toString());
 				respuesta.setUsername(user.getNombreUsuario());
-				respuesta.setJsessionid(request.getSession().toString());
+				respuesta.setJsessionid(request.getSession().getId().toString());
 				
 				
 				out.print(gson.toJson(respuesta));
@@ -106,7 +106,7 @@ public class ServletIniciarSesion extends HttpServlet {
 					respuesta.setRol(user.getRol().getNombreRol());
 					respuesta.setToken(user.getUsuarioId().toString());
 					respuesta.setUsername(user.getNombreUsuario());
-					respuesta.setJsessionid(request.getSession().toString());
+					respuesta.setJsessionid(request.getSession().getId().toString());
 					
 					out.print(gson.toJson(respuesta));
 					
