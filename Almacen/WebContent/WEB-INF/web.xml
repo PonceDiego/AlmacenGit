@@ -15,7 +15,7 @@
 	</servlet-mapping>
 	<filter>
 		<filter-name>CORSFilter</filter-name>
-		<filter-class>com.mycompany.CORSFilter</filter-class>
+		<filter-class>main.java.CORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CORSFilter</filter-name>
