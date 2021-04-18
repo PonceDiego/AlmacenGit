@@ -3,6 +3,7 @@ package main.java.Almacen.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,7 +40,11 @@ public class ServletListaPedidos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		for (String name : Collections.list(request.getHeaderNames())) {
+			System.out.println(name + " = " + request.getHeader(name));
+		}
+		
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
