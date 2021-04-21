@@ -3,7 +3,6 @@ package main.java.Almacen.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
 import main.java.Almacen.model.Pedido;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.PedidoDB;
+import main.java.Almacen.utils.Utils;
 
 /**
  * Servlet implementation class ServletListaPedido
@@ -41,11 +42,9 @@ public class ServletListaPedidos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		for (String name : Collections.list(request.getHeaderNames())) {
-			System.out.println(name + " = " + request.getHeader(name));
-		}
+		HttpSession session = Utils.GetSession(request);
 		
-		if (request.getSession().getAttribute("usuarioActual") == null) {
+		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
 			if (request.getParameter("and") != null) {
@@ -61,13 +60,13 @@ public class ServletListaPedidos extends HttpServlet {
 				out.print(gson.toJson(respuesta));
 				out.flush();
 			} else {
-				Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
+				Usuario user = (Usuario) session.getAttribute("usuarioActual");
 				if (user.getRol().getNombreRol().equals("Administrador")
 						|| user.getRol().getNombreRol().equals("SuperAdmin")) {
-					request.getSession().setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
+					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
 					response.sendRedirect("view/listaDePedidosPendientes.jsp");
 				} else {
-					request.getSession().setAttribute("pedidosCompleto",
+					session.setAttribute("pedidosCompleto",
 							PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
 					response.sendRedirect("view/listaDePedidosPendientes.jsp");
 				}

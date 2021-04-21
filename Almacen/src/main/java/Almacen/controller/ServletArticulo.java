@@ -7,11 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.java.Almacen.model.Articulo;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.ArticuloDB;
 import main.java.Almacen.persistence.ProveedoresDB;
+import main.java.Almacen.utils.Utils;
 
 @WebServlet("/Articulo")
 public class ServletArticulo extends HttpServlet {
@@ -23,10 +25,13 @@ public class ServletArticulo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
+		
+		HttpSession session = Utils.GetSession(request);
+		
+		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			Usuario user=(Usuario)request.getSession().getAttribute("usuarioActual");
+			Usuario user = (Usuario) session.getAttribute("usuarioActual");
 			String idS = request.getParameter("articuloID");
 			int id = Integer.parseInt(idS);
 
@@ -50,17 +55,22 @@ public class ServletArticulo extends HttpServlet {
 			request.getSession().setAttribute("proveedorArticuloID",
 					ArticuloDB.getArticuloByID(id).getProveedor().getProvId());
 
-			if(user.getRol().getNombreRol().equals("SuperAdmin")||user.getRol().getNombreRol().equals("Administrador")){
+			if (user.getRol().getNombreRol().equals("SuperAdmin")
+					|| user.getRol().getNombreRol().equals("Administrador")) {
 				response.sendRedirect("view/articuloEspecifico.jsp");
-				
-			}else response.sendRedirect("view/articuloEspecificoSimplificado.jsp");
+
+			} else
+				response.sendRedirect("view/articuloEspecificoSimplificado.jsp");
 
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
+		
+		HttpSession session = Utils.GetSession(request);
+		
+		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
 			request.getSession(false);

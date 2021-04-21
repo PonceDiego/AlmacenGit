@@ -10,12 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.model.Subcategoria;
 import main.java.Almacen.persistence.SubcategoriaDB;
+import main.java.Almacen.utils.Utils;
 
 /**
  * Servlet implementation class ServletListaCategorias
@@ -39,7 +41,10 @@ public class ServletListaSubcategorias extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
+		
+		HttpSession session = Utils.GetSession(request);
+		
+		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
 			String inputCat;
