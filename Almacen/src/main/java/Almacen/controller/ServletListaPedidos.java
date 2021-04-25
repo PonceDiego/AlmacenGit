@@ -55,6 +55,7 @@ public class ServletListaPedidos extends HttpServlet {
 				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
 				List<Pedido> e = PedidoDB.getPedidosCompleto();
 				for (Pedido art : e) {
+					
 					respuesta.add(art);
 				}
 				out.print(gson.toJson(respuesta));
