@@ -49,10 +49,10 @@ public class ServletListaPedidos extends HttpServlet {
 //		} else {
 			if (request.getParameter("and") != null) {
 				PrintWriter out = response.getWriter();
-				Gson gson = new Gson();
+				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
+				List<Pedido> respuesta = new ArrayList<Pedido>();
 				for (int i =0;i< PedidoDB.getPedidosCompleto().size();i++) {
 					Pedido get = PedidoDB.getPedidosCompleto().get(i);
 					Pedido add = new Pedido(get.getEstadopedido(),get.getUsuario(),get.getFecha(),get.getObservaciones(),get.getPedidoxarticuloses());
