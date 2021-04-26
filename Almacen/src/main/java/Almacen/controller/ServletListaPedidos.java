@@ -44,9 +44,9 @@ public class ServletListaPedidos extends HttpServlet {
 		
 		HttpSession session = Utils.GetSession(request);
 		
-//		if (session.getAttribute("usuarioActual") == null) {
-//			response.sendRedirect("Index");
-//		} else {
+		if (session.getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
 			if (request.getParameter("and") != null) {
 				PrintWriter out = response.getWriter();
 				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
@@ -73,7 +73,7 @@ public class ServletListaPedidos extends HttpServlet {
 				}
 			}
 		}
-//	}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
