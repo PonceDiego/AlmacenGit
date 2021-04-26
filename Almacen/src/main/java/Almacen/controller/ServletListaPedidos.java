@@ -53,8 +53,7 @@ public class ServletListaPedidos extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
-				List<Pedido> e = PedidoDB.getPedidosCompleto();
-				for (Pedido art : e) {
+				for (Pedido art : PedidoDB.getPedidosCompleto()) {
 					
 					respuesta.add(art);
 				}
