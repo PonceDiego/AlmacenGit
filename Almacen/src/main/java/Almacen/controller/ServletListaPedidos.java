@@ -53,9 +53,8 @@ public class ServletListaPedidos extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
-				for (Pedido art : PedidoDB.getPedidosCompleto()) {
-					
-					respuesta.add(art);
+				for (int i =0;i< PedidoDB.getPedidosCompleto().size();i++) {
+					respuesta.add(PedidoDB.getPedidosCompleto().get(i));
 				}
 				out.print(gson.toJson(respuesta));
 				out.flush();
