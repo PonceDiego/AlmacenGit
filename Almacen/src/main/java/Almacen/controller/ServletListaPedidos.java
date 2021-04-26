@@ -48,10 +48,10 @@ public class ServletListaPedidos extends HttpServlet {
 //			response.sendRedirect("Index");
 //		} else {
 			if (request.getParameter("and") != null) {
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+				PrintWriter out = response.getWriter();
+				Gson gson = new Gson();
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				PrintWriter out = response.getWriter();
 				ArrayList<Pedido> respuesta = new ArrayList<Pedido>();
 				for (int i =0;i< PedidoDB.getPedidosCompleto().size();i++) {
 					Pedido get = PedidoDB.getPedidosCompleto().get(i);
