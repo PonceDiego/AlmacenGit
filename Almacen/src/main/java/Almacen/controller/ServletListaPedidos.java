@@ -44,6 +44,8 @@ public class ServletListaPedidos extends HttpServlet {
 		
 		HttpSession session = Utils.GetSession(request);
 		
+		System.out.println(session != null);
+		
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
