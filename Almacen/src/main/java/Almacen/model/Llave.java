@@ -16,6 +16,11 @@ import com.google.gson.annotations.Expose;
 @Table(name = "llave", catalog = "almacen")
 public class Llave implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Expose(serialize = true, deserialize = true)
 	private Integer llaveId;
 

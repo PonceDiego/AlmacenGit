@@ -26,17 +26,18 @@
 		<mapping class="main.java.Almacen.model.Categoria" />
 		<mapping class="main.java.Almacen.model.Estadoarticulo" />
 		<mapping class="main.java.Almacen.model.Estadopedido" />
+		<mapping class="main.java.Almacen.model.Equipo"/>
+		<mapping class="main.java.Almacen.model.Llave"/>
+		<mapping class="main.java.Almacen.model.Lugar"/>
 		<mapping class="main.java.Almacen.model.Pedido" />
 		<mapping class="main.java.Almacen.model.Pedidoxarticulos" />
 		<mapping class="main.java.Almacen.model.Proveedor" />
+		<mapping class="main.java.Almacen.model.Registro"/>
 		<mapping class="main.java.Almacen.model.Rol" />
 		<mapping class="main.java.Almacen.model.Subcategoria" />
+		<mapping class="main.java.Almacen.model.Tipo"/>
 		<mapping class="main.java.Almacen.model.Usuario" />
 		<mapping class="main.java.Almacen.model.Usuariosys" />
-		<mapping class="main.java.Almacen.model.Registro"/>
-		<mapping class="main.java.Almacen.model.Lugar"/>
-		<mapping class="main.java.Almacen.model.Tipo"/>
-		<mapping class="main.java.Almacen.model.Equipo"/>
 		
 	</session-factory>
 </hibernate-configuration>
