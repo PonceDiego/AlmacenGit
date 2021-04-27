@@ -23,8 +23,17 @@ public class Llave implements java.io.Serializable {
 
 	@Expose(serialize = true, deserialize = true)
 	private Integer llaveId;
-
-	private String copia, identificacion, nombre, observaciones, estado;
+	@Expose(serialize = true, deserialize = true)
+	private String copia;
+	@Expose(serialize = true, deserialize = true)
+	private String identificacion;
+	@Expose(serialize = true, deserialize = true)
+	private String nombre;
+	@Expose(serialize = true, deserialize = true)
+	private String observaciones;
+	@Expose(serialize = true, deserialize = true)
+	private String estado;
+	@Expose(serialize = true, deserialize = true)
 	private Lugar ubicacion;
 
 	public Llave() {
