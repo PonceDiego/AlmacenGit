@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.llaves.LlaveManager;
 import main.java.Almacen.model.Llave;
@@ -33,7 +34,7 @@ public class ServletLlaveEspecifica extends HttpServlet {
 
 		if (request.getParameter("and") != null) {
 			PrintWriter out = response.getWriter();
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			Llave respuesta = new Llave();
