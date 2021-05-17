@@ -33,7 +33,7 @@ public class UsuarioDB {
 
 	public static Usuario getUsuarioByNombreUsuario(String nombre) {
 		Session sess = null;
-		Usuario usuario;
+		Usuario usuario = null;
 		try {
 			sess = HibernateUtils.openSession();
 			Query<Usuario> query = sess.createQuery("select u from Usuario u where u.nombreUsuario='" + nombre + "'");
@@ -46,7 +46,10 @@ public class UsuarioDB {
 			Hibernate.initialize(usuario.getRol().getNombre());
 			Hibernate.initialize(usuario.getRol().getId());
 			return usuario;
-		} finally {
+		}catch (Exception e) {
+			e.printStackTrace();
+			return usuario;
+		}finally {
 			sess.close();
 		}
 	}
