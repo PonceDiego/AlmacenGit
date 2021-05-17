@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
+// Generated 16-may-2021 18:14:35 by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ public class Usuariosys implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
 	}

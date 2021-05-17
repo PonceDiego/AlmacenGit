@@ -38,7 +38,7 @@ public class ServletUsuarioNuevo extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
-			if (user.getRol().getNombreRol().contentEquals("SuperAdmin")) {
+			if (user.getRol().getNombre().contentEquals("SuperAdmin")) {
 				request.getSession().setAttribute("roles", RolDB.getRoles());
 				request.getSession().setAttribute("areas", AreaDB.getAreas());
 				response.sendRedirect("view/agregarNuevoUsuario.jsp");

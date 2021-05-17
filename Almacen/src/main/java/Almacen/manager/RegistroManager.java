@@ -7,6 +7,7 @@ import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Registro;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.EquipoDB;
+import main.java.Almacen.persistence.LlaveDB;
 import main.java.Almacen.persistence.RegistroDB;
 import main.java.Almacen.persistence.UsuarioDB;
 
@@ -20,7 +21,8 @@ public class RegistroManager {
 		
 		Equipo equipo=EquipoDB.getEquipoByID(equip);
 		Usuario usuario=UsuarioDB.getUsuarioByID(user);
-		registro.setEquipo(equipo);
+		registro.setEntidad("Equipo");
+		registro.setEntidadId(equipo.getEquipoId());
 		registro.setUsuario(usuario);
 		
 		RegistroDB.crearRegistro(registro);
@@ -31,6 +33,21 @@ public class RegistroManager {
 	}
 
 	public static List<Registro> getListaRegistros() {
-		return RegistroDB.getRegistros();
+		
+		List<Registro> registros = RegistroDB.getRegistros();
+		for (Registro registro : registros) {
+			switch (registro.getEntidad()) {
+			case "Equipo":
+				EquipoDB.getEquipoByID(registro.getEntidadId());
+				break;
+			case "Llave":
+				LlaveDB.getLlaveById(registro.getEntidadId());
+				break;
+			default:
+				break;
+			}
+		}
+		
+		return null;
 	}
 }

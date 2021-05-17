@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import main.java.Almacen.manager.RegistroManager;
-import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Registro;
 import main.java.Almacen.persistence.RegistroDB;
 import main.java.Almacen.persistence.UsuarioDB;
@@ -50,7 +48,7 @@ public class ServletListaRegistrosDe extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Registro> respuesta = new ArrayList<Registro>();
-				int user = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("username")).getUsuarioId();
+				int user = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("username")).getId();
 				List<Registro> e = RegistroDB.getRegistrosByUsuario(user);
 				for (Registro art : e) {
 					respuesta.add(art);

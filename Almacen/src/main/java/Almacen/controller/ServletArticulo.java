@@ -37,7 +37,7 @@ public class ServletArticulo extends HttpServlet {
 
 			request.getSession().setAttribute("articuloId", id);
 			request.getSession().setAttribute("articuloCat",
-					ArticuloDB.getArticuloByID(id).getSubcategoria().getSubNombre());
+					ArticuloDB.getArticuloByID(id).getSubcategoria().getNombre());
 			request.getSession().setAttribute("articuloCatPadre",
 					ArticuloDB.getArticuloByID(id).getSubcategoria().getCategoria().getNombre());
 			request.getSession().setAttribute("articuloNombre", ArticuloDB.getArticuloByID(id).getNombre());
@@ -48,15 +48,15 @@ public class ServletArticulo extends HttpServlet {
 			request.getSession().setAttribute("articuloStock", ArticuloDB.getArticuloByID(id).getStock());
 			request.getSession().setAttribute("articuloEstado", ArticuloDB.getArticuloByID(id).getEstadoarticulo());
 			request.getSession().setAttribute("articuloProveedor",
-					ArticuloDB.getArticuloByID(id).getProveedor().getProvNombre());
+					ArticuloDB.getArticuloByID(id).getProveedor().getNombre());
 
 			request.getSession().setAttribute("artProveedores",
 					ProveedoresDB.getProveedoresPorArt(ArticuloDB.getArticuloByID(id).getNombre()));
 			request.getSession().setAttribute("proveedorArticuloID",
-					ArticuloDB.getArticuloByID(id).getProveedor().getProvId());
+					ArticuloDB.getArticuloByID(id).getProveedor().getId());
 
-			if (user.getRol().getNombreRol().equals("SuperAdmin")
-					|| user.getRol().getNombreRol().equals("Administrador")) {
+			if (user.getRol().getNombre().equals("SuperAdmin")
+					|| user.getRol().getNombre().equals("Administrador")) {
 				response.sendRedirect("view/articuloEspecifico.jsp");
 
 			} else

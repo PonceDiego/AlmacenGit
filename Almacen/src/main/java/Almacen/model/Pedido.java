@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 5/12/2019 02:23:59 PM by Hibernate Tools 5.0.6.Final
+// Generated 16-may-2021 18:14:35 by Hibernate Tools 5.2.12.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -60,7 +60,7 @@ public class Pedido implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "PedidoID", unique = true, nullable = false)
+	@Column(name = "pedido_id", unique = true, nullable = false)
 	public Integer getPedidoId() {
 		return this.pedidoId;
 	}
@@ -70,7 +70,7 @@ public class Pedido implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Estado", nullable = false)
+	@JoinColumn(name = "estado", nullable = false)
 	public Estadopedido getEstadopedido() {
 		return this.estadopedido;
 	}
@@ -80,7 +80,7 @@ public class Pedido implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Usuario", nullable = false)
+	@JoinColumn(name = "usuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -90,7 +90,7 @@ public class Pedido implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Fecha", nullable = false, length = 10)
+	@Column(name = "fecha", nullable = false, length = 10)
 	public Date getFecha() {
 		return this.fecha;
 	}
@@ -99,7 +99,7 @@ public class Pedido implements java.io.Serializable {
 		this.fecha = fecha;
 	}
 
-	@Column(name = "Observaciones", length = 200)
+	@Column(name = "observaciones", length = 200)
 	public String getObservaciones() {
 		return this.observaciones;
 	}

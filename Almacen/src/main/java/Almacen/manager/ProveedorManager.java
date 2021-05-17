@@ -9,11 +9,11 @@ public class ProveedorManager {
 
 		Proveedor proveedorNuevo = new Proveedor();
 
-		proveedorNuevo.setProvNombre(nombre);
-		proveedorNuevo.setProvContacto(contacto);
-		proveedorNuevo.setProvDireccion(direccion);
-		proveedorNuevo.setProvMail(mail);
-		proveedorNuevo.setProvTel(telefono);
+		proveedorNuevo.setNombre(nombre);
+		proveedorNuevo.setContacto(contacto);
+		proveedorNuevo.setDireccion(direccion);
+		proveedorNuevo.setMail(mail);
+		proveedorNuevo.setTelefono(telefono);
 		ProveedoresDB.agregarProveedorNuevo(proveedorNuevo);
 	}
 

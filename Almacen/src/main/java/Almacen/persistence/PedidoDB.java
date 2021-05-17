@@ -98,7 +98,7 @@ public class PedidoDB {
 		try {
 			sess=HibernateUtils.openSession();
 			Usuario u=UsuarioDB.getUsuarioByNombreUsuario(username);
-			int id= u.getUsuarioId();
+			int id= u.getId();
 			Query<Pedido> query= sess.createQuery("select p from Pedido p where p.usuario='"+id+"'");
 			p=query.getResultList();
 			for (Pedido pedido : p) {

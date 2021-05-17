@@ -31,12 +31,12 @@ public class MailManager {
 
 		Usuario u = UsuarioDB.getUsuarioByID(Integer.parseInt(userS));
 		Pedido pedido = PedidoDB.getPedidoByID(idp);
-		int idArea= u.getArea().getAreaId();
+		int idArea= u.getArea().getId();
 		Usuario user= AreaDB.getUsuarioJefeArea(idArea);
 		String email = user.getEmail();
 		System.out.println("Enviando mail a "+email+"..");
 
-		String subject = "Se ha realizado un nuevo pedido en el área "+u.getArea().getNombreArea()+".";
+		String subject = "Se ha realizado un nuevo pedido en el área "+u.getArea().getNombre()+".";
 		String bodyText = "Estimado/a " + user.getNombre() + " se le informa que el usuario "
 				+ pedido.getUsuario().getNombreUsuario() + " ha realizado un pedido de: \n";
 		List<Pedidoxarticulos> arts = ArticuloPedidoDB.getArticulosPedidosByPedido(idp);
