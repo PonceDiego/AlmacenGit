@@ -28,12 +28,13 @@ import com.google.gson.annotations.Expose;
 @Table(name = "pedido", catalog = "almacen")
 public class Pedido implements java.io.Serializable {
 
-	@Expose (serialize = true, deserialize = true) 
+	@Expose(serialize = true, deserialize = true)
 	private Integer pedidoId;
-	@Expose (serialize = true, deserialize = true) 
+	@Expose(serialize = true, deserialize = true)
 	private Estadopedido estadopedido;
-	@Expose (serialize = true, deserialize = true) 
+	@Expose(serialize = true, deserialize = true)
 	private Usuario usuario;
+	@Expose(serialize = true, deserialize = true)
 	private Date fecha;
 	private String observaciones;
 	private Set<Pedidoxarticulos> pedidoxarticuloses = new HashSet<Pedidoxarticulos>(0);

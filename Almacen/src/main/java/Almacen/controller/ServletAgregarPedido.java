@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import main.java.Almacen.manager.MailManager;
 import main.java.Almacen.manager.PedidoManager;
 import main.java.Almacen.model.Usuario;
+import main.java.Almacen.persistence.UsuarioDB;
 import main.java.Almacen.utils.Utils;
 
 /**
@@ -38,6 +39,15 @@ public class ServletAgregarPedido extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		if (request.getParameter("and") != null) {
+			String obser, user, arts, cants;
+			Integer idUser = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("User")).getUsuarioId();
+			obser = request.getParameter("textAreaObservaciones");
+			user = idUser.toString();
+			arts = request.getParameter("inputArt");
+			cants = request.getParameter("inputCantidad");
+			PedidoManager.createPedido(obser, user, arts, cants);
+		}
 		HttpSession session = Utils.GetSession(request);
 
 		if (session.getAttribute("usuarioActual") == null) {

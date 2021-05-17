@@ -1,48 +1,48 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 
-<meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Bienvenido - Sistema Almacén</title>
 
 <!-- Bootstrap core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css">
-<link href="vendor/iconfont/material-icons.css" rel="stylesheet"
-	type="text/css">
 
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css">
-<link href="../vendor/iconfont/material-icons.css" rel="stylesheet"
-	type="text/css">
+
+<title>Grupo de Equipos Nuevo</title>
+
+<style>
+.form-signin .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s;
+}
+</style>
+
 
 </head>
-
 <body>
 	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.slim.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
 	<script src="../vendor/jquery/jquery.slim.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<a class="navbar-brand" href="javascript:history.back()"> <i
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
-			<a class="navbar-brand" href="#">Almacén - Usuario
-				${usuarioActual.getRol().getNombreRol() }</a>
+			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -104,7 +104,6 @@
 							</c:if>
 
 						</div></li>
-
 					<li class="nav-item-dropdown"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
 						role="button" data-toggle="dropdwon" aria-haspoup="true"
@@ -150,18 +149,64 @@
 	</nav>
 
 	<!-- Page Content   -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h1 class="mt-5">Bienvenido, ${usuarioActual.getNombre() }</h1>
-				<p class="lead">Seleccione la opción deseada en el menú
-					superior.</p>
 
+
+
+
+
+	<div class="container">
+		<div class="card card-signin my-5">
+			<div class="card-body">
+				<form class="form-signin" method="post" action="../AreaNueva">
+					<h3 class="text-center">Datos del nuevo grupo de equipos</h3>
+					<hr class="m-4">
+					<div class="column">
+						<div class="form-label-group>">
+							<input type="text" name="inputNombre" class="form-control"
+								placeholder="Nombre del grupo" required autocomplete="off">
+						</div>
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#boot-multiselect-equipos').multiselect({
+	            nonSelectedText: 'Seleccionar equipos',
+	            buttonWidth : 500,
+				enableFiltering : true
+			});
+		});
+	</script>
+							<select id="boot-multiselect-equipos" multiple="multiple">
+								<%-- 								<c:forEach items="${equipos}" var="equipo"> --%>
+								<%-- 									<option value="${equipo.getEquipoId()}">${equipo.getNombre() } --%>
+								<%-- 										- ${equipo.getEquipoId() }</option> --%>
+								<%-- 								</c:forEach> --%>
+								<option value="jQuery">jQuery Tutorials</option>
+								<option value="Bootstrap">Bootstrap Framework</option>
+								<option value="HTML">HTML</option>
+								<option value="CSS">CSS</option>
+								<option value="Angular">Angular</option>
+								<option value="Angular">javascript</option>
+								<option value="Java">Java</option>
+								<option value="Python">Python</option>
+								<option value="MySQL">MySQL</option>
+								<option value="Oracle">Oracle</option>
+							</select>
+
+
+					</div>
+					<hr>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton"
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
+						Aceptar</button>
+				</form>
 			</div>
 		</div>
+
 	</div>
 
 
 </body>
-
 </html>
