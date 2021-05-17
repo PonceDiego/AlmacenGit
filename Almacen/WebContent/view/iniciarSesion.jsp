@@ -102,7 +102,7 @@ input[type=button], input[type=submit], input[type=reset] {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover
 	{
-	background-color: #39ace7;
+	background-color: #ff5a00;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active
@@ -259,7 +259,7 @@ input[type=text]:placeholder, input[type=password]:placeholder{
 </head>
 <body>
 
-	<div class="wrapper fadeInDown" style="padding-top: 15%">
+	<div class="wrapper fadeInDown" style="padding-top: 5%">
 		<div id="formContent">
 			<!-- Tabs Titles -->
 			<h2 class="active">Iniciar Sesión</h2>
