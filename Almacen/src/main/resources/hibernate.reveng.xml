@@ -2,6 +2,26 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-catalog="almacen" match-name="lugar"/>
-  
+
+	<table-filter match-name="area" match-catalog="almacen"></table-filter>
+	<table-filter match-name="articulo" match-catalog="almacen"></table-filter>
+	<table-filter match-name="categoria" match-catalog="almacen"></table-filter>
+	<table-filter match-name="equipo" match-catalog="almacen"></table-filter>
+	<table-filter match-name="estadoarticulo" match-catalog="almacen"></table-filter>
+	<table-filter match-name="estadopedido" match-catalog="almacen"></table-filter>
+	<table-filter match-name="grupo_equipos" match-catalog="almacen"></table-filter>
+	<table-filter match-name="grupo_llaves" match-catalog="almacen"></table-filter>
+	<table-filter match-name="llave" match-catalog="almacen"></table-filter>
+	<table-filter match-name="lugar" match-catalog="almacen"></table-filter>
+	<table-filter match-name="pedido" match-catalog="almacen"></table-filter>
+	<table-filter match-name="pedidoxarticulos"
+		match-catalog="almacen">
+	</table-filter>
+	<table-filter match-name="proveedor" match-catalog="almacen"></table-filter>
+	<table-filter match-name="registro" match-catalog="almacen"></table-filter>
+	<table-filter match-name="rol" match-catalog="almacen"></table-filter>
+	<table-filter match-name="subcategoria" match-catalog="almacen"></table-filter>
+	<table-filter match-name="tipo" match-catalog="almacen"></table-filter>
+	<table-filter match-name="usuario" match-catalog="almacen"></table-filter>
+	<table-filter match-name="usuariosys" match-catalog="almacen"></table-filter>
 </hibernate-reverse-engineering>

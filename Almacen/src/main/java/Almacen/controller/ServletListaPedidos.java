@@ -64,8 +64,8 @@ public class ServletListaPedidos extends HttpServlet {
 				out.flush();
 			} else {
 				Usuario user = (Usuario) session.getAttribute("usuarioActual");
-				if (user.getRol().getNombreRol().equals("Administrador")
-						|| user.getRol().getNombreRol().equals("SuperAdmin")) {
+				if (user.getRol().getNombre().equals("Administrador")
+						|| user.getRol().getNombre().equals("SuperAdmin")) {
 					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
 					response.sendRedirect("view/listaDePedidosPendientes.jsp");
 				} else {

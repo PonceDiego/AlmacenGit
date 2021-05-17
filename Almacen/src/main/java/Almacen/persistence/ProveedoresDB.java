@@ -130,11 +130,11 @@ public class ProveedoresDB {
 			tran = sess.beginTransaction();
 			Proveedor p = ProveedoresDB.getProveedorByStringId(id);
 			sess.update(p);
-			p.setProvNombre(nombre);
-			p.setProvContacto(contacto);
-			p.setProvDireccion(direccion);
-			p.setProvMail(mail);
-			p.setProvTel(telefono);
+			p.setNombre(nombre);
+			p.setContacto(contacto);
+			p.setDireccion(direccion);
+			p.setMail(mail);
+			p.setTelefono(telefono);
 			tran.commit();
 		} finally {
 			sess.close();

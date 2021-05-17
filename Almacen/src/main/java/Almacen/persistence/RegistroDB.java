@@ -25,7 +25,8 @@ public class RegistroDB {
 			registro.setEntrada(true);
 			registro.setFecha(new Date());
 			registro.setUsuario(actual);
-			registro.setEquipo(e);
+			registro.setEntidad("Equipo");
+			registro.setEntidadId(e.getEquipoId());
 			tran.commit();
 		} finally {
 			sess.close();
@@ -76,7 +77,6 @@ public class RegistroDB {
 			for (Registro r : registros) {
 				Hibernate.initialize(r);
 				Hibernate.initialize(r.getUsuario());
-				Hibernate.initialize(r.getEquipo().getNombre());
 				Hibernate.initialize(r.getUsuario().getNombreUsuario());
 			}
 			return registros;
@@ -105,15 +105,13 @@ public class RegistroDB {
 			sess=HibernateUtils.openSession();
 			for(Equipo e:equipos) {
 				
-				Query<Registro> query= sess.createQuery("select r from Registro r where"
-						+ " r.equipo='"+e.getEquipoId()+"' order by r.fecha desc");
+				Query<Registro> query= sess.createQuery("select r from Registro r where r.entidad = 'Equipo' and r.entidadId='"+e.getEquipoId()+"' order by r.fecha desc");
 				query.setMaxResults(1);
 				registros.add(query.getSingleResult());
 			}
 			for(Registro r:registros) {
 				Hibernate.initialize(r.getUsuario().getNombre());
 				Hibernate.initialize(r.getUsuario().getApellido());
-				Hibernate.initialize(r.getEquipo().getNombre());
 			}
 			return registros;
 		}finally {

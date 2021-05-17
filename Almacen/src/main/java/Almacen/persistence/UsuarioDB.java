@@ -39,12 +39,12 @@ public class UsuarioDB {
 			Query<Usuario> query = sess.createQuery("select u from Usuario u where u.nombreUsuario='" + nombre + "'");
 			usuario = query.getSingleResult();
 			Hibernate.initialize(usuario.getArea());
-			Hibernate.initialize(usuario.getArea().getAreaId());
-			Hibernate.initialize(usuario.getArea().getNombreArea());
+			Hibernate.initialize(usuario.getArea().getId());
+			Hibernate.initialize(usuario.getArea().getNombre());
 			
 			Hibernate.initialize(usuario.getRol());
-			Hibernate.initialize(usuario.getRol().getNombreRol());
-			Hibernate.initialize(usuario.getRol().getRolId());
+			Hibernate.initialize(usuario.getRol().getNombre());
+			Hibernate.initialize(usuario.getRol().getId());
 			return usuario;
 		} finally {
 			sess.close();
@@ -74,9 +74,9 @@ public class UsuarioDB {
 
 			usuario = sess.get(Usuario.class, id);
 			Hibernate.initialize(usuario.getRol());
-			Hibernate.initialize(usuario.getRol().getNombreRol());
+			Hibernate.initialize(usuario.getRol().getNombre());
 			Hibernate.initialize(usuario.getArea());
-			Hibernate.initialize(usuario.getArea().getNombreArea());
+			Hibernate.initialize(usuario.getArea().getNombre());
 			Hibernate.initialize(usuario.getPedidos());
 			return usuario;
 

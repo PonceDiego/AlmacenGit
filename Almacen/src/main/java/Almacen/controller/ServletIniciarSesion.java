@@ -70,10 +70,10 @@ public class ServletIniciarSesion extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				out = response.getWriter();
 				UsuarioRs respuesta= new UsuarioRs();
-				respuesta.setArea(user.getArea().getNombreArea());
+				respuesta.setArea(user.getArea().getNombre());
 				respuesta.setNombre(user.getNombre());
-				respuesta.setRol(user.getRol().getNombreRol());
-				respuesta.setToken(user.getUsuarioId().toString());
+				respuesta.setRol(user.getRol().getNombre());
+				respuesta.setToken(user.getId().toString());
 				respuesta.setUsername(user.getNombreUsuario());
 				respuesta.setJsessionid(request.getSession().getId().toString());
 				
@@ -101,10 +101,10 @@ public class ServletIniciarSesion extends HttpServlet {
 					out = response.getWriter();
 					
 					UsuarioRs respuesta= new UsuarioRs();
-					respuesta.setArea(user.getArea().getNombreArea());
+					respuesta.setArea(user.getArea().getNombre());
 					respuesta.setNombre(user.getNombre());
-					respuesta.setRol(user.getRol().getNombreRol());
-					respuesta.setToken(user.getUsuarioId().toString());
+					respuesta.setRol(user.getRol().getNombre());
+					respuesta.setToken(user.getId().toString());
 					respuesta.setUsername(user.getNombreUsuario());
 					respuesta.setJsessionid(request.getSession().getId().toString());
 					

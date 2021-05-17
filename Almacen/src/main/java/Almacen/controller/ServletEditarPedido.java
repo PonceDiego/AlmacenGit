@@ -45,7 +45,7 @@ public class ServletEditarPedido extends HttpServlet {
 			request.getSession().setAttribute("pedidoId", id);
 			request.getSession().setAttribute("pedidoFecha", PedidoDB.getPedidoByID(id).getFecha());
 			request.getSession().setAttribute("pedidoArea",
-					PedidoDB.getPedidoByID(id).getUsuario().getArea().getNombreArea());
+					PedidoDB.getPedidoByID(id).getUsuario().getArea().getNombre());
 			request.getSession().setAttribute("pedidoUsuario",
 					PedidoDB.getPedidoByID(id).getUsuario().getNombreUsuario());
 			request.getSession().setAttribute("pedidoEstado",

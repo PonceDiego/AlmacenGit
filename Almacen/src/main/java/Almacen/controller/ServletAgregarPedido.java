@@ -41,7 +41,7 @@ public class ServletAgregarPedido extends HttpServlet {
 
 		if (request.getParameter("and") != null) {
 			String obser, user, arts, cants;
-			Integer idUser = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("User")).getUsuarioId();
+			Integer idUser = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("User")).getId();
 			obser = request.getParameter("textAreaObservaciones");
 			user = idUser.toString();
 			arts = request.getParameter("inputArt");
@@ -57,7 +57,7 @@ public class ServletAgregarPedido extends HttpServlet {
 			String user, obser, user2;
 
 			user = request.getParameter("UserId");
-			user2 = u.getUsuarioId().toString();
+			user2 = u.getId().toString();
 			if (user.equals(user2)) {
 				obser = request.getParameter("textAreaObservaciones");
 			} else {

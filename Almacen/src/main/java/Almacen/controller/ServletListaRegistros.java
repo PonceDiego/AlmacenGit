@@ -15,10 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.RegistroManager;
-import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Registro;
-import main.java.Almacen.persistence.EquipoDB;
-import main.java.Almacen.persistence.RegistroDB;
 
 /**
  * Servlet implementation class ServletListaRegistros
@@ -50,7 +47,7 @@ public class ServletListaRegistros extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Registro> respuesta = new ArrayList<Registro>();
-				List<Registro> e = RegistroDB.getRegistros();
+				List<Registro> e = RegistroManager.getListaRegistros();
 				for (Registro art : e) {
 					respuesta.add(art);
 				}

@@ -39,7 +39,7 @@ public class ServletCambioEstado extends HttpServlet {
 			
 			String id = (String) request.getParameter("cambioId");
 			int idE = Integer.parseInt(id);
-			EquipoManager.changeStatus(actual.getUsuarioId(),idE);
+			EquipoManager.changeStatus(actual.getId(),idE);
 			response.sendRedirect("ListaEquipos");
 		}
 	}

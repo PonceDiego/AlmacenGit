@@ -122,7 +122,7 @@ public class AreaDB {
 			tran=sess.beginTransaction();
 			area=sess.get(Area.class, idI);
 			sess.update(area);
-			area.setNombreArea(nombre);
+			area.setNombre(nombre);
 			area.setUsuario(UsuarioDB.getUsuarioByNombreUsuario(user));
 			tran.commit();
 			

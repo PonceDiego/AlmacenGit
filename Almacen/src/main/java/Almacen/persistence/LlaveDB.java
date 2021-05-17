@@ -14,7 +14,7 @@ public class LlaveDB {
 		try {
 			sess = HibernateUtils.openSession();
 			llave = sess.get(Llave.class, id);
-			Hibernate.initialize(llave.getUbicacion());
+			Hibernate.initialize(llave.getLugar());
 			return llave;
 
 		} finally {

@@ -8,7 +8,7 @@ public class AreaManager {
 	
 	public static void createArea(String nombre, String user) {
 		Area area=new Area();
-		area.setNombreArea(nombre);
+		area.setNombre(nombre);
 		area.setUsuario(UsuarioDB.getUsuarioByNombreUsuario(user));
 		AreaDB.agregarAreaNueva(area);
 	}

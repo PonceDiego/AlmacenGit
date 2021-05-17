@@ -52,8 +52,8 @@ public class ServletPedidoNuevo extends HttpServlet {
 
 			user = (Usuario) request.getSession().getAttribute("usuarioActual");
 
-			if (user.getRol().getNombreRol().equals("Administrador")
-					|| user.getRol().getNombreRol().equals("SuperAdmin")) {
+			if (user.getRol().getNombre().equals("Administrador")
+					|| user.getRol().getNombre().equals("SuperAdmin")) {
 				request.getSession().setAttribute("listaUsuario", UsuarioDB.getUsersActivos());
 			}
 

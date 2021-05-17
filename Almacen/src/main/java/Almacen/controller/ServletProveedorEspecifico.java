@@ -42,12 +42,12 @@ public class ServletProveedorEspecifico extends HttpServlet {
 			int id = Integer.parseInt(ids);
 
 			Proveedor p = ProveedoresDB.getProveedorByID(id);
-			request.getSession().setAttribute("provID", p.getProvId());
-			request.getSession().setAttribute("proveedorNombre", p.getProvNombre());
-			request.getSession().setAttribute("provTel", p.getProvTel());
-			request.getSession().setAttribute("provContacto", p.getProvContacto());
-			request.getSession().setAttribute("provDireccion", p.getProvDireccion());
-			request.getSession().setAttribute("proveedorMail", p.getProvMail());
+			request.getSession().setAttribute("provID", p.getId());
+			request.getSession().setAttribute("proveedorNombre", p.getNombre());
+			request.getSession().setAttribute("provTel", p.getTelefono());
+			request.getSession().setAttribute("provContacto", p.getContacto());
+			request.getSession().setAttribute("provDireccion", p.getDireccion());
+			request.getSession().setAttribute("proveedorMail", p.getMail());
 			request.getSession().setAttribute("proveedorArticulos", ArticuloDB.getArticulosByProveedor(id));
 
 			response.sendRedirect("view/proveedorEspecifico.jsp");
@@ -66,7 +66,7 @@ public class ServletProveedorEspecifico extends HttpServlet {
 		Proveedor prov = new Proveedor();
 		prov = ProveedoresDB.getProveedorByNombre(nombre);
 		if (prov != null) {
-			int id = prov.getProvId();
+			int id = prov.getId();
 			response.sendRedirect("Proveedor?proveedorId=" + id);
 
 		} else
