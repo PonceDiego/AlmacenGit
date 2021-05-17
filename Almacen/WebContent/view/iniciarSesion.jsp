@@ -278,10 +278,5 @@ input[type=text]:placeholder, input[type=password]:placeholder{
 		</div>
 	</div>
 
-<!-- 	<form method="post" action="../IniciarSesion"> -->
-<!-- 		Nombre de usuario:<input type="text" name="username" /><br /> -->
-<!-- 		Contraseña:<input type="password" name="pass" /><br /> <input -->
-<!-- 			type="submit" value="Ingresar" /> -->
-<!-- 	</form> -->
 </body>
 </html>

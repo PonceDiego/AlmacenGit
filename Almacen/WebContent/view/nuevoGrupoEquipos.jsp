@@ -86,7 +86,7 @@
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
@@ -99,6 +99,7 @@
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item active" href="../NuevoGrupoEquipo">Nuevo grupo equipos</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
@@ -165,6 +166,7 @@
 							<input type="text" name="inputNombre" class="form-control"
 								placeholder="Nombre del grupo" required autocomplete="off">
 						</div>
+						<p></p>
 
 
 
@@ -177,7 +179,8 @@
 			});
 		});
 	</script>
-							<select id="boot-multiselect-equipos" multiple="multiple">
+							<div style="text-align: center;">
+							<select id="boot-multiselect-equipos" multiple="multiple" >
 								<%-- 								<c:forEach items="${equipos}" var="equipo"> --%>
 								<%-- 									<option value="${equipo.getEquipoId()}">${equipo.getNombre() } --%>
 								<%-- 										- ${equipo.getEquipoId() }</option> --%>
@@ -193,6 +196,7 @@
 								<option value="MySQL">MySQL</option>
 								<option value="Oracle">Oracle</option>
 							</select>
+							</div>
 
 
 					</div>
