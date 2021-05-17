@@ -1,43 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory>
-		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://vps-1791261-x.dattaweb.com:3306/almacen</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">almacen.C12</property>
-		
-		
-		
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.search.autoregister_listeners">true</property>
-<!-- 		<property name="hibernate.show_sql">true</property> -->
-		<property name="hibernate.validator.apply_to_ddl">false</property>
-
-		<!-- hibernate.cfg.xml -->
-		<property name="c3p0.min_size">5</property>
-		<property name="c3p0.max_size">20</property>
-		<property name="c3p0.timeout">1800</property>
-		<property name="c3p0.max_statements">50</property>
-
-		<mapping class="main.java.Almacen.model.Area" />
-		<mapping class="main.java.Almacen.model.Articulo" />
-		<mapping class="main.java.Almacen.model.Categoria" />
-		<mapping class="main.java.Almacen.model.Estadoarticulo" />
-		<mapping class="main.java.Almacen.model.Estadopedido" />
-		<mapping class="main.java.Almacen.model.Equipo"/>
-		<mapping class="main.java.Almacen.model.Llave"/>
-		<mapping class="main.java.Almacen.model.Lugar"/>
-		<mapping class="main.java.Almacen.model.Pedido" />
-		<mapping class="main.java.Almacen.model.Pedidoxarticulos" />
-		<mapping class="main.java.Almacen.model.Proveedor" />
-		<mapping class="main.java.Almacen.model.Registro"/>
-		<mapping class="main.java.Almacen.model.Rol" />
-		<mapping class="main.java.Almacen.model.Subcategoria" />
-		<mapping class="main.java.Almacen.model.Tipo"/>
-		<mapping class="main.java.Almacen.model.Usuario" />
-		<mapping class="main.java.Almacen.model.Usuariosys" />
-		
-	</session-factory>
+ <session-factory name="">
+  <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://vps-1791261-x.dattaweb.com:3306/almacen?useSSL=false</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">almacen.C12</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.search.autoregister_listeners">true</property>
+  <!-- 		<property name="hibernate.show_sql">true</property> -->
+  <property name="hibernate.validator.apply_to_ddl">false</property>
+  <!-- hibernate.cfg.xml -->
+  <property name="c3p0.min_size">5</property>
+  <property name="c3p0.max_size">20</property>
+  <property name="c3p0.timeout">1800</property>
+  <property name="c3p0.max_statements">50</property>
+  <mapping class="main.java.Almacen.model.Area"/>
+  <mapping class="main.java.Almacen.model.Articulo"/>
+  <mapping class="main.java.Almacen.model.Categoria"/>
+  <mapping class="main.java.Almacen.model.Estadoarticulo"/>
+  <mapping class="main.java.Almacen.model.Estadopedido"/>
+  <mapping class="main.java.Almacen.model.Equipo"/>
+  <mapping class="main.java.Almacen.model.Llave"/>
+  <mapping class="main.java.Almacen.model.Lugar"/>
+  <mapping class="main.java.Almacen.model.Pedido"/>
+  <mapping class="main.java.Almacen.model.Pedidoxarticulos"/>
+  <mapping class="main.java.Almacen.model.Proveedor"/>
+  <mapping class="main.java.Almacen.model.Registro"/>
+  <mapping class="main.java.Almacen.model.Rol"/>
+  <mapping class="main.java.Almacen.model.Subcategoria"/>
+  <mapping class="main.java.Almacen.model.Tipo"/>
+  <mapping class="main.java.Almacen.model.Usuario"/>
+  <mapping class="main.java.Almacen.model.Usuariosys"/>
+  <mapping class="main.java.Almacen.model.GrupoEquipos"/>
+  <mapping class="main.java.Almacen.model.GrupoLlaves"/>
+ </session-factory>
 </hibernate-configuration>
