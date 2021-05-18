@@ -187,7 +187,7 @@
 
 
 					<td><a href="../Proveedor?proveedorId=${prov.getProvId()}">
-							${prov.getProvNombre() }</a></td>
+							${prov.getNombre() }</a></td>
 				</c:forEach>
 			</tr>
 		</table>

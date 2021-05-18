@@ -247,7 +247,7 @@
 							<div class="form-label-group>">
 								<input type="text" name="PvN" class="form-control"
 									placeholder="Nombre" required
-									value="${proveedor.getProvNombre() }">
+									value="${proveedor.getNombre() }">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvT" class="form-control"
@@ -266,7 +266,7 @@
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvM" class="form-control"
-									placeholder="Mail" required value="${proveedor.getProvMail() }">
+									placeholder="Mail" required value="${proveedor.getMail()}">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvC" class="form-control"

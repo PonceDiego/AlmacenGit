@@ -335,12 +335,12 @@ div.searchable {
 							<div class="form-label-group>">
 								<input type="hidden" name="inputProveedor" id="inputProveedor"
 									autocomplete="off"
-									value="${articulo.getProveedor().getProvNombre() }"> <select
+									value="${articulo.getProveedor().getNombre() }"> <select
 									onchange="selected()" id="provSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
 									<c:forEach items="${proveedores}" var="proveedor">
-										<option>-${proveedor.getProvNombre()}</option>
+										<option>-${proveedor.getNombre()}</option>
 									</c:forEach>
 								</select>
 

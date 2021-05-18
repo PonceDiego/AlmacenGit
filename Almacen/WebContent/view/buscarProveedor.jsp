@@ -224,7 +224,7 @@ div.searchable {
 								<c:set var="proveedor" value="${proveedoresListados }"></c:set>
 								<ul>
 									<c:forEach items="${proveedor}" var="prov">
-										<li>${prov.getProvNombre() }</li>
+										<li>${prov.getNombre() }</li>
 									</c:forEach>
 								</ul>
 							</div>

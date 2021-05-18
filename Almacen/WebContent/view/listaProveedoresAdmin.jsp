@@ -166,13 +166,13 @@
 							<tr>
 								<td id="pID"><c:out value="${proveedor.getId()}" /></td>
 								<td id="pNB"><a
-									href="../Proveedor?proveedorId=${proveedor.getId()}">${proveedor.getProvNombre()}</a>
+									href="../Proveedor?proveedorId=${proveedor.getId()}">${proveedor.getNombre()}</a>
 								<td><c:forEach items="${proveedor.getArticulos() }"
 										var="articulo">
 										<c:out value="-${articulo.getNombre()}" />
 										<br>
 									</c:forEach></td>
-								<td id="pM"><c:out value="${proveedor.getProvMail() }" /></td>
+								<td id="pM"><c:out value="${proveedor.getMail()}" /></td>
 							</tr>
 						</c:forEach>
 
