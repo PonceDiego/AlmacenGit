@@ -86,24 +86,41 @@
 							<a class="dropdown-item active" href="../ListaPedidos">Lista
 								de pedidos</a>
 						</div></li>
-<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
+						</div></li>
+
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+							</c:if>
 
 						</div></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -157,7 +174,8 @@
 					<c:forEach items="${pedidosCompleto}" var="pedido">
 						<tr>
 							<td><c:out value="${pedido.fecha}" /></td>
-							<td><c:out value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" /></td>
+							<td><c:out
+									value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" /></td>
 							<td><c:out
 									value="${pedido.usuario.getArea().getNombreArea()}" /></td>
 							<td><c:out value="${pedido.estadopedido.getNombreEstado()}" /></td>
@@ -165,7 +183,8 @@
 									href="../Pedido?pedidoId=${pedido.pedidoId}">Detalle</a>
 							</span>
 							<td><c:choose>
-									<c:when test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
+									<c:when
+										test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
 										<button class="btn btn-warning" type="button" title="Entregar"
 											style="cursor: pointer"
 											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
@@ -174,7 +193,8 @@
 										</button>
 
 									</c:when>
-									<c:when test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
+									<c:when
+										test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entregar" style="cursor: pointer"
 											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">

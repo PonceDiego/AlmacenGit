@@ -132,7 +132,7 @@ div.searchable {
 	color: transparent;
 }
 
-.form-label-group input:not (:placeholder-shown )~label {
+.form-label-group input:not (:placeholder-shown ) ~label {
 	padding-top: calc(var(- -input-padding-y)/3);
 	padding-bottom: calc(var(- -input-padding-y)/3);
 	font-size: 12px;
@@ -288,17 +288,33 @@ div.searchable2 {
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item " href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item " href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
-								<a class="dropdown-item active" href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
+								<a class="dropdown-item active" href="../NuevoEquipo">Nuevo
+									equipo</a>
 								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
+						</div></li>
 
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+							</c:if>
 						</div></li>
 
 					<li class="nav-item dropdown"><a
@@ -403,7 +419,7 @@ div.searchable2 {
 									autocomplete="off"> <select onchange="selected3()"
 									id="usuarioSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
-									<option selected disabled >Seleccione un usuario
+									<option selected disabled>Seleccione un usuario
 										habitual</option>
 									<c:forEach items="${listaUsuarios}" var="usuario">
 										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
@@ -452,7 +468,7 @@ div.searchable2 {
 			}
 		}
 		</script>
-		<script>
+	<script>
 		function filterFunction2(that, event) {
 			document.getElementById('advertencia').innerHTML = "";
 			document.getElementById('linkEditar').innerHTML = "";

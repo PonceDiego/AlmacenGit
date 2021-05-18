@@ -132,7 +132,7 @@ div.searchable {
 	color: transparent;
 }
 
-.form-label-group input:not (:placeholder-shown )~label {
+.form-label-group input:not (:placeholder-shown ) ~label {
 	padding-top: calc(var(- -input-padding-y)/3);
 	padding-bottom: calc(var(- -input-padding-y)/3);
 	font-size: 12px;
@@ -169,7 +169,6 @@ div.searchable {
 .error {
 	border: 2px solid red;
 }
-
 </style>
 <title>Editar Artículo</title>
 <script
@@ -195,17 +194,18 @@ div.searchable {
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-								<a class="dropdown-item active" href="../BuscarArticulo">Buscar artículo</a>
-						<c:if
-						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
-						
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
-								artículo</a>  
-								
-								<a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a>
-								</c:if>
-								
+							<a class="dropdown-item active" href="../BuscarArticulo">Buscar
+								artículo</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+
+								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+									artículo</a>
+
+								<a class="dropdown-item" href="../ListaArticulos">Lista de
+									artículos</a>
+							</c:if>
+
 						</div></li>
 					<c:if
 						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
@@ -230,24 +230,41 @@ div.searchable {
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
+						</div></li>
+
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+							</c:if>
 
 						</div></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -264,7 +281,8 @@ div.searchable {
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
-									<a class="dropdown-item" href="../ListaAreas">Lista de áreas</a>
+									<a class="dropdown-item" href="../ListaAreas">Lista de
+										áreas</a>
 								</c:if>
 							</c:if>
 							<a class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
@@ -287,8 +305,9 @@ div.searchable {
 					<h3 class="text-center">Datos del artículo a editar</h3>
 					<div class="row">
 						<div class="column">
-						<c:set value="${artEdit }" var="articulo"></c:set>
-						<input type ="hidden" name="editadoId" id="editadoId" value="${articulo.getArticuloId() }">
+							<c:set value="${artEdit }" var="articulo"></c:set>
+							<input type="hidden" name="editadoId" id="editadoId"
+								value="${articulo.getArticuloId() }">
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" id="inputNombre"
 									class="form-control" placeholder="Nombre" required
@@ -303,21 +322,23 @@ div.searchable {
 							<div class="form-label-group> searchable">
 								<input type="text" placeholder="Categoría" name="input"
 									id="input" onkeyup="filterFunction(this,event)" required
-									autocomplete="off" value="${articulo.getSubcategoria().getCategoria().getNombre()}">
+									autocomplete="off"
+									value="${articulo.getSubcategoria().getCategoria().getNombre()}">
 								<c:set var="categoria" value="${categoriasListadas}"
 									scope="application"></c:set>
 								<ul>
 									<c:forEach items="${categoria}" var="categoria">
-											<li>-${categoria.getNombre()}</li>
+										<li>-${categoria.getNombre()}</li>
 									</c:forEach>
 								</ul>
 							</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputProveedor" id="inputProveedor"
-									autocomplete="off" value="${articulo.getProveedor().getProvNombre() }"> <select onchange="selected()"
-									id="provSelect"
+									autocomplete="off"
+									value="${articulo.getProveedor().getProvNombre() }"> <select
+									onchange="selected()" id="provSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
-									required >
+									required>
 									<c:forEach items="${proveedores}" var="proveedor">
 										<option>-${proveedor.getProvNombre()}</option>
 									</c:forEach>
@@ -330,16 +351,19 @@ div.searchable {
 							<div class="form-label-group>">
 								<input type="text" name="inputCosto" class="form-control"
 									placeholder="Costo" onchange="validarSiNumero(this.value);"
-									id="costoinput" required autocomplete="off" value="${articulo.getCosto() }">
+									id="costoinput" required autocomplete="off"
+									value="${articulo.getCosto() }">
 							</div>
 
 							<div class="form-label-group>">
 								<input type="text" name="inputStock" class="form-control"
-									placeholder="Stock Actual" required autocomplete="off" value="${articulo.getStock() }">
+									placeholder="Stock Actual" required autocomplete="off"
+									value="${articulo.getStock() }">
 							</div>
 							<div class=" form-label-group>" id="divSub">
-								<input type="hidden" name="inputSub" id="inputSub" value='${articulo.getSubcategoria().getSubNombre() }'> <select
-									onchange="selected2()" id="selectSub"
+								<input type="hidden" name="inputSub" id="inputSub"
+									value='${articulo.getSubcategoria().getSubNombre() }'>
+								<select onchange="selected2()" id="selectSub"
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<option selected>${articulo.getSubcategoria().getSubNombre() }</option>
@@ -497,7 +521,6 @@ div.searchable {
 			}
 
 		}
-
 	</script>
 </body>
 

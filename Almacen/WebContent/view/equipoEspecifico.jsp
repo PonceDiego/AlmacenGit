@@ -16,13 +16,13 @@
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 </head>
 <body>
-<!-- Bootstrap core JavaScript -->
+	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.slim.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	
-	
-	
-	
+
+
+
+
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
@@ -78,15 +78,31 @@
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
+							</c:if>
+						</div></li>
+
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 
 						</div></li>
@@ -122,7 +138,7 @@
 	<hr>
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto">
-		
+
 		<h4>${equipo.getNombre()}</h4>
 
 		<table class="table">
@@ -143,9 +159,11 @@
 		</table>
 	</div>
 	<hr>
-	<div class="text-center lead" style="max-width: 80%; margin:auto;align-content: center;">
+	<div class="text-center lead"
+		style="max-width: 80%; margin: auto; align-content: center;">
 		<!-- tablita de registros del equipo -->
-		<table id="tablaRegistroEquipo" class="table table-striped table-bordered" >
+		<table id="tablaRegistroEquipo"
+			class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>Fecha</th>
@@ -159,12 +177,10 @@
 						<td><c:out value="${re.getFecha()}" /></td>
 						<c:choose>
 							<c:when test="${re.getEntrada() eq true }">
-							<td>
-							<c:out value="Entrada"></c:out></td>
+								<td><c:out value="Entrada"></c:out></td>
 							</c:when>
 							<c:otherwise>
-							<td><c:out value="Salida"></c:out>
-							</td>
+								<td><c:out value="Salida"></c:out></td>
 							</c:otherwise>
 						</c:choose>
 						<td><c:out value="${re.getUsuario().getNombreUsuario()}" /></td>
@@ -177,10 +193,10 @@
 	</div>
 
 
-<script src="../vendor/Datatables/datatables.js"></script>
+	<script src="../vendor/Datatables/datatables.js"></script>
 
 
-<script>
+	<script>
 		$(document).ready(function() {
 			$('#tablaRegistroEquipo').DataTable({
 				"columnDefs" : [ {

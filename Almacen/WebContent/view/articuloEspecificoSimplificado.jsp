@@ -42,7 +42,7 @@
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
 			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
@@ -96,8 +96,8 @@
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item " href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item " href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
@@ -106,7 +106,22 @@
 								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
+						</div></li>
 
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+							</c:if>
 						</div></li>
 
 					<li class="nav-item dropdown"><a
@@ -139,11 +154,15 @@
 
 	<input type="hidden" name="articuloID" id="articuloID"
 		value="${articuloId}">
-	<h2 class="mt-5 text-center">${articuloNombre} <span> <button onclick="window.location.href=('${pageContext.request.contextPath }/GenerarPedido?articuloAgregar=${articuloNombre}')" title="Añadir a pedido"style= "cursor:pointer"class="btn-outline-info btn">
-				<i class="material-icons" >add_shopping_cart</i>
-	</button>
-		</span>
-		<span><button class="btn btn-outline-dark"
+	<h2 class="mt-5 text-center">${articuloNombre}
+		<span>
+			<button
+				onclick="window.location.href=('${pageContext.request.contextPath }/GenerarPedido?articuloAgregar=${articuloNombre}')"
+				title="Añadir a pedido" style="cursor: pointer"
+				class="btn-outline-info btn">
+				<i class="material-icons">add_shopping_cart</i>
+			</button>
+		</span> <span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Ver código QR"
 				onclick="window.open('${pageContext.request.contextPath }/Qr?articuloID=${articuloId}','_blank')">
 				<i class="material-icons"> border_outer </i>

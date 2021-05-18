@@ -133,8 +133,7 @@
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 								<a class="dropdown-item " href="../ListaUsuarios">Lista de
 									usuarios</a>
-								<c:if
-									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
+								<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>

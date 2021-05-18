@@ -129,7 +129,7 @@ div.searchable {
 	color: transparent;
 }
 
-.form-label-group input:not (:placeholder-shown )~label {
+.form-label-group input:not (:placeholder-shown ) ~label {
 	padding-top: calc(var(- -input-padding-y)/3);
 	padding-bottom: calc(var(- -input-padding-y)/3);
 	font-size: 12px;
@@ -220,7 +220,7 @@ div.searchable {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -230,9 +230,9 @@ div.searchable {
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
-							<a class="dropdown-item" href="../ListaArticulos">Lista de
-								artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
+							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
+								de artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown active"><a
@@ -250,8 +250,9 @@ div.searchable {
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Pedidos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a> <a
-								class="dropdown-item" href="../ListaPedidos">Lista de pedidos</a>
+							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a>
+							<a class="dropdown-item" href="../ListaPedidos">Lista de
+								pedidos</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
@@ -259,15 +260,31 @@ div.searchable {
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
+							</c:if>
+						</div></li>
+
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 
 						</div></li>
@@ -279,9 +296,10 @@ div.searchable {
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
 							<a class="dropdown-item" href="../UsuarioNuevo">Nuevo usuario</a>
-							<a class="dropdown-item " href="../ListaUsuarios">Lista de usuarios</a> <a
-								class="dropdown-item" href="../AreaNueva">Nueva área</a> <a
-								class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
+							<a class="dropdown-item " href="../ListaUsuarios">Lista de
+								usuarios</a> <a class="dropdown-item" href="../AreaNueva">Nueva
+								área</a> <a class="dropdown-item" href="../CerrarSesion">Cerrar
+								sesión</a>
 						</div></li>
 				</ul>
 			</div>
@@ -307,7 +325,9 @@ div.searchable {
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provTel" class="form-control"
-									placeholder="Teléfono" required oninput="this.value=this.value.replace(/[^0-9]/g,'');"autocomplete="off">
+									placeholder="Teléfono" required
+									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+									autocomplete="off">
 							</div>
 
 
@@ -315,7 +335,7 @@ div.searchable {
 						<div class="column">
 							<div class="form-label-group>">
 								<input type="text" name="provDire" class="form-control"
-									placeholder="Dirección"required autocomplete="off">
+									placeholder="Dirección" required autocomplete="off">
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provMail" class="form-control"
@@ -323,7 +343,7 @@ div.searchable {
 							</div>
 							<div class="form-label-group>">
 								<input type="text" name="provCont" class="form-control"
-									placeholder="Persona contacto"autocomplete="off">
+									placeholder="Persona contacto" autocomplete="off">
 							</div>
 
 						</div>

@@ -46,17 +46,18 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-								<a class="dropdown-item" href="../BuscarArticulo">Buscar artículo</a>
-						<c:if
-						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
-						
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
-								artículo</a>  
-								
-								<a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a>
-								</c:if>
-								
+							<a class="dropdown-item" href="../BuscarArticulo">Buscar
+								artículo</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+
+								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+									artículo</a>
+
+								<a class="dropdown-item" href="../ListaArticulos">Lista de
+									artículos</a>
+							</c:if>
+
 						</div></li>
 					<c:if
 						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
@@ -81,24 +82,41 @@
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
+						</div></li>
+
+					<li class="nav-item-dropdown"><a
+						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
+						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						aria-expanded="false">Llaves </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdown4">
+
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+							</c:if>
 
 						</div></li>
+
 					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -114,8 +132,10 @@
 									test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'}">
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
-									<a class="dropdown-item active" href="../AreaNueva">Nueva Área</a>
-									<a class="dropdown-item" href="../ListaAreas">Lista de áreas</a>
+									<a class="dropdown-item active" href="../AreaNueva">Nueva
+										Área</a>
+									<a class="dropdown-item" href="../ListaAreas">Lista de
+										áreas</a>
 								</c:if>
 							</c:if>
 							<a class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
@@ -146,8 +166,9 @@
 					<div class="row">
 						<div class="column">
 							<div class="form-label-group>">
-							<input type="hidden" name="inputId" value="${areaEditar.getAreaId() }">
-								<input type="text" name="inputNombre" class="form-control"
+								<input type="hidden" name="inputId"
+									value="${areaEditar.getAreaId() }"> <input type="text"
+									name="inputNombre" class="form-control"
 									placeholder="Nombre de área" required autocomplete="off"
 									value="${areaEditar.getNombreArea() }">
 							</div>
@@ -162,8 +183,8 @@
 										<c:choose>
 											<c:when
 												test="${usuario.getNombreUsuario()==areaEditar.getUsuario().getNombreUsuario() }">
-											<option selected>${usuario.getNombreUsuario()}</option>
-												</c:when>
+												<option selected>${usuario.getNombreUsuario()}</option>
+											</c:when>
 											<c:otherwise>
 												<option>${usuario.getNombreUsuario()}</option>
 											</c:otherwise>
