@@ -107,7 +107,7 @@
 						
 					<li class="nav-item-dropdown"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
-						role="button" data-toggle="dropdwon" aria-haspoup="true"
+						role="button" data-toggle="dropdown" aria-haspoup="true"
 						aria-expanded="false">Llaves </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown4">
