@@ -263,7 +263,7 @@ div.searchable {
 							<a class="dropdown-item" href="../ListaEquipos">Lista de
 								equipos</a>
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
+								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
@@ -282,7 +282,7 @@ div.searchable {
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
 								llaves</a>
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
 								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>

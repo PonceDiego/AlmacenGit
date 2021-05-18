@@ -133,7 +133,7 @@
 							<a class="dropdown-item" href="../BuscarArticulo">Buscar
 								artículo</a>
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 
 								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
 									artículo</a>
@@ -144,7 +144,7 @@
 
 						</div></li>
 					<c:if
-						test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+						test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 
 						<li class="nav-item dropdown active"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -175,7 +175,7 @@
 							<a class="dropdown-item" href="../ListaEquipos">Lista de
 								equipos</a>
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador Técnica'}">
+								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
@@ -194,7 +194,7 @@
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
 								llaves</a>
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol() == 'SuperAdmin' || usuarioActual.getRol().getNombreRol() == 'Administrador Llaves' }">
+								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
 								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
@@ -209,11 +209,11 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
 							<c:if
-								test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'||usuarioActual.getRol().getNombreRol()=='Administrador'}">
+								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 								<a class="dropdown-item " href="../ListaUsuarios">Lista de
 									usuarios</a>
 								<c:if
-									test="${usuarioActual.getRol().getNombreRol()=='SuperAdmin'}">
+									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
