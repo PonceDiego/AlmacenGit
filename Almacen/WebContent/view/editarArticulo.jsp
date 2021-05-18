@@ -362,11 +362,11 @@ div.searchable {
 							</div>
 							<div class=" form-label-group>" id="divSub">
 								<input type="hidden" name="inputSub" id="inputSub"
-									value='${articulo.getSubcategoria().getSubNombre() }'>
+									value='${articulo.getSubcategoria().getNombre() }'>
 								<select onchange="selected2()" id="selectSub"
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
-									<option selected>${articulo.getSubcategoria().getSubNombre() }</option>
+									<option selected>${articulo.getSubcategoria().getNombre() }</option>
 									<c:forEach items="${subCats}" var="scategoria">
 										<option style="cursor: pointer"
 											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getSubNombre()}</option>

@@ -179,7 +179,7 @@
 							<td><c:out
 									value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" /></td>
 							<td><c:out
-									value="${pedido.usuario.getArea().getNombreArea()}" /></td>
+									value="${pedido.usuario.getArea().getNombre()}" /></td>
 							<td><c:out value="${pedido.estadopedido.getNombreEstado()}" /></td>
 							<td><span> <a
 									href="../Pedido?pedidoId=${pedido.pedidoId}">Detalle</a>

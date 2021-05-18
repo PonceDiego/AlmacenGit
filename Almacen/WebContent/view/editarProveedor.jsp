@@ -240,7 +240,7 @@
 				<div class="card-body">
 					<h3 class="text-center">Datos del proveedor</h3>
 					<c:set var="proveedor" value="${proveedorE }"></c:set>
-					<input type="hidden" value="${proveedor.getProvId() }" name="PvI"
+					<input type="hidden" value="${proveedor.getId() }" name="PvI"
 						id="PvI">
 					<div class="row">
 						<div class="column">

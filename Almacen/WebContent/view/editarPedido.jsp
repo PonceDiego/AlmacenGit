@@ -314,7 +314,7 @@
 										</c:forEach>
 								</select></td>
 								<td><c:out
-										value="${articulo.articulo.getSubcategoria().getSubNombre()}" /></td>
+										value="${articulo.articulo.getSubcategoria().getNombre()}" /></td>
 
 							</tr>
 						</c:forEach>

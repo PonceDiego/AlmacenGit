@@ -164,9 +164,9 @@
 					<tbody id="proveedores">
 						<c:forEach items="${listaProveedores}" var="proveedor">
 							<tr>
-								<td id="pID"><c:out value="${proveedor.getProvId()}" /></td>
+								<td id="pID"><c:out value="${proveedor.getId()}" /></td>
 								<td id="pNB"><a
-									href="../Proveedor?proveedorId=${proveedor.getProvId()}">${proveedor.getProvNombre()}</a>
+									href="../Proveedor?proveedorId=${proveedor.getId()}">${proveedor.getProvNombre()}</a>
 								<td><c:forEach items="${proveedor.getArticulos() }"
 										var="articulo">
 										<c:out value="-${articulo.getNombre()}" />

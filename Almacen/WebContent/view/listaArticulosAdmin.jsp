@@ -179,7 +179,7 @@
 								<td><c:out
 										value="${articulo.getSubcategoria().getCategoria().getNombre()}" /></td>
 								<td><c:out
-										value="${articulo.getSubcategoria().getSubNombre()}" /></td>
+										value="${articulo.getSubcategoria().getNombre()}" /></td>
 								<td><c:out value="${articulo.getStock()}" /></td>
 								<td>
 									<div class="color-box"

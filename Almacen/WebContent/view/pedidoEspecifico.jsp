@@ -192,7 +192,7 @@
 								<td><c:out value="${articulo.cantidad}" /></td>
 								<td><c:out value="${articulo.articulo.getNombre()}" /></td>
 								<td><c:out
-										value="${articulo.articulo.getSubcategoria().getSubNombre()}" /></td>
+										value="${articulo.articulo.getSubcategoria().getNombre()}" /></td>
 
 							</tr>
 						</c:forEach>
