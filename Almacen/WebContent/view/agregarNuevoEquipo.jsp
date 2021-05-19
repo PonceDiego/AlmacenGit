@@ -357,6 +357,7 @@ div.searchable2 {
 					<h3 class="text-center">Datos del nuevo equipo</h3>
 					<div class="row">
 						<div class="column">
+						<div>Nombre del Equipo</div>
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
@@ -371,6 +372,7 @@ div.searchable2 {
 									</c:forEach>
 								</ul>
 							</div>
+							<div>Tipo</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputTipo" id="inputTipo"
 									autocomplete="off"> <select onchange="selected()"
@@ -383,6 +385,7 @@ div.searchable2 {
 									</c:forEach>
 								</select>
 							</div>
+							<div>Ubicación</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputLugar" id="inputLugar"
 									autocomplete="off"> <select onchange="selected2()"
@@ -395,6 +398,7 @@ div.searchable2 {
 									</c:forEach>
 								</select>
 							</div>
+							<div>Accesorios</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputAccesorios" class="form-control"
 									placeholder="Accesorios" id="inputAccesorios" maxlength="140"
@@ -403,29 +407,32 @@ div.searchable2 {
 						</div>
 
 						<div class="column">
+						<div>Serial</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputSerial" class="form-control"
 									placeholder="Serial" id="inputSerial" maxlength="50"
 									autocomplete="off">
 							</div>
 
+<div>Modelo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inpuModelo" class="form-control"
 									placeholder="Modelo" id="inpuModelo" maxlength="50"
 									autocomplete="off">
 							</div>
+							<div>Usuario habitual</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputUsuario" id="inputUsuario"
 									autocomplete="off"> <select onchange="selected3()"
 									id="usuarioSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
-									<option selected disabled>Seleccione un usuario
-										habitual</option>
+									<option selected disabled>Seleccione un usuario</option>
 									<c:forEach items="${listaUsuarios}" var="usuario">
 										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
 									</c:forEach>
 								</select>
 							</div>
+							<div>Observaciones</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputObservaciones"
 									class="form-control" placeholder="Observaciones"

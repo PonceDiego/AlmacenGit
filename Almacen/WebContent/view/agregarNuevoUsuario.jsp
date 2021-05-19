@@ -34,10 +34,10 @@
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Navigation -->
-	
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<a class="navbar-brand" href="javascript:history.back()"> <i
-			class="material-icons"style="font-size: 36px">arrow_back </i></a>
+			class="material-icons" style="font-size: 36px">arrow_back </i></a>
 		<div class="container">
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -47,9 +47,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
-							<a class="dropdown-item" href="../ListaArticulos">Lista de
-								artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
+							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
+								de artículos</a> <a class="dropdown-item" href="../BuscarArticulo">Artículo
 								específico</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -67,8 +67,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Pedidos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a> <a
-								class="dropdown-item" href="../ListaPedidos">Lista de pedidos</a>
+							<a class="dropdown-item" href="../GenerarPedido">Nuevo pedido</a>
+							<a class="dropdown-item" href="../ListaPedidos">Lista de
+								pedidos</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
@@ -76,19 +77,19 @@
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								 <a class="dropdown-item " href="../ListaRegistros">Lista
-								de registros</a>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
 						</div></li>
-						
-								<li class="nav-item-dropdown"><a
+
+					<li class="nav-item-dropdown"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
 						role="button" data-toggle="dropdown" aria-haspoup="true"
 						aria-expanded="false">Llaves </a>
@@ -104,8 +105,8 @@
 							</c:if>
 
 						</div></li>
-						
-				<li class="nav-item dropdown active"><a
+
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="material-icons">perm_identity</i>
@@ -114,10 +115,9 @@
 							aria-labelledby="navbarDropdown2">
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
-								<a class="dropdown-item" href="../ListaUsuarios">Lista
-									de usuarios</a>
-								<c:if
-									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
+								<a class="dropdown-item" href="../ListaUsuarios">Lista de
+									usuarios</a>
+								<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
 									<a class="dropdown-item active" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
@@ -154,21 +154,45 @@
 					<hr class="m-4">
 					<div class="row">
 						<div class="column">
+							<div>Nombre de Usuario</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputUsername" class="form-control"
 									placeholder="Nombre de Usuario" required autocomplete="off">
 							</div>
+							<div>Nombre</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control"
 									placeholder="Nombre" required autocomplete="off">
 							</div>
-							<div class="form-label-group>">
-								<input type="text" name="inputMail" class="form-control"
-									placeholder="eMail" required autocomplete="off">
+							<div>Área</div>
+							<div class=" form-label-group>" id="area">
+								<select name="inputArea"
+									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
+									required>
+									<option disabled selected>Seleccione un área</option>
+									<c:forEach items="${areas}" var="area">
+										<option style="cursor: pointer">${area.getNombreArea()}</option>
+									</c:forEach>
+								</select>
+
 							</div>
+
 
 						</div>
 						<div class="column">
+							<div>Correo Electrónico</div>
+							<div class="form-label-group>">
+								<input type="text" name="inputMail" class="form-control"
+									placeholder="Mail" required autocomplete="off">
+							</div>
+
+
+							<div>Apellido</div>
+							<div class="form-label-group>">
+								<input type="text" name="inputApellido" class="form-control"
+									placeholder="Apellido" required autocomplete="off">
+							</div>
+							<div>Rol</div>
 							<div class="form-label-group>">
 								<select name="inputRol"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
@@ -180,22 +204,6 @@
 
 									</c:forEach>
 								</select>
-							</div>
-
-							<div class="form-label-group>">
-								<input type="text" name="inputApellido" class="form-control"
-									placeholder="Apellido" required autocomplete="off">
-							</div>
-							<div class=" form-label-group>" id="area">
-								<select name="inputArea"
-									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
-									required>
-									<option disabled selected>Seleccione un área</option>
-									<c:forEach items="${areas}" var="area">
-										<option style="cursor: pointer">${area.getNombreArea()}</option>
-									</c:forEach>
-								</select>
-
 							</div>
 						</div>
 					</div>

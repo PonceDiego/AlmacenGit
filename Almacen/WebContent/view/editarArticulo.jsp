@@ -305,6 +305,7 @@ div.searchable {
 					<h3 class="text-center">Datos del artículo a editar</h3>
 					<div class="row">
 						<div class="column">
+						<div>Nombre del Artículo</div>
 							<c:set value="${artEdit }" var="articulo"></c:set>
 							<input type="hidden" name="editadoId" id="editadoId"
 								value="${articulo.getArticuloId() }">
@@ -313,12 +314,14 @@ div.searchable {
 									class="form-control" placeholder="Nombre" required
 									autocomplete="off" value="${articulo.getNombre() }">
 							</div>
+							<div>Stock Mínimo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputSMinimo"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									class="form-control" placeholder="Stock Mínimo" required
 									autocomplete="off" value="${articulo.getStockMinimo() }">
 							</div>
+							<div>Categoría</div>
 							<div class="form-label-group> searchable">
 								<input type="text" placeholder="Categoría" name="input"
 									id="input" onkeyup="filterFunction(this,event)" required
@@ -332,12 +335,13 @@ div.searchable {
 									</c:forEach>
 								</ul>
 							</div>
+							<div style="margin-top: 10px">Proveedor</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputProveedor" id="inputProveedor"
 									autocomplete="off"
 									value="${articulo.getProveedor().getNombre() }"> <select
 									onchange="selected()" id="provSelect"
-									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
+									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<c:forEach items="${proveedores}" var="proveedor">
 										<option>-${proveedor.getNombre()}</option>
@@ -348,6 +352,7 @@ div.searchable {
 
 						</div>
 						<div class="column">
+						<div>Costo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputCosto" class="form-control"
 									placeholder="Costo" onchange="validarSiNumero(this.value);"
@@ -355,11 +360,13 @@ div.searchable {
 									value="${articulo.getCosto() }">
 							</div>
 
+<div>Stock Actual</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputStock" class="form-control"
 									placeholder="Stock Actual" required autocomplete="off"
 									value="${articulo.getStock() }">
 							</div>
+							<div>Subcategoría</div>
 							<div class=" form-label-group>" id="divSub">
 								<input type="hidden" name="inputSub" id="inputSub"
 									value='${articulo.getSubcategoria().getNombre() }'>

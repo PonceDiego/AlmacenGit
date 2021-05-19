@@ -357,6 +357,7 @@ div.searchable2 {
 					<h3 class="text-center">Datos del nuevo artículo</h3>
 					<div class="row">
 						<div class="column">
+						<div>Nombre del Artículo</div>
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
@@ -371,12 +372,14 @@ div.searchable2 {
 									</c:forEach>
 								</ul>
 							</div>
+							<div>Stock Mínimo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputSMinimo"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									class="form-control" placeholder="Stock Mínimo" required
 									autocomplete="off">
 							</div>
+							<div>Categoría</div>
 							<div class="form-label-group> searchable">
 								<input type="text" placeholder="Categoría" name="input"
 									id="input" onkeyup="filterFunction(this,event)" required
@@ -389,11 +392,12 @@ div.searchable2 {
 									</c:forEach>
 								</ul>
 							</div>
+							<div>Proveedor</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputProveedor" id="inputProveedor"
 									autocomplete="off"> <select onchange="selected()"
 									id="provSelect"
-									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
+									style="border-radius: 5px; font-size: 16px; padding: 10px"
 									required>
 									<option selected disabled>Seleccione un proveedor</option>
 									<c:forEach items="${proveedores}" var="proveedor">
@@ -407,6 +411,7 @@ div.searchable2 {
 
 						</div>
 						<div class="column">
+						<div>Costo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputCosto" class="form-control"
 									placeholder="Costo"
@@ -414,11 +419,13 @@ div.searchable2 {
 									id="costoinput" required autocomplete="off">
 							</div>
 
+<div>Stock Actual</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputStock" class="form-control"
 									placeholder="Stock Actual" required autocomplete="off"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 							</div>
+							<div>Subcategoría</div>
 							<div class=" form-label-group>" id="divSub">
 								<input type="hidden" name="inputSub" id="inputSub"> <select
 									onchange="selected2()" id="selectSub"

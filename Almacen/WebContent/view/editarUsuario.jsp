@@ -167,15 +167,18 @@
 						id="idUEditar" name="idUEditar">
 					<div class="row">
 						<div class="column">
+						<div>Nombre de Usuario</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputUsername" class="form-control"
 									placeholder="Nombre de Usuario" required
 									value="${usuario.getNombreUsuario() }" readonly>
 							</div>
+							<div>Nombre</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control"
 									placeholder="Nombre" required value="${usuario.getNombre() }">
 							</div>
+							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputMail" class="form-control"
 									placeholder="eMail" required value="${usuario.getEmail() }">
@@ -183,6 +186,7 @@
 
 						</div>
 						<div class="column">
+						<div>Rol</div>
 							<div class="form-label-group>">
 								<select name="inputRol"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
@@ -201,11 +205,13 @@
 								</select>
 							</div>
 
+<div>Apellido</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputApellido" class="form-control"
 									placeholder="Apellido" required
 									value="${usuario.getApellido()}">
 							</div>
+							<div>Área</div>
 							<div class=" form-label-group>" id="area">
 								<select name="inputArea"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"

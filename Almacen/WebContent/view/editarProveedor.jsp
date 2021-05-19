@@ -244,11 +244,13 @@
 						id="PvI">
 					<div class="row">
 						<div class="column">
+						<div>Nombre</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvN" class="form-control"
 									placeholder="Nombre" required
 									value="${proveedor.getNombre() }">
 							</div>
+							<div>Teléfono</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvT" class="form-control"
 									placeholder="Teléfono" required
@@ -259,15 +261,18 @@
 
 						</div>
 						<div class="column">
+						<div>Dirección</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvD" class="form-control"
 									placeholder="Dirección"
 									value="${proveedor.getProvDireccion() }">
 							</div>
+							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvM" class="form-control"
 									placeholder="Mail" required value="${proveedor.getMail()}">
 							</div>
+							<div>Contacto</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvC" class="form-control"
 									placeholder="Persona contacto"

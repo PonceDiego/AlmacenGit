@@ -146,15 +146,7 @@
 
 
 
-
-
-
-
 	<!-- Page Content   -->
-
-
-
-
 
 	<div class="container">
 		<div class="card card-signin my-5">
@@ -164,6 +156,7 @@
 					<hr class="m-4">
 					<div class="row">
 						<div class="column">
+						<div>Nombre del Tipo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control"
 									placeholder="Nombre del tipo" required autocomplete="off">

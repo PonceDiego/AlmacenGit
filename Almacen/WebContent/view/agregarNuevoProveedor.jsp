@@ -319,10 +319,12 @@ div.searchable {
 					<h3 class="text-center">Datos del nuevo proveedor</h3>
 					<div class="row">
 						<div class="column">
+						<div>Nombre del proveedor</div>
 							<div class="form-label-group>">
 								<input type="text" name="provNombre" class="form-control"
 									placeholder="Nombre" required autocomplete="off">
 							</div>
+							<div>Teléfono</div>
 							<div class="form-label-group>">
 								<input type="text" name="provTel" class="form-control"
 									placeholder="Teléfono" required
@@ -333,14 +335,17 @@ div.searchable {
 
 						</div>
 						<div class="column">
+						<div>Dirección</div>
 							<div class="form-label-group>">
 								<input type="text" name="provDire" class="form-control"
 									placeholder="Dirección" required autocomplete="off">
 							</div>
+							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
 								<input type="text" name="provMail" class="form-control"
 									placeholder="Mail" required autocomplete="off">
 							</div>
+							<div>Contacto</div>
 							<div class="form-label-group>">
 								<input type="text" name="provCont" class="form-control"
 									placeholder="Persona contacto" autocomplete="off">
