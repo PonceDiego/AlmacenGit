@@ -301,7 +301,7 @@ div.searchable2 {
 							</c:if>
 						</div></li>
 
-					<li class="nav-item-dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
 						role="button" data-toggle="dropdown" aria-haspoup="true"
 						aria-expanded="false">Llaves </a>

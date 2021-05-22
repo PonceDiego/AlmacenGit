@@ -35,11 +35,11 @@
 	padding-bottom: 12px;
 }
 
-#tablaArticulosPedido {
+#tablaEquipos {
 	width: 100%;
 }
 
-#tablaArticulosPedido thead {
+#tablaEquipos thead {
 	background-color: #f37321;
 	color: white;
 	font-weight: bold;
@@ -119,19 +119,19 @@
 							</c:if>
 						</div></li>
 
-					<li class="nav-item-dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
 						role="button" data-toggle="dropdown" aria-haspoup="true"
 						aria-expanded="false">Llaves </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown4">
 
-							<a class="dropdown-item" href="../ListaLlaves">Lista de
+							<a class="dropdown-item " href="../ListaLlaves">Lista de
 								llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
-								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
-								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
+								<a class="dropdown-item " href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item " href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 						</div></li>
 
