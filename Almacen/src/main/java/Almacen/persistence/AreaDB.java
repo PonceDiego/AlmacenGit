@@ -37,7 +37,7 @@ public class AreaDB {
 		Area rol = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Area> query = sess.createQuery("select r from Area r where r.nombreArea='" + nombre + "'");
+			Query<Area> query = sess.createQuery("select r from Area r where r.nombre='" + nombre + "'");
 			rol = query.getSingleResult();
 			Hibernate.initialize(rol.getUsuario());
 			return rol;
@@ -48,10 +48,10 @@ public class AreaDB {
 
 	public static void agregarAreaNueva(Area a) {
 		Session sess = null;
-		Transaction tran=null;
+		Transaction tran = null;
 		try {
 			sess = HibernateUtils.openSession();
-			tran=sess.beginTransaction();
+			tran = sess.beginTransaction();
 			sess.save(a);
 			tran.commit();
 		} finally {
@@ -82,12 +82,12 @@ public class AreaDB {
 	public static Usuario getUsuarioJefeArea(Integer areaId) {
 		Session sess = null;
 		Usuario u = null;
-		Area a=null;
+		Area a = null;
 
 		try {
 			sess = HibernateUtils.openSession();
-			a= sess.get(Area.class, areaId);
-			u=a.getUsuario();
+			a = sess.get(Area.class, areaId);
+			u = a.getUsuario();
 			Hibernate.initialize(u);
 			Hibernate.initialize(u.getEmail());
 
@@ -103,7 +103,7 @@ public class AreaDB {
 		Area area = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Area> query = sess.createQuery("select r from Area r where r.areaId='" + idAreaEditar + "'");
+			Query<Area> query = sess.createQuery("select r from Area r where r.id='" + idAreaEditar + "'");
 			area = query.getSingleResult();
 			Hibernate.initialize(area.getUsuario());
 			Hibernate.initialize(area.getUsuario().getNombre());
@@ -114,21 +114,21 @@ public class AreaDB {
 	}
 
 	public static void editarArea(int idI, String nombre, String user) {
-		Session sess= null;
+		Session sess = null;
 		Transaction tran = null;
 		Area area = null;
 		try {
-			sess=HibernateUtils.openSession();
-			tran=sess.beginTransaction();
-			area=sess.get(Area.class, idI);
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			area = sess.get(Area.class, idI);
 			sess.update(area);
 			area.setNombre(nombre);
 			area.setUsuario(UsuarioDB.getUsuarioByNombreUsuario(user));
 			tran.commit();
-			
-		}finally {
+
+		} finally {
 			sess.close();
 		}
-		
+
 	}
 }

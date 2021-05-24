@@ -168,10 +168,10 @@
 						<div>Nombre del Área</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputId"
-									value="${areaEditar.getAreaId() }"> <input type="text"
+									value="${areaEditar.getId() }"> <input type="text"
 									name="inputNombre" class="form-control"
 									placeholder="Nombre de área" required autocomplete="off"
-									value="${areaEditar.getNombreArea() }">
+									value="${areaEditar.getNombre() }">
 							</div>
 
 						</div>

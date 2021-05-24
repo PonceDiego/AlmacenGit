@@ -36,7 +36,7 @@ public class ProveedoresDB {
 		Proveedor p = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Proveedor> query = sess.createQuery("from Proveedor where ProvNombre='" + nombre + "'");
+			Query<Proveedor> query = sess.createQuery("from Proveedor where nombre='" + nombre + "'");
 			List<Proveedor> pp = query.getResultList();
 			p = pp.get(0);
 			Hibernate.initialize(p.getArticulos());
@@ -54,7 +54,7 @@ public class ProveedoresDB {
 		Proveedor p = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Proveedor> query = sess.createQuery("from Proveedor where provId='" + nombre + "'");
+			Query<Proveedor> query = sess.createQuery("from Proveedor where id='" + nombre + "'");
 			List<Proveedor> pp = query.getResultList();
 			p = pp.get(0);
 			Hibernate.initialize(p.getArticulos());

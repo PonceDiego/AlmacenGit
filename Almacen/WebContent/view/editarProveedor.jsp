@@ -255,7 +255,13 @@
 								<input type="text" name="PvT" class="form-control"
 									placeholder="Teléfono" required
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-									value="${proveedor.getProvTel() }">
+									value="${proveedor.getTelefono() }">
+							</div>
+							<div>Contacto</div>
+							<div class="form-label-group>">
+								<input type="text" name="PvC" class="form-control"
+									placeholder="Persona contacto"
+									value="${proveedor.getContacto() }">
 							</div>
 
 
@@ -265,18 +271,12 @@
 							<div class="form-label-group>">
 								<input type="text" name="PvD" class="form-control"
 									placeholder="Dirección"
-									value="${proveedor.getProvDireccion() }">
+									value="${proveedor.getDireccion() }">
 							</div>
 							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
 								<input type="text" name="PvM" class="form-control"
 									placeholder="Mail" required value="${proveedor.getMail()}">
-							</div>
-							<div>Contacto</div>
-							<div class="form-label-group>">
-								<input type="text" name="PvC" class="form-control"
-									placeholder="Persona contacto"
-									value="${proveedor.getProvContacto() }">
 							</div>
 
 						</div>

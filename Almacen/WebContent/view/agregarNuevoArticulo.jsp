@@ -402,7 +402,7 @@ div.searchable2 {
 									<option selected disabled>Seleccione un proveedor</option>
 									<c:forEach items="${proveedores}" var="proveedor">
 
-										<option>-${proveedor.provNombre }</option>
+										<option>-${proveedor.nombre }</option>
 
 									</c:forEach>
 								</select>
@@ -434,7 +434,7 @@ div.searchable2 {
 									<option disabled selected>Seleccione una subcategoría</option>
 									<c:forEach items="${subCats}" var="scategoria">
 										<option style="cursor: pointer"
-											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getSubNombre()}</option>
+											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getNombre()}</option>
 									</c:forEach>
 								</select>
 

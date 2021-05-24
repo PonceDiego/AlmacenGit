@@ -175,21 +175,21 @@
 					<c:forEach items="${listaUsuarios}" var="usuario">
 						<tr>
 							<td><c:out value="${usuario.getNombreUsuario()}" /></td>
-							<td><c:out value="${usuario.getRol().getNombreRol()}" /></td>
-							<td><c:out value="${usuario.getArea().getNombreArea()}" /></td>
+							<td><c:out value="${usuario.getRol().getNombre()}" /></td>
+							<td><c:out value="${usuario.getArea().getNombre()}" /></td>
 							<td><c:out value="${usuario.getNombre()}" /></td>
 							<td><c:out value="${usuario.getApellido()}" /></td>
 							<td><c:out value="${usuario.getEmail()}" /></td>
 							<td>
 								<button class="btn btn-outline-info" type="button"
 									style="cursor: pointer" title="Editar"
-									onclick="window.location.href='../EditarUsuario?UsEdId=${usuario.getUsuarioId()}'">
+									onclick="window.location.href='../EditarUsuario?UsEdId=${usuario.getId()}'">
 									<i class="material-icons" style="font-size: 18px"> edit </i>
 								</button>
 
 								<button class="btn btn-outline-danger" type="button"
 									title="Eliminar" style="cursor: pointer"
-									onclick="confirmar('${pageContext.request.contextPath }/EliminarUsuario?idEliminado=${usuario.getUsuarioId() }');">
+									onclick="confirmar('${pageContext.request.contextPath }/EliminarUsuario?idEliminado=${usuario.getId() }');">
 									<i class="material-icons" style="font-size: 18px"> delete </i>
 								</button>
 							</td>

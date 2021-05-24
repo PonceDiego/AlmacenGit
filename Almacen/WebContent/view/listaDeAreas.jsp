@@ -170,15 +170,15 @@
 
 					<c:forEach items="${listaAreasCompleta}" var="area">
 						<tr>
-							<td><c:out value="${area.getNombreArea()}" /></td>
+							<td><c:out value="${area.getNombre()}" /></td>
 							<td><c:out value="${area.getUsuario().getNombreUsuario()}" /></td>
 							<td>
 								<button class="btn btn-outline-info" type="button"
 									style="cursor: pointer" title="Editar"
-									onclick="window.location.href='../EditarArea?ArEdId=${area.getAreaId()}'">
+									onclick="window.location.href='../EditarArea?ArEdId=${area.getId()}'">
 									<i class="material-icons" style="font-size: 18px"> edit </i>
 								</button> <!-- 								<button class="btn btn-outline-danger" type="button"  -->
-								<%-- 									title="Eliminar" style="cursor:pointer"onclick="confirmar('${pageContext.request.contextPath }/EliminarArea?idEliminado=${area.getAreaId() }');"> --%>
+								<%-- 									title="Eliminar" style="cursor:pointer"onclick="confirmar('${pageContext.request.contextPath }/EliminarArea?idEliminado=${area.getId() }');"> --%>
 								<!-- 									<i class="material-icons" style="font-size: 18px"> delete </i> -->
 								<!-- 								</button> -->
 							</td>

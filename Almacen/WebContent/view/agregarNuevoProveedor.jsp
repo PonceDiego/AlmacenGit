@@ -331,6 +331,11 @@ div.searchable {
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									autocomplete="off">
 							</div>
+							<div>Contacto</div>
+							<div class="form-label-group>">
+								<input type="text" name="provCont" class="form-control"
+									placeholder="Persona contacto" autocomplete="off">
+							</div>
 
 
 						</div>
@@ -344,11 +349,6 @@ div.searchable {
 							<div class="form-label-group>">
 								<input type="text" name="provMail" class="form-control"
 									placeholder="Mail" required autocomplete="off">
-							</div>
-							<div>Contacto</div>
-							<div class="form-label-group>">
-								<input type="text" name="provCont" class="form-control"
-									placeholder="Persona contacto" autocomplete="off">
 							</div>
 
 						</div>

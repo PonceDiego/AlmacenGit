@@ -171,7 +171,7 @@
 									required>
 									<option disabled selected>Seleccione un área</option>
 									<c:forEach items="${areas}" var="area">
-										<option style="cursor: pointer">${area.getNombreArea()}</option>
+										<option style="cursor: pointer">${area.getNombre()}</option>
 									</c:forEach>
 								</select>
 
@@ -200,7 +200,7 @@
 									<option selected disabled>Seleccione un rol</option>
 									<c:forEach items="${roles}" var="rol">
 
-										<option>${rol.getNombreRol() }</option>
+										<option>${rol.getNombre() }</option>
 
 									</c:forEach>
 								</select>

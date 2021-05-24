@@ -376,7 +376,7 @@ div.searchable {
 									<option selected>${articulo.getSubcategoria().getNombre() }</option>
 									<c:forEach items="${subCats}" var="scategoria">
 										<option style="cursor: pointer"
-											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getSubNombre()}</option>
+											class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getNombre()}</option>
 									</c:forEach>
 								</select>
 

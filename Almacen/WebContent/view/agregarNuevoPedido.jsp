@@ -231,7 +231,7 @@ div.pedido ul li {
 							style="border-radius: 5px; padding: 2px;">
 							<option selected disabled>Seleccionar usuario</option>
 							<c:forEach items="${listaUsuario}" var="usuario">
-								<option value="${usuario.getUsuarioId()}">${usuario.getNombre()}
+								<option value="${usuario.getId()}">${usuario.getNombre()}
 									${usuario.getApellido()}</option>
 							</c:forEach>
 						</select>
@@ -256,7 +256,7 @@ div.pedido ul li {
 								</c:otherwise>
 							</c:choose>
 							<c:forEach items="${subcategorias}" var="subc">
-								<optgroup label="${subc.getSubNombre() }"></optgroup>
+								<optgroup label="${subc.getNombre() }"></optgroup>
 								<c:forEach items="${subc.getArticulos()}" var="articulo">
 									<option>${articulo.getNombre()}</option>
 								</c:forEach>
@@ -280,7 +280,7 @@ div.pedido ul li {
 								</c:when>
 								<c:otherwise>
 									<input type="hidden" name="UserId" id="UserId"
-										value="${usuarioActual.getUsuarioId()}">
+										value="${usuarioActual.getId()}">
 								</c:otherwise>
 							</c:choose>
 						</form>
