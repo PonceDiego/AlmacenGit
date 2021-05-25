@@ -1,42 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
-<html>
+
+
+
+<html lang="en">
+
+
 <head>
-<meta charset="UTF-8">
 
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<title>Artículo: ${articuloNombre }</title>
+<title>Grupos de Equipos</title>
+
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css"
+	rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
-<style>
-#tableOb {
-	border-top: 1px solid black;
-	border-collapse: collapse;
-	width: 100%;
-}
 
-#tableOb tr {
-	padding-top: 12px;
-	padding-bottom: 12px;
-}
-
-#tablaArticulosPedido {
-	width: 100%;
-}
-
-#tablaArticulosPedido thead {
-	background-color: #f37321;
-	color: white;
-	font-weight: bold;
-}
-</style>
 </head>
+
+
 <body>
+
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.slim.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -49,12 +45,12 @@
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown active"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item active" href="../BuscarArticulo">Buscar
+							<a class="dropdown-item" href="../BuscarArticulo">Buscar
 								artículo</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
@@ -90,14 +86,14 @@
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item " href="../ListaEquipos">Lista de
-								equipos</a> <a class="dropdown-item" href="../ListaGruposEquipos">Lista grupos de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista
+								de equipos</a> <a class="dropdown-item active" href="../ListaGruposEquipos">Lista grupos de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
@@ -122,6 +118,7 @@
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
 								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
+
 						</div></li>
 
 					<li class="nav-item dropdown"><a
@@ -151,41 +148,103 @@
 		</div>
 	</nav>
 
+	<!-- Page Content   -->
 
-	<input type="hidden" name="articuloID" id="articuloID"
-		value="${articuloId}">
-	<h2 class="mt-5 text-center">${articuloNombre}
-		<span>
-			<button
-				onclick="window.location.href=('${pageContext.request.contextPath }/GenerarPedido?articuloAgregar=${articuloNombre}')"
-				title="Añadir a pedido" style="cursor: pointer"
-				class="btn-outline-info btn">
-				<i class="material-icons">add_shopping_cart</i>
-			</button>
-		</span> <span><button class="btn btn-outline-dark"
-				style="cursor: pointer" title="Ver código QR"
-				onclick="window.open('${pageContext.request.contextPath }/Qr?articuloID=${articuloId}','_blank')">
-				<i class="material-icons"> border_outer </i>
-			</button></span>
-	</h2>
-	<hr>
-	<div class="text-center lead"
-		style="outline: 1px solid black; max-width: 70%; margin: auto">
+	<div class="container">
+		<div class="col-lg-12 text-center">
+			<h1 class="mt-5">
+				Lista de grupos de equipos.
+			</h1>
 
-		<table class="table">
-			<tr>
-				<th>Categoría:</th>
-				<td>${articuloCatPadre}</td>
-				<th>Subcategoría:</th>
-				<td>${articuloCat}</td>
-			</tr>
-			<tr>
-				<th>Estado:</th>
-				<td>${articuloEstado.getNombreEstado()}</td>
-				<th>Stock Actual:</th>
-				<td>${articuloStock}</td>
-			</tr>
-		</table>
+
+			<hr class="my-4">
+
+			<div>&nbsp;</div>
+			<table class="table table-striped table-bordered" id="myTable">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Estado</th>
+						<th>Acción</th>
+					</tr>
+				</thead>
+				<tbody id="tablaEquipos">
+
+					<c:forEach items="${equipos}" var="equipo">
+						<tr>
+							<td><c:out value="${equipo.getNombre()}" /></td>
+							<td><c:choose>
+									<c:when test="${equipo.getEstado()=='Disponible'}">
+										<a style="color: green;"><i class="material-icons">check</i></a>
+									</c:when>
+									<c:when test="${equipo.getEstado() == 'En uso'}">
+										<a style="color: red;"><i class="material-icons">clear</i></a>
+									</c:when>
+									<c:otherwise>
+										<a><i class="material-icons">trending_down</i></a>
+									</c:otherwise>
+								</c:choose></td>
+
+							<td><c:choose>
+									<c:when test="${equipo.getEstado()=='Disponible'}">
+										<button class="btn btn-warning" type="button" title="Salida"
+											style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
+											S</button>
+
+									</c:when>
+									<c:when test="${equipo.getEstado() == 'En uso'}">
+										<button class="btn btn-outline-success" type="button"
+											title="Entrada" style="cursor: pointer"
+											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
+											E</button>
+									</c:when>
+								</c:choose> <a href="../Equipo?equipoId=${equipo.getEquipoId()}"><i
+									class="material-icons">history</i></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
+
+
+	<script src="../vendor/Datatables/datatables.js"></script>
+
+	<script>
+		function alertar(url) {
+				alert("Realizando salida del equipo");
+				$(location).attr('href', url);
+		}
+
+		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
+			if (usernameEquipo == usernameActual
+					|| rolActual == "SuperAdmin"
+					|| rolActual == "Administrador Técnica") {
+				alert("Reingresando el equipo..");
+				$(location).attr('href', url);
+			} else {
+				alert("Solo el usuario que realizó la salida puede volver a ingresarlo!");
+			}
+		}
+	</script>
+
+
+	<script>
+		$(document).ready(function() {
+
+			$('#myTable').DataTable({
+				"scrollX" : true,
+				"columnDefs" : [ {
+					"responsive" : "true",
+					"orderable" : false,
+					"targets" : [ 5, 6, 7, 8 ]
+				} ],
+				"language" : {
+					"emptyTable" : "No se encontraron equipos a mostrar!"
+				}
+			})
+		});
+	</script>
 </body>
 </html>

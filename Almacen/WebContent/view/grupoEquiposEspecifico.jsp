@@ -17,7 +17,7 @@
 
 
 
-<title>Grupo de Equipos ${nombreGrupoEquipos }</title>
+<title>Grupo de Equipos ${grupoEquipos.getNombre() }</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -108,12 +108,12 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
 							<a class="dropdown-item " href="../ListaEquipos">Lista de
-								equipos</a>
+								equipos</a> <a class="dropdown-item" href="../ListaGruposEquipos">Lista grupos de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
-								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item active" href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
 								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
@@ -127,7 +127,7 @@
 							aria-labelledby="navbarDropdown4">
 
 							<a class="dropdown-item " href="../ListaLlaves">Lista de
-								llaves</a>
+								llaves</a> <a class="dropdown-item" href="../ListaGruposLlaves">Lista de grupos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item " href="../NuevaLlave">Nueva llave</a>
@@ -162,7 +162,7 @@
 	</nav>
 
 	<p></p>
-		<h2 class="mt-5 text-center">${nombreGrupoEquipos }
+		<h2 class="mt-5 text-center">${grupoEquipos.getNombre() }
 		</h2>
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto">
@@ -170,9 +170,9 @@
 		<table class="table">
 			<tr>
 				<th>ID:</th>
-				<td>${idGrupoEquipos}</td>
+				<td>${grupoEquipos.getId()}</td>
 				<th>Estado:</th>
-				<td>${EstadoGrupoEquipos}</td>
+				<td>${grupoEquiposEstado}</td>
 			</tr>
 		</table>
 	</div>
@@ -186,7 +186,7 @@
 					<th>Tipo</th>
 					<th>Estado</th>
 				</tr>
-				<c:forEach items="${equiposGrupoEquipos}" var="equipo">
+				<c:forEach items="${grupoEquipos.getEquipos()}" var="equipo">
 					<tr>
 						<td> <c:out
 									value="${equipo.getNombre()}" />
