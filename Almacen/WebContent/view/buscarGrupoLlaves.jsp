@@ -1,38 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
-
-
-<html lang="en">
-
-
+<html>
 <head>
 
-<meta charset="utf-8">
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>Grupos de Equipos</title>
+<meta charset="UTF-8">
 
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link
-	href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css"
-	rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
+<title>Buscar grupo de equipos específico</title>
 
+<style>
+.form-signin .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s;
+}
 
+div.searchable {
+	float: left;
+	width: 100%;
+}
+
+.searchable input {
+	width: 100%;
+	font-size: 18px;
+	padding: 10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	display: block;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	background:
+		url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+		no-repeat right .75rem center/8px 10px;
+}
+
+.searchable ul {
+	display: none;
+	list-style-type: none;
+	background-color: #fff;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #add8e6;
+	border-top: none;
+	max-height: 180px;
+	margin: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0;
+}
+
+.searchable ul li {
+	padding: 7px 9px;
+	border-bottom: 1px solid #e1e1e1;
+	cursor: pointer;
+	color: #6e6e6e;
+}
+
+.searchable ul li.selected {
+	background-color: #e8e8e8;
+	color: #333;
+}
+
+.color-box {
+	width: 20px;
+	height: 10px;
+	display: inline-block;
+	background-color: #ccc;
+	position: relative;
+	float: right;
+}
+</style>
 </head>
-
-
-<body>
-
-
+<body onload="setColor();">
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.slim.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -86,14 +143,14 @@
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-					<li class="nav-item dropdown active"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
 							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a> <a class="dropdown-item active" href="../ListaGruposEquipos">Lista grupos de equipos</a>
+								de equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
@@ -104,7 +161,7 @@
 							</c:if>
 						</div></li>
 
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href='#' id="navbarDropdown4"
 						role="button" data-toggle="dropdown" aria-haspoup="true"
 						aria-expanded="false">Llaves </a>
@@ -112,7 +169,7 @@
 							aria-labelledby="navbarDropdown4">
 
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
-								llaves</a> <a class="dropdown-item" href="../ListaGruposLlaves">Lista de grupos</a>
+								llaves</a> <a class="dropdown-item active" href="../BuscarGrupoLlaves">Buscar grupo de llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
@@ -148,103 +205,143 @@
 		</div>
 	</nav>
 
+
 	<!-- Page Content   -->
-
 	<div class="container">
-		<div class="col-lg-12 text-center">
-			<h1 class="mt-5">
-				Lista de grupos de equipos.
-			</h1>
+		<div class="card card-signin my-5">
+			<div class="card-body">
+				<form class="form-signin" method="post" action="../Articulo">
+					<h3 class="text-center">Datos del grupo de llaves buscado</h3>
+					<hr class="m-4">
+					<div class="row">
+						<div class="column">
+							<div class=" form-label-group> searchable">
+								<input type="text" placeholder="Buscar grupo"
+									name="nombreGrupo" id="nombreGrupo"
+									onkeyup="filterFunction(this,event)" required
+									autocomplete="off">
+								<c:set var="gruposLlaves" value="${nombresGruposLlaves }"></c:set>
+								<ul id="ulGE">
+									<c:forEach items="${gruposLlaves}" var="grupos">
 
-
-			<hr class="my-4">
-
-			<div>&nbsp;</div>
-			<table class="table table-striped table-bordered" id="myTable">
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Estado</th>
-						<th>Acción</th>
-					</tr>
-				</thead>
-				<tbody id="tablaEquipos">
-
-					<c:forEach items="${equipos}" var="equipo">
-						<tr>
-							<td><c:out value="${equipo.getNombre()}" /></td>
-							<td><c:choose>
-									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<a style="color: green;"><i class="material-icons">check</i></a>
-									</c:when>
-									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<a style="color: red;"><i class="material-icons">clear</i></a>
-									</c:when>
-									<c:otherwise>
-										<a><i class="material-icons">trending_down</i></a>
-									</c:otherwise>
-								</c:choose></td>
-
-							<td><c:choose>
-									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<button class="btn btn-warning" type="button" title="Salida"
-											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
-											S</button>
-
-									</c:when>
-									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<button class="btn btn-outline-success" type="button"
-											title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
-											E</button>
-									</c:when>
-								</c:choose> <a href="../Equipo?equipoId=${equipo.getEquipoId()}"><i
-									class="material-icons">history</i></a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+										<li>${grupos.getNombre()}</li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<button disabled
+						class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton"
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
+						Aceptar</button>
+				</form>
+			</div>
 		</div>
+
 	</div>
 
-
-	<script src="../vendor/Datatables/datatables.js"></script>
-
 	<script>
-		function alertar(url) {
-				alert("Realizando salida del equipo");
-				$(location).attr('href', url);
-		}
+		function filterFunction(that, event) {
+			let container, input, filter, li, input_val;
+			container = $(that).closest(".searchable");
+			input_val = container.find("input").val().toUpperCase();
 
-		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
-			if (usernameEquipo == usernameActual
-					|| rolActual == "SuperAdmin"
-					|| rolActual == "Administrador Técnica") {
-				alert("Reingresando el equipo..");
-				$(location).attr('href', url);
+			if ([ "ArrowDown", "ArrowUp", "Enter" ].indexOf(event.key) != -1) {
+				keyControl(event, container)
 			} else {
-				alert("Solo el usuario que realizó la salida puede volver a ingresarlo!");
+				li = container.find("ul li");
+				li.each(function(i, obj) {
+					if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+						$(this).show();
+					} else {
+						$(this).hide();
+					}
+				});
+
+				container.find("ul li").removeClass("selected");
+				setTimeout(function() {
+					container.find("ul li:visible").first()
+							.addClass("selected");
+				}, 100)
 			}
 		}
-	</script>
 
+		function keyControl(e, container) {
+			if (e.key == "ArrowDown") {
 
-	<script>
-		$(document).ready(function() {
+				if (container.find("ul li").hasClass("selected")) {
+					if (container.find("ul li:visible").index(
+							container.find("ul li.selected")) + 1 < container
+							.find("ul li:visible").length) {
+						container.find("ul li.selected")
+								.removeClass("selected").nextAll().not(
+										'[style*="display: none"]').first()
+								.addClass("selected");
+					}
 
-			$('#myTable').DataTable({
-				"scrollX" : true,
-				"columnDefs" : [ {
-					"responsive" : "true",
-					"orderable" : false,
-					"targets" : [ 5, 6, 7, 8 ]
-				} ],
-				"language" : {
-					"emptyTable" : "No se encontraron equipos a mostrar!"
+				} else {
+					container.find("ul li:first-child").addClass("selected");
 				}
-			})
+
+			} else if (e.key == "ArrowUp") {
+
+				if (container.find("ul li:visible").index(
+						container.find("ul li.selected")) > 0) {
+					container.find("ul li.selected").removeClass("selected")
+							.prevAll().not('[style*="display: none"]').first()
+							.addClass("selected");
+				}
+			} else if (e.key == "Enter") {
+				container.find("input").val(
+						container.find("ul li.selected").text()).blur();
+				onSelect(container.find("ul li.selected").text())
+			}
+
+			container.find("ul li.selected")[0].scrollIntoView({
+				behavior : "smooth",
+			});
+		}
+
+		$(".searchable input").focus(function() {
+
+			$(this).closest(".searchable").find("ul").show();
+			$(this).closest(".searchable").find("ul li").show();
 		});
+		$(".searchable input").blur(function() {
+			let that = this;
+			setTimeout(function() {
+				$(that).closest(".searchable").find("ul").hide();
+			}, 300);
+		});
+
+		$(document).on(
+				'click',
+				'.searchable ul li',
+				function() {
+					$(this).closest(".searchable").find("input").val(
+							$(this).text()).blur();
+
+					onSelect($(this).text())
+
+				});
+
+		$(".searchable ul li").hover(
+				function() {
+
+					$(this).closest(".searchable").find("ul li.selected")
+							.removeClass("selected");
+					$(this).addClass("selected");
+				});
+		function onSelect(val) {
+
+			$('#aceptarbutton').prop('disabled', false);
+			$('#nombreGrupo').prop('readonly', true);
+
+		}
 	</script>
+
 </body>
 </html>
+

@@ -159,7 +159,7 @@ div.pedido ul li {
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
 							<a class="dropdown-item" href="../ListaEquipos">Lista de
-								equipos</a> <a class="dropdown-item" href="../ListaGruposEquipos">Lista grupos de equipos</a>
+								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
@@ -178,7 +178,7 @@ div.pedido ul li {
 							aria-labelledby="navbarDropdown4">
 
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
-								llaves</a> <a class="dropdown-item" href="../ListaGruposLlaves">Lista de grupos</a>
+								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar grupo de llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
