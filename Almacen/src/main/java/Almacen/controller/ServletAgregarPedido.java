@@ -38,8 +38,8 @@ public class ServletAgregarPedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		if (request.getParameter("and") != null) {
+		
+	if (request.getParameter("and") != null) {
 			String obser, user, arts, cants;
 			Integer idUser = UsuarioDB.getUsuarioByNombreUsuario(request.getParameter("User")).getId();
 			obser = request.getParameter("textAreaObservaciones");

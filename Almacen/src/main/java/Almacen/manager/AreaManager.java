@@ -6,6 +6,7 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class AreaManager {
 	
+	
 	public static void createArea(String nombre, String user) {
 		Area area=new Area();
 		area.setNombre(nombre);
