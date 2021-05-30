@@ -2,8 +2,10 @@ package main.java.Almacen.manager;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import main.java.Almacen.model.Equipo;
+import main.java.Almacen.model.GrupoEquipos;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.LugarDB;
@@ -61,9 +63,40 @@ public class EquipoManager {
 	public static List<Equipo> listarEquipos() {
 		return EquipoDB.getListaEquipos();
 	}
+	
 	public static  List<Equipo> listarTodosEquipos(){
 		return EquipoDB.getListaEquiposCompleta();
 	}
+	
+	public static List<String> listarNombresGrupoEquipos(){
+		List<GrupoEquipos> equipos = EquipoDB.getListaGrupoEquipos();
+		
+		
+		return equipos.stream().map(x -> x.getNombre()).collect(Collectors.toList());
+	}
+	
+	public static GrupoEquipos getGrupoEquipo(String id) {
+		return EquipoDB.getGrupoEquipoById(id);
+	}
+	
+	public static String getGrupoEquipoEstado(GrupoEquipos equipos) {
+		String estado = "Disponible";
+    	
+    	int contadorDisponible = equipos.getEquipos().stream().filter(o -> o.getEstado().equals("Disponible")).collect(Collectors.toList()).size();
+    	int contadorUso = equipos.getEquipos().stream().filter(o -> o.getEstado().equals("En uso")).collect(Collectors.toList()).size();
+    	int sizeEquipos = equipos.getEquipos().size();
+    	
+    	if(contadorDisponible == sizeEquipos) {
+    		estado = "Disponible";
+    	}else if(contadorUso == sizeEquipos){
+    		estado = "En uso";
+    	}else {
+    		estado = "Parcial";
+    	}
+    	
+		return estado;
+	}
+	
 	public static Equipo getEquipo(int id) {
 		return EquipoDB.getEquipoByID(id);
 	}

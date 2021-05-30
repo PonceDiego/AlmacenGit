@@ -1,7 +1,16 @@
 package main.java.Almacen.controller.llaves;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import main.java.Almacen.manager.llaves.LlaveManager;
+import main.java.Almacen.model.Llave;
 
 @WebServlet("/ListaLlaves")
 public class ServletListaLlaves extends HttpServlet {
@@ -9,5 +18,21 @@ public class ServletListaLlaves extends HttpServlet {
 	
 	public ServletListaLlaves() {
 		super();
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		super.doGet(req, resp);
+		if (req.getSession().getAttribute("usuarioActual") == null) {
+			resp.sendRedirect("Index");
+			return;
+		}
+		
+		List<Llave> llaves = LlaveManager.getAllLlaves();
+		
+		req.getSession().setAttribute("llaves", llaves);
+		
+		
+		resp.sendRedirect("view/listaDeLlaves.jsp");
 	}
 }

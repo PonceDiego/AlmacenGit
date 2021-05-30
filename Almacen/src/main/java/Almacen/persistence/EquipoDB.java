@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.Equipo;
+import main.java.Almacen.model.GrupoEquipos;
 
 public class EquipoDB {
 	
@@ -98,6 +99,7 @@ public class EquipoDB {
 			sess.close();
 		}
 	}
+	
 	public static List<Equipo> getListaEquipos(){
 		Session sess=null;
 		List<Equipo> lista=new ArrayList<Equipo>();
@@ -111,6 +113,35 @@ public class EquipoDB {
 				Hibernate.initialize(e.getUsuario());
 				Hibernate.initialize(e);
 			}return lista;
+		}finally {
+			sess.close();
+		}
+	}
+	
+	public static List<GrupoEquipos> getListaGrupoEquipos(){
+		Session sess = null;
+		List<GrupoEquipos> lista = new ArrayList<GrupoEquipos>();
+		try{
+			sess = HibernateUtils.openSession();
+			Query<GrupoEquipos> query = sess.createQuery("select e from GrupoEquipos e");
+			lista = query.getResultList();
+			for(GrupoEquipos e : lista) {
+				Hibernate.initialize(e.getEquipos());
+			}
+			return lista;
+		}finally {
+			sess.close();
+		}
+	}
+	
+	public static GrupoEquipos getGrupoEquipoById(String id){
+		Session sess = null;
+		GrupoEquipos equipo;
+		try{
+			sess = HibernateUtils.openSession();
+			equipo = sess.get(GrupoEquipos.class, id);
+			Hibernate.initialize(equipo.getEquipos());
+			return equipo;
 		}finally {
 			sess.close();
 		}
