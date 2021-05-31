@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 
 public class LlaveDB {
@@ -37,6 +38,33 @@ public class LlaveDB {
 				Hibernate.initialize(llave.getLugar());
 			}
 			return llaves;
+		} finally {
+			sess.close();
+		}
+	}
+	
+	public static List<GrupoLlaves> getAllGrupoLlaves() {
+		Session sess = null;
+		List<GrupoLlaves> llaves;
+
+		try {
+			sess = HibernateUtils.openSession();
+			Query<GrupoLlaves> query = sess.createQuery("select a from GrupoLlaves a where a.grupoId != null");
+			llaves = query.getResultList();
+			return llaves;
+		} finally {
+			sess.close();
+		}
+	}
+	
+	public static GrupoLlaves getGrupoLlavesById(String id) {
+		Session sess = null;
+		GrupoLlaves grupoLlaves = null;
+
+		try {
+			sess = HibernateUtils.openSession();
+			sess.get(GrupoLlaves.class, id);
+			return grupoLlaves;
 		} finally {
 			sess.close();
 		}
