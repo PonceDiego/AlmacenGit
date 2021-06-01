@@ -210,7 +210,7 @@ div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../Articulo">
+				<form class="form-signin" method="post" action="../GrupoEquipos">
 					<h3 class="text-center">Datos del grupo de equipos buscado</h3>
 					<hr class="m-4">
 					<div class="row">
@@ -222,9 +222,9 @@ div.searchable {
 									autocomplete="off">
 								<c:set var="gruposEquipos" value="${nombresGruposEquipos }"></c:set>
 								<ul id="ulGE">
-									<c:forEach items="${gruposEquipos}" var="grupos">
+									<c:forEach items="${gruposEquipos}" var="grupo">
 
-										<li>${grupos.getNombre()}</li>
+										<li>${grupo}</li>
 									</c:forEach>
 								</ul>
 							</div>

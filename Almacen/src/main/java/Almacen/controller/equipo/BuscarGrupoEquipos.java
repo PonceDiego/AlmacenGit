@@ -12,25 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.Almacen.manager.EquipoManager;
 
 @WebServlet("/BuscarGrupoEquipos")
-public class BuscarGrupoEquipos extends HttpServlet{
+public class BuscarGrupoEquipos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	public BuscarGrupoEquipos() {
 		super();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getSession().getAttribute("usuarioActual") == null) {
 			resp.sendRedirect("Index");
 			return;
 		}
-		
+
 		List<String> nombresGruposEquipos = EquipoManager.listarNombresGrupoEquipos();
-		
+
 		req.getSession().setAttribute("nombresGruposEquipos", nombresGruposEquipos);
-		
+
 		resp.sendRedirect("view/buscarGrupoEquipos.jsp");
 	}
 }
