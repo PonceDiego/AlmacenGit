@@ -68,6 +68,10 @@ public class EquipoManager {
 		return EquipoDB.getListaEquiposCompleta();
 	}
 
+	public static void createGrupoEquipos(String nombre, String[] equipos) {
+		EquipoDB.crearGrupoEquipo(nombre, equipos);
+	}
+
 	public static List<String> listarNombresGrupoEquipos() {
 		List<GrupoEquipos> equipos = EquipoDB.getListaGrupoEquipos();
 

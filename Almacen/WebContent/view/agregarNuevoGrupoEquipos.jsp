@@ -159,7 +159,7 @@
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../AreaNueva">
+				<form class="form-signin" method="post" action="../NuevoGrupoEquipo">
 					<h3 class="text-center">Datos del nuevo grupo de equipos</h3>
 					<hr class="m-4">
 					<div class="column">
@@ -170,20 +170,28 @@
 						<p></p>
 
 
-
+//TODO: pasar lista de entidades al back!
 						<script type="text/javascript">
-		$(document).ready(function() {
-			$('#boot-multiselect-equipos').multiselect({
-	            nonSelectedText: 'Seleccionar equipos',
-	            buttonWidth : 500,
-				enableFiltering : true
-			});
-		});
-	</script>
+							$(document).ready(function() {
+								$('#boot-multiselect-equipos').multiselect({
+									nonSelectedText : 'Seleccionar equipos',
+									buttonWidth : 500,
+									enableFiltering : true
+								});
+
+							$('#aceptarbutton')
+									.on('click',function() {
+												("#inputEquipos").val(('#boot-multiselect-equipos')
+														.val());
+											});
+							});
+							
+						</script>
 						<div style="text-align: center;">
+							<input type="hidden" id="inputEquipos" name="inputEquipos">
 							<select id="boot-multiselect-equipos" multiple="multiple">
 								<c:forEach items="${equipos}" var="equipo">
-									<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
+									<option value="${equipo.getNombre()}">${equipo.getEquipoId() }
 										- ${equipo.getNombre() }</option>
 								</c:forEach>
 							</select>
@@ -199,9 +207,7 @@
 				</form>
 			</div>
 		</div>
-
 	</div>
-
 
 </body>
 </html>

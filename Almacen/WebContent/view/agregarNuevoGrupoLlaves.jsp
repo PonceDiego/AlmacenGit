@@ -161,7 +161,7 @@
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../AreaNueva">
+				<form class="form-signin" method="get" action="../NuevoGrupo">
 					<h3 class="text-center">Datos del nuevo grupo de llaves</h3>
 					<hr class="m-4">
 					<div class="column">
@@ -174,14 +174,15 @@
 
 						<script type="text/javascript">
 							$(document).ready(function() {
-								$('#boot-multiselect-equipos').multiselect({
+								$('#boot-multiselect-llaves').multiselect({
 									nonSelectedText : 'Seleccionar llaves',
 									buttonWidth : 500,
 									enableFiltering : true
 								});
 							});
 						</script>
-						<select id="boot-multiselect-equipos" multiple="multiple">
+						<input type = "hidden" name="inputLlaves" id="inputLlaves" autocomplete="off">
+						<select id="boot-multiselect-llaves" name="boot-multiselect-llaves" multiple="multiple" onchange="selected()">
 							<c:forEach items="${llaves}" var="llave">
 								<option value="${llave.getLlaveId()}">${llave.getNombre() }
 									- ${llave.getLlaveId() }</option>
@@ -200,6 +201,13 @@
 		</div>
 
 	</div>
+	<script>
+		function selected(){
+			var x = document.getElementById("boot-multiselect-llaves").value;
+			document.getElementById("inputLlaves").value = x;
+			
+		}
+	</script>
 
 
 </body>

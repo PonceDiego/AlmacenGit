@@ -64,7 +64,7 @@ public class ServletNuevoEquipo extends HttpServlet {
 		} else {
 
 			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
-			
+
 			request.setCharacterEncoding("UTF-8");
 			String nombre, tipo, lugar, accesorios, serial, modelo, user, observaciones;
 			nombre = (String) request.getParameter("inputNombre");
@@ -81,7 +81,7 @@ public class ServletNuevoEquipo extends HttpServlet {
 			accesorios = (String) request.getParameter("inputAccesorios");
 			serial = (String) request.getParameter("inputSerial");
 			modelo = (String) request.getParameter("inputModelo");
-			user = (String) request.getParameter("nputUsuario");
+			user = (String) request.getParameter("inputUsuario");
 			observaciones = (String) request.getParameter("inputObservaciones");
 			EquipoManager.createEquipo(serial, nombre, tipo, lugar, modelo, user, observaciones, accesorios, actual);
 			response.sendRedirect("ListaEquipos");

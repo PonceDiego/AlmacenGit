@@ -15,24 +15,41 @@ import main.java.Almacen.model.Equipo;
 @WebServlet("/NuevoGrupoEquipo")
 public class NuevoGrupoEquipo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	public NuevoGrupoEquipo() {
 		super();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getSession().getAttribute("usuarioActual") == null) {
 			resp.sendRedirect("Index");
 			return;
 		}
-		
+
 		List<Equipo> equipos = EquipoManager.listarEquipos();
-		
+
 		req.getSession().setAttribute("equipos", equipos);
-		
+
 		resp.sendRedirect("view/agregarNuevoGrupoEquipos.jsp");
 	}
-	
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if (req.getSession().getAttribute("usuarioActual") == null) {
+			resp.sendRedirect("Index");
+			return;
+		} else {
+
+			String nombre;
+			String equipos;
+			req.setCharacterEncoding("UTF-8");
+			nombre = req.getParameter("inputNombre");
+			equipos = req.getParameter("inputEquipos");
+			System.out.println(equipos.toString() + "\n ------------------------------");
+//			EquipoManager.createGrupoEquipos(nombre, equipos);
+		}
+
+	}
+
 }

@@ -170,4 +170,41 @@ public class EquipoDB {
 			sess.close();
 		}
 	}
+
+	public static void crearGrupoEquipo(String nombre, String[] equipos) {
+		GrupoEquipos grupo = new GrupoEquipos();
+		grupo.setNombre(nombre);
+		Session sess = null;
+		Transaction tran = null;
+		Serializable s = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			s = sess.save(grupo);
+			tran.commit();
+
+		} finally {
+			for (String string : equipos) {
+				asignarGrupoToEquipo(string, sess.get(GrupoEquipos.class, s));
+			}
+			sess.close();
+		}
+	}
+
+	private static void asignarGrupoToEquipo(String nombreEquipo, GrupoEquipos grupo) {
+		Session sess = null;
+		Transaction tran = null;
+		Equipo equipo;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			Query<Equipo> query = sess.createQuery("select e from Equipo e where e.nombre ='" + nombreEquipo + "'");
+			equipo = query.getSingleResult();
+			sess.update(equipo);
+			equipo.setGrupoEquipos(grupo);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
 }
