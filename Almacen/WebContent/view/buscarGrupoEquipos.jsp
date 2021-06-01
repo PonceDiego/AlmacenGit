@@ -155,7 +155,7 @@ div.searchable {
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
-								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item active" href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
 								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
@@ -210,7 +210,7 @@ div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../GrupoEquipos">
+				<form class="form-signin" method="get" action="../GrupoEquipos?nombre=${nombreGrupo })">
 					<h3 class="text-center">Datos del grupo de equipos buscado</h3>
 					<hr class="m-4">
 					<div class="row">
