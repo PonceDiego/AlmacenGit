@@ -25,7 +25,7 @@ public class GrupoEquipos extends HttpServlet {
 			return;
 		}
 
-		String nombre = req.getParameter("nombreGrupoEquipos");
+		String nombre = req.getParameter("nombreGrupo");
 
 		main.java.Almacen.model.GrupoEquipos grupoEquipos = EquipoManager.getGrupoEquipoByNombre(nombre);
 

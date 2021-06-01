@@ -93,12 +93,15 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
 							<a class="dropdown-item" href="../ListaEquipos">Lista de
-								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
+								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar
+								grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
-								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo
+									grupo equipos</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
@@ -112,11 +115,13 @@
 							aria-labelledby="navbarDropdown4">
 
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
-								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar grupo de llaves</a>
+								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar
+								grupo de llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
-								<a class="dropdown-item active" href="../NuevoGrupo">Nuevo grupo</a>
+								<a class="dropdown-item active" href="../NuevoGrupo">Nuevo
+									grupo</a>
 							</c:if>
 
 						</div></li>
@@ -132,8 +137,7 @@
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 								<a class="dropdown-item " href="../ListaUsuarios">Lista de
 									usuarios</a>
-								<c:if
-									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
+								<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
@@ -168,31 +172,21 @@
 
 
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#boot-multiselect-equipos').multiselect({
-	            nonSelectedText: 'Seleccionar llaves',
-	            buttonWidth : 500,
-				enableFiltering : true
-			});
-		});
-	</script>
-							<select id="boot-multiselect-equipos" multiple="multiple">
-								<%-- 								<c:forEach items="${llaves}" var="llave"> --%>
-								<%-- 									<option value="${llave.getLlaveId()}">${llave.getNombre() } --%>
-								<%-- 										- ${llave.getLlaveId() }</option> --%>
-								<%-- 								</c:forEach> --%>
-								<option value="jQuery">jQuery Tutorials</option>
-								<option value="Bootstrap">Bootstrap Framework</option>
-								<option value="HTML">HTML</option>
-								<option value="CSS">CSS</option>
-								<option value="Angular">Angular</option>
-								<option value="Angular">javascript</option>
-								<option value="Java">Java</option>
-								<option value="Python">Python</option>
-								<option value="MySQL">MySQL</option>
-								<option value="Oracle">Oracle</option>
-							</select>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								$('#boot-multiselect-equipos').multiselect({
+									nonSelectedText : 'Seleccionar llaves',
+									buttonWidth : 500,
+									enableFiltering : true
+								});
+							});
+						</script>
+						<select id="boot-multiselect-equipos" multiple="multiple">
+							<c:forEach items="${llaves}" var="llave">
+								<option value="${llave.getLlaveId()}">${llave.getNombre() }
+									- ${llave.getLlaveId() }</option>
+							</c:forEach>
+						</select>
 
 
 					</div>

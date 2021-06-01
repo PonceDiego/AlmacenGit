@@ -210,7 +210,7 @@ div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="get" action="../GrupoEquipos?nombre=${nombreGrupo })">
+				<form class="form-signin" method="get" action="../GrupoEquipos?nombreGrupo=${nombreGrupo })">
 					<h3 class="text-center">Datos del grupo de equipos buscado</h3>
 					<hr class="m-4">
 					<div class="row">

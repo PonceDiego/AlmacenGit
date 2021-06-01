@@ -170,7 +170,7 @@
 		<table class="table">
 			<tr>
 				<th>ID:</th>
-				<td>${grupoEquipos.getId()}</td>
+				<td>${grupoEquipos.getGrupoEquipoId()}</td>
 				<th>Estado:</th>
 				<td>${grupoEquiposEstado}</td>
 			</tr>

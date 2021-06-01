@@ -158,8 +158,13 @@ public class EquipoDB {
 		GrupoEquipos equipo;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<GrupoEquipos> query = sess.createQuery("select g from GrupoEquipos g where g.nombre =" + nombre);
+			Query<GrupoEquipos> query = sess
+					.createQuery("select g from GrupoEquipos g where g.nombre ='" + nombre + "'");
 			equipo = query.getSingleResult();
+			Hibernate.initialize(equipo.getEquipos());
+			for (Equipo e : equipo.getEquipos()) {
+				Hibernate.initialize(e.getTipo());
+			}
 			return equipo;
 		} finally {
 			sess.close();
