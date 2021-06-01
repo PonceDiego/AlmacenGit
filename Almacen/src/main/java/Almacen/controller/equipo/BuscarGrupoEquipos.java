@@ -22,8 +22,6 @@ public class BuscarGrupoEquipos extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doGet(req, resp);
-		
 		if (req.getSession().getAttribute("usuarioActual") == null) {
 			resp.sendRedirect("Index");
 			return;
