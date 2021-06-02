@@ -82,30 +82,21 @@ public class LlaveDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			s = sess.save(grupo);
+			for (String string : llaves) {
+				asignarGrupoToLlave(sess, string, sess.get(GrupoLlaves.class, s));
+			}
 			tran.commit();
 
 		} finally {
-			for (String string : llaves) {
-				asignarGrupoToLlave(string, sess.get(GrupoLlaves.class, s));
-			}
 			sess.close();
 		}
 	}
 
-	private static void asignarGrupoToLlave(String nombreEquipo, GrupoLlaves grupo) {
-		Session sess = null;
-		Transaction tran = null;
+	private static void asignarGrupoToLlave(Session sess, String nombreEquipo, GrupoLlaves grupo) {
 		Llave llave;
-		try {
-			sess = HibernateUtils.openSession();
-			tran = sess.beginTransaction();
-			Query<Llave> query = sess.createQuery("select e from Llave e where e.nombre ='" + nombreEquipo + "'");
-			llave = query.getSingleResult();
-			sess.update(llave);
-			llave.setGrupoLlaves(grupo);
-			tran.commit();
-		} finally {
-			sess.close();
-		}
+		Query<Llave> query = sess.createQuery("select e from Llave e where e.nombre ='" + nombreEquipo + "'");
+		llave = query.getSingleResult();
+		sess.update(llave);
+		llave.setGrupoLlaves(grupo);
 	}
 }
