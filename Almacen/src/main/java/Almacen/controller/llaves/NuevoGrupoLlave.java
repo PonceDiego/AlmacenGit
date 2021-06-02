@@ -34,4 +34,24 @@ public class NuevoGrupoLlave extends HttpServlet {
 		resp.sendRedirect("view/agregarNuevoGrupoLlaves.jsp");
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if (req.getSession().getAttribute("usuarioActual") == null) {
+			resp.sendRedirect("Index");
+			return;
+		} else {
+
+			String nombre;
+			String llaves;
+			req.setCharacterEncoding("UTF-8");
+			nombre = req.getParameter("inputNombre");
+			llaves = req.getParameter("inputLlaves");
+			String[] llavesDivididas = llaves.split(",");
+			LlaveManager.createGrupoLlaves(nombre, llavesDivididas);
+
+			resp.sendRedirect("BuscarGrupoLlaves");
+		}
+
+	}
+
 }

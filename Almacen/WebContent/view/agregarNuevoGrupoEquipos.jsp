@@ -170,7 +170,7 @@
 						<p></p>
 
 
-//TODO: pasar lista de entidades al back!
+
 						<script type="text/javascript">
 							$(document).ready(function() {
 								$('#boot-multiselect-equipos').multiselect({
@@ -178,12 +178,12 @@
 									buttonWidth : 500,
 									enableFiltering : true
 								});
+								
+								$('#aceptarbutton').click(function() {
+		                            $('#inputEquipos').val($('#boot-multiselect-equipos')
+		                                    .val());
+		                        });
 
-							$('#aceptarbutton')
-									.on('click',function() {
-												("#inputEquipos").val(('#boot-multiselect-equipos')
-														.val());
-											});
 							});
 							
 						</script>
@@ -202,8 +202,8 @@
 					<hr>
 					<button class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
-						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
-						Aceptar</button>
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;"
+						>Aceptar</button>
 				</form>
 			</div>
 		</div>

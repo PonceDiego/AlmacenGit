@@ -15,7 +15,7 @@
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
-<title>Buscar grupo de equipos específico</title>
+<title>Buscar grupo de llaves específico</title>
 
 <style>
 .form-signin .btn {
@@ -210,7 +210,7 @@ div.searchable {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../Articulo">
+				<form class="form-signin" method="get" action="../GrupoLlaves?nombreGrupo=${nombreGrupo })">
 					<h3 class="text-center">Datos del grupo de llaves buscado</h3>
 					<hr class="m-4">
 					<div class="row">
@@ -224,7 +224,7 @@ div.searchable {
 								<ul id="ulGE">
 									<c:forEach items="${gruposLlaves}" var="grupos">
 
-										<li>${grupos.getNombre()}</li>
+										<li>${grupos}</li>
 									</c:forEach>
 								</ul>
 							</div>

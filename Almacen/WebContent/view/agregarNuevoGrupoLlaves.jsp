@@ -17,7 +17,7 @@
 
 
 
-<title>Grupo de Equipos Nuevo</title>
+<title>Grupo de Llaves Nuevo</title>
 
 <style>
 .form-signin .btn {
@@ -161,7 +161,7 @@
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="get" action="../NuevoGrupo">
+				<form class="form-signin" method="post" action="../NuevoGrupo">
 					<h3 class="text-center">Datos del nuevo grupo de llaves</h3>
 					<hr class="m-4">
 					<div class="column">
@@ -173,22 +173,40 @@
 
 
 						<script type="text/javascript">
-							$(document).ready(function() {
-								$('#boot-multiselect-llaves').multiselect({
-									nonSelectedText : 'Seleccionar llaves',
-									buttonWidth : 500,
-									enableFiltering : true
-								});
-							});
-						</script>
-						<input type = "hidden" name="inputLlaves" id="inputLlaves" autocomplete="off">
-						<select id="boot-multiselect-llaves" name="boot-multiselect-llaves" multiple="multiple" onchange="selected()">
-							<c:forEach items="${llaves}" var="llave">
-								<option value="${llave.getLlaveId()}">${llave.getNombre() }
-									- ${llave.getLlaveId() }</option>
-							</c:forEach>
-						</select>
+							$(document)
+									.ready(
+											function() {
+												$('#boot-multiselect-llaves')
+														.multiselect(
+																{
+																	nonSelectedText : 'Seleccionar llaves',
+																	buttonWidth : 500,
+																	enableFiltering : true
+																});
 
+												$('#aceptarbutton')
+														.click(
+																function() {
+																	$(
+																			'#inputLlaves')
+																			.val(
+																					$(
+																							'#boot-multiselect-llaves')
+																							.val());
+																});
+											});
+						</script>
+						<div style="text-align: center;">
+
+							<input type="hidden" name="inputLlaves" id="inputLlaves"
+								autocomplete="off"> <select id="boot-multiselect-llaves"
+								name="boot-multiselect-llaves" multiple="multiple">
+								<c:forEach items="${llaves}" var="llave">
+									<option value="${llave.getNombre()}">${llave.getNombre() }
+										- ${llave.getLlaveId() }</option>
+								</c:forEach>
+							</select>
+						</div>
 
 					</div>
 					<hr>
@@ -201,13 +219,6 @@
 		</div>
 
 	</div>
-	<script>
-		function selected(){
-			var x = document.getElementById("boot-multiselect-llaves").value;
-			document.getElementById("inputLlaves").value = x;
-			
-		}
-	</script>
 
 
 </body>

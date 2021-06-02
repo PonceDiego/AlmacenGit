@@ -46,8 +46,10 @@ public class NuevoGrupoEquipo extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			nombre = req.getParameter("inputNombre");
 			equipos = req.getParameter("inputEquipos");
-			System.out.println(equipos.toString() + "\n ------------------------------");
-//			EquipoManager.createGrupoEquipos(nombre, equipos);
+			String[] equipoDivididos = equipos.split(",");
+			EquipoManager.createGrupoEquipos(nombre, equipoDivididos);
+
+			resp.sendRedirect("BuscarGrupoEquipos");
 		}
 
 	}
