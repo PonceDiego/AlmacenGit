@@ -11,27 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.llaves.LlaveManager;
 import main.java.Almacen.model.Llave;
+import main.java.Almacen.model.Usuario;
 
 @WebServlet("/ListaLlaves")
 public class ServletListaLlaves extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public ServletListaLlaves() {
 		super();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getSession().getAttribute("usuarioActual") == null) {
 			resp.sendRedirect("Index");
 			return;
 		}
-		
+
 		List<Llave> llaves = LlaveManager.getAllLlaves();
-		
+
+		Usuario actual = (Usuario) req.getSession().getAttribute("usuarioActual");
+		req.getSession().setAttribute("usuarioActual", actual);
 		req.getSession().setAttribute("llaves", llaves);
-		
-		
+
 		resp.sendRedirect("view/listaDeLlaves.jsp");
 	}
 }

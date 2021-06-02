@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 
@@ -37,6 +38,7 @@ public class LlaveDB {
 			Query<Llave> query = sess.createQuery("select a from Llave a where a.llaveId!=null");
 			llaves = query.getResultList();
 			for (Llave llave : llaves) {
+				Hibernate.initialize(llave.getGrupoLlaves());
 				Hibernate.initialize(llave.getLugar());
 			}
 			return llaves;
@@ -98,5 +100,27 @@ public class LlaveDB {
 		llave = query.getSingleResult();
 		sess.update(llave);
 		llave.setGrupoLlaves(grupo);
+	}
+
+	public static void cambiarEstado(Integer user, int id) {
+		Session sess = null;
+		Transaction tran = null;
+		Llave e = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			e = sess.get(Llave.class, id);
+			sess.update(e);
+			if (e.getEstado().equals("En uso")) {
+				RegistroManager.createRegistro(true, user, id, "Llave");
+				e.setEstado("Disponible");
+			} else {
+				RegistroManager.createRegistro(false, user, id, "Llave");
+				e.setEstado("En uso");
+			}
+			tran.commit();
+		} finally {
+			sess.close();
+		}
 	}
 }

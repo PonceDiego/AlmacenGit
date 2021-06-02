@@ -50,4 +50,10 @@ public class LlaveManager {
 
 		return estado;
 	}
+
+	public static void changeStatus(Integer id, int idE) {
+		System.out.println("Cambiando el estado de llave número " + id);
+		LlaveDB.cambiarEstado(id, idE);
+
+	}
 }
