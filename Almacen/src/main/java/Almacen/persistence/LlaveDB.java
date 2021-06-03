@@ -130,6 +130,7 @@ public class LlaveDB {
 		Lugar lugar = LugarDB.getLugarByNombre(ubicacion);
 
 		Llave llave = new Llave(lugar, copia, nombre, "Disponible");
+		llave.setObservaciones(observaciones);
 		Session sess = null;
 		Transaction tran = null;
 		try {
