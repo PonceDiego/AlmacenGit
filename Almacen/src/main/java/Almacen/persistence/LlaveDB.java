@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.manager.RegistroManager;
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 
@@ -112,10 +113,10 @@ public class LlaveDB {
 			e = sess.get(Llave.class, id);
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user, id, "Llave");
+				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.LLAVE, id);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user, id, "Llave");
+				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.LLAVE, id);
 				e.setEstado("En uso");
 			}
 			tran.commit();
