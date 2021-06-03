@@ -182,7 +182,7 @@
 						<tr>
 							<td><c:out value="${equipo.getNombre()}" /></td>
 							<td><c:out value="${equipo.getTipo().getNombre() }" /></td>
-							<td><c:forEach items="${registros }" var="re">
+							<td><c:forEach items="${registros.getRegistros() }" var="re">
 									<c:if
 										test="${re.getEquipo().getNombre()== equipo.getNombre() }">
 										<c:set var="usuarioEquipo" value="${re.getUsuario()}"></c:set>
