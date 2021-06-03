@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +16,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.EquipoManager;
+import main.java.Almacen.manager.RegistroManager;
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.EquipoDB;
-import main.java.Almacen.persistence.RegistroDB;
 
 /**
  * Servlet implementation class ServletListaEquipos
@@ -58,9 +60,13 @@ public class ServletListaEquipos extends HttpServlet {
 				out.flush();
 			}else {
 				Usuario actual=(Usuario)request.getSession().getAttribute("usuarioActual");
+				
+				List<Equipo> equipos = EquipoManager.listarEquipos();
+				List<Integer> ids = equipos.stream().map(x -> x.getEquipoId()).collect(Collectors.toList());
+				
 				request.getSession().setAttribute("usuarioActual", actual);
-				request.getSession().setAttribute("equipos", EquipoManager.listarEquipos());
-				request.getSession().setAttribute("registros", RegistroDB.listarRecursosPorEquipo()) ;
+				request.getSession().setAttribute("equipos", equipos);
+				request.getSession().setAttribute("registros", RegistroManager.getLastRegistrosByEntidadAndId(TIPO_REGISTRO.EQUIPO, ids)) ;
 			}
 
 			response.sendRedirect("view/listaDeEquipos.jsp");

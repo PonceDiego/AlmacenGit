@@ -1,5 +1,6 @@
 package main.java.Almacen.manager;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class RegistroManager {
 		}
 		
 		registro.setEntidadId(idEntidad);
-		registro.setEntidad(tipo.toString());
+		registro.setEntidad(tipo.label);
 		
 		RegistroDB.crearRegistro(registro);
 	}
@@ -91,6 +92,16 @@ public class RegistroManager {
 		}
 		
 		return registroView;
+	}
+	
+	public static List<Registro> getLastRegistrosByEntidadAndId(TIPO_REGISTRO tipo, List<Integer> ids){
+		List<Registro> registros = new ArrayList<Registro>();
+		
+		for (Integer id : ids) {
+			registros.add(RegistroDB.getLastRegistroByIdAndTipo(tipo, id));
+		}
+		
+		return registros;
 	}
 
 	public static List<Registro> getListaRegistros() {

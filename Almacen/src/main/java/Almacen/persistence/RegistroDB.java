@@ -98,10 +98,30 @@ public class RegistroDB {
 		}
 	}
 	
+	public static Registro getLastRegistroByIdAndTipo(TIPO_REGISTRO tipo, int id) {
+		Session sess = null;
+		Registro registro = null;
+		try {
+			sess = HibernateUtils.openSession();
+			
+			Query<Registro> query = sess.createQuery("select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '"+ id +"' order by r.fecha desc");
+			query.setMaxResults(1);
+			
+			registro = query.getSingleResult();
+			
+			Hibernate.initialize(registro.getUsuario());
+			
+			return registro;
+		} finally {
+			sess.close();
+		}
+	}
+	
+	
 	public static List<Registro> listarRecursosPorEquipo() {
 		Session sess=null;
 		List<Registro> registros=new ArrayList<Registro>();
-		List<Equipo> equipos= EquipoDB.getListaEquiposCompleta();
+		List<Equipo> equipos = EquipoDB.getListaEquiposCompleta();
 		try {
 			sess=HibernateUtils.openSession();
 			for(Equipo e:equipos) {
@@ -118,8 +138,5 @@ public class RegistroDB {
 		}finally {
 			sess.close();
 		}
-		
-		
-		
 	}
 }
