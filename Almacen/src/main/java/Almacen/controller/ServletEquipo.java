@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.EquipoManager;
 import main.java.Almacen.manager.RegistroManager;
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 
 /**
  * Servlet implementation class ServletEquipo
@@ -39,7 +40,7 @@ public class ServletEquipo extends HttpServlet {
 			int id = Integer.parseInt(idS);
 
 			request.getSession().setAttribute("equipoEspecifico", EquipoManager.getEquipo(id));
-			request.getSession().setAttribute("registrosEquipo", RegistroManager.getRegistrosByEquipo(id));
+			request.getSession().setAttribute("registrosEquipo", RegistroManager.getRegistrosByTipoAndId(TIPO_REGISTRO.EQUIPO, id));
 			response.sendRedirect("view/equipoEspecifico.jsp");
 		}
 	}

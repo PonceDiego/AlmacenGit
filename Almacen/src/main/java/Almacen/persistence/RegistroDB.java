@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Registro;
 import main.java.Almacen.model.Usuario;
@@ -33,16 +34,15 @@ public class RegistroDB {
 		}
 	}
 
-	public static List<Registro> getRegistrosByEquipo(int equipo) {
+	public static List<Registro> getRegistrosByTipoAndId(TIPO_REGISTRO tipo, int id) {
 		Session sess = null;
 		List<Registro> registros = new ArrayList<Registro>();
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Registro> query = sess.createQuery("select r from Registro r where r.equipo='" + equipo + "'");
+			Query<Registro> query = sess.createQuery("select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '"+ id +"'");
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r.getUsuario());
-				Hibernate.initialize(r);
 			}
 			return registros;
 		} finally {
@@ -97,6 +97,7 @@ public class RegistroDB {
 			sess.close();
 		}
 	}
+	
 	public static List<Registro> listarRecursosPorEquipo() {
 		Session sess=null;
 		List<Registro> registros=new ArrayList<Registro>();

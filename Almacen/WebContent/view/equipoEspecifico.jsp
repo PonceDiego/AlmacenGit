@@ -172,7 +172,7 @@
 				</tr>
 			</thead>
 			<tbody id="registros" style="color: black; background-color: white;">
-				<c:forEach items="${registrosEquipo}" var="re">
+				<c:forEach items="${registrosEquipo.getRegistros()}" var="re">
 					<tr>
 						<td><c:out value="${re.getFecha()}" /></td>
 						<c:choose>

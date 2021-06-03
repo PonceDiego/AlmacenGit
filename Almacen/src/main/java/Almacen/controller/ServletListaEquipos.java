@@ -15,10 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.EquipoManager;
-import main.java.Almacen.model.Articulo;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Usuario;
-import main.java.Almacen.persistence.ArticuloDB;
 import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.RegistroDB;
 
@@ -59,10 +57,10 @@ public class ServletListaEquipos extends HttpServlet {
 				out.print(gson.toJson(respuesta));
 				out.flush();
 			}else {
-			Usuario actual=(Usuario)request.getSession().getAttribute("usuarioActual");
-			request.getSession().setAttribute("usuarioActual", actual);
-			request.getSession().setAttribute("equipos", EquipoManager.listarEquipos());
-			request.getSession().setAttribute("registros",RegistroDB.listarRecursosPorEquipo()) ;
+				Usuario actual=(Usuario)request.getSession().getAttribute("usuarioActual");
+				request.getSession().setAttribute("usuarioActual", actual);
+				request.getSession().setAttribute("equipos", EquipoManager.listarEquipos());
+				request.getSession().setAttribute("registros", RegistroDB.listarRecursosPorEquipo()) ;
 			}
 
 			response.sendRedirect("view/listaDeEquipos.jsp");

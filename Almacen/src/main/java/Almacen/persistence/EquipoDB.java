@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.manager.RegistroManager;
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.GrupoEquipos;
 
@@ -40,10 +41,10 @@ public class EquipoDB {
 			e = sess.get(Equipo.class, id);
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user, id, "Equipo");
+				RegistroManager.createRegistro(true, user,TIPO_REGISTRO.EQUIPO , id);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user, id, "Equipo");
+				RegistroManager.createRegistro(false, user,TIPO_REGISTRO.EQUIPO , id);
 				e.setEstado("En uso");
 			}
 			tran.commit();
