@@ -11,43 +11,43 @@ import main.java.Almacen.model.Lugar;
 
 public class LugarDB {
 	public static void crearLugar(Lugar tipo) {
-		Session sess=null;
-		Transaction tran=null;
+		Session sess = null;
+		Transaction tran = null;
 		try {
-			sess=HibernateUtils.openSession();
-			tran=sess.beginTransaction();
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
 			sess.save(tipo);
 			tran.commit();
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
 
 	public static Lugar getLugarByNombre(String lugar) {
-		Session sess=null;
-		Lugar l=null;
+		Session sess = null;
+		Lugar l = null;
 		try {
-			sess=HibernateUtils.openSession();
-			Query<Lugar> query=sess.createQuery("select l from Lugar l where l.nombre='"+lugar+"'");
-			l=query.getSingleResult();
+			sess = HibernateUtils.openSession();
+			Query<Lugar> query = sess.createQuery("select l from Lugar l where l.nombre='" + lugar + "'");
+			l = query.getSingleResult();
 			return l;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
-	public static List<Lugar> getLugares(){
-		Session sess=null;
+
+	public static List<Lugar> getLugares() {
+		Session sess = null;
 		List<Lugar> l;
 		try {
-			sess=HibernateUtils.openSession();
-			Query query=sess.createQuery("select l from Lugar l");
-			l=query.getResultList();
-			for(Lugar lu:l) {
-				System.out.println(lu.getNombre());
+			sess = HibernateUtils.openSession();
+			Query query = sess.createQuery("select l from Lugar l");
+			l = query.getResultList();
+			for (Lugar lu : l) {
 				Hibernate.initialize(lu);
 			}
 			return l;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}

@@ -12,6 +12,7 @@ import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
+import main.java.Almacen.model.Lugar;
 
 public class LlaveDB {
 
@@ -120,6 +121,23 @@ public class LlaveDB {
 				e.setEstado("En uso");
 			}
 			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void crearLlave(String nombre, String copia, String ubicacion, String observaciones) {
+		Lugar lugar = LugarDB.getLugarByNombre(ubicacion);
+
+		Llave llave = new Llave(lugar, copia, nombre, "Disponible");
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.save(llave);
+			tran.commit();
+
 		} finally {
 			sess.close();
 		}

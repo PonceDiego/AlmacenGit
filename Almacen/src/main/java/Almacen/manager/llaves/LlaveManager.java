@@ -8,6 +8,11 @@ import main.java.Almacen.model.Llave;
 import main.java.Almacen.persistence.LlaveDB;
 
 public class LlaveManager {
+
+	public static void crearLlave(String nombre, String copia, String ubicacion, String observaciones) {
+		LlaveDB.crearLlave(nombre, copia, ubicacion, observaciones);
+	}
+
 	public static Llave getLlaveById(String id) {
 		int idi = Integer.parseInt(id);
 		return LlaveDB.getLlaveById(idi);
