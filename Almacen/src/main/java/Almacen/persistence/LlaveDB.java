@@ -63,13 +63,14 @@ public class LlaveDB {
 		}
 	}
 
-	public static GrupoLlaves getGrupoLlavesById(String id) {
+	public static GrupoLlaves getGrupoLlavesById(String ids) {
 		Session sess = null;
 		GrupoLlaves grupoLlaves = null;
+		int id = Integer.parseInt(ids);
 
 		try {
 			sess = HibernateUtils.openSession();
-			sess.get(GrupoLlaves.class, id);
+			grupoLlaves = sess.get(GrupoLlaves.class, id);
 			return grupoLlaves;
 		} finally {
 			sess.close();
@@ -143,4 +144,22 @@ public class LlaveDB {
 			sess.close();
 		}
 	}
+
+	public static GrupoLlaves getGrupoLllavesByNombre(String nombreGrupoLlaves) {
+		GrupoLlaves grupo;
+		Session sess = null;
+		try {
+
+			sess = HibernateUtils.openSession();
+			Query<GrupoLlaves> query = sess
+					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "'");
+			grupo = query.getSingleResult();
+			Hibernate.initialize(grupo.getLlaves());
+			return grupo;
+		} finally {
+			sess.close();
+		}
+
+	}
+
 }

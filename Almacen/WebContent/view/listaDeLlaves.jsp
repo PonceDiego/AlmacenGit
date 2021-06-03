@@ -158,7 +158,7 @@
 			<h1 class="mt-5">
 				Lista de llaves.<span><a href="../ListaLugares"
 					style="font-size: small;"> Lugares 🡕</a></span><span><a
-					href="../ListaGruposLlaves" style="font-size: small;">Grupos 🡕</a></span>
+					href="../BuscarGrupoLlaves" style="font-size: small;">Grupos 🡕</a></span>
 			</h1>
 
 

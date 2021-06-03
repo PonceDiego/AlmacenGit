@@ -61,4 +61,9 @@ public class LlaveManager {
 		LlaveDB.cambiarEstado(id, idE);
 
 	}
+
+	public static GrupoLlaves getGrupoLlavesByNombre(String nombreGrupoLlaves) {
+		return LlaveDB.getGrupoLllavesByNombre(nombreGrupoLlaves);
+	}
+
 }

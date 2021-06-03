@@ -164,7 +164,7 @@
 		<table class="table">
 			<tr>
 				<th>ID:</th>
-				<td>${grupoLlaves.getId()}</td>
+				<td>${grupoLlaves.getGrupoId()}</td>
 				<th>Estado:</th>
 				<td>${grupoLlavesEstado}</td>
 			</tr>
@@ -180,7 +180,7 @@
 					<th>Copia</th>
 					<th>Estado</th>
 				</tr>
-				<c:forEach items="${llavesGrupoLlaves}" var="llave">
+				<c:forEach items="${grupoLlaves.llaves}" var="llave">
 					<tr>
 						<td> <c:out
 									value="${llave.getNombre()}" />
