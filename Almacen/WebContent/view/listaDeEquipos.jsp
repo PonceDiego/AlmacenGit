@@ -182,9 +182,9 @@
 						<tr>
 							<td><c:out value="${equipo.getNombre()}" /></td>
 							<td><c:out value="${equipo.getTipo().getNombre() }" /></td>
-							<td><c:forEach items="${registros }" var="re">
+							<td><c:forEach items="${registros}" var="re">
 									<c:if
-										test="${re.getEntidad() == equipo.getEquipoId().toString() }">
+										test="${re.getEntidadId() == equipo.getEquipoId().toString() }">
 										<c:set var="usuarioEquipo" value="${re.getUsuario()}"></c:set>
 										<c:out
 											value="${re.getUsuario().getNombre() } ${re.getUsuario().getApellido()}"></c:out>
@@ -210,14 +210,14 @@
 									<c:when test="${equipo.getEstado()=='Disponible'}">
 										<button class="btn btn-warning" type="button" title="Salida"
 											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
+											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
 											S</button>
 
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}');">
+											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
 											E</button>
 									</c:when>
 								</c:choose> <a href="../Equipo?equipoId=${equipo.getEquipoId()}"><i
