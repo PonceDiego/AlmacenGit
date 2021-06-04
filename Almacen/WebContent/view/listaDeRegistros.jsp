@@ -164,7 +164,8 @@
 						<th>Fecha</th>
 						<th>Entrada/Salida</th>
 						<th>Usuario</th>
-						<th>Equipo</th>
+						<th>Entidad</th>
+						<th>Nombre</th>
 						<!-- 						<th>Acción</th> -->
 					</tr>
 				</thead>
@@ -183,7 +184,7 @@
 							</c:choose>
 							<td><c:out
 									value="${re.getUsuario().getNombre()} ${re.getUsuario().getApellido() }" /></td>
-							<td><c:out value="${re.getEquipo().getNombre()}" /></td>
+							<td><c:out value="${re.getEntidad()}" /></td>
 
 						</tr>
 					</c:forEach>

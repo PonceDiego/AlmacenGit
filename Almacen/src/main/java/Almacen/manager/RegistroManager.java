@@ -3,8 +3,13 @@ package main.java.Almacen.manager;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import main.java.Almacen.manager.llaves.LlaveManager;
+import main.java.Almacen.model.Equipo;
+import main.java.Almacen.model.GrupoEquipos;
+import main.java.Almacen.model.GrupoLlaves;
+import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Registro;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.model.views.RegistroView;
@@ -69,29 +74,52 @@ public class RegistroManager {
 		RegistroDB.crearRegistro(registro);
 	}
 
-	public static RegistroView getRegistrosByTipoAndId(TIPO_REGISTRO tipo, int id) {
-		RegistroView registroView = new RegistroView();
+	public static List<RegistroView> getRegistrosByTipoAndId(TIPO_REGISTRO tipo, int id) {
+		List<RegistroView> registrosViews = new ArrayList<RegistroView>();
 		
 		List<Registro> registros = RegistroDB.getRegistrosByTipoAndId(tipo, id);
 		
-		registroView.setRegistros(registros);
+		registrosViews = registros.stream().map(x -> new RegistroView(x)).collect(Collectors.toList());
+		
+		Equipo equipo = null;
+		Llave llave = null;
+		GrupoEquipos grupoEquipo = null;
+		GrupoLlaves grupoLlave = null;
 		
 		switch (tipo) {
 			case EQUIPO:
-				registroView.setEquipo(EquipoManager.getEquipo(id));
+				equipo = EquipoManager.getEquipo(id);
 				break;
 			case LLAVE:
-				registroView.setLlave(LlaveManager.getLlaveById(id + ""));
+				llave = LlaveManager.getLlaveById(id + "");
 				break;
 			case GRUPO_EQUIPO:
-				registroView.setGrupoEquipos(EquipoManager.getGrupoEquipo(id + ""));
+				grupoEquipo = EquipoManager.getGrupoEquipo(id + "");
 				break;
 			case GRUPO_LLAVE:
-				registroView.setGrupoLlaves(LlaveManager.getGrupoLlaveById(id + ""));
+				grupoLlave = LlaveManager.getGrupoLlaveById(id + "");
 				break;
 		}
 		
-		return registroView;
+		for (RegistroView registro : registrosViews) {
+			switch (tipo) {
+				case EQUIPO:
+					registro.setEquipo(equipo);
+					break;
+				case LLAVE:
+					registro.setLlave(llave);
+					break;
+				case GRUPO_EQUIPO:
+					registro.setGrupoEquipos(grupoEquipo);
+					break;
+				case GRUPO_LLAVE:
+					registro.setGrupoLlaves(grupoLlave);
+					break;
+			}
+		}
+		
+		
+		return registrosViews;
 	}
 	
 	public static List<Registro> getLastRegistrosByEntidadAndId(TIPO_REGISTRO tipo, List<Integer> ids){
@@ -120,6 +148,6 @@ public class RegistroManager {
 			}
 		}
 
-		return null;
+		return registros;
 	}
 }

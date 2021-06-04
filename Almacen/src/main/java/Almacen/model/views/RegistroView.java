@@ -1,21 +1,26 @@
 package main.java.Almacen.model.views;
 
-import java.util.List;
-
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.GrupoEquipos;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Registro;
 
-public class RegistroView{
+public class RegistroView extends Registro{
 	
 	private Equipo equipo;
 	private Llave llave;
 	private GrupoEquipos grupoEquipos;
 	private GrupoLlaves grupoLlaves;
 	
-	private List<Registro> registros;
+	
+	
+	public RegistroView() {
+		super();
+	}
+	public RegistroView(Registro x) {
+		super(x.getUsuario(), x.getFecha(), x.getEntrada(), x.getEntidadId(), x.getEntidad());
+	}
 	
 	public Equipo getEquipo() {
 		return equipo;
@@ -40,12 +45,6 @@ public class RegistroView{
 	}
 	public void setGrupoLlaves(GrupoLlaves grupoLlaves) {
 		this.grupoLlaves = grupoLlaves;
-	}
-	public List<Registro> getRegistros() {
-		return registros;
-	}
-	public void setRegistros(List<Registro> registros) {
-		this.registros = registros;
 	}
 	
 }
