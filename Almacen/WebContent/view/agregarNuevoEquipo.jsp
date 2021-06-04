@@ -375,26 +375,28 @@ div.searchable2 {
 							<div>Tipo</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputTipo" id="inputTipo"
-									autocomplete="off"> <select onchange="selected()"
+									autocomplete="off"> 
+									<select onchange="selected()"
 									id="tipoSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
 									<option selected disabled>Seleccione un tipo</option>
 									<c:forEach items="${listaTipos}" var="tipo">
-										<option value=${tipo.getNombre() }>${tipo.getNombre()}</option>
+										<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div>Ubicación</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputLugar" id="inputLugar"
-									autocomplete="off"> <select onchange="selected2()"
+									autocomplete="off"> 
+									<select onchange="selected2()"
 									id="lugarSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
 									<option selected disabled>Seleccione un lugar</option>
 									<c:forEach items="${listaLugares}" var="lugar">
-										<option value=${lugar.getNombre() }>${lugar.getNombre()}</option>
+										<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -453,6 +455,7 @@ div.searchable2 {
 	</div>
 	<script>
 		function selected() {
+			console.log("selected");
 			var x = document.getElementById("tipoSelect").value;
 
 			document.getElementById("inputTipo").value = x;
@@ -460,6 +463,7 @@ div.searchable2 {
 	</script>
 	<script>
 		function selected2() {
+			console.log("selected2");
 			var x = document.getElementById("lugarSelect").value;
 
 			document.getElementById("inputLugar").value = x;

@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.GrupoEquipos;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.LugarDB;
-import main.java.Almacen.persistence.RegistroDB;
 import main.java.Almacen.persistence.TipoDB;
 import main.java.Almacen.persistence.UsuarioDB;
 
@@ -50,9 +50,8 @@ public class EquipoManager {
 		int id = (int) idS;
 		Equipo e = EquipoDB.getEquipoByID(id);
 		System.out.println(e.getNombre());
-
-		RegistroDB.crearRegistro(e, userActual);
-
+		
+		RegistroManager.createRegistro(true, userActual.getId(), TIPO_REGISTRO.EQUIPO, e.getEquipoId());
 	}
 
 	public static void changeStatus(int user, int id) {
