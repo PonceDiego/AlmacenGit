@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.Registro;
+import main.java.Almacen.model.views.RegistroView;
 
 /**
  * Servlet implementation class ServletListaRegistros
@@ -47,8 +48,8 @@ public class ServletListaRegistros extends HttpServlet {
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				ArrayList<Registro> respuesta = new ArrayList<Registro>();
-				List<Registro> e = RegistroManager.getListaRegistros();
-				for (Registro art : e) {
+				List<RegistroView> e = RegistroManager.getListaRegistros();
+				for (RegistroView art : e) {
 					respuesta.add(art);
 				}
 				out.print(gson.toJson(respuesta));
