@@ -306,17 +306,68 @@ input[type=number] {
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../NuevaLlave">
+				<form class="form-signin" method="post"
+					action="../EditarGrupoLlaves">
 					<h3 class="text-center">Datos del grupo de llaves</h3>
-					<div class="row">
-						<div class="column">
-							<div>Nombre del grupo</div>
-							<div class="form-label-group>">
-								<input type="text" name="inputNombre" id="inputNombre"
-									class="form-control" placeholder="Nombre" required
-									value="${grupo.getNombre() }" autocomplete="off">
-							</div>
+					<div class="column">
+						<input type="hidden" name="inputId" id="inputId"
+							value="${grupo.getGrupoId() }">
+						<div>Nombre del grupo</div>
+						<div class="form-label-group>">
+							<input type="text" name="inputNombre" id="inputNombre"
+								class="form-control" placeholder="Nombre" required
+								value="${grupo.getNombre() }" autocomplete="off"
+								disabled="disabled">
 						</div>
+
+						<script type="text/javascript">
+							$(document)
+									.ready(
+											function() {
+												$('#boot-multiselect-llaves')
+														.multiselect(
+																{
+																	nonSelectedText : 'Seleccionar llaves',
+																	buttonWidth : 500,
+																	enableFiltering : true
+																});
+
+												$('#aceptarbutton')
+														.click(
+																function() {
+																	$(
+																			'#inputLlaves')
+																			.val(
+																					$(
+																							'#boot-multiselect-llaves')
+																							.val());
+																});
+											});
+						</script>
+
+						<div>Llaves</div>
+						<div style="text-align: center;">
+							<input type="hidden" name="inputLlaves" id="inputLlaves"
+								autocomplete="off"> <select id="boot-multiselect-llaves"
+								name="boot-multiselect-llaves" multiple="multiple">
+								<c:forEach items="${llaves}" var="llave">
+									<c:forEach items="${grupo.getLlaves() }" var="gLlave">
+										<c:choose>
+											<c:when test="${gLlave.getLlaveId() == llave.getLlaveId()}">
+												<option selected value="${llave.getLlaveId()}">${llave.getNombre() }
+													- ${llave.getLlaveId() }</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${llave.getLlaveId()}">${llave.getNombre() }
+													- ${llave.getLlaveId() }</option>
+											</c:otherwise>
+										</c:choose>
+
+									</c:forEach>
+								</c:forEach>
+							</select>
+						</div>
+
 					</div>
 
 
@@ -476,7 +527,7 @@ input[type=number] {
 			x.innerHTML = "Ya existe una llave con el nombre " + val
 					+ " y número de copia " + copia + "!";
 			editar.text = "Editar";
-			editar.href = "../EditarLlave?nombreEditado=" + val;
+			editar.href = "../EditarGrupoLlaves?nombreEditado=" + val;
 			var y = document.getElementById('aceptarbutton');
 			y.disabled = true;
 

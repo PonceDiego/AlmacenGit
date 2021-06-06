@@ -157,6 +157,12 @@
 
 	<p></p>
 		<h2 class="mt-5 text-center">${grupoLlaves.getNombre() }
+		 <span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Editar"
+				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoLlaves?idAEditar=${grupoLlaves.getGrupoId()}')"
+				>
+				<i class="material-icons"> edit </i>
+			</button></span>
 		</h2>
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto">

@@ -71,6 +71,7 @@ public class LlaveDB {
 		try {
 			sess = HibernateUtils.openSession();
 			grupoLlaves = sess.get(GrupoLlaves.class, id);
+			Hibernate.initialize(grupoLlaves.getLlaves());
 			return grupoLlaves;
 		} finally {
 			sess.close();
@@ -97,9 +98,9 @@ public class LlaveDB {
 		}
 	}
 
-	private static void asignarGrupoToLlave(Session sess, String nombreEquipo, GrupoLlaves grupo) {
+	private static void asignarGrupoToLlave(Session sess, String idLlave, GrupoLlaves grupo) {
 		Llave llave;
-		Query<Llave> query = sess.createQuery("select e from Llave e where e.nombre ='" + nombreEquipo + "'");
+		Query<Llave> query = sess.createQuery("select e from Llave e where e.llaveId ='" + idLlave + "'");
 		llave = query.getSingleResult();
 		sess.update(llave);
 		llave.setGrupoLlaves(grupo);
@@ -196,6 +197,25 @@ public class LlaveDB {
 			llave.setLugar(LugarDB.getLugarByNombre(inputUbicacion));
 			llave.setNombre(inputNombre);
 			llave.setObservaciones(inputObservaciones);
+			tran.commit();
+
+		} finally {
+			sess.close();
+		}
+
+	}
+
+	public static void editGrupoLlave(String id, String[] llaves) {
+		GrupoLlaves grupo = getGrupoLlavesById(id);
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.update(grupo);
+			for (String llave : llaves) {
+				asignarGrupoToLlave(sess, llave, grupo);
+			}
 			tran.commit();
 
 		} finally {

@@ -202,7 +202,7 @@
 								autocomplete="off"> <select id="boot-multiselect-llaves"
 								name="boot-multiselect-llaves" multiple="multiple">
 								<c:forEach items="${llaves}" var="llave">
-									<option value="${llave.getNombre()}">${llave.getNombre() }
+									<option value="${llave.getLlaveId()}">${llave.getNombre() }
 										- ${llave.getLlaveId() }</option>
 								</c:forEach>
 							</select>

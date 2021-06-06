@@ -76,4 +76,8 @@ public class LlaveManager {
 
 	}
 
+	public static void editGrupoLlave(String id, String[] llaves) {
+		LlaveDB.editGrupoLlave(id, llaves);
+	}
+
 }
