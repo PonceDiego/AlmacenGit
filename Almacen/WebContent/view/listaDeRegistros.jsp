@@ -196,7 +196,20 @@
 							<td><c:out
 									value="${re.getUsuario().getNombre()} ${re.getUsuario().getApellido() }" /></td>
 							<td><c:out value="${re.getEntidad()}" /></td>
-
+							<c:choose>
+								<c:when test="${re.getEntidad() eq 'Equipo' }">
+									<td><c:out value="${re.getEquipo().getNombre()}" /></td>
+								</c:when>
+								<c:when test="${re.getEntidad() eq 'Llave' }">
+									<td><c:out value="${re.getLlave().getNombre()}" /></td>
+								</c:when>
+								<c:when test="${re.getEntidad() eq 'Grupo equipo' }">
+									<td><c:out value="${re.getGrupoEquipos().getNombre()}" /></td>
+								</c:when>
+								<c:when test="${re.getEntidad() eq 'Grupo llave' }">
+									<td><c:out value="${re.getGrupoLlaves().getNombre()}" /></td>
+								</c:when>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>

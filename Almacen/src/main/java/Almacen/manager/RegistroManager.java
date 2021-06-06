@@ -20,7 +20,7 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class RegistroManager {
 	
-	public enum TIPO_REGISTRO {
+	public static enum TIPO_REGISTRO {
 			EQUIPO("Equipo"), 
 			LLAVE("Llave"), 
 			GRUPO_EQUIPO("Grupo equipo"), 
@@ -31,6 +31,16 @@ public class RegistroManager {
 		    private TIPO_REGISTRO(String label) {
 		        this.label = label;
 		    }
+		    
+		    public static TIPO_REGISTRO getByValue(String value) {
+	            for (TIPO_REGISTRO tradeStatus : values()) {
+	                if (tradeStatus.label.equals(value)) {
+	                    return tradeStatus;
+	                }
+	            }
+	            return null;
+	        }
+		    
 		}
 
 	public static void createRegistro(boolean entrada, int user, TIPO_REGISTRO tipo, int idEntidad) {
@@ -132,22 +142,13 @@ public class RegistroManager {
 		return registros;
 	}
 
-	public static List<Registro> getListaRegistros() {
+	public static List<RegistroView> getListaRegistros() {
+		List<RegistroView> registrosViews = new ArrayList<RegistroView>();
 
 		List<Registro> registros = RegistroDB.getRegistros();
-		for (Registro registro : registros) {
-			switch (registro.getEntidad()) {
-			case "Equipo":
-				EquipoDB.getEquipoByID(registro.getEntidadId());
-				break;
-			case "Llave":
-				LlaveDB.getLlaveById(registro.getEntidadId());
-				break;
-			default:
-				break;
-			}
-		}
-
-		return registros;
+		
+		registrosViews = registros.stream().map(x -> new RegistroView(x, true)).collect(Collectors.toList());
+		
+		return registrosViews;
 	}
 }
