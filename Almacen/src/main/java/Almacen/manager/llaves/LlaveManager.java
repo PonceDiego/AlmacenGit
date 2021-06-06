@@ -66,4 +66,14 @@ public class LlaveManager {
 		return LlaveDB.getGrupoLllavesByNombre(nombreGrupoLlaves);
 	}
 
+	public static Llave getLlaveByNombre(String nombreEditado, String copia) {
+		return LlaveDB.getLlaveByNombre(nombreEditado, copia);
+	}
+
+	public static void editLlave(String inputId, String inputNombre, String inputCopia, String inputUbicacion,
+			String inputObservaciones) {
+		LlaveDB.editLlave(inputId, inputCopia, inputNombre, inputObservaciones, inputUbicacion);
+
+	}
+
 }

@@ -509,7 +509,7 @@ input[type=number] {
 		var editar = document.getElementById('linkEditar');
 		x.innerHTML = "Ya existe una llave con el nombre " + val + " y número de copia "+copia+"!";
 		editar.text = "Editar";
-		editar.href = "../EditarLlave?nombreEditado=" + val;
+		editar.href = "../EditarLlave?nombreEditado=" + val +"&copia="+copia;
 		var y = document.getElementById('aceptarbutton');
 		y.disabled = true;
 

@@ -162,4 +162,46 @@ public class LlaveDB {
 
 	}
 
+	public static Llave getLlaveByNombre(String nombreEditado, String copia) {
+		Llave llaveReturn = new Llave();
+		Session sess = null;
+		try {
+			sess = HibernateUtils.openSession();
+			Query<Llave> query = sess.createQuery("select l from Llave l where l.nombre ='" + nombreEditado + "'");
+			List<Llave> llaves = query.getResultList();
+			for (Llave llave : llaves) {
+				if (llave.getCopia().equals(copia)) {
+					Hibernate.initialize(llave.getGrupoLlaves());
+					llaveReturn = llave;
+					break;
+				}
+			}
+			return llaveReturn;
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void editLlave(String inputId, String inputCopia, String inputNombre, String inputObservaciones,
+			String inputUbicacion) {
+
+		Llave llave = getLlaveById(Integer.parseInt(inputId));
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.update(llave);
+			llave.setCopia(inputCopia);
+			llave.setLugar(LugarDB.getLugarByNombre(inputUbicacion));
+			llave.setNombre(inputNombre);
+			llave.setObservaciones(inputObservaciones);
+			tran.commit();
+
+		} finally {
+			sess.close();
+		}
+
+	}
+
 }

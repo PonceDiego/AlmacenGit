@@ -316,9 +316,21 @@ div.searchable {
 
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputUbicacion" class="form-control"
-									placeholder="Ubicación" required autocomplete="off"
-									value="${llave.getUbicacion()}">
+								<input type="hidden" name="inputUbicacion" class="form-control" id="inputUbicacion"
+									required autocomplete="off">
+									<select onchange="selected()" id="ubicacionSelect" style="border-radius: 5px; font-size: 16px; padding: 10px"
+									required>
+									<c:forEach items="${ubicaciones}" var="ubicacion">
+
+										<c:if test="${ubicacion.nombre == llave.getUbicacion().getNombre() }">
+											<option selected value="${ubicacion.nombre }">${ubicacion.nombre }</option>
+										<c:otherwise>
+											<option value="${ubicacion.nombre }">${ubicacion.nombre }</option>
+										</c:otherwise>
+										</c:if>
+									</c:forEach>
+								</select>
+									
 							</div>
 						</div>
 					</div>
@@ -340,6 +352,12 @@ div.searchable {
 
 	</div>
 
+<script>
+		function selected() {
+			var x = document.getElementById("ubicacionSelect").value;
 
+			document.getElementById("inputUbicacion").value = x;
+		}
+	</script>
 </body>
 </html>
