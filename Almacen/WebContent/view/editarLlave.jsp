@@ -238,8 +238,6 @@ div.searchable {
 								grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								<a class="dropdown-item " href="../ListaRegistros">Lista de
-									registros</a>
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 								<a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo
 									grupo equipos</a>
@@ -264,6 +262,19 @@ div.searchable {
 								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 						</div></li>
+						<c:if
+							test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
+								
+						<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
+							role="button" data-toggle="dropdown" aria-haspoup="true"
+							aria-expanded="false">Registros </a>
+							<div class="dropdown-menu dropdown-menu-right"
+								aria-labelledby="navbarDropdown5">
+									<a class="dropdown-item " href="../ListaRegistros">Lista de registros</a>
+							</div>
+						</li>
+					</c:if>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
