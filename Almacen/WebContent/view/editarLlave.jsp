@@ -168,9 +168,20 @@ div.searchable {
 .error {
 	border: 2px solid red;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 </style>
 
-<title>Editar llave ${llave }</title>
+<title>Editar llave ${llaveAEditar.getNombre()}</title>
 </head>
 <body>
 
@@ -304,13 +315,13 @@ div.searchable {
 
 							<input type="text" name="inputNombre" id="inputNombre"
 								class="form-control" placeholder="Nombre" required
-								autocomplete="off" value="${llave.getNombre() }]">
+								autocomplete="off" value="${llaveAEditar.getNombre() }" disabled="disabled">
 								
 							<div>Copia n°</div>
 							
 							<input type="number" name ="inputCopia" id="inputCopia"
 							 class ="form-control" placeholder ="Copia" required
-							 autocomplete ="off" value="${llave.getCopia() }">
+							 autocomplete ="off" value="${llaveAEditar.getCopia() }" disabled="disabled">
 						</div>
 						<div class="column">
 
@@ -322,7 +333,7 @@ div.searchable {
 									required>
 									<c:forEach items="${ubicaciones}" var="ubicacion">
 
-										<c:if test="${ubicacion.nombre == llave.getUbicacion().getNombre() }">
+										<c:if test="${ubicacion.nombre == llaveAEditar.getUbicacion().getNombre() }">
 											<option selected value="${ubicacion.nombre }">${ubicacion.nombre }</option>
 										<c:otherwise>
 											<option value="${ubicacion.nombre }">${ubicacion.nombre }</option>
@@ -337,7 +348,7 @@ div.searchable {
 					<div>Observaciones</div>
 					<input type="text" name="inputObservaciones" class="form-control"
 						placeholder="Observaciones" maxlength="140" title="Observaciones"
-						autocomplete="off" value="${llave.getObservaciones()}">
+						autocomplete="off" value="${llaveAEditar.getObservaciones()}">
 
 
 
