@@ -17,34 +17,19 @@
 
 
 
-<title>Grupo de Equipos ${grupoEquipos.getNombre() }</title>
-
-<!-- Bootstrap core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
+<title>Editar Grupo de Equipos</title>
 
 <style>
-#tableOb {
-	border-top: 1px solid black;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-#tableOb tr {
-	padding-top: 12px;
-	padding-bottom: 12px;
-}
-
-#tablaEquipos {
-	width: 100%;
-}
-
-#tablaEquipos thead {
-	background-color: #f37321;
-	color: white;
+.form-signin .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
 	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s;
 }
 </style>
+
 
 </head>
 <body>
@@ -107,12 +92,15 @@
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item " href="../ListaEquipos">Lista de
-								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar
+								grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
-								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo
+									grupo equipos</a>
+								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
 						</div></li>
@@ -124,26 +112,27 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown4">
 
-							<a class="dropdown-item " href="../ListaLlaves">Lista de
-								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar grupo de llaves</a>
+							<a class="dropdown-item" href="../ListaLlaves">Lista de
+								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar
+								grupo de llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
-								<a class="dropdown-item " href="../NuevaLlave">Nueva llave</a>
-								<a class="dropdown-item " href="../NuevoGrupo">Nuevo grupo</a>
+								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
+								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 						</div></li>
-						<c:if
-							test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								
-						<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
+					<c:if
+						test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
 							role="button" data-toggle="dropdown" aria-haspoup="true"
 							aria-expanded="false">Registros </a>
 							<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="navbarDropdown5">
-									<a class="dropdown-item " href="../ListaRegistros">Lista de registros</a>
-							</div>
-						</li>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
+							</div></li>
 					</c:if>
 
 					<li class="nav-item dropdown"><a
@@ -172,52 +161,85 @@
 		</div>
 	</nav>
 
-	<p></p>
-		<h2 class="mt-5 text-center">${grupoEquipos.getNombre() }
-		<span><button class="btn btn-outline-dark"
-				style="cursor: pointer" title="Editar"
-				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoEquipos?idAEditar=${grupoEquipos.getGrupoEquipoId()}')"
-				>
-				<i class="material-icons"> edit </i>
-			</button></span>
-		</h2>
-	<div class="text-center lead"
-		style="outline: 1px solid black; max-width: 70%; margin: auto">
+	<!-- Page Content   -->
 
-		<table class="table">
-			<tr>
-				<th>ID:</th>
-				<td>${grupoEquipos.getGrupoEquipoId()}</td>
-				<th>Estado:</th>
-				<td>${grupoEquiposEstado}</td>
-			</tr>
-		</table>
-	</div>
 
-	<div class="text-center" style="width: 70%; margin: auto">
-			<!-- tabla de equipos -->
-			<h3 class="mt-5 text-center">Equipos</h3>
-			<table id="tablaEquipos" class="table">
-				<tr>
-					<th>Nombre</th>
-					<th>Tipo</th>
-					<th>Estado</th>
-				</tr>
-				<c:forEach items="${grupoEquipos.getEquipos()}" var="equipo">
-					<tr>
-						<td> <c:out
-									value="${equipo.getNombre()}" />
-						</td>
-						<td><c:out
-								value="${equipo.getTipo().getNombre()}" /></td>
-						<td><c:out
-								value="${equipo.getEstado()}" /></td>
 
-					</tr>
-				</c:forEach>
-			</table>
+
+
+	<div class="container">
+		<div class="card card-signin my-5">
+			<div class="card-body">
+				<form class="form-signin" method="post"
+					action="../EditarGrupoEquipos">
+					<h3 class="text-center">Datos del grupo de equipos</h3>
+					<hr class="m-4">
+					<div class="column">
+						<div class="form-label-group>">
+							<input type="text" name="inputNombre" class="form-control"
+								placeholder="Nombre del grupo" required autocomplete="off"
+								value="${grupoEquipos.getNombre() }" disabled="disabled">
+						</div>
+						<p></p>
+
+
+
+						<script type="text/javascript">
+							$(document)
+									.ready(
+											function() {
+												$('#boot-multiselect-equipos')
+														.multiselect(
+																{
+																	nonSelectedText : 'Seleccionar equipos',
+																	buttonWidth : 500,
+																	enableFiltering : true
+																});
+
+												$('#aceptarbutton')
+														.click(
+																function() {
+																	$(
+																			'#inputEquipos')
+																			.val(
+																					$(
+																							'#boot-multiselect-equipos')
+																							.val());
+																});
+
+											});
+						</script>
+						<div style="text-align: center;">
+							<input type="hidden" id="inputEquipos" name="inputEquipos">
+							<select id="boot-multiselect-equipos" multiple="multiple">
+								<c:forEach items="${equipos}" var="equipo">
+									<c:forEach items="${grupoEquipos.getEquipos() }" var="gEquipo">
+										<c:choose>
+											<c:when
+												test="${gEquipo.getEquipoId() == equipo.getEquipoId() }">
+												<option selected value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
+													- ${equipo.getNombre() }</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
+													- ${equipo.getNombre() }</option>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:forEach>
+							</select>
+						</div>
+
+
+					</div>
+					<hr>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton"
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+				</form>
+			</div>
 		</div>
-
+	</div>
 
 </body>
 </html>

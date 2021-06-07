@@ -41,10 +41,10 @@ public class EquipoDB {
 			e = sess.get(Equipo.class, id);
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user,TIPO_REGISTRO.EQUIPO , id);
+				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user,TIPO_REGISTRO.EQUIPO , id);
+				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.EQUIPO, id);
 				e.setEstado("En uso");
 			}
 			tran.commit();
@@ -192,11 +192,30 @@ public class EquipoDB {
 		}
 	}
 
-	private static void asignarGrupoToEquipo(Session sess, String nombreEquipo, GrupoEquipos grupo) {
+	private static void asignarGrupoToEquipo(Session sess, String idEquipo, GrupoEquipos grupo) {
 		Equipo equipo;
-		Query<Equipo> query = sess.createQuery("select e from Equipo e where e.nombre ='" + nombreEquipo + "'");
+		Query<Equipo> query = sess.createQuery("select e from Equipo e where e.id ='" + idEquipo + "'");
 		equipo = query.getSingleResult();
 		sess.update(equipo);
 		equipo.setGrupoEquipos(grupo);
+	}
+
+	public static void editGrupoEquipos(String id, String[] equipos) {
+		GrupoEquipos grupo = getGrupoEquipoById(id);
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.update(grupo);
+			for (String llave : equipos) {
+				asignarGrupoToEquipo(sess, llave, grupo);
+			}
+			tran.commit();
+
+		} finally {
+			sess.close();
+		}
+
 	}
 }

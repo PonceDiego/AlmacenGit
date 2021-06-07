@@ -202,7 +202,7 @@
 							<input type="hidden" id="inputEquipos" name="inputEquipos">
 							<select id="boot-multiselect-equipos" multiple="multiple">
 								<c:forEach items="${equipos}" var="equipo">
-									<option value="${equipo.getNombre()}">${equipo.getEquipoId() }
+									<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
 										- ${equipo.getNombre() }</option>
 								</c:forEach>
 							</select>

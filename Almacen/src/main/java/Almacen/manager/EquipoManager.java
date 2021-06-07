@@ -50,7 +50,7 @@ public class EquipoManager {
 		int id = (int) idS;
 		Equipo e = EquipoDB.getEquipoByID(id);
 		System.out.println(e.getNombre());
-		
+
 		RegistroManager.createRegistro(true, userActual.getId(), TIPO_REGISTRO.EQUIPO, e.getEquipoId());
 	}
 
@@ -107,5 +107,9 @@ public class EquipoManager {
 
 	public static GrupoEquipos getGrupoEquipoByNombre(String nombre) {
 		return EquipoDB.getGrupoEquipoByNombre(nombre);
+	}
+
+	public static void editGrupoEquipo(String id, String[] equipos) {
+		EquipoDB.editGrupoEquipos(id, equipos);
 	}
 }
