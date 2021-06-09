@@ -230,12 +230,13 @@ div.searchable {
 							<div class=" form-label-group> searchable">
 								<input type="text" placeholder="Buscar proveedor"
 									name="nombreProveedor" id="nombreProveedor"
-									onkeyup="filterFunction(this,event)" required
+									onchange="comparar()"
+									onkeyup="filterFunction(this,event),botonAceptar()" required
 									autocomplete="off">
 								<c:set var="proveedor" value="${proveedoresListados }"></c:set>
-								<ul>
+								<ul id="ulProveedores">
 									<c:forEach items="${proveedor}" var="prov">
-										<li>${prov.getNombre() }</li>
+										<li value= ${prov.getNombre() }>${prov.getNombre() }</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -243,7 +244,7 @@ div.searchable {
 					</div>
 					<hr>
 					<button class="btn btn-lg btn-primary btn-block text-uppercase"
-						id="aceptarbutton"
+						id="aceptarbutton" disabled="disabled"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
 						Aceptar</button>
 				</form>
@@ -252,6 +253,20 @@ div.searchable {
 
 	</div>
 	<script>
+	function comparar(){
+		var valor =$('.selected');
+		
+		var x = document.getElementById('nombreProveedor');
+		var a = x.value;
+		
+		if(valor.attr('value') === a){
+			onSelect(valor.text());
+		}else{
+			var y = document.getElementById('aceptarbutton');
+			y.disabled = true;
+		}
+	}
+	
 		function filterFunction(that, event) {
 			let container, input, filter, li, input_val;
 			container = $(that).closest(".searchable");
@@ -341,8 +356,23 @@ div.searchable {
 							.removeClass("selected");
 					$(this).addClass("selected");
 				});
+		
 		function onSelect(val) {
-
+			var y = document.getElementById('aceptarbutton');
+			y.disabled = false;
+		}
+		
+		function botonAceptar() {
+			var listaMatches = document.getElementById('ulProveedores');
+			var lis = listaMatches.getElementsByTagName('li:visible');
+			var x = document.getElementById('nombreProveedor')
+			for (var i = 0; i < lis.length; i++) {
+				if (lis[i].value == x.value) {
+					document.getElementById('aceptarbutton').disabled = false;
+				} else {
+					document.getElementById('aceptarbutton').disabled =true;
+				}
+			}
 		}
 	</script>
 </body>

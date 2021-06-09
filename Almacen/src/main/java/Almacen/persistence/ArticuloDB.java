@@ -165,8 +165,8 @@ public class ArticuloDB {
 		}
 	}
 
-	public static void editarArticulo(int id, String subc, String proveedor, String nombre, int stockMinimo,
-			int stockMaximo, Double costo) {
+	public static void editarArticulo(int id, String subc, String proveedor, int stockMinimo, int stockMaximo,
+			Double costo) {
 		Session sess = null;
 		Articulo a = null;
 
@@ -177,14 +177,13 @@ public class ArticuloDB {
 			a = getArticuloByID(id);
 			sess.saveOrUpdate(a);
 			a.setCosto(costo);
-			a.setNombre(nombre);
 			a.setProveedor(ProveedoresDB.getProveedorByNombre(proveedor));
 			a.setStock(stockMaximo);
 			a.setStockMinimo(stockMinimo);
 			a.setSubcategoria(SubcategoriaDB.getSubcategoriaByNombre(subc));
-			if(stockMinimo>stockMaximo) {
+			if (stockMinimo > stockMaximo) {
 				a.setEstadoarticulo(EstadoArticuloDB.getEstadoById(2));
-			}else {
+			} else {
 				a.setEstadoarticulo(EstadoArticuloDB.getEstadoById(1));
 			}
 			tran.commit();

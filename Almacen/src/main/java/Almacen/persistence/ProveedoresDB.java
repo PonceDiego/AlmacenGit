@@ -112,9 +112,12 @@ public class ProveedoresDB {
 
 	public static void agregarProveedorNuevo(Proveedor p) {
 		Session sess = null;
+		Transaction tran = null;
 		try {
 			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
 			sess.save(p);
+			tran.commit();
 		} finally {
 			sess.close();
 		}

@@ -237,13 +237,21 @@ div.pedido ul li {
 					var="rolActual"></c:set>
 				<c:if test="${rolActual=='SuperAdmin'||rolActual=='Administrador'}">
 					<div style="margin: auto; text-align: center;">
+					<div>Seleccionar usuario</div>
 
 						<select id="selectUsuarios" onchange="setUser();"
 							style="border-radius: 5px; padding: 2px;">
-							<option selected disabled>Seleccionar usuario</option>
 							<c:forEach items="${listaUsuario}" var="usuario">
-								<option value="${usuario.getId()}">${usuario.getNombre()}
+								<c:choose>
+								<c:when test="${usuario.getId() == usuarioActual.getId() }">
+									<option selected value="${usuario.getId()}">${usuario.getNombre()}
 									${usuario.getApellido()}</option>
+								</c:when>
+								<c:otherwise>
+										<option value="${usuario.getId()}">${usuario.getNombre()}
+											${usuario.getApellido()}</option>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</select>
 

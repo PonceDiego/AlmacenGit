@@ -38,11 +38,11 @@ public class ServletEditarArticulo extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			String nombre=request.getParameter("nombreEditado");
+			String nombre = request.getParameter("nombreEditado");
 			request.getSession().setAttribute("categoriasListadas", SubcategoriaDB.getCategorias());
 			request.getSession().setAttribute("proveedores", ProveedoresDB.getProveedores());
 			request.getSession().setAttribute("subCats", SubcategoriaDB.getSubcategorias());
-			Articulo artEdit= ArticuloDB.getArticuloByNombre(nombre);
+			Articulo artEdit = ArticuloDB.getArticuloByNombre(nombre);
 			request.getSession().setAttribute("artEdit", artEdit);
 			response.sendRedirect("view/editarArticulo.jsp");
 		}
@@ -60,18 +60,17 @@ public class ServletEditarArticulo extends HttpServlet {
 
 			String id, proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
 			request.setCharacterEncoding("UTF-8");
-			id=request.getParameter("editadoId");
+			id = request.getParameter("editadoId");
 			proveedor = request.getParameter("inputProveedor");
-			nombre = request.getParameter("inputNombre");
 			stockMinimo = request.getParameter("inputSMinimo");
 			stockMaximo = request.getParameter("inputStock");
 			costo = request.getParameter("inputCosto");
 			subc = request.getParameter("inputSub");
 
-			ArticuloManager.editarArticulo(id,subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
+			ArticuloManager.editarArticulo(id, subc, proveedor, stockMinimo, stockMaximo, costo);
 			response.sendRedirect("ListaArticulos");
 		}
-		
+
 	}
 
 }

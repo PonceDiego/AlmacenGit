@@ -194,7 +194,7 @@ div.searchable {
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item active" href="../BuscarArticulo">Buscar
+							<a class="dropdown-item" href="../BuscarArticulo">Buscar
 								artículo</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
@@ -237,10 +237,13 @@ div.searchable {
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
 							<a class="dropdown-item" href="../ListaEquipos">Lista de
-								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
+								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar
+								grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
+								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
+								<a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo
+									grupo equipos</a>
 								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
@@ -254,7 +257,8 @@ div.searchable {
 							aria-labelledby="navbarDropdown4">
 
 							<a class="dropdown-item" href="../ListaLlaves">Lista de
-								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar grupo de llaves</a>
+								llaves</a> <a class="dropdown-item" href="../BuscarGrupoLlaves">Buscar
+								grupo de llaves</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' || usuarioActual.getRol().getNombre() == 'Administrador Llaves' }">
 								<a class="dropdown-item" href="../NuevaLlave">Nueva llave</a>
@@ -262,18 +266,18 @@ div.searchable {
 							</c:if>
 
 						</div></li>
-						<c:if
-							test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
-								
-						<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
+					<c:if
+						test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
 							role="button" data-toggle="dropdown" aria-haspoup="true"
 							aria-expanded="false">Registros </a>
 							<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="navbarDropdown5">
-									<a class="dropdown-item " href="../ListaRegistros">Lista de registros</a>
-							</div>
-						</li>
+								<a class="dropdown-item " href="../ListaRegistros">Lista de
+									registros</a>
+							</div></li>
 					</c:if>
 
 					<li class="nav-item dropdown"><a
@@ -287,8 +291,7 @@ div.searchable {
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
 								<a class="dropdown-item " href="../ListaUsuarios">Lista de
 									usuarios</a>
-								<c:if
-									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
+								<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
 									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
 										usuario</a>
 									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
@@ -316,14 +319,15 @@ div.searchable {
 					<h3 class="text-center">Datos del artículo a editar</h3>
 					<div class="row">
 						<div class="column">
-						<div>Nombre del Artículo</div>
+							<div>Nombre del Artículo</div>
 							<c:set value="${artEdit }" var="articulo"></c:set>
 							<input type="hidden" name="editadoId" id="editadoId"
 								value="${articulo.getArticuloId() }">
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" id="inputNombre"
 									class="form-control" placeholder="Nombre" required
-									autocomplete="off" value="${articulo.getNombre() }">
+									autocomplete="off" value="${articulo.getNombre() }"
+									disabled="disabled">
 							</div>
 							<div>Stock Mínimo</div>
 							<div class="form-label-group>">
@@ -355,7 +359,15 @@ div.searchable {
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<c:forEach items="${proveedores}" var="proveedor">
-										<option>-${proveedor.getNombre()}</option>
+										<c:choose>
+											<c:when
+												test="${articulo.getProveedor().getNombre() == proveedor.getNombre()}">
+												<option selected>-${proveedor.getNombre()}</option>
+											</c:when>
+											<c:otherwise>
+												<option>-${proveedor.getNombre()}</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>
 
@@ -363,7 +375,7 @@ div.searchable {
 
 						</div>
 						<div class="column">
-						<div>Costo</div>
+							<div>Costo</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputCosto" class="form-control"
 									placeholder="Costo" onchange="validarSiNumero(this.value);"
@@ -371,7 +383,7 @@ div.searchable {
 									value="${articulo.getCosto() }">
 							</div>
 
-<div>Stock Actual</div>
+							<div>Stock Actual</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputStock" class="form-control"
 									placeholder="Stock Actual" required autocomplete="off"
@@ -380,8 +392,8 @@ div.searchable {
 							<div>Subcategoría</div>
 							<div class=" form-label-group>" id="divSub">
 								<input type="hidden" name="inputSub" id="inputSub"
-									value='${articulo.getSubcategoria().getNombre() }'>
-								<select onchange="selected2()" id="selectSub"
+									value='${articulo.getSubcategoria().getNombre() }'> <select
+									onchange="selected2()" id="selectSub"
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<option selected>${articulo.getSubcategoria().getNombre() }</option>
