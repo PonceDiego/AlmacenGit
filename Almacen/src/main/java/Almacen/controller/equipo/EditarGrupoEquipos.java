@@ -1,6 +1,7 @@
 package main.java.Almacen.controller.equipo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,23 @@ public class EditarGrupoEquipos extends HttpServlet {
 		}
 		String id = req.getParameter("idAEditar");
 		main.java.Almacen.model.GrupoEquipos grupo = EquipoManager.getGrupoEquipo(id);
-		List<Equipo> equipos = EquipoManager.listarEquipos();
+		List<Equipo> allEquipos = EquipoManager.listarEquipos();
+		List<Equipo> equipos = new ArrayList<Equipo>();
+		if (grupo.getEquipos() != null || grupo.getEquipos().size() != 0) {
+			for (Equipo equipo : allEquipos) {
+				int contador = 0;
+				for (Equipo equipoGrupo : grupo.getEquipos()) {
+					if (equipoGrupo.getEquipoId() == equipo.getEquipoId()) {
+						contador++;
+					}
+				}
+				if (contador == 0) {
+					equipos.add(equipo);
+				}
+			}
+		} else {
+			equipos = allEquipos;
+		}
 		req.getSession().setAttribute("equipos", equipos);
 		req.getSession().setAttribute("grupoEquipos", grupo);
 

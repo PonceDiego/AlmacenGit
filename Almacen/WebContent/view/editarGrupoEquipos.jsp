@@ -176,9 +176,9 @@
 					<hr class="m-4">
 					<div class="column">
 						<div class="form-label-group>">
-						<input type="hidden" name="inputId" id="inputId"
-							value="${grupoEquipos.getGrupoEquipoId() }">
-							<div> Nombre del grupo de equipos</div>
+							<input type="hidden" name="inputId" id="inputId"
+								value="${grupoEquipos.getGrupoEquipoId() }">
+							<div>Nombre del grupo de equipos</div>
 							<input type="text" name="inputNombre" class="form-control"
 								placeholder="Nombre del grupo" required autocomplete="off"
 								value="${grupoEquipos.getNombre() }" disabled="disabled">
@@ -213,23 +213,18 @@
 											});
 						</script>
 						<div style="text-align: center;">
-						<div>Equipos</div>
+							<div>Equipos</div>
 							<input type="hidden" id="inputEquipos" name="inputEquipos">
 							<select id="boot-multiselect-equipos" multiple="multiple">
-								<c:forEach items="${equipos}" var="equipo">
+								<c:if test="${grupoEquipos.getEquipos()!=null }">
 									<c:forEach items="${grupoEquipos.getEquipos() }" var="gEquipo">
-										<c:choose>
-											<c:when
-												test="${gEquipo.getEquipoId() == equipo.getEquipoId() }">
-												<option selected value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
-													- ${equipo.getNombre() }</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
-													- ${equipo.getNombre() }</option>
-											</c:otherwise>
-										</c:choose>
+												<option selected value="${gEquipo.getEquipoId()}">${gEquipo.getEquipoId() }
+											- ${gEquipo.getNombre() }</option>
 									</c:forEach>
+								</c:if>
+								<c:forEach items="${equipos}" var="equipo">
+									<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
+										- ${equipo.getNombre() }</option>
 								</c:forEach>
 							</select>
 						</div>

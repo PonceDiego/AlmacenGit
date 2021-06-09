@@ -35,17 +35,12 @@ public class EditarGrupoLlaves extends HttpServlet {
 			for (Llave llave : allLlaves) {
 				int contador = 0;
 				for (Llave llaveGrupo : grupo.getLlaves()) {
-					System.out.println("llave de lista id " + llave.getLlaveId() + " y nombre = " + llave.getNombre());
-					System.out.println(
-							"llave del grupo id " + llaveGrupo.getLlaveId() + " y nombre = " + llaveGrupo.getNombre());
 					if (llaveGrupo.getLlaveId() == llave.getLlaveId()) {
 						contador++;
 					}
 				}
 				if (contador == 0) {
 					llaves.add(llave);
-					System.out.println("se agregó la llave " + llave.getNombre() + " con id " + llave.getLlaveId());
-
 				}
 			}
 		} else {
