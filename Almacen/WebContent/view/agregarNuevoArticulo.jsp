@@ -374,12 +374,12 @@ div.searchable2 {
 							<div class="form-label-group> searchable2">
 								<input type="text" name="inputNombre" id="inputNombre"
 									class="form-control" placeholder="Nombre" required
-									autocomplete="off"
+									autocomplete="off" onchange="comparar()"
 									onkeyup="filterFunction2(this,event),botonAceptar()">
 								<c:set var="articulo" value="${listaArticulos }"></c:set>
 								<ul id="ulArticulos">
 									<c:forEach items="${articulo }" var="art">
-										<li>${art.getNombre()}</li>
+										<li value = "${art.getNombre()}">${art.getNombre()}</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -641,7 +641,7 @@ div.searchable2 {
 				}
 				container.find("input").val(
 						container.find("ul li.selected").text()).blur();
-				onSelect2(container.find("ul li.selected").text())
+				comparar();
 			}
 
 			container.find("ul li.selected")[0].scrollIntoView({
@@ -667,9 +667,28 @@ div.searchable2 {
 					$(this).closest(".searchable2").find("input").val(
 							$(this).text()).blur();
 
-					onSelect2($(this).text())
+					comparar();
 
 				});
+		function comparar(){
+			var valor =$('.selected');
+			
+			var x = document.getElementById('inputNombre');
+			var a = x.value;
+			
+			if(valor.attr('value') === a){
+				onSelect2(valor.text());
+			}else{
+				var x = document.getElementById('advertencia');
+				var editar = document.getElementById('linkEditar');
+				x.innerHTML = "";
+				editar.text = "";
+				editar.href = "";
+				var y = document.getElementById('aceptarbutton');
+				y.disabled = false;
+			}
+		}
+		
 		function botonAceptar() {
 			var listaMatches = document.getElementById('ulArticulos');
 			var lis = listaMatches.getElementsByTagName('li:visible');
@@ -697,7 +716,7 @@ div.searchable2 {
 			editar.text = "Editar";
 			editar.href = "../EditarArticulo?nombreEditado=" + val;
 			var y = document.getElementById('aceptarbutton');
-			y.disabled = "disabled";
+			y.disabled = true;
 
 		}
 	</script>
