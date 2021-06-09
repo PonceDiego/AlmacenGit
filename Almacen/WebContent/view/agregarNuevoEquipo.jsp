@@ -419,6 +419,12 @@ div.searchable2 {
 						</div>
 
 						<div class="column">
+							<div>Modelo</div>
+							<div class="form-label-group>">
+								<input type="text" name="inpuModelo" class="form-control"
+									placeholder="Modelo" id="inpuModelo" maxlength="50"
+									autocomplete="off">
+							</div>
 						<div>Serial</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputSerial" class="form-control"
@@ -426,12 +432,6 @@ div.searchable2 {
 									autocomplete="off">
 							</div>
 
-<div>Modelo</div>
-							<div class="form-label-group>">
-								<input type="text" name="inpuModelo" class="form-control"
-									placeholder="Modelo" id="inpuModelo" maxlength="50"
-									autocomplete="off">
-							</div>
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputUsuario" id="inputUsuario"
