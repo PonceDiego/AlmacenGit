@@ -34,96 +34,92 @@ public class ServletIniciarSesion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String mensaje = request.getParameter("mensaje");
-		if(request.getSession().getAttribute("usuarioActual")==null) {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
 			request.getSession().setAttribute("mensaje", mensaje);
 			response.sendRedirect("view/iniciarSesion.jsp");
-			
+
 		}
 
 		else {
 			request.getSession().setAttribute("mensaje", "Iniciada");
-			
+
 			response.sendRedirect("Index");
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("username");
 		String pass = request.getParameter("pass");
 		PrintWriter out;
-		Gson gson= new Gson();
-		
-		
-		if (username.equals("root") && pass.equals("almacen.C12")) {
-			Usuario user= UsuarioDB.getUsuarioByNombreUsuario(username);
-			
-			System.out.println("\nEl usuario "+user.getNombreUsuario()+" inició sesión desde el sistema.\n");
-			
+		Gson gson = new Gson();
+
+		if (username.equals("root") && pass.equals("almacen.C12") || username.equals("apps") && pass.equals("1234")) {
+			Usuario user = UsuarioDB.getUsuarioByNombreUsuario(username);
+
+			System.out.println("\nEl usuario " + user.getNombreUsuario() + " inició sesión desde el sistema.\n");
+
 			request.getSession().setAttribute("usuarioActual", user);
 			request.getSession().setAttribute("mensaje", "Iniciada");
-			
-			
-			if(request.getParameter("and")!=null) {
+
+			if (request.getParameter("and") != null) {
 				response.setCharacterEncoding("UTF-8");
 				out = response.getWriter();
-				UsuarioRs respuesta= new UsuarioRs();
+				UsuarioRs respuesta = new UsuarioRs();
 				respuesta.setArea(user.getArea().getNombre());
 				respuesta.setNombre(user.getNombre());
 				respuesta.setRol(user.getRol().getNombre());
 				respuesta.setToken(user.getId().toString());
 				respuesta.setUsername(user.getNombreUsuario());
 				respuesta.setJsessionid(request.getSession().getId().toString());
-				
-				
+
 				out.print(gson.toJson(respuesta));
-				
+
 				out.flush();
-				
-			}else {
+
+			} else {
 				response.sendRedirect("Index");
 			}
 		} else {
 
 			if (UsuarioManager.validarCredenciales(username, pass)) {
 
-				
-				Usuario user=UsuarioDB.getUsuarioByNombreUsuario(username);
-				System.out.println("\nEl usuario "+user.getNombreUsuario()+" inició sesión desde LDAP.\n");
+				Usuario user = UsuarioDB.getUsuarioByNombreUsuario(username);
+				System.out.println("\nEl usuario " + user.getNombreUsuario() + " inició sesión desde LDAP.\n");
 				request.getSession().setAttribute("usuarioActual", user);
-				System.out.println("\n"+request.getSession().toString()+"<-- ID de sesión");
+				System.out.println("\n" + request.getSession().toString() + "<-- ID de sesión");
 				request.getSession().setAttribute("mensaje", "Iniciada");
-				
-				if(request.getParameter("and")!=null) {
+
+				if (request.getParameter("and") != null) {
 					response.setCharacterEncoding("UTF-8");
 					out = response.getWriter();
-					
-					UsuarioRs respuesta= new UsuarioRs();
+
+					UsuarioRs respuesta = new UsuarioRs();
 					respuesta.setArea(user.getArea().getNombre());
 					respuesta.setNombre(user.getNombre());
 					respuesta.setRol(user.getRol().getNombre());
 					respuesta.setToken(user.getId().toString());
 					respuesta.setUsername(user.getNombreUsuario());
 					respuesta.setJsessionid(request.getSession().getId().toString());
-					
+
 					out.print(gson.toJson(respuesta));
-					
+
 					out.flush();
-					
-				}else {
+
+				} else {
 					response.sendRedirect("Index");
 				}
-				
+
 			} else {
-				if(request.getParameter("and")!=null) {
+				if (request.getParameter("and") != null) {
 					out = response.getWriter();
 					out.print(0);
 					out.flush();
-					
-				}else {
-					
+
+				} else {
+
 					response.sendRedirect("IniciarSesion?mensaje=Los%20datos%20ingresados%20fueron%20incorrectos.");
 				}
 			}
