@@ -40,7 +40,6 @@ public class ServletArticuloNuevo extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getParameter("and") != null) {
 			String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
-			request.setCharacterEncoding("UTF-8");
 			proveedor = request.getParameter("inputProveedor");
 			nombre = request.getParameter("inputNombre");
 			stockMinimo = request.getParameter("inputSMinimo");
@@ -55,14 +54,14 @@ public class ServletArticuloNuevo extends HttpServlet {
 			} else {
 
 				String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
-				request.setCharacterEncoding("UTF-8");
+				
 				proveedor = request.getParameter("inputProveedor");
 				nombre = request.getParameter("inputNombre");
 				stockMinimo = request.getParameter("inputSMinimo");
 				stockMaximo = request.getParameter("inputStock");
 				costo = request.getParameter("inputCosto");
 				subc = request.getParameter("inputSub");
-
+				
 				ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
 				response.sendRedirect("ListaArticulos");
 			}
