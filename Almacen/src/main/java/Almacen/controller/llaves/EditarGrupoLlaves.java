@@ -1,6 +1,7 @@
 package main.java.Almacen.controller.llaves;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,28 @@ public class EditarGrupoLlaves extends HttpServlet {
 		}
 		String id = req.getParameter("idAEditar");
 		main.java.Almacen.model.GrupoLlaves grupo = LlaveManager.getGrupoLlaveById(id);
-		List<Llave> llaves = LlaveManager.getAllLlaves();
+		List<Llave> allLlaves = LlaveManager.getAllLlaves();
+		List<Llave> llaves = new ArrayList<Llave>();
+		if (grupo.getLlaves() != null || grupo.getLlaves().size() != 0) {
+			for (Llave llave : allLlaves) {
+				int contador = 0;
+				for (Llave llaveGrupo : grupo.getLlaves()) {
+					System.out.println("llave de lista id " + llave.getLlaveId() + " y nombre = " + llave.getNombre());
+					System.out.println(
+							"llave del grupo id " + llaveGrupo.getLlaveId() + " y nombre = " + llaveGrupo.getNombre());
+					if (llaveGrupo.getLlaveId() == llave.getLlaveId()) {
+						contador++;
+					}
+				}
+				if (contador == 0) {
+					llaves.add(llave);
+					System.out.println("se agregó la llave " + llave.getNombre() + " con id " + llave.getLlaveId());
+
+				}
+			}
+		} else {
+			llaves = allLlaves;
+		}
 		req.getSession().setAttribute("llaves", llaves);
 		req.getSession().setAttribute("grupo", grupo);
 

@@ -363,20 +363,15 @@ input[type=number] {
 							<input type="hidden" name="inputLlaves" id="inputLlaves"
 								autocomplete="off"> <select id="boot-multiselect-llaves"
 								name="boot-multiselect-llaves" multiple="multiple">
-								<c:forEach items="${llaves}" var="llave">
+								<c:if test="${grupo.getLlaves()!= null }">
 									<c:forEach items="${grupo.getLlaves() }" var="gLlave">
-										<c:choose>
-											<c:when test="${gLlave.getLlaveId() == llave.getLlaveId()}">
-												<option selected value="${llave.getLlaveId()}">${llave.getNombre() }
-													- ${llave.getLlaveId() }</option>
-											</c:when>
-											<c:otherwise>
+											<option selected value="${gLlave.getLlaveId()}">${gLlave.getNombre() }
+													- ${gLlave.getLlaveId() }</option>
+									</c:forEach>
+								</c:if>
+									<c:forEach items="${llaves}" var="llave">
 												<option value="${llave.getLlaveId()}">${llave.getNombre() }
 													- ${llave.getLlaveId() }</option>
-											</c:otherwise>
-										</c:choose>
-
-									</c:forEach>
 								</c:forEach>
 							</select>
 						</div>
