@@ -19,7 +19,7 @@ public class SubcategoriaDB {
 			Query<Categoria> query = sess.createQuery("select c from Categoria c where c.categoriaId!=null");
 			cats = query.getResultList();
 			for (Categoria c : cats) {
-				for(Subcategoria s:c.getSubcategorias()) {
+				for (Subcategoria s : c.getSubcategorias()) {
 					Hibernate.initialize(s);
 				}
 			}
@@ -72,7 +72,7 @@ public class SubcategoriaDB {
 		try {
 			sess = HibernateUtils.openSession();
 			Query<Subcategoria> query = sess
-					.createQuery("select s from Subcategoria s where s.subNombre='" + nombre + "'");
+					.createQuery("select s from Subcategoria s where s.nombre='" + nombre + "'");
 			c = (Subcategoria) query.getSingleResult();
 			return c;
 		} finally {
@@ -85,7 +85,7 @@ public class SubcategoriaDB {
 		Subcategoria c = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Subcategoria> query = sess.createQuery("select c from Subcategoria c where c.subId='" + nombre + "'");
+			Query<Subcategoria> query = sess.createQuery("select c from Subcategoria c where c.id='" + nombre + "'");
 			c = (Subcategoria) query.getSingleResult();
 			return c;
 		} finally {
@@ -107,15 +107,15 @@ public class SubcategoriaDB {
 	}
 
 	public static Categoria getCategoriaBySub(int idS) {
-		Session sess=null;
-		Categoria c=null;
+		Session sess = null;
+		Categoria c = null;
 		try {
-			sess= HibernateUtils.openSession();
-			Query query= sess.createQuery("select s.categoria from Subcategoria s where s.subId='"+idS+"'");
-			int id= (int) query.getSingleResult();
-			c=getCategoriaById(id);
+			sess = HibernateUtils.openSession();
+			Query query = sess.createQuery("select s.categoria from Subcategoria s where s.id='" + idS + "'");
+			int id = (int) query.getSingleResult();
+			c = getCategoriaById(id);
 			return c;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.java.Almacen.model.Pedido;
 import main.java.Almacen.persistence.ArticuloPedidoDB;
 import main.java.Almacen.persistence.PedidoDB;
 
@@ -37,15 +38,13 @@ public class ServletPedido extends HttpServlet {
 		} else {
 			String idS = request.getParameter("pedidoId");
 			int id = Integer.parseInt(idS);
+			Pedido pedido = PedidoDB.getPedidoByID(id);
 			request.getSession().setAttribute("pedidoId", id);
-			request.getSession().setAttribute("pedidoFecha", PedidoDB.getPedidoByID(id).getFecha());
-			request.getSession().setAttribute("pedidoArea",
-					PedidoDB.getPedidoByID(id).getUsuario().getArea().getNombre());
-			request.getSession().setAttribute("pedidoUsuario",
-					PedidoDB.getPedidoByID(id).getUsuario().getNombreUsuario());
-			request.getSession().setAttribute("pedidoEstado",
-					PedidoDB.getPedidoByID(id).getEstadopedido().getNombreEstado());
-			request.getSession().setAttribute("pedidoObs", PedidoDB.getPedidoByID(id).getObservaciones());
+			request.getSession().setAttribute("pedidoFecha", pedido.getFecha());
+			request.getSession().setAttribute("pedidoArea", pedido.getUsuario().getArea().getNombre());
+			request.getSession().setAttribute("pedidoUsuario", pedido.getUsuario().getNombreUsuario());
+			request.getSession().setAttribute("pedidoEstado", pedido.getEstadopedido().getNombreEstado());
+			request.getSession().setAttribute("pedidoObs", pedido.getObservaciones());
 			request.getSession().setAttribute("articulosPPedido", ArticuloPedidoDB.getArticulosPedidosByPedido(id));
 
 			response.sendRedirect("view/pedidoEspecifico.jsp");
