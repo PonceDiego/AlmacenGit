@@ -53,15 +53,25 @@
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown active"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-							<a class="dropdown-item" href="../NuevoArticulo">Nuevo
-								artículo</a> <a class="dropdown-item" href="../ListaArticulos">Lista
-								de artículos</a> <a class="dropdown-item active">Artículo
-								específico</a>
+							<a class="dropdown-item" href="../BuscarArticulo">Buscar
+								artículo</a>
+							<c:if
+								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
+
+								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
+									artículo</a>
+
+								<a class="dropdown-item" href="../ListaArticulos">Lista de
+									artículos</a>
+								 <a class = "dropdown-item" href="../NuevaCategoria">Nueva Categoría</a>
+								 <a class = "dropdown-item" href="../NuevaSubcategoria">Nueva Subcategoría</a>
+							</c:if>
+
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -114,8 +124,6 @@
 							</c:if>
 
 						</div></li>
-						<c:if
-							test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								
 						<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
@@ -126,7 +134,6 @@
 									<a class="dropdown-item " href="../ListaRegistros">Lista de registros</a>
 							</div>
 						</li>
-					</c:if>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"

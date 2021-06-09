@@ -104,4 +104,12 @@ public class ArticuloManager {
 		ArticuloDB.editarArticulo(id, subc, proveedor, stockMinimo, stockMaximo, costo);
 
 	}
+
+	public static void createSubcategoria(String nombre, String inputCat) {
+		SubcategoriaDB.createSubcategoria(nombre, inputCat);
+	}
+
+	public static void createCategoria(String nombre) {
+		SubcategoriaDB.createCategoria(nombre);
+	}
 }

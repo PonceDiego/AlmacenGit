@@ -15,26 +15,17 @@
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
-<title>Buscar grupo de equipos específico</title>
+
 
 <style>
-.form-signin .btn {
-	font-size: 80%;
-	border-radius: 5rem;
-	letter-spacing: .1rem;
-	font-weight: bold;
-	padding: 1rem;
-	transition: all 0.2s;
-}
-
 div.searchable {
 	float: left;
-	width: 100%;
+	margin: 0 15px;
 }
 
 .searchable input {
 	width: 100%;
-	font-size: 18px;
+	font-size: 16px;
 	padding: 10px;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box; /* Firefox, other Gecko */
@@ -79,17 +70,149 @@ div.searchable {
 	color: #333;
 }
 
-.color-box {
-	width: 20px;
-	height: 10px;
-	display: inline-block;
-	background-color: #ccc;
-	position: relative;
-	float: right;
+.form-signin {
+	width: 100%;
+}
+
+.form-signin .btn {
+	font-size: 80%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s; . form-label-group { position : relative;
+	margin-bottom: 1rem;
+}
+
+}
+.form-label-group input {
+	height: auto;
+	border-radius: 2rem;
+}
+
+.form-label-group>input, .form-label-group>label {
+	padding: var(- -input-padding-y) var(- -input-padding-x);
+}
+
+.form-label-group>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+	/* Override default `<label>` margin */
+	line-height: 1.5;
+	color: #495057;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+	color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+	color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+	color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+	color: transparent;
+}
+
+.form-label-group input::placeholder {
+	color: transparent;
+}
+
+.form-label-group input:not (:placeholder-shown ) ~label {
+	padding-top: calc(var(- -input-padding-y)/3);
+	padding-bottom: calc(var(- -input-padding-y)/3);
+	font-size: 12px;
+	color: #777;
+}
+
+.card-signin {
+	border: 0;
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+	margin-bottom: 2rem;
+	font-weight: 300;
+	font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+	padding: 2rem;
+}
+
+.column {
+	padding: 10px;
+	flex: 50%;
+}
+
+div.searchable {
+	margin: 0 15px;
+}
+
+.searchable input {
+	width: 100%;
+	height: 50px;
+	font-size: 18px;
+	padding: 10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	display: block;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.searchable ul {
+	display: none;
+	list-style-type: none;
+	background-color: #fff;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #add8e6;
+	border-top: none;
+	max-height: 180px;
+	margin: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0;
+}
+
+.searchable ul li {
+	padding: 7px 9px;
+	border-bottom: 1px solid #e1e1e1;
+	cursor: pointer;
+	color: #6e6e6e;
+}
+
+.searchable ul li.selected {
+	background-color: #e8e8e8;
+	color: #333;
 }
 </style>
+<title>Agregar Nueva Subcategoría</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
-<body onload="setColor();">
+<body>
+
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.slim.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -102,7 +225,7 @@ div.searchable {
 			<a class="navbar-brand" href="../Index">Inicio</a>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown active"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Artículos </a>
@@ -118,24 +241,19 @@ div.searchable {
 								<a class="dropdown-item" href="../ListaArticulos">Lista de
 									artículos</a>
 								 <a class = "dropdown-item" href="../NuevaCategoria">Nueva Categoría</a>
-								 <a class = "dropdown-item" href="../NuevaSubcategoria">Nueva Subcategoría</a>
+								 <a class = "dropdown-item active" href="../NuevaSubcategoria">Nueva Subcategoría</a>
 							</c:if>
-
 						</div></li>
-					<c:if
-						test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
-
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">Proveedores </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="../ProveedorNuevo">Nuevo
-									proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
-									por artículos</a> <a class="dropdown-item "
-									href="../BuscarProveedor">Proveedor específico</a>
-							</div></li>
-					</c:if>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Proveedores </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item active" href="../ProveedorNuevo">Nuevo
+								proveedor</a> <a class="dropdown-item" href="../ListaProveedores">Listar
+								por artículos</a> <a class="dropdown-item" href="../BuscarProveedor">Proveedor
+								específico</a>
+						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -145,18 +263,18 @@ div.searchable {
 							<a class="dropdown-item" href="../ListaPedidos">Lista de
 								pedidos</a>
 						</div></li>
-					<li class="nav-item dropdown active"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Técnica </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown3">
-							<a class="dropdown-item" href="../ListaEquipos">Lista
-								de equipos</a> <a class="dropdown-item active" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
+							<a class="dropdown-item" href="../ListaEquipos">Lista de
+								equipos</a> <a class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
 							<c:if
 								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 								<a class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a> <a class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a> 
-								<a class="dropdown-item " href="../Tipo">Nuevo tipo</a>
+								<a class="dropdown-item" href="../Tipo">Nuevo tipo</a>
 								<a class="dropdown-item " href="../Lugar">Nuevo lugar</a>
 							</c:if>
 						</div></li>
@@ -187,7 +305,6 @@ div.searchable {
 									<a class="dropdown-item " href="../ListaRegistros">Lista de registros</a>
 							</div>
 						</li>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -195,163 +312,80 @@ div.searchable {
 					</a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdown2">
-							<c:if
-								test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador'}">
-								<a class="dropdown-item " href="../ListaUsuarios">Lista de
-									usuarios</a>
-								<c:if
-									test="${usuarioActual.getRol().getNombre()=='SuperAdmin'}">
-									<a class="dropdown-item" href="../UsuarioNuevo">Nuevo
-										usuario</a>
-									<a class="dropdown-item" href="../AreaNueva">Nueva Área</a>
-									<a class="dropdown-item" href="../ListaAreas">Lista de
-										áreas</a>
-								</c:if>
-							</c:if>
-							<a class="dropdown-item" href="../CerrarSesion">Cerrar sesión</a>
+							<a class="dropdown-item" href="../UsuarioNuevo">Nuevo usuario</a>
+							<a class="dropdown-item " href="../ListaUsuarios">Lista de
+								usuarios</a> <a class="dropdown-item" href="../AreaNueva">Nueva
+								área</a> <a class="dropdown-item" href="../CerrarSesion">Cerrar
+								sesión</a>
 						</div></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-
 	<!-- Page Content   -->
+
+
+
+
+
 	<div class="container">
-		<div class="card card-signin my-5">
-			<div class="card-body">
-				<form class="form-signin" method="get" action="../GrupoEquipos?nombreGrupo=${nombreGrupo })">
-					<h3 class="text-center">Datos del grupo de equipos buscado</h3>
-					<hr class="m-4">
+		<form class="form-signin" method="post" action="../NuevaSubcategoria">
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h3 class="text-center">Datos de la nueva subcategoría</h3>
 					<div class="row">
 						<div class="column">
-							<div class=" form-label-group> searchable">
-								<input type="text" placeholder="Buscar grupo"
-									name="nombreGrupo" id="nombreGrupo"
-									onkeyup="filterFunction(this,event)" required
-									autocomplete="off">
-								<c:set var="gruposEquipos" value="${nombresGruposEquipos }"></c:set>
-								<ul id="ulGE">
-									<c:forEach items="${gruposEquipos}" var="grupo">
-
-										<li>${grupo}</li>
+							<div>Nombre</div>
+							<div class="form-label-group>">
+								<input type="text" name="inputNombre" id="inputNombre" class="form-control"
+									placeholder="Nombre" required autocomplete="off" onchange="comparar()">
+							</div>
+							<div>Categoría</div>
+							<div class=" form-label-group>" id="divCat">
+								<input type="hidden" name="inputCat" id="inputCat" value =""> <select
+									onchange="selected()" id="selectCat"
+									style="border-radius: 5px; font-size: 16px; padding: 10px;"
+									required>
+									<option disabled selected value ="">Seleccione una categoría</option>
+									<c:forEach items="${cats}" var="categoria">
+										<option style="cursor: pointer"
+											class="${categoria.getNombre()} listaCat"
+											value=${categoria.getCategoriaId() }>-${categoria.getNombre()}</option>
 									</c:forEach>
-								</ul>
+								</select>
+
 							</div>
 						</div>
 					</div>
 					<hr>
-					<button disabled
-						class="btn btn-lg btn-primary btn-block text-uppercase"
-						id="aceptarbutton"
-						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
-						Aceptar</button>
-				</form>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+						type="submit" disabled="disabled" id="buttonAceptar"
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer">Aceptar</button>
+				</div>
 			</div>
-		</div>
-
+		</form>
 	</div>
-
 	<script>
-		function filterFunction(that, event) {
-			let container, input, filter, li, input_val;
-			container = $(that).closest(".searchable");
-			input_val = container.find("input").val().toUpperCase();
-
-			if ([ "ArrowDown", "ArrowUp", "Enter" ].indexOf(event.key) != -1) {
-				keyControl(event, container)
-			} else {
-				li = container.find("ul li");
-				li.each(function(i, obj) {
-					if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
-						$(this).show();
-					} else {
-						$(this).hide();
-					}
-				});
-
-				container.find("ul li").removeClass("selected");
-				setTimeout(function() {
-					container.find("ul li:visible").first()
-							.addClass("selected");
-				}, 100)
-			}
+		function selected() {
+			var x = document.getElementById("selectCat").value;
+			document.getElementById("inputCat").value = x;
+			comparar();
 		}
-
-		function keyControl(e, container) {
-			if (e.key == "ArrowDown") {
-
-				if (container.find("ul li").hasClass("selected")) {
-					if (container.find("ul li:visible").index(
-							container.find("ul li.selected")) + 1 < container
-							.find("ul li:visible").length) {
-						container.find("ul li.selected")
-								.removeClass("selected").nextAll().not(
-										'[style*="display: none"]').first()
-								.addClass("selected");
-					}
-
-				} else {
-					container.find("ul li:first-child").addClass("selected");
+		function comparar(){
+			var x = document.getElementById("inputCat").value;
+			var y = document.getElementById("buttonAceptar");
+			var b = document.getElementById("inputNombre");
+			var a = b.value;
+			if(a == null || a == ""){
+				if(x == null || x == ""){
+					y.disabled = true;
 				}
-
-			} else if (e.key == "ArrowUp") {
-
-				if (container.find("ul li:visible").index(
-						container.find("ul li.selected")) > 0) {
-					container.find("ul li.selected").removeClass("selected")
-							.prevAll().not('[style*="display: none"]').first()
-							.addClass("selected");
-				}
-			} else if (e.key == "Enter") {
-				container.find("input").val(
-						container.find("ul li.selected").text()).blur();
-				onSelect(container.find("ul li.selected").text())
+			}else{
+				y.disabled = false;
 			}
-
-			container.find("ul li.selected")[0].scrollIntoView({
-				behavior : "smooth",
-			});
-		}
-
-		$(".searchable input").focus(function() {
-
-			$(this).closest(".searchable").find("ul").show();
-			$(this).closest(".searchable").find("ul li").show();
-		});
-		$(".searchable input").blur(function() {
-			let that = this;
-			setTimeout(function() {
-				$(that).closest(".searchable").find("ul").hide();
-			}, 300);
-		});
-
-		$(document).on(
-				'click',
-				'.searchable ul li',
-				function() {
-					$(this).closest(".searchable").find("input").val(
-							$(this).text()).blur();
-
-					onSelect($(this).text())
-
-				});
-
-		$(".searchable ul li").hover(
-				function() {
-
-					$(this).closest(".searchable").find("ul li.selected")
-							.removeClass("selected");
-					$(this).addClass("selected");
-				});
-		function onSelect(val) {
-
-			$('#aceptarbutton').prop('disabled', false);
-			$('#nombreGrupo').prop('readonly', true);
-
 		}
 	</script>
-
 </body>
-</html>
 
+</html>

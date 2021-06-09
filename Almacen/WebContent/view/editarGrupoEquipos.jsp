@@ -58,8 +58,10 @@
 								<a class="dropdown-item" href="../NuevoArticulo">Nuevo
 									artículo</a>
 
-								<a class="dropdown-item" href="../ListaArticulos">Lista de
+							<a class="dropdown-item" href="../ListaArticulos">Lista de
 									artículos</a>
+								 <a class = "dropdown-item" href="../NuevaCategoria">Nueva Categoría</a>
+								 <a class = "dropdown-item" href="../NuevaSubcategoria">Nueva Subcategoría</a>
 							</c:if>
 
 						</div></li>
@@ -121,8 +123,6 @@
 								<a class="dropdown-item" href="../NuevoGrupo">Nuevo grupo</a>
 							</c:if>
 						</div></li>
-					<c:if
-						test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
 
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href='#' id="navbarDropdown5"
@@ -133,7 +133,6 @@
 								<a class="dropdown-item " href="../ListaRegistros">Lista de
 									registros</a>
 							</div></li>
-					</c:if>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"

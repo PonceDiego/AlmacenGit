@@ -19,7 +19,8 @@ public class RegistroDB {
 		List<Registro> registros = new ArrayList<Registro>();
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Registro> query = sess.createQuery("select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '"+ id +"'");
+			Query<Registro> query = sess.createQuery(
+					"select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '" + id + "'");
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r.getUsuario());
@@ -35,7 +36,8 @@ public class RegistroDB {
 		List<Registro> registros;
 		try {
 			sess = HibernateUtils.openSession();
-			Query query = sess.createQuery("select r from Registro r where r.usuario='" + user + "'");
+			Query<Registro> query = sess
+					.createQuery("select r from Registro r where r.usuario='" + user + "' order by r.fecha desc");
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r.getUsuario());
@@ -77,45 +79,47 @@ public class RegistroDB {
 			sess.close();
 		}
 	}
-	
+
 	public static Registro getLastRegistroByIdAndTipo(TIPO_REGISTRO tipo, int id) {
 		Session sess = null;
 		Registro registro = null;
 		try {
 			sess = HibernateUtils.openSession();
-			
-			Query<Registro> query = sess.createQuery("select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '"+ id +"' order by r.fecha desc");
+
+			Query<Registro> query = sess.createQuery("select r from Registro r where r.entidad='" + tipo.label
+					+ "' and r.entidadId = '" + id + "' order by r.fecha desc");
 			query.setMaxResults(1);
-			
+
 			registro = query.getSingleResult();
-			
+
 			Hibernate.initialize(registro.getUsuario());
-			
+
 			return registro;
 		} finally {
 			sess.close();
 		}
 	}
-	
-	
+
 	public static List<Registro> listarRecursosPorEquipo() {
-		Session sess=null;
-		List<Registro> registros=new ArrayList<Registro>();
+		Session sess = null;
+		List<Registro> registros = new ArrayList<Registro>();
 		List<Equipo> equipos = EquipoDB.getListaEquiposCompleta();
 		try {
-			sess=HibernateUtils.openSession();
-			for(Equipo e:equipos) {
-				
-				Query<Registro> query= sess.createQuery("select r from Registro r where r.entidad = 'Equipo' and r.entidadId='"+e.getEquipoId()+"' order by r.fecha desc");
+			sess = HibernateUtils.openSession();
+			for (Equipo e : equipos) {
+
+				Query<Registro> query = sess
+						.createQuery("select r from Registro r where r.entidad = 'Equipo' and r.entidadId='"
+								+ e.getEquipoId() + "' order by r.fecha desc");
 				query.setMaxResults(1);
 				registros.add(query.getSingleResult());
 			}
-			for(Registro r:registros) {
+			for (Registro r : registros) {
 				Hibernate.initialize(r.getUsuario().getNombre());
 				Hibernate.initialize(r.getUsuario().getApellido());
 			}
 			return registros;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import main.java.Almacen.model.Categoria;
@@ -115,6 +116,39 @@ public class SubcategoriaDB {
 			int id = (int) query.getSingleResult();
 			c = getCategoriaById(id);
 			return c;
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void createSubcategoria(String nombre, String inputCat) {
+		Session sess = null;
+		Transaction tran = null;
+		Subcategoria subcategoria = new Subcategoria();
+		Categoria categoria = getCategoriaById(Integer.parseInt(inputCat));
+
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			subcategoria.setNombre(nombre);
+			subcategoria.setCategoria(categoria);
+			sess.save(subcategoria);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+
+	}
+
+	public static void createCategoria(String nombre) {
+		Session sess = null;
+		Transaction tran = null;
+		Categoria categoria = new Categoria(nombre);
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.save(categoria);
+			tran.commit();
 		} finally {
 			sess.close();
 		}

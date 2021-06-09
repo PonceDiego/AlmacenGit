@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.Registro;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.model.views.RegistroView;
 
 /**
@@ -55,8 +56,16 @@ public class ServletListaRegistros extends HttpServlet {
 				out.print(gson.toJson(respuesta));
 				out.flush();
 			} else {
+				Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
+				String rol = actual.getRol().getNombre();
+				System.out.println(rol);
 
-				request.getSession().setAttribute("registros", RegistroManager.getListaRegistros());
+				if (rol.equals("SuperAdmin") || rol.equals("Administrador Técnica")) {
+					request.getSession().setAttribute("registros", RegistroManager.getListaRegistros());
+				} else {
+					request.getSession().setAttribute("registros",
+							RegistroManager.getListaRegistrosByUser(actual.getId()));
+				}
 
 				response.sendRedirect("view/listaDeRegistros.jsp");
 			}
