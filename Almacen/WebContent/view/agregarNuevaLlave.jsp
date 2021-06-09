@@ -17,12 +17,12 @@
 
 
 <style>
-div.searchable {
+div.searchable2 {
 	float: left;
 	width: 100%;
 }
 
-.searchable input {
+.searchable2 input {
 	width: 100%;
 	font-size: 18px;
 	padding: 10px;
@@ -43,7 +43,7 @@ div.searchable {
 		no-repeat right .75rem center/8px 10px;
 }
 
-.searchable ul {
+.searchable2 ul {
 	display: none;
 	list-style-type: none;
 	background-color: #fff;
@@ -57,14 +57,14 @@ div.searchable {
 	padding: 0;
 }
 
-.searchable ul li {
+.searchable2 ul li {
 	padding: 7px 9px;
 	border-bottom: 1px solid #e1e1e1;
 	cursor: pointer;
 	color: #6e6e6e;
 }
 
-.searchable ul li.selected {
+.searchable2 ul li.selected {
 	background-color: #e8e8e8;
 	color: #333;
 }
@@ -350,9 +350,7 @@ input[type=number] {
 									required>
 									<option selected disabled>Seleccione una ubicación</option>
 									<c:forEach items="${ubicaciones}" var="ubicacion">
-
 										<option value="${ubicacion.nombre }">${ubicacion.nombre }</option>
-
 									</c:forEach>
 								</select>
 									
