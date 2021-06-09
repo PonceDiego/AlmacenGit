@@ -676,9 +676,9 @@ div.searchable2 {
 			var x = document.getElementById('inputNombre')
 			for (var i = 0; i < lis.length; i++) {
 				if (lis[i].value == x.value) {
-					document.getElementById('aceptarbutton').disabled = "true";
+					document.getElementById('aceptarbutton').disabled =true;
 				} else {
-					document.getElementById('aceptarbutton').disabled = "false";
+					document.getElementById('aceptarbutton').disabled = false;
 				}
 			}
 		}

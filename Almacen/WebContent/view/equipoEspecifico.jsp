@@ -150,7 +150,13 @@
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto">
 
-		<h4>${equipo.getNombre()}</h4>
+		<h4>${equipo.getNombre()}
+		 <span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Ver código QR"
+				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${equipo.getEquipoId()}&entidad=Equipo','_blank')">
+				<i class="material-icons"> border_outer </i>
+			</button></span>
+		</h4>
 
 		<table class="table">
 			<tr>

@@ -11,11 +11,6 @@
 <meta name="author" content="">
 
 
-<!-- Bootstrap core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
-
-
 
 <title>Grupo de Equipos ${grupoEquipos.getNombre() }</title>
 
@@ -176,9 +171,13 @@
 		<h2 class="mt-5 text-center">${grupoEquipos.getNombre() }
 		<span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Editar"
-				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoEquipos?idAEditar=${grupoEquipos.getGrupoEquipoId()}')"
-				>
+				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoEquipos?idAEditar=${grupoEquipos.getGrupoEquipoId()}')">
 				<i class="material-icons"> edit </i>
+			</button></span>
+			 <span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Ver código QR"
+				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${grupoEquipos.getGrupoEquipoId()}&entidad=GrupoEquipo','_blank')">
+				<i class="material-icons"> border_outer </i>
 			</button></span>
 		</h2>
 	<div class="text-center lead"

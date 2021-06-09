@@ -176,6 +176,9 @@
 					<hr class="m-4">
 					<div class="column">
 						<div class="form-label-group>">
+						<input type="hidden" name="inputId" id="inputId"
+							value="${grupoEquipos.getGrupoEquipoId() }">
+							<div> Nombre del grupo de equipos</div>
 							<input type="text" name="inputNombre" class="form-control"
 								placeholder="Nombre del grupo" required autocomplete="off"
 								value="${grupoEquipos.getNombre() }" disabled="disabled">
@@ -210,6 +213,7 @@
 											});
 						</script>
 						<div style="text-align: center;">
+						<div>Equipos</div>
 							<input type="hidden" id="inputEquipos" name="inputEquipos">
 							<select id="boot-multiselect-equipos" multiple="multiple">
 								<c:forEach items="${equipos}" var="equipo">

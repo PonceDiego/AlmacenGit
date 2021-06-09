@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 
 
-<title>Código QR de ${articuloNombre }</title>
+<title>Código QR de ${entidadNombre }</title>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
@@ -19,7 +19,7 @@
 	<div style="outline:1px solid black; max-width: 250px;margin: 2px">
 
 		<img src="${imageSrc}" alt="CódigoQR">
-		<h5 class="text-center" style="align-content: center;">${articuloNombre }</h5>
+		<h5 class="text-center" style="align-content: center;">${entidadNombre }</h5>
 	</div>
 
 

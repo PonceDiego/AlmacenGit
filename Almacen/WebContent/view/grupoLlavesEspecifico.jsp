@@ -174,6 +174,11 @@
 				>
 				<i class="material-icons"> edit </i>
 			</button></span>
+			<span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Ver código QR"
+				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${grupoLlaves.getGrupoId()}&entidad=GrupoLlaves','_blank')">
+				<i class="material-icons"> border_outer </i>
+			</button></span>
 		</h2>
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto">

@@ -358,8 +358,8 @@ input[type=number] {
 											});
 						</script>
 
-						<div>Llaves</div>
 						<div style="text-align: center;">
+						<div>Llaves</div>
 							<input type="hidden" name="inputLlaves" id="inputLlaves"
 								autocomplete="off"> <select id="boot-multiselect-llaves"
 								name="boot-multiselect-llaves" multiple="multiple">

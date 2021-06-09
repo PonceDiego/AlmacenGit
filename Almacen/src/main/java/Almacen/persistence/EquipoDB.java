@@ -141,7 +141,8 @@ public class EquipoDB {
 		}
 	}
 
-	public static GrupoEquipos getGrupoEquipoById(String id) {
+	public static GrupoEquipos getGrupoEquipoById(String ids) {
+		int id = Integer.parseInt(ids);
 		Session sess = null;
 		GrupoEquipos equipo;
 		try {

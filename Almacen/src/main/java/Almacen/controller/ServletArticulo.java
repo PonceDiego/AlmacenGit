@@ -25,38 +25,34 @@ public class ServletArticulo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = Utils.GetSession(request);
-		
+
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
 			Usuario user = (Usuario) session.getAttribute("usuarioActual");
 			String idS = request.getParameter("articuloID");
 			int id = Integer.parseInt(idS);
+			Articulo articulo = ArticuloDB.getArticuloByID(id);
 
 			request.getSession().setAttribute("articuloId", id);
-			request.getSession().setAttribute("articuloCat",
-					ArticuloDB.getArticuloByID(id).getSubcategoria().getNombre());
+			request.getSession().setAttribute("articuloCat", articulo.getSubcategoria().getNombre());
 			request.getSession().setAttribute("articuloCatPadre",
-					ArticuloDB.getArticuloByID(id).getSubcategoria().getCategoria().getNombre());
-			request.getSession().setAttribute("articuloNombre", ArticuloDB.getArticuloByID(id).getNombre());
-			request.getSession().setAttribute("articuloCosto", ArticuloDB.getArticuloByID(id).getCosto());
-			request.getSession().setAttribute("articuloFecha", ArticuloDB.getArticuloByID(id).getFechaAgregado());
-
-			request.getSession().setAttribute("articuloStockMinimo", ArticuloDB.getArticuloByID(id).getStockMinimo());
-			request.getSession().setAttribute("articuloStock", ArticuloDB.getArticuloByID(id).getStock());
-			request.getSession().setAttribute("articuloEstado", ArticuloDB.getArticuloByID(id).getEstadoarticulo());
-			request.getSession().setAttribute("articuloProveedor",
-					ArticuloDB.getArticuloByID(id).getProveedor().getNombre());
+					articulo.getSubcategoria().getCategoria().getNombre());
+			request.getSession().setAttribute("articuloNombre", articulo.getNombre());
+			request.getSession().setAttribute("articuloCosto", articulo.getCosto());
+			request.getSession().setAttribute("articuloFecha", articulo.getFechaAgregado());
+			request.getSession().setAttribute("articuloStockMinimo", articulo.getStockMinimo());
+			request.getSession().setAttribute("articuloStock", articulo.getStock());
+			request.getSession().setAttribute("articuloEstado", articulo.getEstadoarticulo());
+			request.getSession().setAttribute("articuloProveedor", articulo.getProveedor().getNombre());
 
 			request.getSession().setAttribute("artProveedores",
-					ProveedoresDB.getProveedoresPorArt(ArticuloDB.getArticuloByID(id).getNombre()));
-			request.getSession().setAttribute("proveedorArticuloID",
-					ArticuloDB.getArticuloByID(id).getProveedor().getId());
+					ProveedoresDB.getProveedoresPorArt(articulo.getNombre()));
+			request.getSession().setAttribute("proveedorArticuloID", articulo.getProveedor().getId());
 
-			if (user.getRol().getNombre().equals("SuperAdmin")
-					|| user.getRol().getNombre().equals("Administrador")) {
+			if (user.getRol().getNombre().equals("SuperAdmin") || user.getRol().getNombre().equals("Administrador")) {
 				response.sendRedirect("view/articuloEspecifico.jsp");
 
 			} else
@@ -67,9 +63,9 @@ public class ServletArticulo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = Utils.GetSession(request);
-		
+
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {

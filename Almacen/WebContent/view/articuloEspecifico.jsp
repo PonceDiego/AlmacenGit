@@ -159,7 +159,7 @@
 			</button>
 		</span> <span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Ver código QR"
-				onclick="window.open('${pageContext.request.contextPath }/Qr?articuloID=${articuloId}','_blank')">
+				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${articuloId}&entidad=Articulo','_blank')">
 				<i class="material-icons"> border_outer </i>
 			</button></span><span>
 			<button class="btn btn-outline-warning" style="cursor: pointer"
@@ -197,7 +197,7 @@
 				<c:forEach items="${artProveedores}" var="prov">
 
 
-					<td><a href="../Proveedor?proveedorId=${prov.getProvId()}">
+					<td><a href="../Proveedor?proveedorId=${prov.getId()}">
 							${prov.getNombre() }</a></td>
 				</c:forEach>
 			</tr>
