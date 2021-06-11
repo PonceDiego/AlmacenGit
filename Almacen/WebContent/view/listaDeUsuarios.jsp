@@ -97,7 +97,6 @@
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
-				"responsive" : "true",
 				"columnDefs" : [ {
 					"orderable" : false,
 					"targets" : [ 6 ]

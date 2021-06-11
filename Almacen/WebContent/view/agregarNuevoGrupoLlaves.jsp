@@ -59,7 +59,7 @@
 
 							<input type="hidden" name="inputLlaves" id="inputLlaves" autocomplete="off"> <select tabindex="2" id="boot-multiselect-llaves" name="boot-multiselect-llaves" multiple="multiple">
 								<c:forEach items="${llaves}" var="llave">
-									<option value="${llave.getLlaveId()}">${llave.getNombre() }- ${llave.getLlaveId() }</option>
+									<option value="${llave.getLlaveId()}">${llave.getNombre() } - Copia ${llave.getCopia() }</option>
 								</c:forEach>
 							</select>
 						</div>

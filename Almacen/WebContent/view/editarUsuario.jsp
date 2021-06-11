@@ -26,7 +26,7 @@
 					<h3 class="text-center">Datos del usuario a editar</h3>
 					<hr class="m-4">
 					<c:set var="usuario" value="${usuarioEditar}"></c:set>
-					<input type="hidden" value="${usuario.getUsuarioId() }" id="idUEditar" name="idUEditar">
+					<input type="hidden" value="${usuario.getId() }" id="idUEditar" name="idUEditar">
 					<div class="row">
 						<div class="column">
 							<div>Nombre de Usuario</div>
@@ -37,27 +37,27 @@
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control" placeholder="Nombre" required value="${usuario.getNombre() }">
 							</div>
-							<div>Correo Electrónico</div>
-							<div class="form-label-group>">
-								<input type="text" name="inputMail" class="form-control" placeholder="eMail" required value="${usuario.getEmail() }">
-							</div>
-
-						</div>
-						<div class="column">
 							<div>Rol</div>
 							<div class="form-label-group>">
 								<select name="inputRol" style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%" required>
 									<c:forEach items="${roles}" var="rol">
 										<c:choose>
-											<c:when test="${rol.getNombreRol()==usuario.getRol().getNombreRol() }">
-												<option selected>${rol.getNombreRol() }</option>
+											<c:when test="${rol.getNombre()==usuario.getRol().getNombre() }">
+												<option selected>${rol.getNombre() }</option>
 											</c:when>
 											<c:otherwise>
-												<option>${rol.getNombreRol() }</option>
+												<option>${rol.getNombre() }</option>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 								</select>
+							</div>
+
+						</div>
+						<div class="column">
+							<div>Correo Electrónico</div>
+							<div class="form-label-group>">
+								<input type="text" name="inputMail" class="form-control" placeholder="eMail" required value="${usuario.getEmail() }">
 							</div>
 
 							<div>Apellido</div>
@@ -69,11 +69,11 @@
 								<select name="inputArea" style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%" required>
 									<c:forEach items="${areas}" var="area">
 										<c:choose>
-											<c:when test="${area.getNombreArea()==usuario.getArea().getNombreArea()}">
-												<option selected>${area.getNombreArea() }</option>
+											<c:when test="${area.getNombre()==usuario.getArea().getNombre()}">
+												<option selected>${area.getNombre() }</option>
 											</c:when>
 											<c:otherwise>
-												<option>${area.getNombreArea()}</option>
+												<option>${area.getNombre()}</option>
 											</c:otherwise>
 										</c:choose>
 

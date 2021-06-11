@@ -43,7 +43,7 @@
 						<tr>
 							<td>Cantidad</td>
 							<td>Artículo</td>
-							<td>Categoría</td>
+							<td>Categoría - Subcategoría</td>
 						</tr>
 					</thead>
 					<tbody id="articulos" style="color: black; background-color: white;">
@@ -56,7 +56,7 @@
 									<c:out value="${articulo.articulo.getNombre()}" />
 								</td>
 								<td>
-									<c:out value="${articulo.articulo.getSubcategoria().getNombre()}" />
+									<c:out value="${articulo.articulo.getSubcategoria().getCategoria().getNombre()} - ${articulo.articulo.getSubcategoria().getNombre()}" />
 								</td>
 
 							</tr>

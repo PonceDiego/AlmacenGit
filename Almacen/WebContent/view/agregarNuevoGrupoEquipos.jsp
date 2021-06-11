@@ -61,7 +61,7 @@
 						<div style="text-align: center;">
 							<input type="hidden" id="inputEquipos" name="inputEquipos"> <select tabindex="2" id="boot-multiselect-equipos" multiple="multiple">
 								<c:forEach items="${equipos}" var="equipo">
-									<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }-${equipo.getNombre() }</option>
+									<option value="${equipo.getEquipoId()}">${equipo.getNombre() } - Modelo ${equipo.getModelo() }</option>
 								</c:forEach>
 							</select>
 						</div>
