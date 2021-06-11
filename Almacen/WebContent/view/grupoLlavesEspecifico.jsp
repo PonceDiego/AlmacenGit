@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="MenuLlaves" />
 	</jsp:include>
 
 	<h2 class="mt-5 text-center">${grupoLlaves.getNombre() }

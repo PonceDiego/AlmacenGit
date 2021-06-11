@@ -19,7 +19,7 @@
 
 <body onload="setColor();">
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="ListaArticulos" />
 	</jsp:include>
 
 	<!-- Page Content   -->

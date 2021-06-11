@@ -16,7 +16,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="MenuProveedores" />
 	</jsp:include>
 
 	<!-- Page Content   -->

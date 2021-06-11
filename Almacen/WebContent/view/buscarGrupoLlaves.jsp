@@ -20,7 +20,7 @@
 </head>
 <body onload="setColor();">
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="BuscarGrupoLlaves" />
 	</jsp:include>
 
 	<!-- Page Content   -->

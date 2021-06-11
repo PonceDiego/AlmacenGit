@@ -14,7 +14,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="MenuTecnica" />
 	</jsp:include>
 
 	<h2 class="mt-5 text-center">${grupoEquipos.getNombre() }

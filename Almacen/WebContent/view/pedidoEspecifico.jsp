@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="MenuPedidos" />
 	</jsp:include>
 	<form method="post" action="${pageContext.request.contextPath }/Pedido">
 

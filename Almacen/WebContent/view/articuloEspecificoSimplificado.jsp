@@ -12,7 +12,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="MenuArticulo" />
 	</jsp:include>
 
 	<input type="hidden" name="articuloID" id="articuloID" value="${articuloId}">

@@ -15,7 +15,7 @@
 </head>
 <body onload="setColor();">
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="BuscarArticulo" />
 	</jsp:include>
 
 	<!-- Page Content   -->

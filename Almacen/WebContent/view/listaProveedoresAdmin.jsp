@@ -20,7 +20,7 @@
 
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="" value="" />
+		<jsp:param name="activeMenu" value="ListaProveedores" />
 	</jsp:include>
 
 	<!-- Page Content   -->
