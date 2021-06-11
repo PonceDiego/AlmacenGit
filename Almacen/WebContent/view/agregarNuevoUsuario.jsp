@@ -174,17 +174,17 @@
 						<div class="column">
 							<div>Nombre de Usuario</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputUsername" class="form-control"
+								<input tabindex="1" type="text" name="inputUsername" class="form-control"
 									placeholder="Nombre de Usuario" required autocomplete="off">
 							</div>
 							<div>Nombre</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputNombre" class="form-control"
+								<input tabindex="3" type="text" name="inputNombre" class="form-control"
 									placeholder="Nombre" required autocomplete="off">
 							</div>
 							<div>Área</div>
 							<div class=" form-label-group>" id="area">
-								<select name="inputArea"
+								<select tabindex="5" name="inputArea"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
 									required>
 									<option disabled selected>Seleccione un área</option>
@@ -200,22 +200,22 @@
 						<div class="column">
 							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputMail" class="form-control"
+								<input tabindex="2" type="text" name="inputMail" class="form-control"
 									placeholder="Mail" required autocomplete="off">
 							</div>
 
 
 							<div>Apellido</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputApellido" class="form-control"
+								<input tabindex="4" type="text" name="inputApellido" class="form-control"
 									placeholder="Apellido" required autocomplete="off">
 							</div>
 							<div>Rol</div>
 							<div class="form-label-group>">
-								<select name="inputRol"
+								<select tabindex="6" name="inputRol"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
 									required>
-									<option selected disabled>Seleccione un rol</option>
+									<option  selected disabled>Seleccione un rol</option>
 									<c:forEach items="${roles}" var="rol">
 
 										<option>${rol.getNombre() }</option>
@@ -226,7 +226,7 @@
 						</div>
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="7" class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
 						Aceptar</button>

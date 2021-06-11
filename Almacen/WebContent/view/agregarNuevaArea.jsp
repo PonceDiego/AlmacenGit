@@ -177,14 +177,14 @@
 						<div>Nombre del Área</div>
 							<div class="form-label-group>">
 								<input type="text" name="inputNombre" class="form-control"
-									placeholder="Nombre de área" required autocomplete="off">
+									placeholder="Nombre de área" tabindex="1" required autocomplete="off">
 							</div>
 
 						</div>
 						<div class="column">
 						<div>Usuario Jefe</div>
 							<div class=" form-label-group>">
-								<select name="inputJefe"
+								<select tabindex="2" name="inputJefe"
 									style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%"
 									required>
 									<option disabled selected>Seleccione un usuario jefe</option>

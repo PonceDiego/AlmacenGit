@@ -338,19 +338,19 @@ div.searchable {
 						<div class="column">
 						<div>Nombre del proveedor</div>
 							<div class="form-label-group>">
-								<input type="text" name="provNombre" class="form-control"
+								<input tabindex="1" type="text" name="provNombre" class="form-control"
 									placeholder="Nombre" required autocomplete="off">
 							</div>
 							<div>Teléfono</div>
 							<div class="form-label-group>">
-								<input type="text" name="provTel" class="form-control"
+								<input tabindex="3" type="text" name="provTel" class="form-control"
 									placeholder="Teléfono" required
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									autocomplete="off">
 							</div>
 							<div>Contacto</div>
 							<div class="form-label-group>">
-								<input type="text" name="provCont" class="form-control"
+								<input tabindex="5" type="text" name="provCont" class="form-control"
 									placeholder="Persona contacto" autocomplete="off">
 							</div>
 
@@ -359,12 +359,12 @@ div.searchable {
 						<div class="column">
 						<div>Dirección</div>
 							<div class="form-label-group>">
-								<input type="text" name="provDire" class="form-control"
+								<input tabindex="2" type="text" name="provDire" class="form-control"
 									placeholder="Dirección" required autocomplete="off">
 							</div>
 							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
-								<input type="text" name="provMail" class="form-control"
+								<input tabindex="4" type="text" name="provMail" class="form-control"
 									placeholder="Mail" required autocomplete="off">
 							</div>
 
@@ -373,7 +373,7 @@ div.searchable {
 
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="6" class="btn btn-lg btn-primary btn-block text-uppercase"
 						type="submit"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer">Aceptar</button>
 				</div>

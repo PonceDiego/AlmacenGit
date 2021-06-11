@@ -371,7 +371,7 @@ div.searchable2 {
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input type="text" name="inputNombre" id="inputNombre"
+								<input tabindex="1" type="text" name="inputNombre" id="inputNombre"
 									class="form-control" placeholder="Nombre" required
 									autocomplete="off" onchange="comparar()"
 									onkeyup="filterFunction2(this,event),botonAceptar()">
@@ -384,14 +384,14 @@ div.searchable2 {
 							</div>
 							<div>Stock Mínimo</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputSMinimo"
+								<input  tabindex="3" type="text" name="inputSMinimo"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									class="form-control" placeholder="Stock Mínimo" required
 									autocomplete="off">
 							</div>
 							<div>Categoría</div>
 							<div class="form-label-group> searchable">
-								<input type="text" placeholder="Categoría" name="input"
+								<input  tabindex="5" type="text" placeholder="Categoría" name="input"
 									id="input" onkeyup="filterFunction(this,event)" required
 									autocomplete="off">
 								<c:set var="categoria" value="${categoriasListadas}"
@@ -406,7 +406,7 @@ div.searchable2 {
 							<div class="form-label-group>">
 								<input type="hidden" name="inputProveedor" id="inputProveedor"
 									autocomplete="off"> <select onchange="selected()"
-									id="provSelect"
+									tabindex="7" id="provSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px"
 									required>
 									<option selected disabled>Seleccione un proveedor</option>
@@ -423,22 +423,22 @@ div.searchable2 {
 						<div class="column">
 						<div>Costo</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputCosto" class="form-control"
+								<input tabindex="2" type="text" name="inputCosto" class="form-control"
 									placeholder="Costo"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 									id="costoinput" required autocomplete="off">
 							</div>
 
-<div>Stock Actual</div>
+						<div>Stock Actual</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputStock" class="form-control"
+								<input tabindex="4" type="text" name="inputStock" class="form-control"
 									placeholder="Stock Actual" required autocomplete="off"
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 							</div>
 							<div>Subcategoría</div>
 							<div class=" form-label-group>" id="divSub">
 								<input type="hidden" name="inputSub" id="inputSub"> <select
-									onchange="selected2()" id="selectSub"
+									tabindex="6" onchange="selected2()" id="selectSub"
 									style="border-radius: 5px; font-size: 16px; padding: 10px;"
 									required>
 									<option disabled selected>Seleccione una subcategoría</option>
@@ -454,7 +454,7 @@ div.searchable2 {
 						</div>
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="8" class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
 						Aceptar</button>

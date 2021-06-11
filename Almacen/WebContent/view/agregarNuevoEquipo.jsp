@@ -372,7 +372,7 @@ div.searchable2 {
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
 								<input type="text" name="inputNombre" id="inputNombre"
-									class="form-control" placeholder="Nombre" required
+									tabindex="1" class="form-control" placeholder="Nombre" required
 									autocomplete="off" maxlength="50"
 									onkeyup="filterFunction2(this,event),botonAceptar()">
 								<c:set var="equipos" value="${listaEquipos }"></c:set>
@@ -386,7 +386,7 @@ div.searchable2 {
 							<div class="form-label-group>">
 								<input type="hidden" name="inputTipo" id="inputTipo"
 									autocomplete="off"> 
-									<select onchange="selected()"
+									<select tabindex="3" onchange="selected()"
 									id="tipoSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
@@ -400,7 +400,7 @@ div.searchable2 {
 							<div class="form-label-group>">
 								<input type="hidden" name="inputLugar" id="inputLugar"
 									autocomplete="off"> 
-									<select onchange="selected2()"
+									<select tabindex="5" onchange="selected2()"
 									id="lugarSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px"
 									required>
@@ -412,7 +412,7 @@ div.searchable2 {
 							</div>
 							<div>Accesorios</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputAccesorios" class="form-control"
+								<input tabindex="7" type="text" name="inputAccesorios" class="form-control"
 									placeholder="Accesorios" id="inputAccesorios" maxlength="140"
 									autocomplete="off">
 							</div>
@@ -421,13 +421,13 @@ div.searchable2 {
 						<div class="column">
 							<div>Modelo</div>
 							<div class="form-label-group>">
-								<input type="text" name="inpuModelo" class="form-control"
+								<input tabindex="2" type="text" name="inpuModelo" class="form-control"
 									placeholder="Modelo" id="inpuModelo" maxlength="50"
 									autocomplete="off">
 							</div>
 						<div>Serial</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputSerial" class="form-control"
+								<input tabindex="4" type="text" name="inputSerial" class="form-control"
 									placeholder="Serial" id="inputSerial" maxlength="50"
 									autocomplete="off">
 							</div>
@@ -435,7 +435,7 @@ div.searchable2 {
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputUsuario" id="inputUsuario"
-									autocomplete="off"> <select onchange="selected3()"
+									autocomplete="off"> <select tabindex="6" onchange="selected3()"
 									id="usuarioSelect"
 									style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
 									<option selected disabled>Seleccione un usuario</option>
@@ -446,7 +446,7 @@ div.searchable2 {
 							</div>
 							<div>Observaciones</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputObservaciones"
+								<input tabindex="8" type="text" name="inputObservaciones"
 									class="form-control" placeholder="Observaciones"
 									id="inputObservaciones" maxlength="140" autocomplete="off">
 							</div>
@@ -454,7 +454,7 @@ div.searchable2 {
 						</div>
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="9" class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
 						Aceptar</button>

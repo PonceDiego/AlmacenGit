@@ -176,7 +176,7 @@
 					<hr class="m-4">
 					<div class="column">
 						<div class="form-label-group>">
-							<input type="text" name="inputNombre" class="form-control"
+							<input tabindex="1" type="text" name="inputNombre" class="form-control"
 								placeholder="Nombre del grupo" required autocomplete="off">
 						</div>
 
@@ -209,7 +209,7 @@
 						<div style="text-align: center;">
 
 							<input type="hidden" name="inputLlaves" id="inputLlaves"
-								autocomplete="off"> <select id="boot-multiselect-llaves"
+								autocomplete="off"> <select tabindex="2" id="boot-multiselect-llaves"
 								name="boot-multiselect-llaves" multiple="multiple">
 								<c:forEach items="${llaves}" var="llave">
 									<option value="${llave.getLlaveId()}">${llave.getNombre() }
@@ -220,7 +220,7 @@
 
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="3" class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">
 						Aceptar</button>

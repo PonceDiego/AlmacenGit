@@ -174,7 +174,7 @@
 					<hr class="m-4">
 					<div class="column">
 						<div class="form-label-group>">
-							<input type="text" name="inputNombre" class="form-control"
+							<input tabindex="1" type="text" name="inputNombre" class="form-control"
 								placeholder="Nombre del grupo" required autocomplete="off">
 						</div>
 						<p></p>
@@ -199,7 +199,7 @@
 						</script>
 						<div style="text-align: center;">
 							<input type="hidden" id="inputEquipos" name="inputEquipos">
-							<select id="boot-multiselect-equipos" multiple="multiple">
+							<select tabindex="2" id="boot-multiselect-equipos" multiple="multiple">
 								<c:forEach items="${equipos}" var="equipo">
 									<option value="${equipo.getEquipoId()}">${equipo.getEquipoId() }
 										- ${equipo.getNombre() }</option>
@@ -210,7 +210,7 @@
 
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+					<button tabindex="3" class="btn btn-lg btn-primary btn-block text-uppercase"
 						id="aceptarbutton"
 						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;"
 						>Aceptar</button>

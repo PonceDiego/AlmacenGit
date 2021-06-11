@@ -323,7 +323,7 @@ input[type=number] {
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input type="text" name="inputNombre" id="inputNombre"
+								<input tabindex="1" type="text" name="inputNombre" id="inputNombre"
 									class="form-control" placeholder="Nombre" required
 									autocomplete="off"
 									onkeyup="filterFunction2(this,event),botonAceptar()">
@@ -336,7 +336,7 @@ input[type=number] {
 							</div>
 							<div>Copia n°</div>
 							
-							<input type="number" name ="inputCopia" id="inputCopia"
+							<input tabindex="3" type="number" name ="inputCopia" id="inputCopia"
 							 class ="form-control" placeholder ="Copia" required
 							 autocomplete ="off" value="1" onchange="comparar()">
 						</div>
@@ -346,7 +346,7 @@ input[type=number] {
 							<div class="form-label-group>">
 								<input type="hidden" name="inputUbicacion" class="form-control" id="inputUbicacion"
 									required autocomplete="off">
-									<select onchange="selected()" id="ubicacionSelect" style="border-radius: 5px; font-size: 16px; padding: 10px"
+									<select tabindex="2" onchange="selected()" id="ubicacionSelect" style="border-radius: 5px; font-size: 16px; padding: 10px"
 									required>
 									<option selected disabled>Seleccione una ubicación</option>
 									<c:forEach items="${ubicaciones}" var="ubicacion">
@@ -358,7 +358,7 @@ input[type=number] {
 						</div>
 					</div>
 					<div>Observaciones</div>
-					<input type="text" name="inputObservaciones" class="form-control"
+					<input tabindex="4" type="text" name="inputObservaciones" class="form-control"
 						placeholder="Observaciones" maxlength="140" title="Observaciones"
 						autocomplete="off" >
 

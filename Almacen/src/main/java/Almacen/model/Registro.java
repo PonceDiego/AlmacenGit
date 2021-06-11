@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 16-may-2021 18:14:35 by Hibernate Tools 5.2.12.Final
+// Generated 10/06/2021 17:00:43 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -66,8 +66,8 @@ public class Registro implements java.io.Serializable {
 		this.usuario = usuario;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha", length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha", length = 19)
 	public Date getFecha() {
 		return this.fecha;
 	}

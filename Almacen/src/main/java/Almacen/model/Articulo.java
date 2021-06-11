@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 16-may-2021 18:14:35 by Hibernate Tools 5.2.12.Final
+// Generated 10/06/2021 17:00:43 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -126,8 +126,8 @@ public class Articulo implements java.io.Serializable {
 		this.costo = costo;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_agregado", nullable = false, length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_agregado", nullable = false, length = 19)
 	public Date getFechaAgregado() {
 		return this.fechaAgregado;
 	}
