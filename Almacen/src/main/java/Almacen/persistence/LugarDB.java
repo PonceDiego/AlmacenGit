@@ -51,4 +51,33 @@ public class LugarDB {
 			sess.close();
 		}
 	}
+
+	public static void editarLugar(Lugar lugar, String nombre, String descripcion) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.update(lugar);
+			lugar.setDescripcion(descripcion);
+			lugar.setNombre(nombre);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static Lugar getLugarById(String ids) {
+		Lugar lugar = null;
+		Session sess = null;
+		int id = Integer.parseInt(ids);
+		try {
+			sess = HibernateUtils.openSession();
+			lugar = sess.get(Lugar.class, id);
+		} finally {
+			sess.close();
+		}
+
+		return lugar;
+	}
 }

@@ -43,6 +43,7 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Descripción</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody id="tablaAreas">
@@ -54,6 +55,11 @@
 							</td>
 							<td>
 								<c:out value="${tipo.getDescripcion()}" />
+							</td>
+							<td>
+								<button class="btn btn-outline-dark" style="cursor: pointer" title="Editar" onclick="window.location.href=('${pageContext.request.contextPath }/EditarLugar?lugarAEditar=${tipo.getLugarId()}')">
+				<i class="material-icons"> edit </i>
+			</button>
 							</td>
 						</tr>
 					</c:forEach>

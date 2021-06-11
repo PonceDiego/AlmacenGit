@@ -79,6 +79,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#tablaRegistroEquipo').DataTable({
+				"order": [[ 0, "desc" ]],
 				"columnDefs" : [ {
 					"responsive" : "true"
 				} ],

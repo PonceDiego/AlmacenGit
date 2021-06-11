@@ -142,11 +142,10 @@
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
-				"scrollX" : true,
 				"columnDefs" : [ {
 					"responsive" : "true",
 					"orderable" : false,
-					"targets" : [ 5, 6, 7, 8 ]
+					"targets" : [ 5, 6 ]
 				} ],
 				"language" : {
 					"emptyTable" : "No se encontraron llaves a mostrar!"

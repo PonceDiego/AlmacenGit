@@ -124,6 +124,7 @@
 
 			$('#myTable').DataTable({
 				"columnDefs" : [ {
+					"order": [[ 0, "desc" ]],
 					"responsive" : "true",
 					"orderable" : false,
 					"targets" : [ 4, 5 ]
