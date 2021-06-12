@@ -51,7 +51,7 @@ public class EquipoManager {
 		Equipo e = EquipoDB.getEquipoByID(id);
 		System.out.println(e.getNombre());
 
-		RegistroManager.createRegistro(true, userActual.getId(), TIPO_REGISTRO.EQUIPO, e.getEquipoId());
+		RegistroManager.createRegistro(true, userActual.getId(), TIPO_REGISTRO.EQUIPO, e.getEquipoId(), null);
 	}
 
 	public static void changeStatus(int user, int id) {

@@ -106,7 +106,7 @@ public class LlaveDB {
 		llave.setGrupoLlaves(grupo);
 	}
 
-	public static void cambiarEstado(Integer encargado, int id, String idSolicitante) {
+	public static void cambiarEstado(int encargado, int id, String idSolicitante) {
 		int user = Integer.parseInt(idSolicitante);
 		Session sess = null;
 		Transaction tran = null;

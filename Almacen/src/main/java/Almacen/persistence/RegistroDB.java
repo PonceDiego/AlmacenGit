@@ -23,7 +23,8 @@ public class RegistroDB {
 					"select r from Registro r where r.entidad='" + tipo.label + "' and r.entidadId = '" + id + "'");
 			registros = query.getResultList();
 			for (Registro r : registros) {
-				Hibernate.initialize(r.getUsuario());
+				Hibernate.initialize(r.getUsuarioByEncargado());
+				Hibernate.initialize(r.getUsuarioByUsuario());
 			}
 			return registros;
 		} finally {
@@ -40,7 +41,8 @@ public class RegistroDB {
 					.createQuery("select r from Registro r where r.usuario='" + user + "' order by r.fecha desc");
 			registros = query.getResultList();
 			for (Registro r : registros) {
-				Hibernate.initialize(r.getUsuario());
+				Hibernate.initialize(r.getUsuarioByEncargado());
+				Hibernate.initialize(r.getUsuarioByUsuario());
 				Hibernate.initialize(r);
 			}
 			return registros;
@@ -58,8 +60,8 @@ public class RegistroDB {
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r);
-				Hibernate.initialize(r.getUsuario());
-				Hibernate.initialize(r.getUsuario().getNombreUsuario());
+				Hibernate.initialize(r.getUsuarioByEncargado());
+				Hibernate.initialize(r.getUsuarioByUsuario());
 			}
 			return registros;
 		} finally {
@@ -92,7 +94,8 @@ public class RegistroDB {
 
 			registro = query.getSingleResult();
 
-			Hibernate.initialize(registro.getUsuario());
+			Hibernate.initialize(registro.getUsuarioByEncargado());
+			Hibernate.initialize(registro.getUsuarioByUsuario());
 
 			return registro;
 		} finally {
@@ -115,8 +118,8 @@ public class RegistroDB {
 				registros.add(query.getSingleResult());
 			}
 			for (Registro r : registros) {
-				Hibernate.initialize(r.getUsuario().getNombre());
-				Hibernate.initialize(r.getUsuario().getApellido());
+				Hibernate.initialize(r.getUsuarioByEncargado());
+				Hibernate.initialize(r.getUsuarioByUsuario());
 			}
 			return registros;
 		} finally {

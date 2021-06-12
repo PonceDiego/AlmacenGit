@@ -40,7 +40,7 @@ public class RegistroManager {
 
 	}
 
-	public static void createRegistro(boolean entrada, int user, TIPO_REGISTRO tipo, int idEntidad, int encargado) {
+	public static void createRegistro(boolean entrada, int user, TIPO_REGISTRO tipo, int idEntidad, Integer encargado) {
 		System.out.println("Creando registro");
 
 		// Creamos el registro
@@ -50,9 +50,11 @@ public class RegistroManager {
 
 		// Traemos el user
 		Usuario usuario = UsuarioDB.getUsuarioByID(user);
-		registro.setUsuario(usuario);
-		usuario = UsuarioDB.getUsuarioByID(encargado);
-		registro.setEncargado(usuario);
+		registro.setUsuarioByUsuario(usuario);
+		if (encargado != null) {
+			usuario = UsuarioDB.getUsuarioByID(encargado);
+			registro.setUsuarioByEncargado(usuario);
+		}
 
 		Object entidad = null;
 

@@ -21,6 +21,10 @@ public class LlaveManager {
 		return LlaveDB.getLlaveById(idi);
 	}
 
+	public static Llave getLlaveByIntId(int id) {
+		return LlaveDB.getLlaveById(id);
+	}
+
 	public static List<Llave> getAllLlaves() {
 		return LlaveDB.getAllLlaves();
 	}
@@ -59,7 +63,7 @@ public class LlaveManager {
 		return estado;
 	}
 
-	public static void changeStatus(int idEncargadoString, String idLlave, String idUserString) {
+	public static void changeStatus(int idEncargadoString, int idLlave, String idUserString) {
 		LlaveDB.cambiarEstado(idEncargadoString, idLlave, idUserString);
 		try {
 			MailManager.mailLlaves(idEncargadoString, idLlave, idUserString);

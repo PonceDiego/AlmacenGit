@@ -58,11 +58,10 @@ public class MailManager {
 
 	}
 
-	public static void mailLlaves(int idUserString, String idLlave, String idEncargadoString)
-			throws MessagingException {
+	public static void mailLlaves(int idUserString, int idLlave, String idEncargadoString) throws MessagingException {
 		Usuario solicitante = UsuarioDB.getUsuarioByID(idUserString);
 		Usuario encargado = UsuarioDB.getUsuarioByID(Integer.parseInt(idEncargadoString));
-		Llave llave = LlaveManager.getLlaveById(idLlave);
+		Llave llave = LlaveManager.getLlaveByIntId(idLlave);
 		String mail = solicitante.getEmail();
 
 		String subject = "Se le ha asignado la llave " + llave.getNombre() + ", copia " + llave.getCopia();

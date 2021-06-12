@@ -41,7 +41,7 @@ public class ServletCambioEstado extends HttpServlet {
 			String entidad = (String) request.getParameter("entidad");
 			String idUsuarioSolicitante = (String) request.getParameter("solicitanteId");
 			if (entidad.equals("Llave")) {
-				LlaveManager.changeStatus(actual.getId(), id, "13");
+				LlaveManager.changeStatus(actual.getId(), Integer.parseInt(id), "13");
 				response.sendRedirect("ListaLlaves");
 			} else if (entidad.equals("Equipo")) {
 
