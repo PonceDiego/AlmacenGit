@@ -54,7 +54,7 @@
 						<th>Grupo</th>
 						<th>Lugar</th>
 						<th>Observaciones</th>
-						<th>Estado</th>
+						<th>Disponible</th>
 						<th>Acción</th>
 					</tr>
 				</thead>

@@ -12,6 +12,8 @@ import javax.mail.internet.MimeMessage;
 
 import com.sun.mail.smtp.SMTPTransport;
 
+import main.java.Almacen.manager.llaves.LlaveManager;
+import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Pedido;
 import main.java.Almacen.model.Pedidoxarticulos;
 import main.java.Almacen.model.Usuario;
@@ -27,16 +29,17 @@ public class MailManager {
 	private static final String PASSWORD = "almacen.C12";
 	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
 
-	public static void enviarMail(String userS, int idp) throws MessagingException, IOException, GeneralSecurityException {
+	public static void enviarMail(String userS, int idp)
+			throws MessagingException, IOException, GeneralSecurityException {
 
 		Usuario u = UsuarioDB.getUsuarioByID(Integer.parseInt(userS));
 		Pedido pedido = PedidoDB.getPedidoByID(idp);
-		int idArea= u.getArea().getId();
-		Usuario user= AreaDB.getUsuarioJefeArea(idArea);
+		int idArea = u.getArea().getId();
+		Usuario user = AreaDB.getUsuarioJefeArea(idArea);
 		String email = user.getEmail();
-		System.out.println("Enviando mail a "+email+"..");
+		System.out.println("Enviando mail a " + email + "..");
 
-		String subject = "Se ha realizado un nuevo pedido en el área "+u.getArea().getNombre()+".";
+		String subject = "Se ha realizado un nuevo pedido en el área " + u.getArea().getNombre() + ".";
 		String bodyText = "Estimado/a " + user.getNombre() + " se le informa que el usuario "
 				+ pedido.getUsuario().getNombreUsuario() + " ha realizado un pedido de: \n";
 		List<Pedidoxarticulos> arts = ArticuloPedidoDB.getArticulosPedidosByPedido(idp);
@@ -44,14 +47,28 @@ public class MailManager {
 			String append = "- " + arts.get(i).getCantidad() + " " + arts.get(i).getArticulo().getNombre() + "\n";
 			bodyText += append;
 		}
-		String messageBody="\n Este mensaje ha sido generado automáticamente por el Sistema Almacen.";
+		String messageBody = "\n Este mensaje ha sido generado automáticamente por el Sistema Almacen.";
 		bodyText += messageBody;
-		createEmail(email,subject,bodyText);
+		createEmail(email, subject, bodyText);
 
 	}
 
-	private static void createEmail(String to, String subject, String bodyText)
+	public static void mailLlaves(int idUserString, String idLlave, String idEncargadoString)
 			throws MessagingException {
+		Usuario solicitante = UsuarioDB.getUsuarioByID(idUserString);
+		Usuario encargado = UsuarioDB.getUsuarioByID(Integer.parseInt(idEncargadoString));
+		Llave llave = LlaveManager.getLlaveById(idLlave);
+		String mail = solicitante.getEmail();
+
+		String subject = "Se le ha asignado la llave " + llave.getNombre() + ", copia " + llave.getCopia();
+		String bodyText = "Estimado/a " + solicitante.getNombre() + ", el usuario " + encargado.getNombreUsuario()
+				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
+				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
+				+ "Este mensaje ha sido generado automáticamente por el Sistema Almacén.";
+		createEmail(mail, subject, bodyText);
+	}
+
+	private static void createEmail(String to, String subject, String bodyText) throws MessagingException {
 		Properties props = System.getProperties();
 		props.put("mail.smtp.host", SMTP_SERVER);
 		props.put("mail.smtp.auth", "true");
@@ -70,7 +87,7 @@ public class MailManager {
 		t.sendMessage(email, email.getAllRecipients());
 		System.out.println("Response: " + t.getLastServerResponse());
 
-        t.close();
+		t.close();
 
 	}
 

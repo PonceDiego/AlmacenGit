@@ -3,6 +3,9 @@ package main.java.Almacen.manager.llaves;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
+
+import main.java.Almacen.manager.MailManager;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 import main.java.Almacen.persistence.LlaveDB;
@@ -56,9 +59,13 @@ public class LlaveManager {
 		return estado;
 	}
 
-	public static void changeStatus(Integer id, int idE) {
-		System.out.println("Cambiando el estado de llave número " + id);
-		LlaveDB.cambiarEstado(id, idE);
+	public static void changeStatus(int idEncargadoString, String idLlave, String idUserString) {
+//		LlaveDB.cambiarEstado(idUserString, idLlave, idEncargadoString);
+		try {
+			MailManager.mailLlaves(idEncargadoString, idLlave, idUserString);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 
 	}
 

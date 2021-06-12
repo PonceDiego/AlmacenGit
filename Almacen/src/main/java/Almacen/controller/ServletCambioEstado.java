@@ -39,13 +39,13 @@ public class ServletCambioEstado extends HttpServlet {
 			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
 			String id = (String) request.getParameter("cambioId");
 			String entidad = (String) request.getParameter("entidad");
-			int idE = Integer.parseInt(id);
+			String idUsuarioSolicitante = (String) request.getParameter("solicitanteId");
 			if (entidad.equals("Llave")) {
-				LlaveManager.changeStatus(actual.getId(), idE);
+				LlaveManager.changeStatus(actual.getId(), id, "13");
 				response.sendRedirect("ListaLlaves");
 			} else if (entidad.equals("Equipo")) {
 
-				EquipoManager.changeStatus(actual.getId(), idE);
+				EquipoManager.changeStatus(actual.getId(), Integer.parseInt(id));
 				response.sendRedirect("ListaEquipos");
 			}
 		}

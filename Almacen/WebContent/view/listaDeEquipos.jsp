@@ -45,7 +45,7 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Tipo</th>
-						<th>Usuario Actual</th>
+						<th>Último Usuario</th>
 						<th>Lugar</th>
 						<th>Modelo</th>
 						<th>Observaciones</th>
