@@ -79,6 +79,7 @@ public class MailManager {
 		// TODO: Default and recommended port is '25', this one is for testing purposes
 		// only and should be changed.
 		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
 		MimeMessage email = new MimeMessage(session);
