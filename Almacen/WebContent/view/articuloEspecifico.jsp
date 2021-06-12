@@ -84,8 +84,6 @@
 			</div>
 
 		</div>
-
-
 	</div>
 	<script>
 		function validarSiNumero(numero) {

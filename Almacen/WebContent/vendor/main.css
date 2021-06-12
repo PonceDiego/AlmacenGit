@@ -25,6 +25,19 @@ div.searchable {
 		no-repeat right .75rem center/8px 10px;
 }
 
+.center {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	border: 5px solid #FFFF00;
+	padding: 10px;
+}
+
+.modal-open .modal{
+    overflow: auto;
+    padding:40px !important;
+}
+
 .searchable ul {
 	display: none;
 	list-style-type: none;

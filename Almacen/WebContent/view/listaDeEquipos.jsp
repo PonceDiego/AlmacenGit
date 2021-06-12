@@ -31,12 +31,8 @@
 	<div class="container">
 		<div class="col-lg-12 text-center">
 			<h1 class="mt-5">
-				Lista de equipos.
-				<span>
-					<a href="../ListaLugares" style="font-size: small;"> Lugares 🡕</a>
-				</span>
-				<span>
-					<a href="../ListaTipos" style="font-size: small;">Tipos 🡕</a>
+				Lista de equipos. <span> <a href="../ListaLugares" style="font-size: small;"> Lugares 🡕</a>
+				</span> <span> <a href="../ListaTipos" style="font-size: small;">Tipos 🡕</a>
 				</span>
 			</h1>
 
@@ -54,7 +50,7 @@
 						<th>Modelo</th>
 						<th>Observaciones</th>
 						<th>Accesorios</th>
-						<th>Estado</th>
+						<th>Disponible</th>
 						<th>Acción</th>
 					</tr>
 				</thead>
@@ -111,14 +107,15 @@
 							<td>
 								<c:choose>
 									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
+										<!-- <button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button> -->
+										<button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" data-toggle="modal" data-target="#id01">S</button>
 
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
-											E</button>
+										<!-- <button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer" onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">E</button> -->
+										<button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer" data-toggle="modal" data-target="#id01">E</button>
 									</c:when>
+
 								</c:choose>
 								<a href="../Equipo?equipoId=${equipo.getEquipoId()}">
 									<i class="material-icons">history</i>
@@ -128,6 +125,29 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+	</div>
+
+	<div id="id01" class="modal" style="padding: 40px;" aria-hidden="true">
+		<div class="modal-content align-content-md-center">
+			<div class="modal-header text-center">
+				<h4 class="modal-titlefont-weight-bold">Ingrese el usuario</h4>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" style="background-color: red;padding: 20px;position: initial;">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body mx-3">
+				<form method="get" action="../CambioEstado">
+					<div class="mb-5 form-inline">
+						<input type="hidden" name="articuloID" id="articuloID" value="${articuloId}"> <input type="text" id="cantidad" name="cantidad" onchange="validarSiNumero(this.value);">
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<button class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: 30%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					</div>
+				</form>
+			</div>
+
 		</div>
 	</div>
 
