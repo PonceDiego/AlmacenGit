@@ -68,7 +68,7 @@
 								</c:otherwise>
 							</c:choose>
 							<td>
-								<c:out value="${re.getUsuario().getNombre()} ${re.getUsuario().getApellido() }" />
+								<c:out value="${re.getUsuarioByUsuario().getNombre()} ${re.getUsuarioByUsuario().getApellido() }" />
 							</td>
 							<td>
 								<c:out value="${re.getEntidad()}" />

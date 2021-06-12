@@ -63,12 +63,14 @@ public class LlaveManager {
 		return estado;
 	}
 
-	public static void changeStatus(int idEncargadoString, int idLlave, String idUserString) {
-		LlaveDB.cambiarEstado(idEncargadoString, idLlave, idUserString);
-		try {
-			MailManager.mailLlaves(idEncargadoString, idLlave, Integer.parseInt(idUserString));
-		} catch (MessagingException e) {
-			e.printStackTrace();
+	public static void changeStatus(int idEncargado, int idLlave, String idUserString, boolean salida) {
+		LlaveDB.cambiarEstado(idEncargado, idLlave, idUserString);
+		if (salida) {
+			try {
+				MailManager.mailLlaves(Integer.parseInt(idUserString), idLlave, idEncargado);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

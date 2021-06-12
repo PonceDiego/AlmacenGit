@@ -63,7 +63,7 @@
 								<td><c:out value="Salida"></c:out></td>
 							</c:otherwise>
 						</c:choose>
-						<td><c:out value="${re.getUsuario().getNombreUsuario()}" /></td>
+						<td><c:out value="${re.getUsuarioByUsuario().getNombreUsuario()}" /></td>
 
 					</tr>
 				</c:forEach>

@@ -67,8 +67,8 @@
 							<td>
 								<c:forEach items="${registros}" var="re">
 									<c:if test="${re.getEntidadId() == equipo.getEquipoId().toString() }">
-										<c:set var="usuarioEquipo" value="${re.getUsuario()}"></c:set>
-										<c:out value="${re.getUsuario().getNombre() } ${re.getUsuario().getApellido()}"></c:out>
+										<c:set var="usuarioEquipo" value="${re.getUsuarioByUsuario()}"></c:set>
+										<c:out value="${re.getUsuarioByUsuario().getNombre() } ${re.getUsuarioByUsuario().getApellido()}"></c:out>
 									</c:if>
 								</c:forEach>
 							</td>
