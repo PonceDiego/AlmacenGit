@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 10/06/2021 17:00:43 by Hibernate Tools 5.2.12.Final
+// Generated 12/06/2021 00:13:05 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;

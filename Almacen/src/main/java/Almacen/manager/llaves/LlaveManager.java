@@ -21,6 +21,10 @@ public class LlaveManager {
 		return LlaveDB.getLlaveById(idi);
 	}
 
+	public static Llave getLlaveByIntId(int id) {
+		return LlaveDB.getLlaveById(id);
+	}
+
 	public static List<Llave> getAllLlaves() {
 		return LlaveDB.getAllLlaves();
 	}
@@ -59,12 +63,14 @@ public class LlaveManager {
 		return estado;
 	}
 
-	public static void changeStatus(int idEncargadoString, String idLlave, String idUserString) {
-//		LlaveDB.cambiarEstado(idUserString, idLlave, idEncargadoString);
-		try {
-			MailManager.mailLlaves(idEncargadoString, idLlave, idUserString);
-		} catch (MessagingException e) {
-			e.printStackTrace();
+	public static void changeStatus(int idEncargado, int idLlave, String idUserString, boolean salida) {
+		LlaveDB.cambiarEstado(idEncargado, idLlave, idUserString);
+		if (salida) {
+			try {
+				MailManager.mailLlaves(Integer.parseInt(idUserString), idLlave, idEncargado);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

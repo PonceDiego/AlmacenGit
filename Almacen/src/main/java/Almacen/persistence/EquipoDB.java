@@ -41,10 +41,10 @@ public class EquipoDB {
 			e = sess.get(Equipo.class, id);
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id);
+				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id, null);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.EQUIPO, id);
+				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.EQUIPO, id, null);
 				e.setEstado("En uso");
 			}
 			tran.commit();

@@ -24,10 +24,15 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class MailManager {
 
-	private static final String SMTP_SERVER = "192.168.74.23";
-	private static final String USERNAME = "almacen@eldoceblog.com.ar";
-	private static final String PASSWORD = "almacen.C12";
-	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
+//	private static final String SMTP_SERVER = "192.168.74.23";
+	private static final String SMTP_SERVER = "smtp.gmail.com";
+//	private static final String USERNAME = "almacen@eldoceblog.com.ar";
+	private static final String USERNAME = "daikoponce@gmail.com";
+//	private static final String PASSWORD = "almacen.C12";
+	private static final String PASSWORD = "Diegoponce11";
+
+//	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
+	private static final String EMAIL_FROM = "daikoponce@gmail.com";
 
 	public static void enviarMail(String userS, int idp)
 			throws MessagingException, IOException, GeneralSecurityException {
@@ -53,18 +58,17 @@ public class MailManager {
 
 	}
 
-	public static void mailLlaves(int idUserString, String idLlave, String idEncargadoString)
-			throws MessagingException {
+	public static void mailLlaves(int idUserString, int idLlave, int idEncargadoString) throws MessagingException {
 		Usuario solicitante = UsuarioDB.getUsuarioByID(idUserString);
-		Usuario encargado = UsuarioDB.getUsuarioByID(Integer.parseInt(idEncargadoString));
-		Llave llave = LlaveManager.getLlaveById(idLlave);
+		Usuario encargado = UsuarioDB.getUsuarioByID(idEncargadoString);
+		Llave llave = LlaveManager.getLlaveByIntId(idLlave);
 		String mail = solicitante.getEmail();
 
 		String subject = "Se le ha asignado la llave " + llave.getNombre() + ", copia " + llave.getCopia();
 		String bodyText = "Estimado/a " + solicitante.getNombre() + ", el usuario " + encargado.getNombreUsuario()
 				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
 				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
-				+ "Este mensaje ha sido generado automáticamente por el Sistema Almacén.";
+				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
 		createEmail(mail, subject, bodyText);
 	}
 
@@ -75,6 +79,7 @@ public class MailManager {
 		// TODO: Default and recommended port is '25', this one is for testing purposes
 		// only and should be changed.
 		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
 		MimeMessage email = new MimeMessage(session);
@@ -83,7 +88,6 @@ public class MailManager {
 		email.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
 		email.setSubject(subject);
 		email.setText(bodyText);
-
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 		t.connect(SMTP_SERVER, USERNAME, PASSWORD);
 		t.sendMessage(email, email.getAllRecipients());

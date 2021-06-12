@@ -123,14 +123,14 @@
 	<script>
 		function alertar(url) {
 			alert("Realizando salida de la llave");
-			$(location).attr('href', url);
+			$(location).attr('href', url+"&salida=1");
 		}
 
 		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
 			if (usernameEquipo == usernameActual || rolActual == "SuperAdmin"
 					|| rolActual == "Administrador Llave") {
 				alert("Reingresando la llave..");
-				$(location).attr('href', url);
+				$(location).attr('href', url+"&salida=0");
 			} else {
 				alert("Solo el usuario que realizó la salida puede hacer el ingreso!");
 			}

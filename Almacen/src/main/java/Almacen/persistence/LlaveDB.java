@@ -106,7 +106,8 @@ public class LlaveDB {
 		llave.setGrupoLlaves(grupo);
 	}
 
-	public static void cambiarEstado(Integer user, int id) {
+	public static void cambiarEstado(int encargado, int id, String idSolicitante) {
+		int user = Integer.parseInt(idSolicitante);
 		Session sess = null;
 		Transaction tran = null;
 		Llave e = null;
@@ -116,10 +117,10 @@ public class LlaveDB {
 			e = sess.get(Llave.class, id);
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.LLAVE, id);
+				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.LLAVE, id, encargado);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.LLAVE, id);
+				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.LLAVE, id, encargado);
 				e.setEstado("En uso");
 			}
 			tran.commit();

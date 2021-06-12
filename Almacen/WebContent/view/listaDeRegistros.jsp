@@ -32,9 +32,48 @@
 	<div class="container">
 		<div class="col-lg-12 text-center">
 			<h1 class="mt-5">Lista de registros.</h1>
-
-
 			<hr class="my-4">
+
+
+			<form action="../ListaRegistros" method="GET">
+
+				<div class="row">
+					<div class="input-field">
+						<label>Fecha desde</label> <input id="datePicker" type="text" class="form-control" name="filtro" value="${filtro}" placeholder="dd/mm/yyyy">
+					</div>
+					<div class="input-field">
+						<label>Fecha hasta</label> <input id="datePicker" type="text" class="form-control" placeholder="dd/mm/yyyy">
+					</div>
+					<div class="input-field">
+						<label>Usuario</label> <input type="text" class="form-control" />
+					</div>
+					<div class="input-field">
+						<label>Entidad</label> <input type="text" class="form-control" />
+					</div>
+
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-sm-10" style="text-align: initial">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Todos" checked> <label class="form-check-label" for="gridRadios1"> Todos </label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Entrada"> <label class="form-check-label" for="gridRadios2"> Entrada </label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Salida"> <label class="form-check-label" for="gridRadios3"> Salida </label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="width: 30%; background-color: #f37321; cursor: pointer; border-radius: 5rem; margin-top: 10px">Buscar</button>
+				</div>
+
+			</form>
 
 			<div>&nbsp;</div>
 			<table class="table table-striped table-bordered" id="myTable">
@@ -45,7 +84,7 @@
 						<th>Usuario</th>
 						<th>Entidad</th>
 						<th>Nombre</th>
-						<!-- 						<th>Acción</th> -->
+						<!-- <th>Acción</th> -->
 					</tr>
 				</thead>
 				<tbody id="tablaEquipos">
@@ -68,7 +107,7 @@
 								</c:otherwise>
 							</c:choose>
 							<td>
-								<c:out value="${re.getUsuario().getNombre()} ${re.getUsuario().getApellido() }" />
+								<c:out value="${re.getUsuarioByUsuario().getNombre()} ${re.getUsuarioByUsuario().getApellido() }" />
 							</td>
 							<td>
 								<c:out value="${re.getEntidad()}" />
@@ -110,14 +149,19 @@
 
 	<script>
 		$(document).ready(function() {
+			$("input[id='datePicker']").datepicker({
+				language : 'es'
+			});
 
 			$('#myTable').DataTable({
-				"order": [[ 0, "desc" ]],
+				"order" : [ [ 0, "desc" ] ],
 				"columnDefs" : [ {
 					"responsive" : "true"
 				} ],
+				"paging" : false,
 				"language" : {
-					"emptyTable" : "No se encontraron registros a mostrar!"
+					"emptyTable" : "No se encontraron registros a mostrar!",
+					"search" : "Búsqueda rápida:"
 				}
 			})
 		});
