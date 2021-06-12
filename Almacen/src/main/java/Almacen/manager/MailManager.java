@@ -24,10 +24,15 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class MailManager {
 
-	private static final String SMTP_SERVER = "192.168.74.23";
-	private static final String USERNAME = "almacen@eldoceblog.com.ar";
-	private static final String PASSWORD = "almacen.C12";
-	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
+//	private static final String SMTP_SERVER = "192.168.74.23";
+	private static final String SMTP_SERVER = "smtp.gmail.com";
+//	private static final String USERNAME = "almacen@eldoceblog.com.ar";
+	private static final String USERNAME = "daikoponce@gmail.com";
+//	private static final String PASSWORD = "almacen.C12";
+	private static final String PASSWORD = "Diegoponce11";
+
+//	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
+	private static final String EMAIL_FROM = "daikoponce@gmail.com";
 
 	public static void enviarMail(String userS, int idp)
 			throws MessagingException, IOException, GeneralSecurityException {

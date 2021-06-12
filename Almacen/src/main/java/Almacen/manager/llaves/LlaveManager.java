@@ -60,7 +60,7 @@ public class LlaveManager {
 	}
 
 	public static void changeStatus(int idEncargadoString, String idLlave, String idUserString) {
-//		LlaveDB.cambiarEstado(idUserString, idLlave, idEncargadoString);
+		LlaveDB.cambiarEstado(idEncargadoString, idLlave, idUserString);
 		try {
 			MailManager.mailLlaves(idEncargadoString, idLlave, idUserString);
 		} catch (MessagingException e) {
