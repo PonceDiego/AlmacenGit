@@ -58,9 +58,9 @@ public class MailManager {
 
 	}
 
-	public static void mailLlaves(int idUserString, int idLlave, String idEncargadoString) throws MessagingException {
+	public static void mailLlaves(int idUserString, int idLlave, int idEncargadoString) throws MessagingException {
 		Usuario solicitante = UsuarioDB.getUsuarioByID(idUserString);
-		Usuario encargado = UsuarioDB.getUsuarioByID(Integer.parseInt(idEncargadoString));
+		Usuario encargado = UsuarioDB.getUsuarioByID(idEncargadoString);
 		Llave llave = LlaveManager.getLlaveByIntId(idLlave);
 		String mail = solicitante.getEmail();
 
@@ -68,7 +68,7 @@ public class MailManager {
 		String bodyText = "Estimado/a " + solicitante.getNombre() + ", el usuario " + encargado.getNombreUsuario()
 				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
 				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
-				+ "Este mensaje ha sido generado automáticamente por el Sistema Almacén.";
+				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
 		createEmail(mail, subject, bodyText);
 	}
 
@@ -88,7 +88,7 @@ public class MailManager {
 		email.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
 		email.setSubject(subject);
 		email.setText(bodyText);
-
+		email.setContent(bodyText, "text/plain; charset=UTF-8");
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 		t.connect(SMTP_SERVER, USERNAME, PASSWORD);
 		t.sendMessage(email, email.getAllRecipients());
