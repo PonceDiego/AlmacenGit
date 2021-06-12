@@ -25,6 +25,19 @@ div.searchable {
 		no-repeat right .75rem center/8px 10px;
 }
 
+.input-field {
+  border-radius: 3px;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
 .center {
 	position: absolute;
 	top: 50%;

@@ -3,6 +3,7 @@ package main.java.Almacen.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,8 +59,12 @@ public class ServletListaRegistros extends HttpServlet {
 			} else {
 				Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
 				String rol = actual.getRol().getNombre();
-				System.out.println(rol);
-
+				
+				
+				
+				List<String> list = Collections.list(request.getSession().getAttributeNames());
+				List<String> listparametrers = Collections.list(request.getParameterNames());
+				
 				if (rol.equals("SuperAdmin") || rol.equals("Administrador Técnica")) {
 					request.getSession().setAttribute("registros", RegistroManager.getListaRegistros());
 				} else {

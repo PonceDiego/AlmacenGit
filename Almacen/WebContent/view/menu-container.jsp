@@ -4,11 +4,14 @@
 
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/vendor/bootstrap/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/vendor/iconfont/material-icons.css" rel="stylesheet" type="text/css">
 
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/bootstrap/datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/bootstrap/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
 <link href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css" rel="stylesheet">
