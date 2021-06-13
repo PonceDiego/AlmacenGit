@@ -28,13 +28,12 @@
 					<div class="row">
 						<div class="column">
 							<div class=" form-label-group> searchable">
-								<input type="text" placeholder="Buscar artículo" name="nombreArticulo" id="nombreArticulo" onkeyup="filterFunction(this,event)" required autocomplete="off">
+								<input type="text" placeholder="Buscar artículo" name="nombreArticulo" id="nombreArticulo" onchange="comparar()" onkeyup="filterFunction(this,event),botonAceptar()" required autocomplete="off">
 								<c:set var="articulo" value="${articulosLista }"></c:set>
 								<ul id="ulArt">
 									<c:forEach items="${articulo}" var="articulo">
 
-										<li>${articulo.getNombre()}<div class="color-box" id="${articulo.getEstadoarticulo().getNombreEstado()}"></div>
-										</li>
+										<li>${articulo.getNombre()}<div class="color-box" id="${articulo.getEstadoarticulo().getNombreEstado()}"></div></li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -49,6 +48,20 @@
 	</div>
 
 	<script>
+		function comparar() {
+			var valor = $('.selected');
+	
+			var x = document.getElementById('nombreArticulo');
+			var a = x.value;
+	
+			if (valor.attr('value') === a) {
+				onSelect(valor.text());
+			} else {
+				var y = document.getElementById('aceptarbutton');
+				y.disabled = true;
+			}
+		}
+	
 		function filterFunction(that, event) {
 			let container, input, filter, li, input_val;
 			container = $(that).closest(".searchable");
@@ -145,6 +158,19 @@
 			$('#aceptarbutton').prop('disabled', false);
 			$('#nombreArticulo').prop('readonly', true);
 
+		}
+		
+		function botonAceptar() {
+			var listaMatches = document.getElementById('ulArt');
+			var lis = listaMatches.getElementsByTagName('li:visible');
+			var x = document.getElementById('nombreArticulo')
+			for (var i = 0; i < lis.length; i++) {
+				if (lis[i].value == x.value) {
+					document.getElementById('aceptarbutton').disabled = false;
+				} else {
+					document.getElementById('aceptarbutton').disabled = true;
+				}
+			}
 		}
 	</script>
 

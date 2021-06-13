@@ -1,5 +1,6 @@
 <%@page import="com.sun.xml.txw2.Document"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -7,7 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -27,12 +29,14 @@
 				<hr class="m-4">
 
 
-				<c:set value="${usuarioActual.getRol().getNombre() }" var="rolActual"></c:set>
+				<c:set value="${usuarioActual.getRol().getNombre() }"
+					var="rolActual"></c:set>
 				<c:if test="${rolActual=='SuperAdmin'||rolActual=='Administrador'}">
 					<div style="margin: auto; text-align: center;">
 						<div>Seleccionar usuario</div>
 
-						<select id="selectUsuarios" onchange="setUser();" style="border-radius: 5px; padding: 2px;">
+						<select id="selectUsuarios" onchange="setUser();"
+							style="border-radius: 5px; padding: 2px;">
 							<c:forEach items="${listaUsuario}" var="usuario">
 								<c:choose>
 									<c:when test="${usuario.getId() == usuarioActual.getId() }">
@@ -70,22 +74,24 @@
 									<option>${articulo.getNombre()}</option>
 								</c:forEach>
 							</c:forEach>
-						</select> <input style="border-radius: 5px" type="text" id="cantidad" placeholder="Cantidad" autocomplete="off" oninput="this.value=this.value.replace(/[^0-9]/g,'');"> <span onclick="newElement()" class="addBtn">Agregar</span>
+						</select> <input style="border-radius: 5px" type="text" id="cantidad"
+							placeholder="Cantidad" autocomplete="off"
+							oninput="this.value=this.value.replace(/[^0-9]/g,'');"> <span
+							onclick="newElement()" class="addBtn">Agregar</span>
 					</div>
 					<div class="column">
 						<form action="../AgregarPedido" id="nuevoPedido">
-							<button class="aceptarBtn" id="aceptar" onmouseover="aceptarBoton(this)">Aceptar</button>
-							<input type="hidden" id="inputArt" name="inputArt"> <input type="hidden" name="inputCantidad" id="inputCantidad">
-							<c:choose>
-								<c:when test="${rolActual=='SuperAdmin'||rolActual=='Administrador'}">
-									<input type="hidden" name="UserId" id="UserId" form="nuevoPedido">
-								</c:when>
-								<c:otherwise>
-									<input type="hidden" name="UserId" id="UserId" value="${usuarioActual.getId()}">
-								</c:otherwise>
-							</c:choose>
+							<button class="aceptarBtn" id="aceptar"
+								onmouseover="aceptarBoton(this)">Aceptar</button>
+							<input type="hidden" id="inputArt" name="inputArt"> <input
+								type="hidden" name="inputCantidad" id="inputCantidad"> <input
+								type="hidden" name="UserId" id="UserId"
+								value="${usuarioActual.getId()}">
 						</form>
-						<textarea rows="2" cols="30" maxlength="140" name="textAreaObservaciones" id="textAreaObservaciones" form="nuevoPedido" style="resize: none; border-radius: 12px" onkeyup="charcountupdate(this.value)" placeholder="Observaciones"></textarea>
+						<textarea rows="2" cols="30" maxlength="140"
+							name="textAreaObservaciones" id="textAreaObservaciones"
+							form="nuevoPedido" style="resize: none; border-radius: 12px"
+							onkeyup="charcountupdate(this.value)" placeholder="Observaciones"></textarea>
 						<span id=charcount style="font-size: small;">0/140</span>
 					</div>
 				</div>

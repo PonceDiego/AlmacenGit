@@ -41,11 +41,11 @@ public class ServletListaPedidos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = Utils.GetSession(request);
-		
+
 		System.out.println(session != null);
-		
+
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
@@ -55,9 +55,10 @@ public class ServletListaPedidos extends HttpServlet {
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
 				List<Pedido> respuesta = new ArrayList<Pedido>();
-				for (int i =0;i< PedidoDB.getPedidosCompleto().size();i++) {
+				for (int i = 0; i < PedidoDB.getPedidosCompleto().size(); i++) {
 					Pedido get = PedidoDB.getPedidosCompleto().get(i);
-					Pedido add = new Pedido(get.getEstadopedido(),get.getUsuario(),get.getFecha(),get.getObservaciones(),get.getPedidoxarticuloses());
+					Pedido add = new Pedido(get.getEstadopedido(), get.getUsuario(), get.getFecha(),
+							get.getObservaciones(), get.getPedidoxarticuloses());
 					respuesta.add(add);
 				}
 				out.print(gson.toJson(respuesta));
@@ -66,12 +67,11 @@ public class ServletListaPedidos extends HttpServlet {
 				Usuario user = (Usuario) session.getAttribute("usuarioActual");
 				if (user.getRol().getNombre().equals("Administrador")
 						|| user.getRol().getNombre().equals("SuperAdmin")) {
-					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosPendientes());
-					response.sendRedirect("view/listaDePedidosPendientes.jsp");
+					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
+					response.sendRedirect("view/listaDePedidosCompleta.jsp");
 				} else {
-					session.setAttribute("pedidosCompleto",
-							PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
-					response.sendRedirect("view/listaDePedidosPendientes.jsp");
+					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
+					response.sendRedirect("view/listaDePedidosCompleta.jsp");
 				}
 			}
 		}
