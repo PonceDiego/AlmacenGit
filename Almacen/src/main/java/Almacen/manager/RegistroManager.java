@@ -12,6 +12,7 @@ import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Registro;
 import main.java.Almacen.model.Usuario;
+import main.java.Almacen.model.views.RegistroFilter;
 import main.java.Almacen.model.views.RegistroView;
 import main.java.Almacen.persistence.EquipoDB;
 import main.java.Almacen.persistence.LlaveDB;
@@ -142,20 +143,20 @@ public class RegistroManager {
 		return registros;
 	}
 
-	public static List<RegistroView> getListaRegistros() {
+	public static List<RegistroView> getListaRegistros(RegistroFilter filter) {
 		List<RegistroView> registrosViews = new ArrayList<RegistroView>();
 
-		List<Registro> registros = RegistroDB.getRegistros();
+		List<Registro> registros = RegistroDB.getRegistros(filter);
 
 		registrosViews = registros.stream().map(x -> new RegistroView(x, true)).collect(Collectors.toList());
 
 		return registrosViews;
 	}
 
-	public static List<RegistroView> getListaRegistrosByUser(Integer id) {
+	public static List<RegistroView> getListaRegistrosByUser(Integer id,RegistroFilter filter) {
 		List<RegistroView> registrosViews = new ArrayList<RegistroView>();
 
-		List<Registro> registros = RegistroDB.getRegistrosByUsuario(id);
+		List<Registro> registros = RegistroDB.getRegistrosByUsuario(id, filter);
 
 		registrosViews = registros.stream().map(x -> new RegistroView(x, true)).collect(Collectors.toList());
 

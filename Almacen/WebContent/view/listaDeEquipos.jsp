@@ -133,7 +133,7 @@
 		<div class="modal-content align-content-md-center col-l-6 col-m-6 col-s-auto col-xl-10"   >
 			<div class="modal-header text-center">
 				<h4 class="modal-titlefont-weight-bold ">Ingrese el usuario</h4>
-				<button type="button" class="btn btn-danger" data-dismiss="modal"  data-target="id01" aria-label="Cerrar"">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"  data-target="id01" aria-label="Cerrar">
 					X
 				</button>
 			</div>
@@ -156,6 +156,10 @@
 	<script src="../vendor/Datatables/datatables.js"></script>
 
 	<script>
+		function openModal(usern){
+			
+		}
+	
 		function alertar(url) {
 			alert("Realizando salida del equipo");
 			$(location).attr('href', url);

@@ -39,16 +39,16 @@
 
 				<div class="row">
 					<div class="input-field">
-						<label>Fecha desde</label> <input id="datePicker" type="text" class="form-control" name="filtro" value="${filtro}" placeholder="dd/mm/yyyy">
+						<label>Fecha desde</label> <input id="datePicker" type="text" class="form-control" name="filtroDesde" value="${filtroDesde}" placeholder="dd/mm/yyyy">
 					</div>
 					<div class="input-field">
-						<label>Fecha hasta</label> <input id="datePicker" type="text" class="form-control" placeholder="dd/mm/yyyy">
+						<label>Fecha hasta</label> <input id="datePicker" type="text" class="form-control" name="filtroHasta" value="${filtroHasta}" placeholder="dd/mm/yyyy">
 					</div>
 					<div class="input-field">
-						<label>Usuario</label> <input type="text" class="form-control" />
+						<label>Usuario</label> <input type="text" name="filtroUsuario" value="${filtroUsuario}" class="form-control" />
 					</div>
 					<div class="input-field">
-						<label>Entidad</label> <input type="text" class="form-control" />
+						<label>Entidad</label> <input type="text" name="filtroEntidad" value="${filtroEntidad}" class="form-control" />
 					</div>
 
 
@@ -58,13 +58,13 @@
 				<div class="row">
 					<div class="col-sm-10" style="text-align: initial">
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Todos" checked> <label class="form-check-label" for="gridRadios1"> Todos </label>
+							<input class="form-check-input" type="radio" name="filtroEstado" id="gridRadios1" value="Todos" <%= (request.getSession().getAttribute("filtroEstado").equals("Todos") || request.getSession().getAttribute("filtroEstado").equals("")  )?"checked":"" %>> <label class="form-check-label" for="gridRadios1"> Todos </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Entrada"> <label class="form-check-label" for="gridRadios2"> Entrada </label>
+							<input class="form-check-input" type="radio" name="filtroEstado" id="gridRadios2" value="Entrada" <%= (request.getSession().getAttribute("filtroEstado").equals("Entrada") )?"checked":"" %>> <label class="form-check-label" for="gridRadios2"> Entrada </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Salida"> <label class="form-check-label" for="gridRadios3"> Salida </label>
+							<input class="form-check-input" type="radio" name="filtroEstado" id="gridRadios3" value="Salida" <%= (request.getSession().getAttribute("filtroEstado").equals("Salida") )?"checked":"" %>> <label class="form-check-label" for="gridRadios3"> Salida </label>
 						</div>
 					</div>
 				</div>
