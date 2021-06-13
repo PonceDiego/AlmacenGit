@@ -189,7 +189,7 @@ public class RegistroDB {
 	}
 	
 	private static Query<Registro> aplicarFiltro(Query<Registro> query,RegistroFilter filter) {
-		SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		if(filter.tieneFiltro()) {
 			if(!TextUtils.isEmpty(filter.getFiltroDesde())) {
 				try {

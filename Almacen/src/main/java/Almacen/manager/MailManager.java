@@ -54,7 +54,7 @@ public class MailManager {
 		}
 		String messageBody = "\n Este mensaje ha sido generado automáticamente por el Sistema Almacen.";
 		bodyText += messageBody;
-		createEmail(email, subject, bodyText);
+		//createEmail(email, subject, bodyText);
 
 	}
 
@@ -69,7 +69,7 @@ public class MailManager {
 				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
 				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
 				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
-		createEmail(mail, subject, bodyText);
+		//createEmail(mail, subject, bodyText);
 	}
 
 	private static void createEmail(String to, String subject, String bodyText) throws MessagingException {
