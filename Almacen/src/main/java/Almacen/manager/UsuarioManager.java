@@ -54,4 +54,9 @@ public class UsuarioManager {
 		Area a = AreaDB.getAreaByNombre(area);
 		UsuarioDB.editarUsuario(id, r, a, nombre, apellido, email);
 	}
+
+	public static String getIdByNombre(String nombre) {
+		Usuario user = UsuarioDB.getUsuarioByNombreUsuario(nombre);
+		return user.getId().toString();
+	}
 }

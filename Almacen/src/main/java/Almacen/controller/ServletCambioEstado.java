@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.EquipoManager;
+import main.java.Almacen.manager.UsuarioManager;
 import main.java.Almacen.manager.llaves.LlaveManager;
 import main.java.Almacen.model.Usuario;
 
@@ -39,14 +40,15 @@ public class ServletCambioEstado extends HttpServlet {
 			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
 			String id = (String) request.getParameter("cambioId");
 			String entidad = (String) request.getParameter("entidad");
-			String idUsuarioSolicitante = (String) request.getParameter("solicitanteId");
 			if (entidad.equals("Llave")) {
+				String idUsuarioSolicitante = (String) request.getParameter("solicitanteId");
+				String idSolicitante = UsuarioManager.getIdByNombre(idUsuarioSolicitante);
 				int salida = Integer.parseInt(request.getParameter("salida"));
 				if (salida == 1) {
-					LlaveManager.changeStatus(actual.getId(), Integer.parseInt(id), "13", true);
+					LlaveManager.changeStatus(actual.getId(), Integer.parseInt(id), idSolicitante, true);
 
 				} else {
-					LlaveManager.changeStatus(actual.getId(), Integer.parseInt(id), "13", false);
+					LlaveManager.changeStatus(actual.getId(), Integer.parseInt(id), idSolicitante, false);
 
 				}
 				response.sendRedirect("ListaLlaves");
