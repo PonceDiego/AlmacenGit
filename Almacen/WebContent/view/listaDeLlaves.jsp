@@ -100,14 +100,16 @@
 							<td>
 								<c:choose>
 									<c:when test="${llave.getEstado() == 'Disponible'}">
+										<!--  
 										<button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${llave.getLlaveId()}&entidad=Llave');">S</button>
-
+										-->
+										<button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" data-toggle="modal" data-target="#modal1">S</button>
+									
 									</c:when>
+										
 									<c:when test="${llave.getEstado() == 'En uso'}">
-										<button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${llave.getLlaveId()}&entidad=Llave');">
-											E</button>
-									</c:when>
+											<button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer" data-toggle="modal" data-target="#modal1">E</button>
+										</c:when>
 								</c:choose>
 							</td>
 						</tr>
@@ -116,14 +118,37 @@
 			</table>
 		</div>
 	</div>
+	
+<div id="modal1" class="modal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content align-content-md-center col-l-6 col-m-6 col-s-auto col-xl-10"   >
+			<div class="modal-header text-center">
+				<h4 class="modal-titlefont-weight-bold ">Ingrese el usuario solicitante</h4>
+				<button type="button" class="btn btn-danger" data-dismiss="modal"  data-target="id01" aria-label="Cerrar">
+					X
+				</button>
+			</div>
+			<div>
+				<form method="get" action="../CambioEstado">
+					<div class="form-inline mt-2 ml-2 mb-2 mx-2 ">
+						<input type="text" name="solicitanteId" id="solicitanteId" value="${usuario.id}">
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<button class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: min-content; margin: auto; background-color: #f37321; cursor: pointer;"
+						  onclick="alertar('${pageContext.request.contextPath}/CambioEstado?cambioId=${llave.getLlaveId()}&entidad=Llave');">Aceptar</button>
+					</div>
+				</form>
+			</div>
 
+			</div>
+		</div>
+	</div>
 
 	<script src="../vendor/Datatables/datatables.js"></script>
 
 	<script>
-		function alertar(url) {
-			alert("Realizando salida de la llave");
-			$(location).attr('href', url+"&salida=1");
+		function alertar(url,solicitanteId) {
+			$(location).attr('href', url+"&salida=1&solicitanteId=");
 		}
 
 		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
