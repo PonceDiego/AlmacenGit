@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -29,7 +31,10 @@
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input tabindex="1" type="text" name="inputNombre" id="inputNombre" class="form-control" placeholder="Nombre" required autocomplete="off" onkeyup="filterFunction2(this,event),botonAceptar()">
+								<input tabindex="1" type="text" name="inputNombre"
+									id="inputNombre" class="form-control" placeholder="Nombre"
+									required autocomplete="off" onchange="comparar()"
+									onkeyup="filterFunction2(this,event),botonAceptar()">
 								<c:set var="llaves" value="${listaLlaves }"></c:set>
 								<ul id="ulLlaves">
 									<c:forEach items="${llaves }" var="llave">
@@ -39,14 +44,20 @@
 							</div>
 							<div>Copia n°</div>
 
-							<input tabindex="3" type="number" name="inputCopia" id="inputCopia" class="form-control" placeholder="Copia" required autocomplete="off" value="1" onchange="comparar()">
+							<input tabindex="3" type="number" name="inputCopia"
+								id="inputCopia" class="form-control" placeholder="Copia"
+								required autocomplete="off" value="1" onchange="comparar()">
 						</div>
 						<div class="column">
 
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputUbicacion" class="form-control" id="inputUbicacion" required autocomplete="off"> <select tabindex="2" onchange="selected()" id="ubicacionSelect"
-									style="border-radius: 5px; font-size: 16px; padding: 10px" required>
+								<input type="hidden" name="inputUbicacion" class="form-control"
+									id="inputUbicacion" required autocomplete="off"> <select
+									tabindex="2" onchange="selected(),comparar()"
+									id="ubicacionSelect"
+									style="border-radius: 5px; font-size: 16px; padding: 10px"
+									required>
 									<option selected disabled>Seleccione una ubicación</option>
 									<c:forEach items="${ubicaciones}" var="ubicacion">
 										<option value="${ubicacion.nombre }">${ubicacion.nombre }</option>
@@ -57,12 +68,16 @@
 						</div>
 					</div>
 					<div>Observaciones</div>
-					<input tabindex="4" type="text" name="inputObservaciones" class="form-control" placeholder="Observaciones" maxlength="140" title="Observaciones" autocomplete="off">
+					<input tabindex="4" type="text" name="inputObservaciones"
+						class="form-control" placeholder="Observaciones" maxlength="140"
+						title="Observaciones" autocomplete="off">
 
 
 
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton"
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
 				</form>
 			</div>
 		</div>
@@ -131,6 +146,7 @@
 			} else if (e.key == "Enter") {
 				if (container.find("input").val(
 						container.find("ul li.selected").text) != "") {
+					comparar();
 				}
 				container.find("input").val(
 						container.find("ul li.selected").text()).blur();
@@ -165,24 +181,42 @@
 				});
 
 		function comparar() {
-			var valor = $('.selected');
-
 			var x = document.getElementById('inputNombre');
 			var z = document.getElementById('inputCopia').value;
-			var a = x.value + "-" + z;
+			var a = x.value + " - " + z;
 
 			console.log(a);
-			console.log(valor.attr('value'));
-			if (valor.attr('value') === a) {
-				onSelect2(valor.text(), $('#inputCopia').val());
+			const llaves = ${llavesCopias};
+
+			var contador = 0;
+			llaves.forEach(function(llave, indice, array) {
+						console.log(llave);
+						if (llave == a) {
+							contador++;
+						}
+					});
+			if (contador > 0) {
+				onSelect2($('#inputNombre').val(), $('#inputCopia')
+						.val());
 			} else {
-				var x = document.getElementById('advertencia');
-				var editar = document.getElementById('linkEditar');
-				x.innerHTML = "";
-				editar.text = "";
-				editar.href = "";
-				var y = document.getElementById('aceptarbutton');
-				y.disabled = false;
+				var y = document.getElementById('inputUbicacion');
+				if (y.value == null || y.value === "") {
+					var x = document.getElementById('advertencia');
+					x.innerHTML = "Por favor seleccione una ubicación válida!";
+
+				} else {
+
+					var x = document.getElementById('advertencia');
+					var editar = document
+							.getElementById('linkEditar');
+					x.innerHTML = "";
+					editar.text = "";
+					editar.href = "";
+					var y = document
+							.getElementById('aceptarbutton');
+					y.disabled = false;
+				}
+
 			}
 		}
 		function botonAceptar() {
