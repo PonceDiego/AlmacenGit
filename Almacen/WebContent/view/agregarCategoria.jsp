@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 
 <title>Agregar Nueva Categoría</title>
+<jsp:include page="header.jsp"></jsp:include>
 
 </head>
 <body>
