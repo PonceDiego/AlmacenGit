@@ -11,6 +11,7 @@
 
 
 <title>Grupo de Equipos Nuevo</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

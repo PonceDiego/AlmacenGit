@@ -8,6 +8,7 @@
 
 
 <title>Pedido Número ${pedidoId }</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">

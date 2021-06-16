@@ -10,6 +10,7 @@
 
 
 <title>Editar Grupo de Equipos</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

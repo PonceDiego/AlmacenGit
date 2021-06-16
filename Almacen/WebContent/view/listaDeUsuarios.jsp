@@ -16,6 +16,7 @@
 <meta name="author" content="">
 
 <title>Usuarios</title>
+<jsp:include page="header.jsp"/>
 
 
 

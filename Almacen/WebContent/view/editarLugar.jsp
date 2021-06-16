@@ -7,6 +7,7 @@
 <c:set var="equipo" value="${equipoEspecifico }"></c:set>
 
 <title>Editar lugar</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">

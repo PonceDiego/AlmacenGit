@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 
 <title>Artículo: ${articuloNombre }</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

@@ -12,6 +12,7 @@
 
 
 <title>Agregar Nueva Subcategoría</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

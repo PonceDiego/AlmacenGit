@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 
 <title>Tipo Nuevo</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

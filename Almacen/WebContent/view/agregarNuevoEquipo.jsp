@@ -13,6 +13,7 @@
 
 
 <title>Agregar Nuevo Equipo</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

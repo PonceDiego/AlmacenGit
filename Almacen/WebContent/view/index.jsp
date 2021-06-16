@@ -12,6 +12,7 @@
 <meta name="author" content="">
 
 <title>Bienvenido - Sistema Almacén</title>
+<jsp:include page="header.jsp"/>
 
 
 

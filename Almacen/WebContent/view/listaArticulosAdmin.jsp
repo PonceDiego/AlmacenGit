@@ -12,6 +12,7 @@
 <meta name="author" content="">
 
 <title>Artículos</title>
+<jsp:include page="header.jsp"/>
 
 
 </head>

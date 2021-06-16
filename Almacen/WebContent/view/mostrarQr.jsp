@@ -9,6 +9,7 @@
 
 
 <title>Código QR de ${entidadNombre }</title>
+<jsp:include page="header.jsp"/>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">

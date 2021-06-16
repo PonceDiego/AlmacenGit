@@ -8,6 +8,7 @@
 
 
 <title>Editar Pedido Número ${pedidoId }</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

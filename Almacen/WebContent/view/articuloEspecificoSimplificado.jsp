@@ -8,6 +8,7 @@
 
 
 <title>Artículo: ${articuloNombre }</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

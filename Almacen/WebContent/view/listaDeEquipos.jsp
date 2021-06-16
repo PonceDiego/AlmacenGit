@@ -16,6 +16,7 @@
 <meta name="author" content="">
 
 <title>Equipos</title>
+<jsp:include page="header.jsp"/>
 
 
 </head>

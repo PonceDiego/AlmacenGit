@@ -9,6 +9,7 @@
 <meta name="author" content="">
 
 <title>Grupo de Equipos ${grupoEquipos.getNombre() }</title>
+<jsp:include page="header.jsp"/>
 
 
 </head>

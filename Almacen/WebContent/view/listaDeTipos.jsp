@@ -16,6 +16,7 @@
 <meta name="author" content="">
 
 <title>Tipos</title>
+<jsp:include page="header.jsp"/>
 
 
 

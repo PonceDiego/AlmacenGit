@@ -12,6 +12,7 @@
 <meta name="author" content="">
 
 <title>Proveedores</title>
+<jsp:include page="header.jsp"/>
 
 
 

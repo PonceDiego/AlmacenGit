@@ -12,6 +12,7 @@
 
 
 <title>Editar Artículo</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

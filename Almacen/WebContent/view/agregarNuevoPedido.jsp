@@ -14,6 +14,7 @@
 <meta name="author" content="">
 
 <title>Agregar Nuevo Pedido</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

@@ -257,6 +257,7 @@ input[type=text]:placeholder, input[type=password]:placeholder{
 
 
 <title>Iniciar Sesión</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 

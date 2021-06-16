@@ -7,6 +7,7 @@
 <c:set var="equipo" value="${equipoEspecifico }"></c:set>
 
 <title>Equipo ${equipo.getNombre() }</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">

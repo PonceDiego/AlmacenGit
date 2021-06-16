@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 
 <title>Buscar proveedor</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 
 <title>Buscar grupo de llaves específico</title>
+<jsp:include page="header.jsp"/>
 
 <style>
 

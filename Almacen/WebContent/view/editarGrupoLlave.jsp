@@ -10,6 +10,7 @@
 
 
 <title>Editar Grupo de llaves</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">

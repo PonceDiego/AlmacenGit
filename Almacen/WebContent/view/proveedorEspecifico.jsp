@@ -8,6 +8,7 @@
 
 
 <title>Proveedor ${proveedorNombre }</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

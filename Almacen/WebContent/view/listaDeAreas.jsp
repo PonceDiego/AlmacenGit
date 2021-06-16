@@ -16,6 +16,7 @@
 <meta name="author" content="">
 
 <title>Areas</title>
+<jsp:include page="header.jsp"/>
 
 
 </head>

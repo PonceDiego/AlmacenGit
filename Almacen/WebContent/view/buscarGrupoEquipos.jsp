@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 
 <title>Buscar grupo de equipos específico</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body onload="setColor();">

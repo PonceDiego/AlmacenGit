@@ -12,6 +12,7 @@
 
 
 <title>Llave Nueva</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">

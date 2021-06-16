@@ -14,6 +14,7 @@
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 <title>Área Nueva</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>

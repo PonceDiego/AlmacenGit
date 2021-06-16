@@ -18,6 +18,7 @@
 <meta name="author" content="">
 
 <title>Pedidos</title>
+<jsp:include page="header.jsp"/>
 
 
 

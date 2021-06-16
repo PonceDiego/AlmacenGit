@@ -12,6 +12,7 @@
 
 
 <title>Editar Proveedor</title>
+<jsp:include page="header.jsp"/>
 
 </head>
 <body>
