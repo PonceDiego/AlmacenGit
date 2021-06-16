@@ -4,10 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Almacen</groupId>
 	<artifactId>Almacen</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>Almacen</name>
 	<build>
+		<finalName>almacen</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
