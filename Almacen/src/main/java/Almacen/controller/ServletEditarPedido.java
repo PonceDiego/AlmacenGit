@@ -39,7 +39,7 @@ public class ServletEditarPedido extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			request.getSession().setAttribute("estadosPedidoPosibles", EstadoPedidoDB.getEstados());
-			request.getSession().setAttribute("articulos", ArticuloDB.getArticulosEnStock());
+			request.getSession().setAttribute("articulos", ArticuloDB.getListadoArticulos());
 			String idS = request.getParameter("pedidoId");
 			int id = Integer.parseInt(idS);
 			request.getSession().setAttribute("pedidoId", id);

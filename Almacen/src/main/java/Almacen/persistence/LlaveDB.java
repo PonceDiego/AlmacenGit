@@ -88,8 +88,11 @@ public class LlaveDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			s = sess.save(grupo);
-			for (String string : llaves) {
-				asignarGrupoToLlave(sess, string, sess.get(GrupoLlaves.class, s));
+			if (llaves != null) {
+
+				for (String string : llaves) {
+					asignarGrupoToLlave(sess, string, sess.get(GrupoLlaves.class, s));
+				}
 			}
 			tran.commit();
 

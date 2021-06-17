@@ -186,7 +186,6 @@
 			var z = document.getElementById('inputCopia').value;
 			var a = x.value + " - " + z;
 
-			console.log(a);
 			const llaves = ${llavesCopias};
 
 			var contador = 0;

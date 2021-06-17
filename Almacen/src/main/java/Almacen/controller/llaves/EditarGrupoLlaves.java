@@ -65,8 +65,9 @@ public class EditarGrupoLlaves extends HttpServlet {
 			String id = req.getParameter("inputId");
 			String[] llavesDivididas = llaves.split(",");
 			LlaveManager.editGrupoLlave(id, llavesDivididas);
+			String nombreGrupo = LlaveManager.getGrupoLlaveById(id).getNombre();
 
-			resp.sendRedirect("BuscarGrupoLlaves");
+			resp.sendRedirect("GrupoLlaves?nombreGrupo=" + nombreGrupo);
 		}
 
 	}

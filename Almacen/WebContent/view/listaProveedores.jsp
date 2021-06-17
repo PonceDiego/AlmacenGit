@@ -35,7 +35,6 @@
 				<table class="table table-striped" id="tablaProveedores">
 					<thead>
 						<tr>
-							<th>Id</th>
 							<th>Nombre</th>
 							<th>Artículos</th>
 							<th>Mail</th>
@@ -44,9 +43,6 @@
 					<tbody id="proveedores">
 						<c:forEach items="${listaProveedores}" var="proveedor">
 							<tr>
-								<td id="pID">
-									<c:out value="${proveedor.getId()}" />
-								</td>
 								<td id="pNB">
 									<a href="../Proveedor?proveedorId=${proveedor.getId()}">${proveedor.getNombre()}</a>
 								<td>
@@ -75,9 +71,10 @@
 		$(document).ready(function() {
 
 			$('#tablaProveedores').DataTable({
+				"order" : [ [ 0, "asc" ] ],
 				"columnDefs" : [ {
 					"orderable" : false,
-					"targets" : [ 2 ]
+					"targets" : [ 1 ]
 				} ]
 			});
 		});

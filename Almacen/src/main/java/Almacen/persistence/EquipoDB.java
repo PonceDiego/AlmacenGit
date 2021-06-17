@@ -183,8 +183,10 @@ public class EquipoDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			s = sess.save(grupo);
-			for (String string : equipos) {
-				asignarGrupoToEquipo(sess, string, sess.get(GrupoEquipos.class, s));
+			if (equipos != null) {
+				for (String string : equipos) {
+					asignarGrupoToEquipo(sess, string, sess.get(GrupoEquipos.class, s));
+				}
 			}
 			tran.commit();
 

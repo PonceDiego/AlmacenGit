@@ -29,22 +29,28 @@
 			<div class="card-body">
 				<form class="form-signin" method="post" action="../AreaNueva">
 					<h3 class="text-center">Datos de la nueva área</h3>
+					<div id="advertencia" style="color: red"></div>
 					<hr class="m-4">
 					<div class="row">
 						<div class="column">
 							<div>Nombre del Área</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputNombre" class="form-control" placeholder="Nombre de área" tabindex="1" required autocomplete="off">
+								<input type="text" name="inputNombre" class="form-control" onchange="comparar()"
+								 placeholder="Nombre de área" tabindex="1" required autocomplete="off" maxlength="30">
 							</div>
 
 						</div>
 						<div class="column">
 							<div>Usuario Jefe</div>
 							<div class=" form-label-group>">
-								<select tabindex="2" name="inputJefe" style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%" required>
+								<input type="hidden" name="inputJefe" class="form-control"
+										id="inputJefe" required autocomplete="off">
+								<select tabindex="2" name="selectJefe" id="selectJefe" style="border-radius: 5px; font-size: 16px;
+								 padding: 5px; min-width: 50%" required
+								 onchange="selected(),comparar()">
 									<option disabled selected>Seleccione un usuario jefe</option>
 									<c:forEach items="${usuarios}" var="usuario">
-										<option style="cursor: pointer" value="${usuario.getNombreUsuario()}">${usuario.getNombre()}${usuario.getApellido()}</option>
+										<option style="cursor: pointer" value="${usuario.getNombreUsuario()}">${usuario.getNombre()} ${usuario.getApellido()}</option>
 									</c:forEach>
 								</select>
 
@@ -52,12 +58,34 @@
 						</div>
 					</div>
 					<hr>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" 
+					disabled
+					style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
 				</form>
 			</div>
 		</div>
 
 	</div>
+<script>
+function selected() {
+	var x = document.getElementById("selectJefe").value;
 
+	document.getElementById("inputJefe").value = x;
+}
+function comparar() {
+		var y = document.getElementById('inputJefe');
+		if (y.value == null || y.value === "") {
+			var x = document.getElementById('advertencia');
+			x.innerHTML = "Por favor seleccione un usuario jefe!";
+		} else {
+			var x = document.getElementById('advertencia');
+			x.innerHTML = "";
+			var y = document
+					.getElementById('aceptarbutton');
+			y.disabled = false;
+		}
+
+}
+</script>
 </body>
 </html>

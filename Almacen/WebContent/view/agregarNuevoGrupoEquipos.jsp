@@ -28,7 +28,7 @@
 					<hr class="m-4">
 					<div class="column">
 						<div class="form-label-group>">
-							<input tabindex="1" type="text" name="inputNombre" class="form-control" placeholder="Nombre del grupo" required autocomplete="off">
+							<input tabindex="1" type="text" name="inputNombre" class="form-control" placeholder="Nombre del grupo" required autocomplete="off" maxlength="20">
 						</div>
 						<p></p>
 

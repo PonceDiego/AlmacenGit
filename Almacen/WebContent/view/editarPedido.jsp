@@ -60,13 +60,13 @@
 						<tr>
 							<td>Cantidad</td>
 							<td>Artículo</td>
-							<td>Categoría</td>
+							<td>Subcategoría</td>
 						</tr>
 					</thead>
 					<tbody id="articulos" style="color: black; background-color: white;">
 						<c:forEach items="${articulosPPedido}" var="articulo">
 							<tr>
-								<td><input type="text" value="${articulo.cantidad}" name="cantidad" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="width: 20%"></td>
+								<td><input type="text" value="${articulo.cantidad}" name="cantidad" oninput="this.value=this.value.replace(/^[0\D]+/g,'');" style="width: 20%"></td>
 								<td><select class="nombreArts">
 										<c:forEach items="${articulos }" var="arts">
 											<c:choose>

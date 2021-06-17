@@ -33,7 +33,7 @@
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input type="text" name="inputNombre" id="inputNombre" tabindex="1" class="form-control" placeholder="Nombre" required autocomplete="off" maxlength="50" onkeyup="filterFunction2(this,event),botonAceptar()">
+								<input type="text" name="inputNombre" id="inputNombre" tabindex="1" class="form-control" placeholder="Nombre" required autocomplete="off" maxlength="50" onkeyup="filterFunction2(this,event),botonAceptar()" onchange="comparar()">
 								<c:set var="equipos" value="${listaEquipos }"></c:set>
 								<ul id="ulArticulos">
 									<c:forEach items="${equipos }" var="equipo">
@@ -43,7 +43,7 @@
 							</div>
 							<div>Tipo</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select tabindex="3" onchange="selected()" id="tipoSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select tabindex="3" onchange="selected(),comparar()" id="tipoSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
 									<option selected disabled>Seleccione un tipo</option>
 									<c:forEach items="${listaTipos}" var="tipo">
 										<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
@@ -52,7 +52,7 @@
 							</div>
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select tabindex="5" onchange="selected2()" id="lugarSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
 									<option selected disabled>Seleccione un lugar</option>
 									<c:forEach items="${listaLugares}" var="lugar">
 										<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
@@ -77,7 +77,7 @@
 
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select tabindex="6" onchange="selected3()" id="usuarioSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
+								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
 									<option selected disabled>Seleccione un usuario</option>
 									<c:forEach items="${listaUsuarios}" var="usuario">
 										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
@@ -92,7 +92,8 @@
 						</div>
 					</div>
 					<hr>
-					<button tabindex="9" class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					<button tabindex="9" class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" disabled
+					 style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
 				</form>
 			</div>
 		</div>
@@ -100,7 +101,6 @@
 	</div>
 	<script>
 		function selected() {
-			console.log("selected");
 			var x = document.getElementById("tipoSelect").value;
 
 			document.getElementById("inputTipo").value = x;
@@ -108,7 +108,6 @@
 	</script>
 	<script>
 		function selected2() {
-			console.log("selected2");
 			var x = document.getElementById("lugarSelect").value;
 
 			document.getElementById("inputLugar").value = x;
@@ -125,6 +124,26 @@
 		}
 	</script>
 	<script>
+	function comparar() {
+		var x = document.getElementById('advertencia');
+		var y = document.getElementById('inputTipo');
+		var z = document.getElementById('inputLugar');
+		var a = document.getElementById("inputUsuario");
+		
+		if (y.value == null || y.value === "") {
+			x.innerHTML = "Por favor seleccione un tipo!";
+		} else if (z.value == null || z.value === "") {
+			x.innerHTML = "Por favor seleccione un lugar!";
+		}  else if (a.value == null || a.value === "") {
+			x.innerHTML = "Por favor seleccione un usuario!";
+		}else {
+			x.innerHTML = "";
+			var y = document.getElementById('aceptarbutton');
+			y.disabled = false;
+		}
+
+	}
+	
 		function filterFunction2(that, event) {
 			document.getElementById('advertencia').innerHTML = "";
 			document.getElementById('linkEditar').innerHTML = "";

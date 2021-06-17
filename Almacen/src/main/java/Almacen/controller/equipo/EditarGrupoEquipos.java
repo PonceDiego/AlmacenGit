@@ -65,8 +65,9 @@ public class EditarGrupoEquipos extends HttpServlet {
 			String id = req.getParameter("inputId");
 			String[] llavesDivididas = equipos.split(",");
 			EquipoManager.editGrupoEquipo(id, llavesDivididas);
+			String inputNombre = EquipoManager.getGrupoEquipo(id).getNombre();
 
-			resp.sendRedirect("BuscarGrupoEquipos");
+			resp.sendRedirect("GrupoEquipos?nombreGrupo=" + inputNombre);
 		}
 
 	}

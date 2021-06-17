@@ -37,7 +37,7 @@ public class ServletListaProveedores extends HttpServlet {
 			request.getSession(false);
 			request.getSession().setAttribute("listaProveedores", ProveedoresDB.getProveedores());
 			request.getSession().setAttribute("ServletProv", "");
-			response.sendRedirect("view/listaProveedoresAdmin.jsp");
+			response.sendRedirect("view/listaProveedores.jsp");
 		}
 	}
 
