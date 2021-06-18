@@ -58,7 +58,7 @@
 									autocomplete="off">
 							</div>
 							<div>Categoría</div>
-							<div class="form-label-group> searchable2">
+							<div class="form-label-group> searchable">
 								<input tabindex="5" type="text" placeholder="Categoría"  class='form-control' name="input" id="input" onkeyup="filterFunction(this,event)" required autocomplete="off">
 								<c:set var="categoria" value="${categoriasListadas}" scope="application"></c:set>
 								<ul>
