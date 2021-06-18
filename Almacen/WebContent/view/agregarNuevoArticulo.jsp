@@ -28,14 +28,16 @@
 			<div class="card-body">
 				<form class="form-signin" method="post" action="../NuevoArticulo">
 					<h3 class="text-center">Datos del nuevo artículo</h3>
-					<div id="advertencia" style="color: red" class="text-center">
+					<div class='text-center' id="advertencia" style="color: red">
 					</div>
-					<div class="text-center">
+					<div class='text-center'>
+					  <a href="" id="linkEditar"></a>
 					</div>
-					<span><a href="" id="linkEditar"> </a></span>
+							
 					<div class="row">
 						<div class="column">
 							<div>Nombre del Artículo</div>
+							
 							<div class="form-label-group> searchable2">
 								<input tabindex="1" type="text" name="inputNombre"
 									id="inputNombre" class="form-control" placeholder="Nombre"
@@ -56,12 +58,9 @@
 									autocomplete="off">
 							</div>
 							<div>Categoría</div>
-							<div class="form-label-group> searchable">
-								<input tabindex="5" type="text" placeholder="Categoría"
-									name="input" id="input" onkeyup="filterFunction(this,event)"
-									required autocomplete="off">
-								<c:set var="categoria" value="${categoriasListadas}"
-									scope="application"></c:set>
+							<div class="form-label-group> searchable2">
+								<input tabindex="5" type="text" placeholder="Categoría"  class='form-control' name="input" id="input" onkeyup="filterFunction(this,event)" required autocomplete="off">
+								<c:set var="categoria" value="${categoriasListadas}" scope="application"></c:set>
 								<ul>
 									<c:forEach items="${categoria}" var="categoria">
 										<li>-${categoria.nombre }</li>
@@ -70,11 +69,7 @@
 							</div>
 							<div>Proveedor</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputProveedor" id="inputProveedor"
-									autocomplete="off"> <select onchange="selected(),comparar()"
-									tabindex="7" id="provSelect"
-									style="border-radius: 5px; font-size: 16px; padding: 10px"
-									required>
+								<input type="hidden" name="inputProveedor" id="inputProveedor" autocomplete="off"> <select class='form-control input-lg' onchange="selected()" tabindex="7" id="provSelect" required>
 									<option selected disabled>Seleccione un proveedor</option>
 									<c:forEach items="${proveedores}" var="proveedor">
 
@@ -103,11 +98,8 @@
 									oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 							</div>
 							<div>Subcategoría</div>
-							<div class=" form-label-group>" id="divSub">
-								<input type="hidden" name="inputSub" id="inputSub"> <select
-									tabindex="6" onchange="selected2(),comparar()" id="selectSub"
-									style="border-radius: 5px; font-size: 16px; padding: 10px;"
-									required>
+							<div class="form-label-group> searchable" id="divSub">
+								<input type="hidden" name="inputSub" id="inputSub"> <select class='form-control input-lg' tabindex="6" onchange="selected2()" id="selectSub" required>
 									<option disabled selected>Seleccione una subcategoría</option>
 									<c:forEach items="${subCats}" var="scategoria">
 										<option style="cursor: pointer"
@@ -145,6 +137,7 @@
 			document.getElementById("inputSub").value = x;
 		}
 	</script>
+	
 	<script>
 		function filterFunction(that, event) {
 			let container, input, filter, li, input_val;
@@ -404,7 +397,7 @@
 			var x = document.getElementById('advertencia');
 			var editar = document.getElementById('linkEditar');
 			x.innerHTML = "Ya existe un artículo con el nombre " + val + "!";
-			editar.text = "Editar";
+			editar.innerHTML = "Editar";
 			editar.href = "../EditarArticulo?nombreEditado=" + val;
 			var y = document.getElementById('aceptarbutton');
 			y.disabled = true;
