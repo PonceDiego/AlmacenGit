@@ -30,11 +30,11 @@
 						<div class="column">
 							<div>Nombre del Lugar</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputNombre" class="form-control" placeholder="Nombre del lugar" required autocomplete="off">
+								<input type="text" name="inputNombre" class="form-control" placeholder="Nombre del lugar" required autocomplete="off" maxlength="50">
 							</div>
 							<div>Descripción</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputDes" class="form-control" placeholder="Descripción" autocomplete="off" maxlength="140">
+								<input type="text" name="inputDes" class="form-control" placeholder="Descripción" autocomplete="off" maxlength="50">
 							</div>
 
 						</div>

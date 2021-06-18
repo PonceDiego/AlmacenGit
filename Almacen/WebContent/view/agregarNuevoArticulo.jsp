@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <meta charset="UTF-8">
 
 
 <title>Agregar Nuevo Artículo</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 
 </head>
 <body>
@@ -26,13 +28,19 @@
 			<div class="card-body">
 				<form class="form-signin" method="post" action="../NuevoArticulo">
 					<h3 class="text-center">Datos del nuevo artículo</h3>
+					<div id="advertencia" style="color: red" class="text-center">
+					</div>
+					<div class="text-center">
+					</div>
+					<span><a href="" id="linkEditar"> </a></span>
 					<div class="row">
 						<div class="column">
 							<div>Nombre del Artículo</div>
-							<div id="advertencia" style="color: red"></div>
-							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input tabindex="1" type="text" name="inputNombre" id="inputNombre" class="form-control" placeholder="Nombre" required autocomplete="off" onchange="comparar()" onkeyup="filterFunction2(this,event),botonAceptar()">
+								<input tabindex="1" type="text" name="inputNombre"
+									id="inputNombre" class="form-control" placeholder="Nombre"
+									required autocomplete="off" onchange="comparar()"
+									onkeyup="filterFunction2(this,event),botonAceptar()">
 								<c:set var="articulo" value="${listaArticulos }"></c:set>
 								<ul id="ulArticulos">
 									<c:forEach items="${articulo }" var="art">
@@ -42,12 +50,18 @@
 							</div>
 							<div>Stock Mínimo</div>
 							<div class="form-label-group>">
-								<input tabindex="3" type="text" name="inputSMinimo" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Stock Mínimo" required autocomplete="off">
+								<input tabindex="3" type="text" name="inputSMinimo"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+									class="form-control" placeholder="Stock Mínimo" required
+									autocomplete="off">
 							</div>
 							<div>Categoría</div>
 							<div class="form-label-group> searchable">
-								<input tabindex="5" type="text" placeholder="Categoría" name="input" id="input" onkeyup="filterFunction(this,event)" required autocomplete="off">
-								<c:set var="categoria" value="${categoriasListadas}" scope="application"></c:set>
+								<input tabindex="5" type="text" placeholder="Categoría"
+									name="input" id="input" onkeyup="filterFunction(this,event)"
+									required autocomplete="off">
+								<c:set var="categoria" value="${categoriasListadas}"
+									scope="application"></c:set>
 								<ul>
 									<c:forEach items="${categoria}" var="categoria">
 										<li>-${categoria.nombre }</li>
@@ -56,11 +70,15 @@
 							</div>
 							<div>Proveedor</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputProveedor" id="inputProveedor" autocomplete="off"> <select onchange="selected()" tabindex="7" id="provSelect" style="border-radius: 5px; font-size: 16px; padding: 10px" required>
+								<input type="hidden" name="inputProveedor" id="inputProveedor"
+									autocomplete="off"> <select onchange="selected(),comparar()"
+									tabindex="7" id="provSelect"
+									style="border-radius: 5px; font-size: 16px; padding: 10px"
+									required>
 									<option selected disabled>Seleccione un proveedor</option>
 									<c:forEach items="${proveedores}" var="proveedor">
 
-										<option>-${proveedor.nombre }</option>
+										<option value ="-${proveedor.nombre }">-${proveedor.nombre }</option>
 
 									</c:forEach>
 								</select>
@@ -71,19 +89,30 @@
 						<div class="column">
 							<div>Costo</div>
 							<div class="form-label-group>">
-								<input tabindex="2" type="text" name="inputCosto" class="form-control" placeholder="Costo" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="costoinput" required autocomplete="off">
+								<input tabindex="2" type="text" name="inputCosto"
+									class="form-control" placeholder="Costo"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+									id="costoinput" required autocomplete="off">
 							</div>
 
 							<div>Stock Actual</div>
 							<div class="form-label-group>">
-								<input tabindex="4" type="text" name="inputStock" class="form-control" placeholder="Stock Actual" required autocomplete="off" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input tabindex="4" type="text" name="inputStock"
+									class="form-control" placeholder="Stock Actual" required
+									autocomplete="off"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 							</div>
 							<div>Subcategoría</div>
 							<div class=" form-label-group>" id="divSub">
-								<input type="hidden" name="inputSub" id="inputSub"> <select tabindex="6" onchange="selected2()" id="selectSub" style="border-radius: 5px; font-size: 16px; padding: 10px;" required>
+								<input type="hidden" name="inputSub" id="inputSub"> <select
+									tabindex="6" onchange="selected2(),comparar()" id="selectSub"
+									style="border-radius: 5px; font-size: 16px; padding: 10px;"
+									required>
 									<option disabled selected>Seleccione una subcategoría</option>
 									<c:forEach items="${subCats}" var="scategoria">
-										<option style="cursor: pointer" class="${scategoria.getCategoria().getNombre()} listaSub">-${scategoria.getNombre()}</option>
+										<option style="cursor: pointer"
+											class="${scategoria.getCategoria().getNombre()} listaSub"
+											value = "-${scategoria.getNombre()}">-${scategoria.getNombre()}</option>
 									</c:forEach>
 								</select>
 
@@ -93,7 +122,10 @@
 						</div>
 					</div>
 					<hr>
-					<button tabindex="8" class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					<button tabindex="8"
+						class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton" disabled
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
 				</form>
 			</div>
 		</div>
@@ -314,13 +346,26 @@
 			if (valor.attr('value') === a) {
 				onSelect2(valor.text());
 			} else {
+				var a = document.getElementById('inputProveedor');
+				var b = document.getElementById('inputSub');
 				var x = document.getElementById('advertencia');
 				var editar = document.getElementById('linkEditar');
-				x.innerHTML = "";
-				editar.text = "";
-				editar.href = "";
-				var y = document.getElementById('aceptarbutton');
-				y.disabled = false;
+				if (a.value != null || a.value != "") {
+					x.innerHTML = "Seleccione un proveedor!";
+					editar.text = "";
+					editar.href = "";
+				} else if (b.value != null || b.value != "") {
+					x.innerHTML = "Seleccione una subcategoría!";
+					editar.text = "";
+					editar.href = "";
+				} else {
+
+					x.innerHTML = "";
+					editar.text = "";
+					editar.href = "";
+					var y = document.getElementById('aceptarbutton');
+					y.disabled = false;
+				}
 			}
 		}
 
