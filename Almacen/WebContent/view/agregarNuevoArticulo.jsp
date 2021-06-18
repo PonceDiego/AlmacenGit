@@ -338,13 +338,24 @@
 
 				});
 		function comparar() {
-			var valor = $('.selected');
-
+			var IsEqual = false;
+			
 			var x = document.getElementById('inputNombre');
+			
 			var a = x.value;
+			
+			$('#ulArticulos li').each(function(i)
+			{
+			   var valueLi = $(this).attr('value');
+			   
+			   if(a === valueLi){
+				   IsEqual = true;
+			   }
+			});
 
-			if (valor.attr('value') === a) {
-				onSelect2(valor.text());
+
+			if (IsEqual) {
+				onSelect2(a);
 			} else {
 				var a = document.getElementById('inputProveedor');
 				var b = document.getElementById('inputSub');
