@@ -93,10 +93,15 @@
 									</c:when>
 
 									<c:when test="${llave.getEstado() == 'En uso'}">
-										<button class="btn btn-outline-success" type="button"
+									<form method="get" action="../CambioEstado" id="formMethod">
+									<input type="hidden" id="cambioId" name="cambioId">
+									<input type="hidden" id="salida" name="salida">
+									<input type="hidden" id="entidad" name="entidad" value="Llave">
+									
+										<button class="btn btn-outline-success" type="submit"
 										 onclick="setData('${llave.getLlaveId()}','${llave.getEstado()}')"
-											title="Entrada" style="cursor: pointer" data-toggle="modal"
-											data-target="#modalLlaves">E</button>
+											title="Entrada" style="cursor: pointer">E</button>
+											</form>
 									</c:when>
 								</c:choose></td>
 						</tr>
@@ -161,10 +166,10 @@
 			x.value = llaveId;
 			
 			
-			if (estado === "Disponible") {
-				y.value = "1";
-			}else{
+			if (estado == "En uso") {
 				y.value = "0";
+			}else{
+				y.value = "1";
 			}
 		}
 	</script>
