@@ -87,15 +87,15 @@
 							<td><c:choose>
 									<c:when test="${llave.getEstado() == 'Disponible'}">
 										<button class="btn btn-warning" type="button" title="Salida"
-											style="cursor: pointer" data-toggle="modal" onclick="setData('${llave.getLlaveId()}','${llave.getEstado()}')"
+											style="cursor: pointer" data-toggle="modal" onclick="setDataModal('${llave.getLlaveId()}','${llave.getEstado()}')"
 											data-target="#modalLlaves">S</button>
 
 									</c:when>
 
 									<c:when test="${llave.getEstado() == 'En uso'}">
 									<form method="get" action="../CambioEstado" id="formMethod">
-									<input type="hidden" id="cambioId" name="cambioId">
-									<input type="hidden" id="salida" name="salida">
+									<input type="hidden" id="cambioId" name="cambioId" value="${llave.getLlaveId()}">
+									<input type="hidden" id="salida" name="salida" value="${llave.getEstado() == 'En uso' ? '0' : '1'}">
 									<input type="hidden" id="entidad" name="entidad" value="Llave">
 									
 										<button class="btn btn-outline-success" type="submit"
@@ -125,9 +125,9 @@
 					<form method="get" action="../CambioEstado" id="formMethod">
 						<div class="form-inline mt-2 ml-2 mb-2 mx-2 ">
 							<div class=" form-label-group> searchable">
-							<input type="hidden" id="cambioId" name="cambioId">
-							<input type="hidden" id="salida" name="salida">
-							<input type="hidden" id="entidad" name="entidad" value="Llave">
+							<input type="hidden" id="cambioIdModal" name="cambioId">
+							<input type="hidden" id="salidaModal" name="salida">
+							<input type="hidden" id="entidadModal" name="entidad" value="Llave">
 								<input type="text" placeholder="Buscar usuario"
 									name="solicitanteId" id="solicitanteId"
 									value="${usuarioActual.getNombreUsuario()}"
@@ -163,6 +163,20 @@
 			console.log(llaveId+estado);
 			var x = document.getElementById('cambioId');
 			var y = document.getElementById('salida');
+			x.value = llaveId;
+			
+			
+			if (estado == "En uso") {
+				y.value = "0";
+			}else{
+				y.value = "1";
+			}
+		}
+		
+		function setDataModal(llaveId,estado) {
+			console.log(llaveId+estado);
+			var x = document.getElementById('cambioIdModal');
+			var y = document.getElementById('salidaModal');
 			x.value = llaveId;
 			
 			
