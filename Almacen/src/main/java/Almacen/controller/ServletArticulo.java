@@ -42,7 +42,7 @@ public class ServletArticulo extends HttpServlet {
 					articulo.getSubcategoria().getCategoria().getNombre());
 			request.getSession().setAttribute("articuloNombre", articulo.getNombre());
 			request.getSession().setAttribute("articuloCosto", articulo.getCosto());
-			request.getSession().setAttribute("articuloFecha", articulo.getFechaAgregado());
+			request.getSession().setAttribute("articuloFecha", articulo.getFechaAgregado().toString().substring(0, 10));
 			request.getSession().setAttribute("articuloStockMinimo", articulo.getStockMinimo());
 			request.getSession().setAttribute("articuloStock", articulo.getStock());
 			request.getSession().setAttribute("articuloEstado", articulo.getEstadoarticulo());

@@ -16,34 +16,39 @@ import main.java.Almacen.manager.TipoManager;
 @WebServlet("/Tipo")
 public class ServletTipo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletTipo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletTipo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
+			request.getSession().setAttribute("listaTipos", TipoManager.getTipos());
 			response.sendRedirect("view/agregarNuevoTipo.jsp");
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			String nombre=request.getParameter("inputNombre");
+			String nombre = request.getParameter("inputNombre");
 			TipoManager.createTipo(nombre);
 			response.sendRedirect("ListaEquipos");
 		}
