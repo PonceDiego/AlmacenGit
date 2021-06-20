@@ -1,6 +1,7 @@
 package main.java.Almacen.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -13,6 +14,8 @@ import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Lugar;
+import main.java.Almacen.model.views.RegistroFilter;
+import main.java.Almacen.model.views.RegistroView;
 
 public class LlaveDB {
 
@@ -180,6 +183,27 @@ public class LlaveDB {
 					llaveReturn = llave;
 					break;
 				}
+			}
+			return llaveReturn;
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static List<Llave> getLlavesByUser(Integer actual) {
+		List<Llave> llaveReturn = new ArrayList<Llave>();
+		Session sess = null;
+		try {
+			sess = HibernateUtils.openSession();
+			RegistroFilter filter = new RegistroFilter(null, null, null, "Llave", null);
+			List<RegistroView> registros = RegistroManager.getListaRegistrosByUser(actual, filter);
+			for (RegistroView registro : registros) {
+				Llave llave = getLlaveById(registro.getEntidadId());
+				llaveReturn.add(llave);
+			}
+			for (Llave llave : llaveReturn) {
+				Hibernate.initialize(llave);
+				Hibernate.initialize(llave.getGrupoLlaves());
 			}
 			return llaveReturn;
 		} finally {

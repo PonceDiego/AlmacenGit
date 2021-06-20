@@ -39,20 +39,20 @@ public class RegistroDB {
 	public static List<Registro> getRegistrosByUsuario(int user, RegistroFilter filter) {
 		Session sess = null;
 		List<Registro> registros;
-		
+
 		try {
 			sess = HibernateUtils.openSession();
 			String queryStr = "select r from Registro r ";
-			queryStr += "where r.usuario='" + user + "' ";
-			
+			queryStr += "where r.usuarioByUsuario='" + user + "' ";
+
 			queryStr += concatenarFiltro(filter);
-			
+
 			queryStr += "order by r.fecha desc";
-			
+
 			Query<Registro> query = sess.createQuery(queryStr);
-			
+
 			query = aplicarFiltro(query, filter);
-			
+
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r.getUsuarioByEncargado());
@@ -70,21 +70,21 @@ public class RegistroDB {
 		List<Registro> registros = new ArrayList<Registro>();
 		try {
 			sess = HibernateUtils.openSession();
-			
+
 			StringBuilder builder = new StringBuilder();
-			
+
 			builder.append("select r from Registro r ");
-			
-			if(filter.tieneFiltro()) {
+
+			if (filter.tieneFiltro()) {
 				builder.append("where id != null ");
 			}
-			
+
 			builder.append(concatenarFiltro(filter));
-			
+
 			Query<Registro> query = sess.createQuery(builder.toString());
-			
+
 			query = aplicarFiltro(query, filter);
-		
+
 			registros = query.getResultList();
 			for (Registro r : registros) {
 				Hibernate.initialize(r);
@@ -154,68 +154,68 @@ public class RegistroDB {
 			sess.close();
 		}
 	}
-	
+
 	private static String concatenarFiltro(RegistroFilter filter) {
 		String queryStr = "";
-		if(filter.tieneFiltro()) {
-			if(!TextUtils.isEmpty(filter.getFiltroDesde())) {
+		if (filter.tieneFiltro()) {
+			if (!TextUtils.isEmpty(filter.getFiltroDesde())) {
 				queryStr += "and r.fecha > :filtroDesde ";
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroHasta())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroHasta())) {
 				queryStr += "and r.fecha < :filtroHasta ";
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroEntidad())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroEntidad())) {
 				queryStr += "and r.entidad = :filtroEntidad ";
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroUsuario())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroUsuario())) {
 				queryStr += "and r.usuarioByUsuario.nombre like :filtroUsuario ";
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroEstado())) {
-				
-				if(filter.getFiltroEstado().equals("Entrada")) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroEstado())) {
+
+				if (filter.getFiltroEstado().equals("Entrada")) {
 					queryStr += "and r.entrada = 1";
-				}else if(filter.getFiltroEstado().equals("Salida")) {
+				} else if (filter.getFiltroEstado().equals("Salida")) {
 					queryStr += "and r.entrada = 0";
 				}
-				
+
 			}
 		}
-		
+
 		return queryStr;
 	}
-	
-	private static Query<Registro> aplicarFiltro(Query<Registro> query,RegistroFilter filter) {
+
+	private static Query<Registro> aplicarFiltro(Query<Registro> query, RegistroFilter filter) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		if(filter.tieneFiltro()) {
-			if(!TextUtils.isEmpty(filter.getFiltroDesde())) {
+		if (filter.tieneFiltro()) {
+			if (!TextUtils.isEmpty(filter.getFiltroDesde())) {
 				try {
 					query.setParameter("filtroDesde", format.parse(filter.getFiltroDesde()));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroHasta())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroHasta())) {
 				try {
 					query.setParameter("filtroHasta", format.parse(filter.getFiltroHasta()));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroEntidad())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroEntidad())) {
 				query.setParameter("filtroEntidad", filter.getFiltroEntidad());
 			}
-			
-			if(!TextUtils.isEmpty(filter.getFiltroUsuario())) {
+
+			if (!TextUtils.isEmpty(filter.getFiltroUsuario())) {
 				query.setParameter("filtroUsuario", "%" + filter.getFiltroUsuario() + "%");
 			}
 		}
-		
+
 		return query;
 	}
 }

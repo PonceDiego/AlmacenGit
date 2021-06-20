@@ -36,6 +36,10 @@ public class UsuarioManager {
 		return UsuarioDB.validar(username, pass);
 	}
 
+	public static boolean validarCredencialesSys(String username, String pass) {
+		return UsuarioDB.validarSys(username, pass);
+	}
+
 	public static List<String> listarUsuariosString() {
 		List<String> usuarios = new ArrayList<String>();
 		for (Usuario u : UsuarioDB.getUsersActivos()) {

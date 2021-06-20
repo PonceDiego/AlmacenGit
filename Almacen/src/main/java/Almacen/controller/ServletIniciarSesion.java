@@ -1,7 +1,6 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import main.java.Almacen.manager.UsuarioManager;
 import main.java.Almacen.model.Usuario;
-import main.java.Almacen.model.UsuarioRs;
 import main.java.Almacen.persistence.UsuarioDB;
 
 /**
@@ -53,75 +49,37 @@ public class ServletIniciarSesion extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("username");
 		String pass = request.getParameter("pass");
-		PrintWriter out;
-		Gson gson = new Gson();
 
-		if (username.equals("root") && pass.equals("almacen.C12") || username.equals("apps") && pass.equals("1234")) {
-			Usuario user = UsuarioDB.getUsuarioByNombreUsuario(username);
+		if (username.equals("root") || username.equals("apps") || username.equals("llaves")
+				|| username.equals("tecnica") || username.equals("almacen")) {
+			if (UsuarioManager.validarCredencialesSys(username, pass)) {
 
-			System.out.println("\nEl usuario " + user.getNombreUsuario() + " inició sesión desde el sistema.\n");
+				Usuario user = UsuarioDB.getUsuarioByNombreUsuario(username);
 
-			request.getSession().setAttribute("usuarioActual", user);
-			request.getSession().setAttribute("mensaje", "Iniciada");
+				System.out.println("\nEl usuario " + user.getNombreUsuario() + " inició sesión desde el sistema.\n");
 
-			if (request.getParameter("and") != null) {
-				response.setCharacterEncoding("UTF-8");
-				out = response.getWriter();
-				UsuarioRs respuesta = new UsuarioRs();
-				respuesta.setArea(user.getArea().getNombre());
-				respuesta.setNombre(user.getNombre());
-				respuesta.setRol(user.getRol().getNombre());
-				respuesta.setToken(user.getId().toString());
-				respuesta.setUsername(user.getNombreUsuario());
-				respuesta.setJsessionid(request.getSession().getId().toString());
+				request.getSession().setAttribute("usuarioActual", user);
+				request.getSession().setAttribute("mensaje", "Iniciada");
 
-				out.print(gson.toJson(respuesta));
-
-				out.flush();
-
-			} else {
 				response.sendRedirect("Index");
+			} else {
+
+				response.sendRedirect("IniciarSesion?mensaje=Los%20datos%20ingresados%20fueron%20incorrectos.");
 			}
 		} else {
 
 			if (UsuarioManager.validarCredenciales(username, pass)) {
-
 				Usuario user = UsuarioDB.getUsuarioByNombreUsuario(username);
 				System.out.println("\nEl usuario " + user.getNombreUsuario() + " inició sesión desde LDAP.\n");
 				request.getSession().setAttribute("usuarioActual", user);
 				System.out.println("\n" + request.getSession().toString() + "<-- ID de sesión");
 				request.getSession().setAttribute("mensaje", "Iniciada");
 
-				if (request.getParameter("and") != null) {
-					response.setCharacterEncoding("UTF-8");
-					out = response.getWriter();
-
-					UsuarioRs respuesta = new UsuarioRs();
-					respuesta.setArea(user.getArea().getNombre());
-					respuesta.setNombre(user.getNombre());
-					respuesta.setRol(user.getRol().getNombre());
-					respuesta.setToken(user.getId().toString());
-					respuesta.setUsername(user.getNombreUsuario());
-					respuesta.setJsessionid(request.getSession().getId().toString());
-
-					out.print(gson.toJson(respuesta));
-
-					out.flush();
-
-				} else {
-					response.sendRedirect("Index");
-				}
+				response.sendRedirect("Index");
 
 			} else {
-				if (request.getParameter("and") != null) {
-					out = response.getWriter();
-					out.print(0);
-					out.flush();
 
-				} else {
-
-					response.sendRedirect("IniciarSesion?mensaje=Los%20datos%20ingresados%20fueron%20incorrectos.");
-				}
+				response.sendRedirect("IniciarSesion?mensaje=Los%20datos%20ingresados%20fueron%20incorrectos.");
 			}
 		}
 	}

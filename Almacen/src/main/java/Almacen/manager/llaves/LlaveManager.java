@@ -93,4 +93,8 @@ public class LlaveManager {
 		LlaveDB.editGrupoLlave(id, llaves);
 	}
 
+	public static List<Llave> getLlavesByUser(Integer actual) {
+		return LlaveDB.getLlavesByUser(actual);
+	}
+
 }
