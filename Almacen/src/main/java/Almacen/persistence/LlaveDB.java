@@ -198,17 +198,21 @@ public class LlaveDB {
 			RegistroFilter filter = new RegistroFilter(null, null, null, "Llave", null);
 			List<RegistroView> registros = RegistroManager.getListaRegistrosByUser(actual, filter);
 			for (RegistroView registro : registros) {
-				Llave llave = getLlaveById(registro.getEntidadId());
+				Llave llave = getLlaveByIdAndSession(sess, registro.getEntidadId());
 				llaveReturn.add(llave);
 			}
 			for (Llave llave : llaveReturn) {
-				Hibernate.initialize(llave);
 				Hibernate.initialize(llave.getGrupoLlaves());
+				Hibernate.initialize(llave.getLugar());
 			}
 			return llaveReturn;
 		} finally {
 			sess.close();
 		}
+	}
+
+	private static Llave getLlaveByIdAndSession(Session sess, int id) {
+		return sess.get(Llave.class, id);
 	}
 
 	public static void editLlave(String inputId, String inputCopia, String inputNombre, String inputObservaciones,

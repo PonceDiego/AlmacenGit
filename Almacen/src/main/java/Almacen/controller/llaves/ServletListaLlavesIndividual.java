@@ -29,12 +29,9 @@ public class ServletListaLlavesIndividual extends HttpServlet {
 		}
 
 		Usuario actual = (Usuario) req.getSession().getAttribute("usuarioActual");
-		System.out.println("Id del usuario actual! ====== " + actual.getId().toString());
-
 		List<Llave> llaves = LlaveManager.getLlavesByUser(actual.getId());
 
 		req.getSession().setAttribute("llaves", llaves);
-
 		resp.sendRedirect("view/listaDeLlavesEnPosesion.jsp");
 	}
 }
