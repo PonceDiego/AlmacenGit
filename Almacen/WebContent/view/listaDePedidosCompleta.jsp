@@ -58,7 +58,7 @@
 
 					<c:forEach items="${pedidosCompleto}" var="pedido">
 						<tr>
-							<td><c:out value="${pedido.fecha}" /></td>
+							<td><c:out value="${pedido.fecha.toString().substring(0, 16)}" /></td>
 							<td><c:out
 									value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" />
 							</td>
