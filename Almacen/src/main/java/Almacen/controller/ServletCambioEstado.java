@@ -70,6 +70,9 @@ public class ServletCambioEstado extends HttpServlet {
 
 				EquipoManager.changeStatus(actual.getId(), Integer.parseInt(id));
 				response.sendRedirect("ListaEquipos");
+			} else if (entidad.equals("GrupoEquipos")) {
+				EquipoManager.changeStatusGrupo(actual.getId(), id);
+				response.sendRedirect("BuscarGrupoEquipos");
 			}
 		}
 	}

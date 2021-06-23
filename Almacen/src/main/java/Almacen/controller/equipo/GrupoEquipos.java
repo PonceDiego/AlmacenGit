@@ -26,9 +26,14 @@ public class GrupoEquipos extends HttpServlet {
 		}
 
 		String nombre = req.getParameter("nombreGrupo");
+		boolean mostrarBoton = false;
 
 		main.java.Almacen.model.GrupoEquipos grupoEquipos = EquipoManager.getGrupoEquipoByNombre(nombre);
 
+		if (grupoEquipos.getEquipos() != null && grupoEquipos.getEquipos().size() > 0) {
+			mostrarBoton = true;
+		}
+		req.getSession().setAttribute("mostrarBoton", mostrarBoton);
 		req.getSession().setAttribute("grupoEquipos", grupoEquipos);
 		req.getSession().setAttribute("grupoEquiposEstado", EquipoManager.getGrupoEquipoEstado(grupoEquipos));
 

@@ -112,4 +112,11 @@ public class EquipoManager {
 	public static void editGrupoEquipo(String id, String[] equipos) {
 		EquipoDB.editGrupoEquipos(id, equipos);
 	}
+
+	public static void changeStatusGrupo(Integer idUser, String idGrupo) {
+		GrupoEquipos grupo = getGrupoEquipo(idGrupo);
+		for (Equipo equipo : grupo.getEquipos()) {
+			changeStatus(idUser, equipo.getEquipoId());
+		}
+	}
 }
