@@ -103,7 +103,11 @@
 											title="Entrada" style="cursor: pointer">E</button>
 											</form>
 									</c:when>
-								</c:choose></td>
+								</c:choose>
+								<button class="btn btn-outline-info" type="button" style="cursor: pointer" title="Editar" onclick="window.location.href='../EditarLlave?nombreEditado=${llave.getNombre()}&copia=${llave.getCopia() }'">
+									<i class="material-icons" style="font-size: 18px"> edit </i>
+								</button>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
