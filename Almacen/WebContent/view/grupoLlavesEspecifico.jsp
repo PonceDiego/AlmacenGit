@@ -24,6 +24,29 @@
 				<i class="material-icons"> border_outer </i>
 			</button></span>
 	</h2>
+	<div class="text-center">
+		<c:if test="${mostrarBoton }">
+			<form method="get" action="../CambioEstado" id="formMethod">
+				<input type="hidden" id="cambioId" name="cambioId"
+					value="${grupoLlaves.getGrupoId()}"> <input
+					type="hidden" id="salida" name="salida"
+					value="${grupoLlavesEstado == 'En uso' ? '0' : '1'}"> <input
+					type="hidden" id="entidad" name="entidad" value="GrupoLlaves">
+				<c:choose>
+					<c:when test="${grupoLlavesEstado == 'Disponible'}">
+						<button class="btn btn-primary btn-lg mb-1" type="submit" title="Salida"
+							style="cursor: pointer">Salida</button>
+
+					</c:when>
+
+					<c:when test="${grupoLlavesEstado == 'En uso'}">
+						<button class="btn btn-primary btn-lg mb-1" type="submit" title="Entrada"
+							style="cursor: pointer">Entrada</button>
+					</c:when>
+				</c:choose>
+			</form>
+		</c:if>
+		</div>
 	<div class="text-center lead" style="outline: 1px solid black; max-width: 70%; margin: auto">
 
 		<table class="table">

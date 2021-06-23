@@ -73,6 +73,26 @@ public class ServletCambioEstado extends HttpServlet {
 			} else if (entidad.equals("GrupoEquipos")) {
 				EquipoManager.changeStatusGrupo(actual.getId(), id);
 				response.sendRedirect("BuscarGrupoEquipos");
+			} else if (entidad.equals("GrupoLlaves")) {
+				// int idEncargado, String idGrupo, String idUserString, bool salida
+				String idSolicitante = null;
+				if (request.getParameter("solicitanteId") != null) {
+					String idUsuarioSolicitante = (String) request.getParameter("solicitanteId");
+					idSolicitante = UsuarioManager.getIdByNombre(idUsuarioSolicitante);
+				} else {
+					List<Integer> ids = new ArrayList<Integer>();
+					ids.add(Integer.parseInt(id));
+					List<Registro> registros = RegistroManager.getLastRegistrosByEntidadAndId(TIPO_REGISTRO.GRUPO_LLAVE,
+							ids);
+					idSolicitante = registros.get(0).getUsuarioByUsuario().getId().toString();
+				}
+				int salida = Integer.parseInt(request.getParameter("salida"));
+				if (salida == 1) {
+					LlaveManager.changeStatusGrupo(actual.getId(), id, idSolicitante, true);
+				} else {
+					LlaveManager.changeStatusGrupo(actual.getId(), id, idSolicitante, false);
+				}
+				response.sendRedirect("BuscarGrupoLlaves");
 			}
 		}
 	}

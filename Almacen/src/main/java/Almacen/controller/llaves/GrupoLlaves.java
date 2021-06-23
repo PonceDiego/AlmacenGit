@@ -28,7 +28,11 @@ public class GrupoLlaves extends HttpServlet {
 		String nombreGrupoLlaves = req.getParameter("nombreGrupo");
 
 		main.java.Almacen.model.GrupoLlaves grupoLlaves = LlaveManager.getGrupoLlavesByNombre(nombreGrupoLlaves);
-
+		boolean mostrarBoton = false;
+		if (grupoLlaves.getLlaves() != null && grupoLlaves.getLlaves().size() > 0) {
+			mostrarBoton = true;
+		}
+		req.getSession().setAttribute("mostrarBoton", mostrarBoton);
 		req.getSession().setAttribute("grupoLlaves", grupoLlaves);
 		req.getSession().setAttribute("grupoLlavesEstado", LlaveManager.getGrupoLlavesEstado(grupoLlaves));
 

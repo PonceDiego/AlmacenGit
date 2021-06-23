@@ -75,6 +75,20 @@ public class LlaveManager {
 
 	}
 
+	public static void changeStatusGrupo(int idEncargado, String idGrupo, String idUserString, boolean salida) {
+		GrupoLlaves grupo = getGrupoLlaveById(idGrupo);
+		for (Llave llave : grupo.getLlaves()) {
+			LlaveDB.cambiarEstado(idEncargado, llave.getLlaveId(), idUserString);
+		}
+		if (salida) {
+			try {
+				MailManager.mailGrupoLlaves(Integer.parseInt(idUserString), idGrupo, Integer.parseInt(idUserString));
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static GrupoLlaves getGrupoLlavesByNombre(String nombreGrupoLlaves) {
 		return LlaveDB.getGrupoLllavesByNombre(nombreGrupoLlaves);
 	}

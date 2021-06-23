@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 import com.sun.mail.smtp.SMTPTransport;
 
 import main.java.Almacen.manager.llaves.LlaveManager;
+import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
 import main.java.Almacen.model.Pedido;
 import main.java.Almacen.model.Pedidoxarticulos;
@@ -54,7 +55,7 @@ public class MailManager {
 		}
 		String messageBody = "\n Este mensaje ha sido generado automáticamente por el Sistema Almacen.";
 		bodyText += messageBody;
-		//createEmail(email, subject, bodyText);
+		// createEmail(email, subject, bodyText);
 
 	}
 
@@ -69,7 +70,25 @@ public class MailManager {
 				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
 				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
 				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
-		//createEmail(mail, subject, bodyText);
+		// createEmail(mail, subject, bodyText);
+	}
+
+	public static void mailGrupoLlaves(int idUserString, String idGrupo, int idEncargado) throws MessagingException {
+		Usuario solicitante = UsuarioDB.getUsuarioByID(idUserString);
+		Usuario encargado = UsuarioDB.getUsuarioByID(idEncargado);
+		GrupoLlaves grupoLlave = LlaveManager.getGrupoLlaveById(idGrupo);
+		String mail = solicitante.getEmail();
+
+		String subject = "Se le ha asignado el grupo " + grupoLlave.getNombre() + ".";
+		String bodyText = "Estimado/a " + solicitante.getNombre() + ", el usuario " + encargado.getNombreUsuario()
+				+ " ha marcado salida del grupo de llaves " + grupoLlave.getNombre() + " a su nombre.\n"
+				+ "Este grupo contempla las siguientes llaves:\n";
+		for (Llave llave : grupoLlave.getLlaves()) {
+			bodyText += "-" + llave.getNombre() + "\n";
+		}
+		bodyText += "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
+				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
+		// createEmail(mail, subject, bodyText);
 	}
 
 	private static void createEmail(String to, String subject, String bodyText) throws MessagingException {

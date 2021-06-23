@@ -31,6 +31,10 @@
 				<i class="material-icons"> border_outer </i>
 			</button></span>
 	</h2>
+	///////////////////////////////////////////////////////////////////
+	TODO: agregar modal que pasa idSolicitante solo si es salida, caso
+	contrario debe ser nulo.
+	//////////////////////////////////////////////////////////////////
 		<div class="text-center">
 		<c:if test="${mostrarBoton }">
 			<form method="get" action="../CambioEstado" id="formMethod">
