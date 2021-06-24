@@ -81,7 +81,7 @@ public class LlaveDB {
 		}
 	}
 
-	public static void crearGrupoLlave(String nombre, String[] llaves) {
+	public static int crearGrupoLlave(String nombre, String[] llaves) {
 		GrupoLlaves grupo = new GrupoLlaves();
 		grupo.setNombre(nombre);
 		Session sess = null;
@@ -98,6 +98,7 @@ public class LlaveDB {
 				}
 			}
 			tran.commit();
+			return (int) s;
 
 		} finally {
 			sess.close();

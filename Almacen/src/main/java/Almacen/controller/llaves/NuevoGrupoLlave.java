@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.llaves.LlaveManager;
 import main.java.Almacen.model.Llave;
+import main.java.Almacen.model.Usuario;
 
 @WebServlet("/NuevoGrupo")
 public class NuevoGrupoLlave extends HttpServlet {
@@ -47,7 +48,10 @@ public class NuevoGrupoLlave extends HttpServlet {
 			nombre = req.getParameter("inputNombre");
 			llaves = req.getParameter("inputLlaves");
 			String[] llavesDivididas = llaves.split(",");
-			LlaveManager.createGrupoLlaves(nombre, llavesDivididas);
+			
+			Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioActual");
+			
+			LlaveManager.createGrupoLlaves(nombre, llavesDivididas, usuario);
 
 			resp.sendRedirect("BuscarGrupoLlaves");
 		}

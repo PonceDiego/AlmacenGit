@@ -52,6 +52,7 @@ public class RegistroManager {
 		// Traemos el user
 		Usuario usuario = UsuarioDB.getUsuarioByID(user);
 		registro.setUsuarioByUsuario(usuario);
+		
 		if (encargado != null) {
 			usuario = UsuarioDB.getUsuarioByID(encargado);
 			registro.setUsuarioByEncargado(usuario);

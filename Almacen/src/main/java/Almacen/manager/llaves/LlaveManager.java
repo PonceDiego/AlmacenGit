@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 import javax.mail.MessagingException;
 
 import main.java.Almacen.manager.MailManager;
+import main.java.Almacen.manager.RegistroManager;
+import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
 import main.java.Almacen.model.GrupoLlaves;
 import main.java.Almacen.model.Llave;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.LlaveDB;
 
 public class LlaveManager {
@@ -35,8 +38,10 @@ public class LlaveManager {
 		return llaves.stream().map(x -> x.getNombre()).collect(Collectors.toList());
 	}
 
-	public static void createGrupoLlaves(String nombre, String[] llaves) {
-		LlaveDB.crearGrupoLlave(nombre, llaves);
+	public static void createGrupoLlaves(String nombre, String[] llaves, Usuario usuario) {
+		int id = LlaveDB.crearGrupoLlave(nombre, llaves);
+		
+		RegistroManager.createRegistro(true, usuario.getId(), TIPO_REGISTRO.GRUPO_LLAVE, id, null);
 	}
 
 	public static GrupoLlaves getGrupoLlaveById(String id) {
@@ -80,6 +85,8 @@ public class LlaveManager {
 		for (Llave llave : grupo.getLlaves()) {
 			LlaveDB.cambiarEstado(idEncargado, llave.getLlaveId(), idUserString);
 		}
+		
+		RegistroManager.createRegistro(!salida, Integer.parseInt(idUserString), TIPO_REGISTRO.GRUPO_LLAVE, Integer.parseInt(idGrupo), idEncargado);
 		if (salida) {
 			try {
 				MailManager.mailGrupoLlaves(Integer.parseInt(idUserString), idGrupo, Integer.parseInt(idUserString));
