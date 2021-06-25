@@ -43,7 +43,7 @@
 							</div>
 							<div>Tipo</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select class='form-control input-lg'  tabindex="3" onchange="selected(),comparar()" id="tipoSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select class='form-control input-lg'  tabindex="3" onchange="selected(),comparar()" id="tipoSelect" required>
 									<option selected disabled>Seleccione un tipo</option>
 									<c:forEach items="${listaTipos}" var="tipo">
 										<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
@@ -52,7 +52,7 @@
 							</div>
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select class='form-control input-lg'  tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select class='form-control input-lg'  tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" required>
 									<option selected disabled>Seleccione un lugar</option>
 									<c:forEach items="${listaLugares}" var="lugar">
 										<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
@@ -77,7 +77,7 @@
 
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select class='form-control input-lg'  tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
+								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select class='form-control input-lg'  tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect">
 									<option selected disabled>Seleccione un usuario</option>
 									<c:forEach items="${listaUsuarios}" var="usuario">
 										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
