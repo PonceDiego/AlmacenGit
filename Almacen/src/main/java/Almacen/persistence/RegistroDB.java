@@ -80,6 +80,8 @@ public class RegistroDB {
 			}
 
 			builder.append(concatenarFiltro(filter));
+			
+			builder.append("order by r.fecha desc");
 
 			Query<Registro> query = sess.createQuery(builder.toString());
 
@@ -177,9 +179,9 @@ public class RegistroDB {
 			if (!TextUtils.isEmpty(filter.getFiltroEstado())) {
 
 				if (filter.getFiltroEstado().equals("Entrada")) {
-					queryStr += "and r.entrada = 1";
+					queryStr += "and r.entrada = 1 ";
 				} else if (filter.getFiltroEstado().equals("Salida")) {
-					queryStr += "and r.entrada = 0";
+					queryStr += "and r.entrada = 0 ";
 				}
 
 			}
