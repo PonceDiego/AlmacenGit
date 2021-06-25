@@ -40,7 +40,7 @@ public class LlaveDB {
 
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Llave> query = sess.createQuery("select a from Llave a where a.llaveId!=null");
+			Query<Llave> query = sess.createQuery("select a from Llave a where a.llaveId != null order by a.llaveId desc");
 			llaves = query.getResultList();
 			for (Llave llave : llaves) {
 				Hibernate.initialize(llave.getGrupoLlaves());
