@@ -43,7 +43,7 @@
 							</div>
 							<div>Tipo</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select tabindex="3" onchange="selected(),comparar()" id="tipoSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select class='form-control input-lg'  tabindex="3" onchange="selected(),comparar()" id="tipoSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
 									<option selected disabled>Seleccione un tipo</option>
 									<c:forEach items="${listaTipos}" var="tipo">
 										<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
@@ -52,7 +52,7 @@
 							</div>
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
+								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select class='form-control input-lg'  tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px" required>
 									<option selected disabled>Seleccione un lugar</option>
 									<c:forEach items="${listaLugares}" var="lugar">
 										<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
@@ -77,7 +77,7 @@
 
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
+								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select class='form-control input-lg'  tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect" style="border-radius: 5px; font-size: 16px; padding: 10px; margin-top: 10px">
 									<option selected disabled>Seleccione un usuario</option>
 									<c:forEach items="${listaUsuarios}" var="usuario">
 										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
@@ -170,6 +170,96 @@
 				}, 100)
 			}
 		}
+		
+		function filterFunction2(that, event) {
+			document.getElementById('advertencia').innerHTML = "";
+			document.getElementById('linkEditar').innerHTML = "";
+			let container, input, filter, li, input_val;
+			container = $(that).closest(".searchable2");
+			input_val = container.find("input").val().toUpperCase();
+
+			if ([ "ArrowDown", "ArrowUp", "Enter" ].indexOf(event.key) != -1) {
+				keyControl(event, container)
+			} else {
+				li = container.find("ul li");
+				li.each(function(i, obj) {
+					if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+						$(this).show();
+					} else {
+						$(this).hide();
+					}
+				});
+
+				container.find("ul li").removeClass("selected");
+				setTimeout(function() {
+					container.find("ul li:visible").first()
+							.addClass("selected");
+				}, 100)
+			}
+		}
+
+		function keyControl(e, container) {
+			if (e.key == "ArrowDown") {
+
+				if (container.find("ul li").hasClass("selected")) {
+					if (container.find("ul li:visible").index(
+							container.find("ul li.selected")) + 1 < container
+							.find("ul li:visible").length) {
+						container.find("ul li.selected")
+								.removeClass("selected").nextAll().not(
+										'[style*="display: none"]').first()
+								.addClass("selected");
+					}
+
+				} else {
+					container.find("ul li:first-child").addClass("selected");
+				}
+
+			} else if (e.key == "ArrowUp") {
+
+				if (container.find("ul li:visible").index(
+						container.find("ul li.selected")) > 0) {
+					container.find("ul li.selected").removeClass("selected")
+							.prevAll().not('[style*="display: none"]').first()
+							.addClass("selected");
+				}
+			} else if (e.key == "Enter") {
+				if (container.find("input").val(
+						container.find("ul li.selected").text) != "") {
+				}
+				container.find("input").val(
+						container.find("ul li.selected").text()).blur();
+				comparar();
+			}
+
+			container.find("ul li.selected")[0].scrollIntoView({
+				behavior : "smooth",
+			});
+		}
+
+		$(".searchable2 input").focus(function() {
+			$(this).closest(".searchable2").find("ul").show();
+			$(this).closest(".searchable2").find("ul li").show();
+		});
+		$(".searchable2 input").blur(function() {
+			let that = this;
+			setTimeout(function() {
+				$(that).closest(".searchable2").find("ul").hide();
+			}, 300);
+		});
+
+		$(document).on(
+				'click',
+				'.searchable2 ul li',
+				function() {
+					$(this).closest(".searchable2").find("input").val(
+							$(this).text()).blur();
+
+					comparar();
+
+				});
+		
+		
 		function botonAceptar() {
 			var listaMatches = document.getElementById('ulArticulos');
 			var lis = listaMatches.getElementsByTagName('li:visible');
