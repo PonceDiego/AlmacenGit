@@ -45,7 +45,7 @@ public class MailManager {
 		String email = user.getEmail();
 		System.out.println("Enviando mail a " + email + "..");
 
-		String subject = "Se ha realizado un nuevo pedido en el área " + u.getArea().getNombre() + ".";
+		String subject = "Se ha realizado un nuevo pedido en el ï¿½rea " + u.getArea().getNombre() + ".";
 		String bodyText = "Estimado/a " + user.getNombre() + " se le informa que el usuario "
 				+ pedido.getUsuario().getNombreUsuario() + " ha realizado un pedido de: \n";
 		List<Pedidoxarticulos> arts = ArticuloPedidoDB.getArticulosPedidosByPedido(idp);
@@ -53,9 +53,9 @@ public class MailManager {
 			String append = "- " + arts.get(i).getCantidad() + " " + arts.get(i).getArticulo().getNombre() + "\n";
 			bodyText += append;
 		}
-		String messageBody = "\n Este mensaje ha sido generado automáticamente por el Sistema Almacen.";
+		String messageBody = "\n Este mensaje ha sido generado automï¿½ticamente por el Sistema Almacen.";
 		bodyText += messageBody;
-		// createEmail(email, subject, bodyText);
+		createEmail(email, subject, bodyText);
 
 	}
 
@@ -68,9 +68,9 @@ public class MailManager {
 		String subject = "Se le ha asignado la llave " + llave.getNombre() + ", copia " + llave.getCopia();
 		String bodyText = "Estimado/a " + solicitante.getNombre() + ", el usuario " + encargado.getNombreUsuario()
 				+ " ha marcado salida de la llave " + llave.getNombre() + " a su nombre.\n"
-				+ "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
-				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
-		// createEmail(mail, subject, bodyText);
+				+ "Si considera que esto es un error, por favor comunï¿½quese con el encargado a la brevedad.\n"
+				+ "\n\nEste mensaje ha sido generado automï¿½ticamente por el Sistema Almacï¿½n.";
+		createEmail(mail, subject, bodyText);
 	}
 
 	public static void mailGrupoLlaves(int idUserString, String idGrupo, int idEncargado) throws MessagingException {
@@ -86,8 +86,8 @@ public class MailManager {
 		for (Llave llave : grupoLlave.getLlaves()) {
 			bodyText += "-" + llave.getNombre() + "\n";
 		}
-		bodyText += "Si considera que esto es un error, por favor comuníquese con el encargado a la brevedad.\n"
-				+ "\n\nEste mensaje ha sido generado automáticamente por el Sistema Almacén.";
+		bodyText += "Si considera que esto es un error, por favor comunï¿½quese con el encargado a la brevedad.\n"
+				+ "\n\nEste mensaje ha sido generado automï¿½ticamente por el Sistema Almacï¿½n.";
 		// createEmail(mail, subject, bodyText);
 	}
 
