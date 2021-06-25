@@ -20,12 +20,16 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/vendor/main.css" />
 
+
+
+
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" data-menuactive="${param.activeMenu}">
 	<div class="container">
 		<a class="navbar-brand" href="#">Almacén - Usuario ${usuarioActual.getRol().getNombre() }</a>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+			<ul id="menu" class="navbar-nav ml-auto">
 
 				<!-- Articulos -->
 				<li id="MenuArticulos" class="nav-item dropdown">
@@ -126,6 +130,11 @@
 		</div>
 	</div>
 </nav>
+<div class="loading" style="display: none;">
+	<div class="loading-background"></div>
+	<div class="loader"></div>
+</div>
+
 
 <script>
 	$(document).ready(
@@ -139,4 +148,11 @@
 						"active")
 
 			});
+
+	$(document).ready(function() {
+		$("a[href!='#']").click(function(){
+			console.log("loading...");
+			$(".loading").fadeIn("slow");
+		});
+	});
 </script>
