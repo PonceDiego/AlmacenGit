@@ -166,6 +166,28 @@ public class UsuarioDB {
 		} finally {
 			sess.close();
 		}
+	}
+	
+	public static boolean validarSys(String username) {
+		Session sess = null;
+		Usuariosys user = new Usuariosys();
+		try {
+			sess = HibernateUtils.openSession();
+			Query query = sess.createQuery("select u from Usuariosys u where u.username='" + username + "'");
+			if (query.uniqueResult() == null) {
+				System.out.println("El usuario ingresado no es correcto.");
+				return false;
+			} else {
+				user = (Usuariosys) query.getSingleResult();
+				if (user != null) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} finally {
+			sess.close();
+		}
 
 	}
 

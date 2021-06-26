@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.model.views.RegistroFilter;
+import main.java.Almacen.persistence.UsuarioDB;
 
 /**
  * Servlet implementation class ServletListaRegistros
@@ -37,7 +38,6 @@ public class ServletListaRegistros extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
-			String rol = actual.getRol().getNombre();
 			
 			String filtroDesde = request.getParameter("filtroDesde");
 			String filtroHasta = request.getParameter("filtroHasta");
@@ -53,7 +53,7 @@ public class ServletListaRegistros extends HttpServlet {
 			
 			RegistroFilter filter = new RegistroFilter(filtroDesde, filtroHasta, filtroUsuario, filtroEntidad, filtroEstado);
 			
-			if (rol.equals("SuperAdmin") || rol.equals("Administrador Técnica")) {
+			if (UsuarioDB.validarSys(actual.getNombreUsuario())) {
 				request.getSession().setAttribute("registros", RegistroManager.getListaRegistros(filter));
 			} else {
 				request.getSession().setAttribute("registros", RegistroManager.getListaRegistrosByUser(actual.getId(), filter));
