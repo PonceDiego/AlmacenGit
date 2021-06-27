@@ -40,7 +40,7 @@ public class LlaveDB {
 
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Llave> query = sess.createQuery("select a from Llave a where a.llaveId != null order by a.llaveId desc");
+			Query<Llave> query = sess.createQuery("select a from Llave a where a.activo = 1 order by a.llaveId desc");
 			llaves = query.getResultList();
 			for (Llave llave : llaves) {
 				Hibernate.initialize(llave.getGrupoLlaves());
@@ -58,7 +58,7 @@ public class LlaveDB {
 
 		try {
 			sess = HibernateUtils.openSession();
-			Query<GrupoLlaves> query = sess.createQuery("select a from GrupoLlaves a where a.grupoId != null");
+			Query<GrupoLlaves> query = sess.createQuery("select a from GrupoLlaves a where a.activo = 1");
 			llaves = query.getResultList();
 			return llaves;
 		} finally {
@@ -255,6 +255,39 @@ public class LlaveDB {
 			sess.close();
 		}
 
+	}
+
+	public static void eliminarLlave(int id) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			Llave llave = getLlaveById(id);
+			sess.update(llave);
+			llave.setActivo(0);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void eliminarGrupo(String id) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			GrupoLlaves grupo = getGrupoLlavesById(id);
+			for (Llave llave : grupo.getLlaves()) {
+				llave.setGrupoLlaves(null);
+			}
+			sess.update(grupo);
+			grupo.setActivo(0);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
 	}
 
 }

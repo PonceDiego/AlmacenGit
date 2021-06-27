@@ -40,7 +40,7 @@ public class LlaveManager {
 
 	public static void createGrupoLlaves(String nombre, String[] llaves, Usuario usuario) {
 		int id = LlaveDB.crearGrupoLlave(nombre, llaves);
-		
+
 		RegistroManager.createRegistro(true, usuario.getId(), TIPO_REGISTRO.GRUPO_LLAVE, id, null);
 	}
 
@@ -85,8 +85,9 @@ public class LlaveManager {
 		for (Llave llave : grupo.getLlaves()) {
 			LlaveDB.cambiarEstado(idEncargado, llave.getLlaveId(), idUserString);
 		}
-		
-		RegistroManager.createRegistro(!salida, Integer.parseInt(idUserString), TIPO_REGISTRO.GRUPO_LLAVE, Integer.parseInt(idGrupo), idEncargado);
+
+		RegistroManager.createRegistro(!salida, Integer.parseInt(idUserString), TIPO_REGISTRO.GRUPO_LLAVE,
+				Integer.parseInt(idGrupo), idEncargado);
 		if (salida) {
 			try {
 				MailManager.mailGrupoLlaves(Integer.parseInt(idUserString), idGrupo, Integer.parseInt(idUserString));
@@ -116,6 +117,14 @@ public class LlaveManager {
 
 	public static List<Llave> getLlavesByUser(Integer actual) {
 		return LlaveDB.getLlavesByUser(actual);
+	}
+
+	public static void eliminarLlave(String id) {
+		LlaveDB.eliminarLlave(Integer.parseInt(id));
+	}
+
+	public static void eliminarGrupoLlave(String id) {
+		LlaveDB.eliminarGrupo(id);
 	}
 
 }

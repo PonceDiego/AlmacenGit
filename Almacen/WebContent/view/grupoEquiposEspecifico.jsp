@@ -22,20 +22,21 @@
 
 	<h2 class="mt-5 text-center">${grupoEquipos.getNombre() }
 		<span><button class="btn btn-outline-dark"
-				style="cursor: pointer" title="Editar"
-				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoEquipos?idAEditar=${grupoEquipos.getGrupoEquipoId()}')">
-				<i class="material-icons"> edit </i>
-			</button></span> <span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Ver código QR"
 				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${grupoEquipos.getGrupoEquipoId()}&entidad=GrupoEquipo','_blank')">
 				<i class="material-icons"> border_outer </i>
+			</button></span> <span><button class="btn btn-outline-dark"
+				style="cursor: pointer" title="Editar"
+				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoEquipos?idAEditar=${grupoEquipos.getGrupoEquipoId()}')">
+				<i class="material-icons"> edit </i>
 			</button></span>
+		<button class="btn btn-outline-danger" type="button" title="Eliminar"
+			style="cursor: pointer"
+			onclick="confirmar('${pageContext.request.contextPath }/EliminarGrupoEquipos?idEliminado=${grupoEquipos.getGrupoEquipoId()}');">
+			<i class="material-icons"> delete </i>
+		</button>
 	</h2>
-	///////////////////////////////////////////////////////////////////
-	TODO: agregar modal que pasa idSolicitante solo si es salida, caso
-	contrario debe ser nulo.
-	//////////////////////////////////////////////////////////////////
-		<div class="text-center">
+	<div class="text-center">
 		<c:if test="${mostrarBoton }">
 			<form method="get" action="../CambioEstado" id="formMethod">
 				<input type="hidden" id="cambioId" name="cambioId"
@@ -45,19 +46,19 @@
 					type="hidden" id="entidad" name="entidad" value="GrupoEquipos">
 				<c:choose>
 					<c:when test="${grupoEquiposEstado == 'Disponible'}">
-						<button class="btn btn-primary btn-lg mb-1" type="submit" title="Salida"
-							style="cursor: pointer">Salida</button>
+						<button class="btn btn-primary btn-lg mb-1" type="submit"
+							title="Salida" style="cursor: pointer">Salida</button>
 
 					</c:when>
 
 					<c:when test="${grupoEquiposEstado == 'En uso'}">
-						<button class="btn btn-primary btn-lg mb-1" type="submit" title="Entrada"
-							style="cursor: pointer">Entrada</button>
+						<button class="btn btn-primary btn-lg mb-1" type="submit"
+							title="Entrada" style="cursor: pointer">Entrada</button>
 					</c:when>
 				</c:choose>
 			</form>
 		</c:if>
-		</div>
+	</div>
 	<div class="text-center lead"
 		style="outline: 1px solid black; max-width: 70%; margin: auto;">
 
@@ -93,4 +94,13 @@
 
 
 </body>
+<script>
+	function confirmar(url) {
+		var r = confirm("¿Está seguro que desea eliminar el grupo de equipos?");
+		if (r == true) {
+			$(location).attr('href', url);
+		}
+	}
+</script>
+
 </html>

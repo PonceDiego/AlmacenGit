@@ -119,4 +119,8 @@ public class EquipoManager {
 			changeStatus(idUser, equipo.getEquipoId());
 		}
 	}
+
+	public static void eliminarGrupoEquipos(String id) {
+		EquipoDB.eliminarGrupo(id);
+	}
 }

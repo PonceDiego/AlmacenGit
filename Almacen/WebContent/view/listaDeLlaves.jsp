@@ -107,6 +107,12 @@
 								<button class="btn btn-outline-info" type="button" style="cursor: pointer" title="Editar" onclick="window.location.href='../EditarLlave?nombreEditado=${llave.getNombre()}&copia=${llave.getCopia() }'">
 									<i class="material-icons" style="font-size: 18px"> edit </i>
 								</button>
+								<button class="btn btn-outline-danger" type="button"
+									title="Eliminar"
+									style="cursor: pointer"
+									onclick="confirmar('${pageContext.request.contextPath }/EliminarLlave?idEliminado=${llave.getLlaveId()}');">
+									<i class="material-icons" style="font-size: 18px"> delete </i>
+								</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -192,6 +198,14 @@
 		}
 	</script>
 
+	<script>	
+		function confirmar(url) {
+			var r = confirm("¿Está seguro que desea eliminar la llave?");
+			if (r == true) {
+				$(location).attr('href', url);
+			}
+		}
+	</script>
 
 	<script>
 		$(document).ready(function() {

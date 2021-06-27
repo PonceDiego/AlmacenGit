@@ -53,22 +53,6 @@ public class EquipoDB {
 		}
 	}
 
-	public static void bajaEstado(int id) {
-		Session sess = null;
-		Transaction tran = null;
-		Equipo e = null;
-		try {
-			sess = HibernateUtils.openSession();
-			tran = sess.beginTransaction();
-			e = sess.get(Equipo.class, id);
-			sess.update(e);
-			e.setEstado("Baja");
-			tran.commit();
-		} finally {
-			sess.close();
-		}
-	}
-
 	public static Equipo getEquipoByID(int equip) {
 		Session sess = null;
 		Equipo e;
@@ -111,7 +95,7 @@ public class EquipoDB {
 		List<Equipo> lista = new ArrayList<Equipo>();
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Equipo> query = sess.createQuery("select e from Equipo e where e.estado!='" + "Baja" + "'");
+			Query<Equipo> query = sess.createQuery("select e from Equipo e where e.activo=1");
 			lista = query.getResultList();
 			for (Equipo e : lista) {
 				Hibernate.initialize(e.getLugar());
@@ -130,7 +114,7 @@ public class EquipoDB {
 		List<GrupoEquipos> lista = new ArrayList<GrupoEquipos>();
 		try {
 			sess = HibernateUtils.openSession();
-			Query<GrupoEquipos> query = sess.createQuery("select e from GrupoEquipos e");
+			Query<GrupoEquipos> query = sess.createQuery("select e from GrupoEquipos e where e.activo =1");
 			lista = query.getResultList();
 			for (GrupoEquipos e : lista) {
 				Hibernate.initialize(e.getEquipos());
@@ -220,5 +204,38 @@ public class EquipoDB {
 			sess.close();
 		}
 
+	}
+
+	public static void eliminarEquipo(int id) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			Equipo grupo = getEquipoByID(id);
+			sess.update(grupo);
+			grupo.setActivo(0);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
+
+	public static void eliminarGrupo(String id) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			GrupoEquipos grupo = getGrupoEquipoById(id);
+			for (Equipo equipo : grupo.getEquipos()) {
+				equipo.setGrupoEquipos(null);
+			}
+			sess.update(grupo);
+			grupo.setActivo(0);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
 	}
 }
