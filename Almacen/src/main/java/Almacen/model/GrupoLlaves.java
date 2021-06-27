@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 22/06/2021 08:43:07 by Hibernate Tools 5.2.12.Final
+// Generated 27/06/2021 17:05:15 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,17 +21,20 @@ public class GrupoLlaves implements java.io.Serializable {
 
 	private Integer grupoId;
 	private String nombre;
+	private boolean activo;
 	private Set<Llave> llaves = new HashSet<Llave>(0);
 
 	public GrupoLlaves() {
 	}
 
-	public GrupoLlaves(String nombre) {
+	public GrupoLlaves(String nombre, boolean activo) {
 		this.nombre = nombre;
+		this.activo = activo;
 	}
 
-	public GrupoLlaves(String nombre, Set<Llave> llaves) {
+	public GrupoLlaves(String nombre, boolean activo, Set<Llave> llaves) {
 		this.nombre = nombre;
+		this.activo = activo;
 		this.llaves = llaves;
 	}
 
@@ -54,6 +57,15 @@ public class GrupoLlaves implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupoLlaves")

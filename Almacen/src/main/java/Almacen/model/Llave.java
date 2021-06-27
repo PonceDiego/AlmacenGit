@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 22/06/2021 08:43:07 by Hibernate Tools 5.2.12.Final
+// Generated 27/06/2021 17:05:15 by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,25 +25,28 @@ public class Llave implements java.io.Serializable {
 	private String nombre;
 	private String observaciones;
 	private String estado;
+	private boolean activo;
 
 	public Llave() {
 	}
 
-	public Llave(Lugar lugar, String copia, String nombre, String estado) {
+	public Llave(Lugar lugar, String copia, String nombre, String estado, boolean activo) {
 		this.lugar = lugar;
 		this.copia = copia;
 		this.nombre = nombre;
 		this.estado = estado;
+		this.activo = activo;
 	}
 
-	public Llave(GrupoLlaves grupoLlaves, Lugar lugar, String copia, String nombre, String observaciones,
-			String estado) {
+	public Llave(GrupoLlaves grupoLlaves, Lugar lugar, String copia, String nombre, String observaciones, String estado,
+			boolean activo) {
 		this.grupoLlaves = grupoLlaves;
 		this.lugar = lugar;
 		this.copia = copia;
 		this.nombre = nombre;
 		this.observaciones = observaciones;
 		this.estado = estado;
+		this.activo = activo;
 	}
 
 	@Id
@@ -112,6 +115,15 @@ public class Llave implements java.io.Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 }
