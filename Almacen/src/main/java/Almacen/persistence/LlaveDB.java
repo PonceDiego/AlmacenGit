@@ -114,7 +114,7 @@ public class LlaveDB {
 
 	private static void asignarGrupoToLlave(Session sess, String idLlave, GrupoLlaves grupo) {
 		Llave llave;
-		Query<Llave> query = sess.createQuery("select e from Llave e where e.llaveId ='" + idLlave + "' and a.activo = 1");
+		Query<Llave> query = sess.createQuery("select e from Llave e where e.llaveId ='" + idLlave + "' and e.activo = 1");
 		llave = query.getSingleResult();
 		sess.update(llave);
 		llave.setGrupoLlaves(grupo);
@@ -171,7 +171,7 @@ public class LlaveDB {
 
 			sess = HibernateUtils.openSession();
 			Query<GrupoLlaves> query = sess
-					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "' and a.activo = 1");
+					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "' and g.activo = 1");
 			grupo = query.getSingleResult();
 			Hibernate.initialize(grupo.getLlaves());
 			return grupo;
