@@ -139,7 +139,7 @@ public class LlaveDB {
 	public static void crearLlave(String nombre, String copia, String ubicacion, String observaciones) {
 		Lugar lugar = LugarDB.getLugarByNombre(ubicacion);
 
-		Llave llave = new Llave(lugar, copia, nombre, "Disponible");
+		Llave llave = new Llave(lugar, copia, nombre, "Disponible", true);
 		llave.setObservaciones(observaciones);
 		Session sess = null;
 		Transaction tran = null;
@@ -265,7 +265,7 @@ public class LlaveDB {
 			tran = sess.beginTransaction();
 			Llave llave = getLlaveById(id);
 			sess.update(llave);
-			llave.setActivo(0);
+			llave.setActivo(false);
 			tran.commit();
 		} finally {
 			sess.close();
@@ -283,7 +283,7 @@ public class LlaveDB {
 				llave.setGrupoLlaves(null);
 			}
 			sess.update(grupo);
-			grupo.setActivo(0);
+			grupo.setActivo(false);
 			tran.commit();
 		} finally {
 			sess.close();

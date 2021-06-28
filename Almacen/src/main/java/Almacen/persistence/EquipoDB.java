@@ -214,7 +214,7 @@ public class EquipoDB {
 			tran = sess.beginTransaction();
 			Equipo grupo = getEquipoByID(id);
 			sess.update(grupo);
-			grupo.setActivo(0);
+			grupo.setActivo(false);
 			tran.commit();
 		} finally {
 			sess.close();
@@ -232,7 +232,7 @@ public class EquipoDB {
 				equipo.setGrupoEquipos(null);
 			}
 			sess.update(grupo);
-			grupo.setActivo(0);
+			grupo.setActivo(false);
 			tran.commit();
 		} finally {
 			sess.close();
