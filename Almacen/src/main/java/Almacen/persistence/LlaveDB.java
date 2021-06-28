@@ -26,6 +26,9 @@ public class LlaveDB {
 		try {
 			sess = HibernateUtils.openSession();
 			llave = sess.get(Llave.class, id);
+			if(llave != null && !llave.isActivo()) {
+				return null;
+			}
 			Hibernate.initialize(llave.getLugar());
 			return llave;
 
@@ -74,6 +77,9 @@ public class LlaveDB {
 		try {
 			sess = HibernateUtils.openSession();
 			grupoLlaves = sess.get(GrupoLlaves.class, id);
+			if(grupoLlaves != null && !grupoLlaves.isActivo()) {
+				return null;
+			}
 			Hibernate.initialize(grupoLlaves.getLlaves());
 			return grupoLlaves;
 		} finally {
@@ -84,6 +90,7 @@ public class LlaveDB {
 	public static int crearGrupoLlave(String nombre, String[] llaves) {
 		GrupoLlaves grupo = new GrupoLlaves();
 		grupo.setNombre(nombre);
+		grupo.setActivo(true);
 		Session sess = null;
 		Transaction tran = null;
 		Serializable s = null;
@@ -107,7 +114,7 @@ public class LlaveDB {
 
 	private static void asignarGrupoToLlave(Session sess, String idLlave, GrupoLlaves grupo) {
 		Llave llave;
-		Query<Llave> query = sess.createQuery("select e from Llave e where e.llaveId ='" + idLlave + "'");
+		Query<Llave> query = sess.createQuery("select e from Llave e where e.llaveId ='" + idLlave + "' and a.activo = 1");
 		llave = query.getSingleResult();
 		sess.update(llave);
 		llave.setGrupoLlaves(grupo);
@@ -122,6 +129,9 @@ public class LlaveDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			e = sess.get(Llave.class, id);
+			if(e != null && !e.isActivo()) {
+				return;
+			}
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
 				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.LLAVE, id, encargado);
@@ -161,7 +171,7 @@ public class LlaveDB {
 
 			sess = HibernateUtils.openSession();
 			Query<GrupoLlaves> query = sess
-					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "'");
+					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "' a.activo = 1");
 			grupo = query.getSingleResult();
 			Hibernate.initialize(grupo.getLlaves());
 			return grupo;
@@ -176,7 +186,7 @@ public class LlaveDB {
 		Session sess = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Llave> query = sess.createQuery("select l from Llave l where l.nombre ='" + nombreEditado + "'");
+			Query<Llave> query = sess.createQuery("select l from Llave l where l.nombre ='" + nombreEditado + "' l.activo = 1");
 			List<Llave> llaves = query.getResultList();
 			for (Llave llave : llaves) {
 				if (llave.getCopia().equals(copia)) {
@@ -213,7 +223,11 @@ public class LlaveDB {
 	}
 
 	private static Llave getLlaveByIdAndSession(Session sess, int id) {
-		return sess.get(Llave.class, id);
+		Llave llave = sess.get(Llave.class, id);
+		if(llave != null && !llave.isActivo()) {
+			return null;
+		}
+		return llave;
 	}
 
 	public static void editLlave(String inputId, String inputCopia, String inputNombre, String inputObservaciones,

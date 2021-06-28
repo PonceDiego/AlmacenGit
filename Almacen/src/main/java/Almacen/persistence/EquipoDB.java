@@ -39,6 +39,9 @@ public class EquipoDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			e = sess.get(Equipo.class, id);
+			if(e != null && !e.isActivo()) {
+				return;
+			}
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
 				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id, null);
@@ -59,6 +62,9 @@ public class EquipoDB {
 		try {
 			sess = HibernateUtils.openSession();
 			e = sess.get(Equipo.class, equip);
+			if(e != null && !e.isActivo()) {
+				return null;
+			}
 			Hibernate.initialize(e.getTipo().getNombre());
 			Hibernate.initialize(e.getLugar().getNombre());
 			if (e.getUsuario() != null) {
@@ -76,7 +82,7 @@ public class EquipoDB {
 		List<Equipo> lista = new ArrayList<Equipo>();
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Equipo> query = sess.createQuery("select e from Equipo e");
+			Query<Equipo> query = sess.createQuery("select e from Equipo e where e.activo = 1");
 			lista = query.getResultList();
 			for (Equipo e : lista) {
 				Hibernate.initialize(e.getLugar());
@@ -132,6 +138,9 @@ public class EquipoDB {
 		try {
 			sess = HibernateUtils.openSession();
 			equipo = sess.get(GrupoEquipos.class, id);
+			if(equipo != null && !equipo.isActivo()) {
+				return null;
+			}
 			Hibernate.initialize(equipo.getEquipos());
 			return equipo;
 		} finally {
@@ -145,7 +154,7 @@ public class EquipoDB {
 		try {
 			sess = HibernateUtils.openSession();
 			Query<GrupoEquipos> query = sess
-					.createQuery("select g from GrupoEquipos g where g.nombre ='" + nombre + "'");
+					.createQuery("select g from GrupoEquipos g where g.nombre ='" + nombre + "' and g.activo = 1");
 			equipo = query.getSingleResult();
 			Hibernate.initialize(equipo.getEquipos());
 			for (Equipo e : equipo.getEquipos()) {
@@ -181,7 +190,7 @@ public class EquipoDB {
 
 	private static void asignarGrupoToEquipo(Session sess, String idEquipo, GrupoEquipos grupo) {
 		Equipo equipo;
-		Query<Equipo> query = sess.createQuery("select e from Equipo e where e.id ='" + idEquipo + "'");
+		Query<Equipo> query = sess.createQuery("select e from Equipo e where e.id ='" + idEquipo + "' and e.activo = 1");
 		equipo = query.getSingleResult();
 		sess.update(equipo);
 		equipo.setGrupoEquipos(grupo);
