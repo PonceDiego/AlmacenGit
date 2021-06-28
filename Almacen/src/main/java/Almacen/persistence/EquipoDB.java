@@ -39,7 +39,7 @@ public class EquipoDB {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();
 			e = sess.get(Equipo.class, id);
-			if(e != null && !e.isActivo()) {
+			if (e != null && !e.isActivo()) {
 				return;
 			}
 			sess.update(e);
@@ -62,7 +62,7 @@ public class EquipoDB {
 		try {
 			sess = HibernateUtils.openSession();
 			e = sess.get(Equipo.class, equip);
-			if(e != null && !e.isActivo()) {
+			if (e != null && !e.isActivo()) {
 				return null;
 			}
 			Hibernate.initialize(e.getTipo().getNombre());
@@ -138,7 +138,7 @@ public class EquipoDB {
 		try {
 			sess = HibernateUtils.openSession();
 			equipo = sess.get(GrupoEquipos.class, id);
-			if(equipo != null && !equipo.isActivo()) {
+			if (equipo != null && !equipo.isActivo()) {
 				return null;
 			}
 			Hibernate.initialize(equipo.getEquipos());
@@ -166,7 +166,7 @@ public class EquipoDB {
 		}
 	}
 
-	public static void crearGrupoEquipo(String nombre, String[] equipos) {
+	public static int crearGrupoEquipo(String nombre, String[] equipos) {
 		GrupoEquipos grupo = new GrupoEquipos();
 		grupo.setNombre(nombre);
 		grupo.setActivo(true);
@@ -183,6 +183,7 @@ public class EquipoDB {
 				}
 			}
 			tran.commit();
+			return (int) s;
 
 		} finally {
 			sess.close();
@@ -191,7 +192,8 @@ public class EquipoDB {
 
 	private static void asignarGrupoToEquipo(Session sess, String idEquipo, GrupoEquipos grupo) {
 		Equipo equipo;
-		Query<Equipo> query = sess.createQuery("select e from Equipo e where e.id ='" + idEquipo + "' and e.activo = 1");
+		Query<Equipo> query = sess
+				.createQuery("select e from Equipo e where e.id ='" + idEquipo + "' and e.activo = 1");
 		equipo = query.getSingleResult();
 		sess.update(equipo);
 		equipo.setGrupoEquipos(grupo);

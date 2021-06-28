@@ -121,6 +121,14 @@
 											E</button>
 									</c:when>
 								</c:choose>
+								<c:if test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNomobre() == 'Administrador Técnica' }">
+									<button class="btn btn-outline-danger" type="button"
+									title="Eliminar"
+									style="cursor: pointer"
+									onclick="confirmar('${pageContext.request.contextPath }/EliminarEquipo?idEliminado=${equipo.getEquipoId()}');">
+									<i class="material-icons" style="font-size: 16px"> delete </i>
+								</button>
+								</c:if>
 								<a href="../Equipo?equipoId=${equipo.getEquipoId()}">
 									<i class="material-icons">history</i>
 								</a>
@@ -132,13 +140,17 @@
 		</div>
 	</div>
 
-
+	<script>	
+		function confirmar(url) {
+			var r = confirm("¿Está seguro que desea eliminar el equipo?");
+			if (r == true) {
+				$(location).attr('href', url);
+			}
+		}
+	</script>
 	<script src="../vendor/Datatables/datatables.js"></script>
 
 	<script>
-		function openModal(usern){
-			
-		}
 	
 		function alertar(url) {
 			alert("Realizando salida del equipo");

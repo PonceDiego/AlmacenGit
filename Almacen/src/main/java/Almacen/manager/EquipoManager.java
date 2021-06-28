@@ -68,8 +68,9 @@ public class EquipoManager {
 		return EquipoDB.getListaEquiposCompleta();
 	}
 
-	public static void createGrupoEquipos(String nombre, String[] equipos) {
-		EquipoDB.crearGrupoEquipo(nombre, equipos);
+	public static void createGrupoEquipos(String nombre, String[] equipos, Usuario usuario) {
+		int id = EquipoDB.crearGrupoEquipo(nombre, equipos);
+		RegistroManager.createRegistro(true, usuario.getId(), TIPO_REGISTRO.GRUPO_EQUIPO, id, null);
 	}
 
 	public static List<String> listarNombresGrupoEquipos() {
@@ -123,5 +124,9 @@ public class EquipoManager {
 
 	public static void eliminarGrupoEquipos(String id) {
 		EquipoDB.eliminarGrupo(id);
+	}
+
+	public static void eliminarEquipo(String id) {
+		EquipoDB.eliminarEquipo(Integer.parseInt(id));
 	}
 }

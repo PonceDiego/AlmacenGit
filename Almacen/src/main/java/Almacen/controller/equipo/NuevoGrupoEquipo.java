@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.Almacen.manager.EquipoManager;
 import main.java.Almacen.model.Equipo;
+import main.java.Almacen.model.Usuario;
 
 @WebServlet("/NuevoGrupoEquipo")
 public class NuevoGrupoEquipo extends HttpServlet {
@@ -47,7 +48,10 @@ public class NuevoGrupoEquipo extends HttpServlet {
 			nombre = req.getParameter("inputNombre");
 			equipos = req.getParameter("inputEquipos");
 			String[] equipoDivididos = equipos.split(",");
-			EquipoManager.createGrupoEquipos(nombre, equipoDivididos);
+
+			Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioActual");
+
+			EquipoManager.createGrupoEquipos(nombre, equipoDivididos, usuario);
 
 			resp.sendRedirect("BuscarGrupoEquipos");
 		}
