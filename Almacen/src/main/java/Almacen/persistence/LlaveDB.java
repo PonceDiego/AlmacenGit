@@ -171,7 +171,7 @@ public class LlaveDB {
 
 			sess = HibernateUtils.openSession();
 			Query<GrupoLlaves> query = sess
-					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "' a.activo = 1");
+					.createQuery("select g from GrupoLlaves g where g.nombre ='" + nombreGrupoLlaves + "' and a.activo = 1");
 			grupo = query.getSingleResult();
 			Hibernate.initialize(grupo.getLlaves());
 			return grupo;
@@ -186,7 +186,7 @@ public class LlaveDB {
 		Session sess = null;
 		try {
 			sess = HibernateUtils.openSession();
-			Query<Llave> query = sess.createQuery("select l from Llave l where l.nombre ='" + nombreEditado + "' l.activo = 1");
+			Query<Llave> query = sess.createQuery("select l from Llave l where l.nombre ='" + nombreEditado + "' and l.activo = 1");
 			List<Llave> llaves = query.getResultList();
 			for (Llave llave : llaves) {
 				if (llave.getCopia().equals(copia)) {
