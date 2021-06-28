@@ -121,7 +121,7 @@
 											E</button>
 									</c:when>
 								</c:choose>
-								<c:if test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNomobre() == 'Administrador Técnica' }">
+								<c:if test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Técnica' }">
 									<button class="btn btn-outline-danger" type="button"
 									title="Eliminar"
 									style="cursor: pointer"
