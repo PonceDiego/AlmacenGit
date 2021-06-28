@@ -169,6 +169,7 @@ public class EquipoDB {
 	public static void crearGrupoEquipo(String nombre, String[] equipos) {
 		GrupoEquipos grupo = new GrupoEquipos();
 		grupo.setNombre(nombre);
+		grupo.setActivo(true);
 		Session sess = null;
 		Transaction tran = null;
 		Serializable s = null;

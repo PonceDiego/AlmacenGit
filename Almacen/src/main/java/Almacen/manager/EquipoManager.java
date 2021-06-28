@@ -45,6 +45,7 @@ public class EquipoManager {
 			equipo.setAccesorios(accesorios);
 
 		equipo.setEstado("Disponible");
+		equipo.setActivo(true);
 
 		Serializable idS = EquipoDB.crearEquipo(equipo);
 		int id = (int) idS;
