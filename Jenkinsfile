@@ -3,15 +3,16 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''cd Almacen
-mvn -B -DskipTests clean package'''
+        sh '''#cd Almacen
+#mvn -B -DskipTests clean package'''
       }
     }
 
     stage('Deploy') {
       steps {
+        sh 'cd Almacen'
         sh 'rm -f $ftp_war_path/almacenapi.war'
-        sh '''cd Almacen
+        sh '''pwd
 cp target/almacenapi.war "$ftp_war_path"'''
         sh '''docker container stop $containerName
 
