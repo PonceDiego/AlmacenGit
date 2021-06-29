@@ -16,6 +16,6 @@ mvn -B -DskipTests clean package'''
 
   }
   environment {
-    WENA = 'wena'
+    WENA = 'esto es un '
   }
 }
