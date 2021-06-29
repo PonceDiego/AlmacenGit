@@ -10,9 +10,12 @@ mvn -B -DskipTests clean package'''
 
     stage('Deploy') {
       steps {
-        sh 'echo "${env.PIPELINE_ID}"'
+        sh 'echo "${env.WENA}"'
       }
     }
 
+  }
+  environment {
+    WENA = 'wena'
   }
 }
