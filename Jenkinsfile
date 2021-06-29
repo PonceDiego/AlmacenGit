@@ -11,7 +11,8 @@ mvn -B -DskipTests clean package'''
     stage('Deploy') {
       steps {
         sh 'rm -f $ftp_war_path/almacenapi.war'
-        sh 'cp target/almacenapi.war "$ftp_war_path"'
+        sh '''pwd
+cp target/almacenapi.war "$ftp_war_path"'''
         sh '''docker container stop $containerName
 
 docker container rm $containerName'''
