@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''cd Almacen
+        sh '''#cd Almacen
 mvn -B -DskipTests clean package'''
       }
     }
