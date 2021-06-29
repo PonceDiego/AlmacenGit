@@ -13,7 +13,7 @@ pipeline {
         sh 'cd Almacen'
         sh 'rm -f $ftp_war_path/almacenapi.war'
         sh '''pwd
-cp target/almacenapi.war "$ftp_war_path"'''
+cp Almacen/target/almacenapi.war "$ftp_war_path"'''
         sh '''docker container stop $containerName
 
 docker container rm $containerName'''
