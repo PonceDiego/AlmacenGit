@@ -26,7 +26,7 @@
 
 		<table class="table">
 			<tr>
-				<th>Último Usuario:</th>
+				<th>Usuario Habitual:</th>
 				<td>${equipo.getUsuario().getNombreUsuario()}</td>
 				<th>Tipo:</th>
 				<td>${equipo.getTipo().getNombre()}</td>
