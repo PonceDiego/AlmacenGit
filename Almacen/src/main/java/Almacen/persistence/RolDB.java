@@ -23,18 +23,18 @@ public class RolDB {
 			sess.close();
 		}
 	}
+
 	public static Rol getRolByNombre(String nombre) {
-		Session sess=null;
-		Rol rol=null;
+		Session sess = null;
+		Rol rol = null;
 		try {
-			sess=HibernateUtils.openSession();
-			Query<Rol> query=sess.createQuery("select r from Rol r where r.nombreRol='"+nombre+"'");
-			rol=query.getSingleResult();
+			sess = HibernateUtils.openSession();
+			Query<Rol> query = sess.createQuery("select r from Rol r where r.nombre='" + nombre + "'");
+			rol = query.getSingleResult();
 			return rol;
-		}finally {
+		} finally {
 			sess.close();
 		}
 	}
 
 }
-
