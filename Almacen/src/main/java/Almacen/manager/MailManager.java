@@ -25,15 +25,11 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class MailManager {
 
-//	private static final String SMTP_SERVER = "192.168.74.23";
-	private static final String SMTP_SERVER = "smtp.gmail.com";
-//	private static final String USERNAME = "almacen@eldoceblog.com.ar";
-	private static final String USERNAME = "daikoponce@gmail.com";
-//	private static final String PASSWORD = "almacen.C12";
-	private static final String PASSWORD = "Diegoponce11";
+	private static final String SMTP_SERVER = "192.168.74.23";
+	private static final String USERNAME = "almacen@eldoceblog.com.ar";
+	private static final String PASSWORD = "almacen.C12";
 
-//	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
-	private static final String EMAIL_FROM = "daikoponce@gmail.com";
+	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
 
 	public static void enviarMail(String userS, int idp)
 			throws MessagingException, IOException, GeneralSecurityException {
@@ -95,9 +91,7 @@ public class MailManager {
 		Properties props = System.getProperties();
 		props.put("mail.smtp.host", SMTP_SERVER);
 		props.put("mail.smtp.auth", "true");
-		// TODO: Default and recommended port is '25', this one is for testing purposes
-		// only and should be changed.
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
