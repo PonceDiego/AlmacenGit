@@ -84,7 +84,7 @@ public class MailManager {
 		}
 		bodyText += "Si considera que esto es un error, por favor comun�quese con el encargado a la brevedad.\n"
 				+ "\n\nEste mensaje ha sido generado autom�ticamente por el Sistema Almac�n.";
-		// createEmail(mail, subject, bodyText);
+		createEmail(mail, subject, bodyText);
 	}
 
 	private static void createEmail(String to, String subject, String bodyText) throws MessagingException {
@@ -92,7 +92,7 @@ public class MailManager {
 		props.put("mail.smtp.host", SMTP_SERVER);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "25");
-		props.put("mail.smtp.starttls.enable", true);
+		//props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
 		MimeMessage email = new MimeMessage(session);
