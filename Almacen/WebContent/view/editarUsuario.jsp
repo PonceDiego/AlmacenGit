@@ -25,6 +25,7 @@
 			<div class="card-body">
 				<form class="form-signin" method="post" action="../EditarUsuario">
 					<h3 class="text-center">Datos del usuario a editar</h3>
+					<p class="lead text-center">Recuerde que debe ingresar el nombre de usuario de LDAP</p>
 					<hr class="m-4">
 					<c:set var="usuario" value="${usuarioEditar}"></c:set>
 					<input type="hidden" value="${usuario.getId() }" id="idUEditar" name="idUEditar">
@@ -32,7 +33,7 @@
 						<div class="column">
 							<div>Nombre de Usuario</div>
 							<div class="form-label-group>">
-								<input type="text" name="inputUsername" class="form-control" placeholder="Nombre de Usuario" required value="${usuario.getNombreUsuario() }" readonly>
+								<input type="text" name="inputUsername" class="form-control" placeholder="Nombre de Usuario" required value="${usuario.getNombreUsuario() }">
 							</div>
 							<div>Nombre</div>
 							<div class="form-label-group>">

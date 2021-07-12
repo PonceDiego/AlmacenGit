@@ -53,10 +53,11 @@ public class UsuarioManager {
 		return ids;
 	}
 
-	public static void editUsuario(int id, String rol, String area, String nombre, String apellido, String email) {
+	public static void editUsuario(int id, String username, String rol, String area, String nombre, String apellido,
+			String email) {
 		Rol r = RolDB.getRolByNombre(rol);
 		Area a = AreaDB.getAreaByNombre(area);
-		UsuarioDB.editarUsuario(id, r, a, nombre, apellido, email);
+		UsuarioDB.editarUsuario(id, r, a, username, nombre, apellido, email);
 	}
 
 	public static String getIdByNombre(String nombre) {

@@ -167,7 +167,7 @@ public class UsuarioDB {
 			sess.close();
 		}
 	}
-	
+
 	public static boolean validarSys(String username) {
 		Session sess = null;
 		Usuariosys user = new Usuariosys();
@@ -191,7 +191,8 @@ public class UsuarioDB {
 
 	}
 
-	public static void editarUsuario(int id, Rol r, Area a, String nombre, String apellido, String email) {
+	public static void editarUsuario(int id, Rol r, Area a, String username, String nombre, String apellido,
+			String email) {
 		Usuario u = null;
 		Session sess = null;
 		Transaction tran = null;
@@ -202,6 +203,7 @@ public class UsuarioDB {
 			sess.update(u);
 			u.setArea(a);
 			u.setRol(r);
+			u.setNombreUsuario(username);
 			u.setNombre(nombre);
 			u.setApellido(apellido);
 			u.setEmail(email);

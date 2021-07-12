@@ -33,9 +33,9 @@
 							<div class="form-label-group>">
 								<input tabindex="1" type="text" name="inputUsername" class="form-control" placeholder="Nombre de Usuario" required autocomplete="off" onchange="comparar()">
 							</div>
-							<div>Nombre</div>
+							<div>Apellido</div>
 							<div class="form-label-group>">
-								<input tabindex="3" type="text" name="inputNombre" class="form-control" placeholder="Nombre" required autocomplete="off">
+								<input tabindex="4" type="text" name="inputApellido" class="form-control" placeholder="Apellido" required autocomplete="off">
 							</div>
 							<div>Área</div>
 							<div class=" form-label-group>" id="area">
@@ -53,16 +53,17 @@
 
 						</div>
 						<div class="column">
+						<div>Nombre</div>
+							<div class="form-label-group>">
+								<input tabindex="3" type="text" name="inputNombre" class="form-control" placeholder="Nombre" required autocomplete="off">
+							</div>
 							<div>Correo Electrónico</div>
 							<div class="form-label-group>">
 								<input tabindex="2" type="text" name="inputMail" class="form-control" placeholder="Mail" required autocomplete="off">
 							</div>
 
 
-							<div>Apellido</div>
-							<div class="form-label-group>">
-								<input tabindex="4" type="text" name="inputApellido" class="form-control" placeholder="Apellido" required autocomplete="off">
-							</div>
+							
 							<div>Rol</div>
 							<div class="form-label-group>">
 								<select tabindex="6" name="selectRol" style="border-radius: 5px; font-size: 16px; padding: 5px; min-width: 50%" required onchange="selected2(),comparar()" id="selectRol">
