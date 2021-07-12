@@ -43,6 +43,7 @@
 				<thead>
 					<tr>
 						<th>Nombre</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody id="tablaAreas">
@@ -51,6 +52,11 @@
 						<tr>
 							<td>
 								<c:out value="${tipo.getNombre()}" />
+							</td>
+							<td>
+								<a href="../EditarTipo?tipoEditar=${tipo.getNombre()}" title="Editar">
+										<i class="material-icons" style="font-size: 18px">edit</i>
+									</a>
 							</td>
 						</tr>
 					</c:forEach>

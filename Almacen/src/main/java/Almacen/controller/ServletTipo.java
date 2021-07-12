@@ -22,7 +22,6 @@ public class ServletTipo extends HttpServlet {
 	 */
 	public ServletTipo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
