@@ -1,13 +1,15 @@
 package main.java.Almacen.model;
 // Generated 27/06/2021 17:05:15 by Hibernate Tools 5.2.12.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,14 +23,16 @@ public class Tipo implements java.io.Serializable {
 
 	private Integer id;
 	private String nombre;
+	private boolean activo;
 	private Set<Equipo> equipos = new HashSet<Equipo>(0);
 
 	public Tipo() {
 	}
 
-	public Tipo(String nombre, Set<Equipo> equipos) {
+	public Tipo(String nombre, boolean activo, Set<Equipo> equipos) {
 		this.nombre = nombre;
 		this.equipos = equipos;
+		this.activo = activo;
 	}
 
 	@Id
@@ -50,6 +54,15 @@ public class Tipo implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipo")

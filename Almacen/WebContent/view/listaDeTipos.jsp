@@ -57,6 +57,12 @@
 								<a href="../EditarTipo?tipoEditar=${tipo.getNombre()}" title="Editar">
 										<i class="material-icons" style="font-size: 18px">edit</i>
 									</a>
+									<button class="btn btn-outline-danger" type="button"
+									title="Eliminar"
+									style="cursor: pointer"
+									onclick="confirmar('${pageContext.request.contextPath }/EliminarTipo?idEliminado=${tipo.getId()}');">
+									<i class="material-icons" style="font-size: 16px"> delete </i>
+								</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -68,7 +74,14 @@
 
 	<script src="../vendor/Datatables/datatables.js"></script>
 
-
+<script>	
+		function confirmar(url) {
+			var r = confirm("¿Está seguro que desea eliminar el tipo?");
+			if (r == true) {
+				$(location).attr('href', url);
+			}
+		}
+	</script>
 
 	<script>
 		$(document).ready(function() {

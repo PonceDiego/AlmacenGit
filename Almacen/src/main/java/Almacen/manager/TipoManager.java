@@ -21,4 +21,8 @@ public class TipoManager {
 		TipoDB.editarTipo(nombreNuevo, tipo.getId());
 	}
 
+	public static void deleteTipo(String id) {
+		TipoDB.deleteTipo(Integer.parseInt(id));
+	}
+
 }
