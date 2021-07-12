@@ -49,7 +49,7 @@ public class ServletTipo extends HttpServlet {
 		} else {
 			String nombre = request.getParameter("inputNombre");
 			TipoManager.createTipo(nombre);
-			response.sendRedirect("ListaEquipos");
+			response.sendRedirect("ListaTipos");
 		}
 	}
 

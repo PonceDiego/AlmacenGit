@@ -9,6 +9,7 @@ public class TipoManager {
 	public static void createTipo(String nombre) {
 		Tipo tipo = new Tipo();
 		tipo.setNombre(nombre);
+		tipo.setActivo(true);
 		TipoDB.crearTipo(tipo);
 	}
 
