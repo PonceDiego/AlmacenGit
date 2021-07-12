@@ -18,7 +18,7 @@
 <meta name="author" content="">
 
 <title>Pedidos</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 
 
 
@@ -58,7 +58,8 @@
 
 					<c:forEach items="${pedidosCompleto}" var="pedido">
 						<tr>
-							<td><c:out value="${pedido.fecha.toString().substring(0, 16)}" /></td>
+							<td><c:out
+									value="${pedido.fecha.toString().substring(0, 16)}" /></td>
 							<td><c:out
 									value="${pedido.usuario.getNombre()} ${pedido.usuario.getApellido() }" />
 							</td>
@@ -79,7 +80,8 @@
 										</button>
 
 									</c:when>
-									<c:when test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
+									<c:when
+										test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entregar" style="cursor: pointer"
 											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
@@ -87,25 +89,32 @@
 												style="width: 18px; font-size: 18px">check_circle_outline</i>
 										</button>
 									</c:when>
-									<c:when test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
-										<button class="btn btn-warning" type="button" title="Entregar" style="cursor: pointer" onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
-											<i class="material-icons" style="width: 18px; font-size: 18px">check_circle_outline</i>
+									<c:when
+										test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
+										<button class="btn btn-warning" type="button" title="Entregar"
+											style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											<i class="material-icons"
+												style="width: 18px; font-size: 18px">check_circle_outline</i>
 										</button>
 
 									</c:when>
-								</c:choose>
-								<button class="btn btn-outline-info" type="button"
-									title="Editar" style="cursor: pointer"
-									onclick="window.location.href='../EditarPedido?pedidoId=${pedido.pedidoId}'">
-									<i class="material-icons" style="font-size: 18px"> edit </i>
-								</button>
+								</c:choose> <c:if
+									test="${bool || pedido.estadopedido.getNombreEstado()!= 'Entregado'}">
+									<button class="btn btn-outline-info" type="button"
+										title="Editar" style="cursor: pointer"
+										onclick="window.location.href='../EditarPedido?pedidoId=${pedido.pedidoId}'">
+										<i class="material-icons" style="font-size: 18px"> edit </i>
+									</button>
 
-								<button class="btn btn-outline-danger" type="button"
-									id="eliminarPedidoButton" title="Eliminar"
-									style="cursor: pointer"
-									onclick="confirmar('${pageContext.request.contextPath }/EliminarPedido?idEliminado=${pedido.pedidoId }');">
-									<i class="material-icons" style="font-size: 18px"> delete </i>
-								</button></td>
+									<button class="btn btn-outline-danger" type="button"
+										id="eliminarPedidoButton" title="Eliminar"
+										style="cursor: pointer"
+										onclick="confirmar('${pageContext.request.contextPath }/EliminarPedido?idEliminado=${pedido.pedidoId }');">
+										<i class="material-icons" style="font-size: 18px"> delete
+										</i>
+									</button>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -137,7 +146,7 @@
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
-				"order" : [[3, 'asc'], [ 0, 'desc' ] ],
+				"order" : [ [ 3, 'asc' ], [ 0, 'desc' ] ],
 				"columnDefs" : [ {
 					"responsive" : "true",
 					"orderable" : false,

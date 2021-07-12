@@ -1,9 +1,6 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import main.java.Almacen.model.Pedido;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.PedidoDB;
 import main.java.Almacen.utils.Utils;
@@ -49,30 +42,15 @@ public class ServletListaPedidos extends HttpServlet {
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			if (request.getParameter("and") != null) {
-				PrintWriter out = response.getWriter();
-				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				List<Pedido> respuesta = new ArrayList<Pedido>();
-				for (int i = 0; i < PedidoDB.getPedidosCompleto().size(); i++) {
-					Pedido get = PedidoDB.getPedidosCompleto().get(i);
-					Pedido add = new Pedido(get.getEstadopedido(), get.getUsuario(), get.getFecha(),
-							get.getObservaciones(), get.getPedidoxarticuloses());
-					respuesta.add(add);
-				}
-				out.print(gson.toJson(respuesta));
-				out.flush();
+			Usuario user = (Usuario) session.getAttribute("usuarioActual");
+			if (user.getRol().getNombre().equals("Administrador") || user.getRol().getNombre().equals("SuperAdmin")) {
+				session.setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
+				session.setAttribute("bool", true);
+				response.sendRedirect("view/listaDePedidosCompleta.jsp");
 			} else {
-				Usuario user = (Usuario) session.getAttribute("usuarioActual");
-				if (user.getRol().getNombre().equals("Administrador")
-						|| user.getRol().getNombre().equals("SuperAdmin")) {
-					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosCompleto());
-					response.sendRedirect("view/listaDePedidosCompleta.jsp");
-				} else {
-					session.setAttribute("pedidosCompleto", PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
-					response.sendRedirect("view/listaDePedidosCompleta.jsp");
-				}
+				session.setAttribute("pedidosCompleto", PedidoDB.getPedidosIndividual(user.getNombreUsuario()));
+				session.setAttribute("bool", false);
+				response.sendRedirect("view/listaDePedidosCompleta.jsp");
 			}
 		}
 	}
