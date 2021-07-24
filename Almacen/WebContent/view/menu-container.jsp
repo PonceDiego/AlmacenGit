@@ -137,9 +137,12 @@
 
 
 <script>
+	$(window).on('pageshow', function(){
+		$(".loading").hide();
+	});
+	
 	$(document).ready(
 			function() {
-				$(".loading").hide();
 				
 				var valueOfMenuActive = $("nav[data-menuactive]").attr(
 						"data-menuactive");
@@ -152,7 +155,7 @@
 			});
 
 	$(document).ready(function() {
-		$("a[href!='#']").click(function(){
+		$("a[href!='#'][href]").click(function(){
 			console.log("loading...");
 			$(".loading").fadeIn("slow");
 		});
