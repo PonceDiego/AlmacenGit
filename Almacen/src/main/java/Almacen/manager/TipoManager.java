@@ -7,16 +7,23 @@ import main.java.Almacen.persistence.TipoDB;
 
 public class TipoManager {
 	public static void createTipo(String nombre) {
-		Tipo tipo= new Tipo();
+		Tipo tipo = new Tipo();
 		tipo.setNombre(nombre);
+		tipo.setActivo(true);
 		TipoDB.crearTipo(tipo);
 	}
-	public static List<Tipo> getTipos(){
+
+	public static List<Tipo> getTipos() {
 		return TipoDB.getTipos();
 	}
-//	public static void editTipo(String idEditar) {
-//		int id=Integer.parseInt(idEditar);
-//		TipoDB.editarTipo(nombre, idT);
-//	}
+
+	public static void editTipo(String nombreEditar, String nombreNuevo) {
+		Tipo tipo = TipoDB.getTipoByNombre(nombreEditar);
+		TipoDB.editarTipo(nombreNuevo, tipo.getId());
+	}
+
+	public static void deleteTipo(String id) {
+		TipoDB.deleteTipo(Integer.parseInt(id));
+	}
 
 }

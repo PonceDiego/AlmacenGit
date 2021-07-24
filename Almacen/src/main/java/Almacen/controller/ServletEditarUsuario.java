@@ -38,11 +38,11 @@ public class ServletEditarUsuario extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			String id=request.getParameter("UsEdId");
+			String id = request.getParameter("UsEdId");
 			request.getSession().setAttribute("roles", RolDB.getRoles());
 			request.getSession().setAttribute("areas", AreaDB.getAreas());
-			int idE= Integer.parseInt(id);
-			Usuario userE= UsuarioDB.getUsuarioByID(idE);
+			int idE = Integer.parseInt(id);
+			Usuario userE = UsuarioDB.getUsuarioByID(idE);
 			request.getSession().setAttribute("usuarioEditar", userE);
 			response.sendRedirect("view/editarUsuario.jsp");
 		}
@@ -57,16 +57,17 @@ public class ServletEditarUsuario extends HttpServlet {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
-			String  rol, area, nombre, apellido, email;
+			String username, rol, area, nombre, apellido, email;
 			request.setCharacterEncoding("UTF-8");
-			int id= Integer.parseInt(request.getParameter("idUEditar"));
+			int id = Integer.parseInt(request.getParameter("idUEditar"));
+			username = request.getParameter("inputUsername");
 			rol = request.getParameter("inputRol");
 			area = request.getParameter("inputArea");
 			nombre = request.getParameter("inputNombre");
 			apellido = request.getParameter("inputApellido");
 			email = request.getParameter("inputMail");
 
-			UsuarioManager.editUsuario(id,rol, area, nombre, apellido, email);
+			UsuarioManager.editUsuario(id, username, rol, area, nombre, apellido, email);
 			response.sendRedirect("ListaUsuarios");
 		}
 	}
