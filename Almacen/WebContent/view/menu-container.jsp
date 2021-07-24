@@ -153,6 +153,9 @@
 		$("a[href!='#']").click(function(){
 			console.log("loading...");
 			$(".loading").fadeIn("slow");
+			setTimeout(function(){
+				$(".loading").hide();
+			},6000);
 		});
 	});
 </script>
