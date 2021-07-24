@@ -25,11 +25,11 @@ import main.java.Almacen.persistence.UsuarioDB;
 
 public class MailManager {
 
-	private static final String SMTP_SERVER = "192.168.74.23";
-	private static final String USERNAME = "almacen@eldoceblog.com.ar";
-	private static final String PASSWORD = "almacen.C12";
+	private static final String SMTP_SERVER = "smtp.gmail.com";
+	private static final String USERNAME = "canal12test@gmail.com";
+	private static final String PASSWORD = "gmail.C12";
 
-	private static final String EMAIL_FROM = "almacen@eldoceblog.com.ar";
+	private static final String EMAIL_FROM = "canal12test@gmail.com";
 
 	public static void enviarMail(String userS, int idp)
 			throws MessagingException, IOException, GeneralSecurityException {
@@ -92,7 +92,7 @@ public class MailManager {
 		props.put("mail.smtp.host", SMTP_SERVER);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "25");
-		//props.put("mail.smtp.starttls.enable", true);
+		props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
 		MimeMessage email = new MimeMessage(session);
