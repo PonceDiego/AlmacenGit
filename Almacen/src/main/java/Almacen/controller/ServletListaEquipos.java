@@ -49,9 +49,9 @@ public class ServletListaEquipos extends HttpServlet {
 			request.getSession().setAttribute("equipos", equipos);
 			request.getSession().setAttribute("registros",
 					RegistroManager.getLastRegistrosByEntidadAndId(TIPO_REGISTRO.EQUIPO, ids));
+			response.sendRedirect("view/listaDeEquipos.jsp");
 		}
 
-		response.sendRedirect("view/listaDeEquipos.jsp");
 	}
 
 	/**

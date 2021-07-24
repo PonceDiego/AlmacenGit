@@ -11,7 +11,7 @@ import javax.naming.directory.InitialDirContext;
 public class LdapAuthentication {
 
 	public static boolean validarLDAP(String user, String pass) {
-		String base = "ou=users,dc=canal-doce,dc=com,dc=ar";
+		String base = "ou=APP_ALMACEN,dc=canal-doce,dc=com,dc=ar";
 		String dn = "uid=" + user + "," + base;
 		String ldapURL = "ldap://172.16.49.2:389";
 
@@ -25,7 +25,7 @@ public class LdapAuthentication {
 		environment.put(Context.SECURITY_PRINCIPAL, dn);
 		environment.put(Context.SECURITY_CREDENTIALS, pass);
 		try {
-			 DirContext authContext = new InitialDirContext(environment);
+			DirContext authContext = new InitialDirContext(environment);
 			return true;
 		} catch (AuthenticationException e) {
 			System.out.println("Datos ingresados no coinciden con LDAP");

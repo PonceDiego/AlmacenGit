@@ -27,7 +27,6 @@ public class ServletNuevoEquipo extends HttpServlet {
 	 */
 	public ServletNuevoEquipo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

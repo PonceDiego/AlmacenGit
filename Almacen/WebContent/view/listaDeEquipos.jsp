@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -11,12 +12,13 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>Equipos</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 
 
 </head>
@@ -32,12 +34,10 @@
 	<div class="container">
 		<div class="col-lg-12 text-center">
 			<h1 class="mt-5">
-				Lista de equipos.
-				<span>
-					<a href="../ListaLugares" style="font-size: small;"> Lugares 🡕</a>
-				</span>
-				<span>
-					<a href="../ListaTipos" style="font-size: small;">Tipos 🡕</a>
+				Lista de equipos. <span> <a href="../ListaLugares"
+					style="font-size: small;"> Lugares 🡕</a>
+				</span> <span> <a href="../ListaTipos" style="font-size: small;">Tipos
+						🡕</a>
 				</span>
 			</h1>
 
@@ -63,76 +63,68 @@
 
 					<c:forEach items="${equipos}" var="equipo">
 						<tr>
-							<td>
-								<c:out value="${equipo.getNombre()}" />
-							</td>
-							<td>
-								<c:out value="${equipo.getTipo().getNombre() }" />
-							</td>
-							<td>
-								<c:forEach items="${registros}" var="re">
-									<c:if test="${re.getEntidadId() == equipo.getEquipoId().toString() }">
+							<td><c:out value="${equipo.getNombre()}" /></td>
+							<td><c:out value="${equipo.getTipo().getNombre() }" /></td>
+							<td><c:forEach items="${registros}" var="re">
+									<c:if
+										test="${re.getEntidadId() == equipo.getEquipoId().toString() }">
 										<c:set var="usuarioEquipo" value="${re.getUsuarioByUsuario()}"></c:set>
-										<c:out value="${re.getUsuarioByUsuario().getNombre() } ${re.getUsuarioByUsuario().getApellido()}"></c:out>
+										<c:out
+											value="${re.getUsuarioByUsuario().getNombre() } ${re.getUsuarioByUsuario().getApellido()}"></c:out>
 									</c:if>
-								</c:forEach>
-							</td>
-							<td>
-								<c:out value="${equipo.getLugar().getNombre()}" />
-							</td>
-							<td>
-								<c:out value="${equipo.getModelo()}" />
-							</td>
-							<td>
-								<c:out value="${equipo.getObservaciones()}" />
-							</td>
-							<td>
-								<c:out value="${equipo.getAccesorios()}" />
-							</td>
-							<td>
-								<c:choose>
+								</c:forEach></td>
+							<td><c:out value="${equipo.getLugar().getNombre()}" /></td>
+							<td><c:out value="${equipo.getModelo()}" /></td>
+							<td><c:out value="${equipo.getObservaciones()}" /></td>
+							<td><c:out value="${equipo.getAccesorios()}" /></td>
+							<td><c:choose>
 									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<a style="color: green;">
-											<i class="material-icons">check</i>
+										<a style="color: green;"> <i class="material-icons">check</i>
 										</a>
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<a style="color: red;">
-											<i class="material-icons">clear</i>
+										<a style="color: red;"> <i class="material-icons">clear</i>
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a>
-											<i class="material-icons">trending_down</i>
+										<a> <i class="material-icons">trending_down</i>
 										</a>
 									</c:otherwise>
-								</c:choose>
-							</td>
+								</c:choose></td>
 
-							<td>
-								<c:choose>
+							<td><c:choose>
 									<c:when test="${equipo.getEstado()=='Disponible'}">
-										<button class="btn btn-warning" type="button" title="Salida" style="cursor: pointer" onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
+										<button class="btn btn-warning" type="button" title="Salida"
+											style="cursor: pointer"
+											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
 
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
-										<button class="btn btn-outline-success" type="button" title="Entrada" style="cursor: pointer"
+										<button class="btn btn-outline-success" type="button"
+											title="Entrada" style="cursor: pointer"
 											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
 											E</button>
 									</c:when>
 								</c:choose>
-								<c:if test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Técnica' }">
+								 <a href="../Equipo?equipoId=${equipo.getEquipoId()}"> <i
+									class="material-icons">history</i>
+							</a> <c:if
+									test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Técnica' }">
+									<br>
+									<div>
+									<button class="btn btn-outline-info" type="button"
+										style="cursor: pointer" title="Editar"
+										onclick="window.location.href='../EditarEquipo?equipoEditar=${equipo.getEquipoId()}'">
+										<i class="material-icons" style="font-size: 14px"> edit </i>
+									</button>
 									<button class="btn btn-outline-danger" type="button"
-									title="Eliminar"
-									style="cursor: pointer"
-									onclick="confirmar('${pageContext.request.contextPath }/EliminarEquipo?idEliminado=${equipo.getEquipoId()}');">
-									<i class="material-icons" style="font-size: 16px"> delete </i>
-								</button>
-								</c:if>
-								<a href="../Equipo?equipoId=${equipo.getEquipoId()}">
-									<i class="material-icons">history</i>
-								</a>
-							</td>
+										title="Eliminar" style="cursor: pointer"
+										onclick="confirmar('${pageContext.request.contextPath }/EliminarEquipo?idEliminado=${equipo.getEquipoId()}');">
+										<i class="material-icons" style="font-size: 14px"> delete
+										</i>
+									</button>
+									</div>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>
