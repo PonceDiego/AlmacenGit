@@ -1,12 +1,14 @@
 package main.java.Almacen.model;
-// Generated 25/07/2021 16:18:00 by Hibernate Tools 5.2.12.Final
+// Generated 25/07/2021 16:27:06 by Hibernate Tools 5.2.12.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,10 +39,9 @@ public class Registro implements java.io.Serializable {
 		this.entidad = entidad;
 	}
 
-	public Registro(Usuario usuarioByUsuario, Usuario usuarioByEncargado, Date fecha, Boolean entrada, int entidadId,
+	public Registro(Usuario usuarioByUsuario, Date fecha, Boolean entrada, int entidadId,
 			String entidad) {
 		this.usuarioByUsuario = usuarioByUsuario;
-		this.usuarioByEncargado = usuarioByEncargado;
 		this.fecha = fecha;
 		this.entrada = entrada;
 		this.entidadId = entidadId;

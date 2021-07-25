@@ -11,9 +11,6 @@ import main.java.Almacen.persistence.ProveedoresDB;
 import main.java.Almacen.persistence.SubcategoriaDB;
 
 public class ArticuloManager {
-	public static void editArticuloQr(String nombre, String qr) {
-		ArticuloDB.editarArticuloQr(nombre, qr);
-	}
 
 	public static void editArticuloStock(String id, String cantidad) {
 		ArticuloDB.editarArticuloStock(id, cantidad);
@@ -81,9 +78,6 @@ public class ArticuloManager {
 
 		Date date = new Date();
 		articuloNuevo.setFechaAgregado(date);
-
-		String qr = "https://api.qrserver.com/v1/create-qr-code/?data=" + nombre;
-		articuloNuevo.setCodigoQr(qr);
 
 		ArticuloDB.agregarArticuloNuevo(articuloNuevo);
 

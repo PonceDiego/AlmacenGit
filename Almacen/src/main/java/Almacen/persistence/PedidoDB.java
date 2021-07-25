@@ -86,6 +86,7 @@ public class PedidoDB {
 				Hibernate.initialize(pedido.getObservaciones());
 				Hibernate.initialize(pedido.getUsuario());
 				Hibernate.initialize(pedido.getUsuario().getArea());
+				
 			}
 			return pP;
 		} finally {
