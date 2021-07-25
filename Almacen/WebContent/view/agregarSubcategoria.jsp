@@ -17,7 +17,7 @@
 </head>
 <body>
 	<jsp:include page="menu-container.jsp">
-		<jsp:param name="activeMenu" value="NuevaSubcategoria" />
+		<jsp:param name="activeMenu" value="MenuArticulos" />
 	</jsp:include>
 
 	<!-- Page Content   -->

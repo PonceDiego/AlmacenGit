@@ -1,8 +1,6 @@
 package main.java.Almacen.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import main.java.Almacen.model.Categoria;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.SubcategoriaDB;
 import main.java.Almacen.utils.Utils;
 
@@ -47,20 +46,14 @@ public class ServletListaCategorias extends HttpServlet {
 		if (session.getAttribute("usuarioActual") == null) {
 			response.sendRedirect("Index");
 		} else {
+			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
 			List<Categoria> cats = SubcategoriaDB.getCategorias();
-			ArrayList<Categoria> array = new ArrayList<Categoria>();
-			String categoriaJson = null;
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			PrintWriter out = response.getWriter();
-
-			for (Categoria cat : cats) {
-				array.add(cat);
-
-			}
-			categoriaJson = gson.toJson(array);
-			out.print(categoriaJson);
-			out.flush();
+			
+			request.getSession().setAttribute("usuarioActual", actual);
+			request.getSession().setAttribute("categorias", cats);
+			
+			response.sendRedirect("view/listaDeCategorias.jsp");
+			
 		}
 	}
 

@@ -40,8 +40,8 @@
 							<a id="NuevoArticulo" class="dropdown-item" href="../NuevoArticulo">Nuevo artículo</a>
 							<a id="ListaArticulos" class="dropdown-item" href="../ListaArticulos">Lista de artículos</a>
 							<div class="dropdown-divider"></div>
-							<a id="NuevaCategoria" class="dropdown-item" href="../NuevaCategoria">Nueva Categoría</a>
-							<a id="NuevaSubcategoria" class="dropdown-item" href="../NuevaSubcategoria">Nueva Subcategoría</a>
+							<a id="Categorias" class="dropdown-item" href="../ListaCategorias">Categorías</a>
+							<a id="Subcategorias" class="dropdown-item" href="../ListaSubcategorias">Subcategorías</a>
 						</c:if>
 
 					</div>
@@ -67,12 +67,12 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Técnica </a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
 						<a id="ListaEquipos" class="dropdown-item" href="../ListaEquipos">Lista de equipos</a>
-						<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
+						<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Tecnica'}">
 							<a id="NuevoEquipo" class="dropdown-item " href="../NuevoEquipo">Nuevo equipo</a>
 						</c:if>
 						<div class="dropdown-divider"></div>
 						<a id="BuscarGrupoEquipos" class="dropdown-item" href="../BuscarGrupoEquipos">Buscar grupo de equipos</a>
-						<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Técnica'}">
+						<c:if test="${usuarioActual.getRol().getNombre()=='SuperAdmin'||usuarioActual.getRol().getNombre()=='Administrador Tecnica'}">
 							<a id="NuevoGrupoEquipo" class="dropdown-item " href="../NuevoGrupoEquipo">Nuevo grupo equipos</a>
 							<div class="dropdown-divider"></div>
 							<a id="Tipo" class="dropdown-item" href="../Tipo">Nuevo tipo</a>

@@ -16,6 +16,7 @@ public class CORSFilter implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
+		
 	}
 
 	public void destroy() {

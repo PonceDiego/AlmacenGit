@@ -132,6 +132,7 @@ public class SubcategoriaDB {
 			tran = sess.beginTransaction();
 			subcategoria.setNombre(nombre);
 			subcategoria.setCategoria(categoria);
+			subcategoria.setActivo(true);
 			sess.save(subcategoria);
 			tran.commit();
 		} finally {
@@ -143,7 +144,7 @@ public class SubcategoriaDB {
 	public static void createCategoria(String nombre) {
 		Session sess = null;
 		Transaction tran = null;
-		Categoria categoria = new Categoria(nombre);
+		Categoria categoria = new Categoria(nombre, true);
 		try {
 			sess = HibernateUtils.openSession();
 			tran = sess.beginTransaction();

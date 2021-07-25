@@ -109,7 +109,7 @@
 								 <a href="../Equipo?equipoId=${equipo.getEquipoId()}"> <i
 									class="material-icons">history</i>
 							</a> <c:if
-									test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Técnica' }">
+									test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Tecnica' }">
 									<br>
 									<div>
 									<button class="btn btn-outline-info" type="button"
@@ -151,7 +151,7 @@
 
 		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
 			if (usernameEquipo == usernameActual || rolActual == "SuperAdmin"
-					|| rolActual == "Administrador Técnica") {
+					|| rolActual == "Administrador Tecnica") {
 				alert("Reingresando el equipo..");
 				$(location).attr('href', url);
 			} else {
@@ -165,7 +165,6 @@
 		$(document).ready(function() {
 
 			$('#myTable').DataTable({
-				"scrollX" : true,
 				"columnDefs" : [ {
 					"responsive" : "true",
 					"orderable" : false,
