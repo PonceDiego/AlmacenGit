@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <meta charset="UTF-8">
@@ -13,7 +15,7 @@
 
 
 <title>Agregar Nuevo Equipo</title>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 
 </head>
 <body>
@@ -33,8 +35,11 @@
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
-								<input type="text" name="inputNombre" id="inputNombre" tabindex="1" value="${Equipo.getNombre()}"
-								class="form-control" placeholder="Nombre" required autocomplete="off" maxlength="50" onkeyup="filterFunction2(this,event),botonAceptar()" onchange="comparar()">
+								<input type="text" name="inputNombre" id="inputNombre"
+									tabindex="1" value="${Equipo.getNombre()}" class="form-control"
+									placeholder="Nombre" required autocomplete="off" maxlength="50"
+									onkeyup="filterFunction2(this,event),botonAceptar()"
+									onchange="comparar()">
 								<c:set var="equipos" value="${listaEquipos }"></c:set>
 								<ul id="ulArticulos">
 									<c:forEach items="${equipos }" var="equipo">
@@ -44,67 +49,99 @@
 							</div>
 							<div>Tipo</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputTipo" id="inputTipo" autocomplete="off"> <select class='form-control input-lg'  tabindex="3" onchange="selected(),comparar()" id="tipoSelect" required>
+								<input type="hidden" name="inputTipo" id="inputTipo"
+									autocomplete="off"> <select
+									class='form-control input-lg' tabindex="3"
+									onchange="selected(),comparar()" id="tipoSelect" required>
 									<c:forEach items="${listaTipos}" var="tipo">
-										<c:if test="${Equipo.getTipo().getNombre() == tipo.getNombre() }">
-											<option selected value="${tipo.getNombre() }">${tipo.getNombre()}</option>
-										</c:if>
-										<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
-									</c:forEach>
+										<c:choose>
+											<c:when test="${Equipo.getTipo().getNombre() == tipo.getNombre() }">
+												<option selected value="${tipo.getNombre() }">${tipo.getNombre()}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${tipo.getNombre() }">${tipo.getNombre()}</option>
+											</c:otherwise>
+										</c:choose>
+										</c:forEach>
 								</select>
 							</div>
 							<div>Ubicación</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputLugar" id="inputLugar" autocomplete="off"> <select class='form-control input-lg'  tabindex="5" onchange="selected2(),comparar()" id="lugarSelect" required>
+								<input type="hidden" name="inputLugar" id="inputLugar"
+									autocomplete="off"> <select
+									class='form-control input-lg' tabindex="5"
+									onchange="selected2(),comparar()" id="lugarSelect" required>
 									<c:forEach items="${listaLugares}" var="lugar">
-										<c:if test="${Equipo.getLugar().getNombre() == lugar.getNombre() }">
-											<option selected value="${lugar.getNombre() }">${lugar.getNombre()}</option>
-										</c:if>
-										<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
+										<c:choose>
+											<c:when test="${Equipo.getLugar().getNombre() == lugar.getNombre() }">
+												<option selected value="${lugar.getNombre() }">${lugar.getNombre()}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${lugar.getNombre() }">${lugar.getNombre()}</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>
 							</div>
 							<div>Accesorios</div>
 							<div class="form-label-group>">
-								<input tabindex="7" type="text" name="inputAccesorios" value="${Equipo.getAccesorios() }"
-								class="form-control" placeholder="Accesorios" id="inputAccesorios" maxlength="140" autocomplete="off">
+								<input tabindex="7" type="text" name="inputAccesorios"
+									value="${Equipo.getAccesorios() }" class="form-control"
+									placeholder="Accesorios" id="inputAccesorios" maxlength="140"
+									autocomplete="off">
 							</div>
 						</div>
 
 						<div class="column">
 							<div>Modelo</div>
 							<div class="form-label-group>">
-								<input tabindex="2" type="text" name="inpuModelo" value="${Equipo.getModelo()}"
-								class="form-control" placeholder="Modelo" id="inpuModelo" maxlength="50" autocomplete="off">
+								<input tabindex="2" type="text" name="inpuModelo"
+									value="${Equipo.getModelo()}" class="form-control"
+									placeholder="Modelo" id="inpuModelo" maxlength="50"
+									autocomplete="off">
 							</div>
 							<div>Serial</div>
 							<div class="form-label-group>">
-								<input tabindex="4" type="text" name="inputSerial" value="${Equipo.getSerial() }"
-								class="form-control" placeholder="Serial" id="inputSerial" maxlength="50" autocomplete="off">
+								<input tabindex="4" type="text" name="inputSerial"
+									value="${Equipo.getSerial() }" class="form-control"
+									placeholder="Serial" id="inputSerial" maxlength="50"
+									autocomplete="off">
 							</div>
 
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
-								<input type="hidden" name="inputUsuario" id="inputUsuario" autocomplete="off"> <select class='form-control input-lg'  tabindex="6" onchange="selected3(),comparar()" id="usuarioSelect">
+								<input type="hidden" name="inputUsuario" id="inputUsuario"
+									autocomplete="off"> <select
+									class='form-control input-lg' tabindex="6"
+									onchange="selected3(),comparar()" id="usuarioSelect">
 									<c:forEach items="${listaUsuarios}" var="usuario">
-										<c:if test="${Equipo.getUsuario().getNombreUsuario() == usuario.getNombreUsuario() }">
-											<option selected value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
-										</c:if>
-										<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
+										<c:choose>
+											<c:when
+												test="${Equipo.getUsuario().getNombreUsuario() == usuario.getNombreUsuario() }">
+												<option selected value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
+											</c:when>
+											<c:otherwise>
+												<option value=${usuario.getNombreUsuario() }>${usuario.getNombreUsuario() }</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>
 							</div>
 							<div>Observaciones</div>
 							<div class="form-label-group>">
-								<input tabindex="8" type="text" name="inputObservaciones" value="${Equipo.getObservaciones() }"
-								class="form-control" placeholder="Observaciones" id="inputObservaciones" maxlength="140" autocomplete="off">
+								<input tabindex="8" type="text" name="inputObservaciones"
+									value="${Equipo.getObservaciones() }" class="form-control"
+									placeholder="Observaciones" id="inputObservaciones"
+									maxlength="140" autocomplete="off">
 							</div>
 
 						</div>
 					</div>
 					<hr>
-					<button tabindex="9" class="btn btn-lg btn-primary btn-block text-uppercase" id="aceptarbutton" disabled
-					 style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
+					<button tabindex="9"
+						class="btn btn-lg btn-primary btn-block text-uppercase"
+						id="aceptarbutton" disabled
+						style="max-width: 50%; margin: auto; background-color: #f37321; cursor: pointer;">Aceptar</button>
 				</form>
 			</div>
 		</div>
@@ -135,26 +172,26 @@
 		}
 	</script>
 	<script>
-	function comparar() {
-		var x = document.getElementById('advertencia');
-		var y = document.getElementById('inputTipo');
-		var z = document.getElementById('inputLugar');
-		var a = document.getElementById("inputUsuario");
-		
-		if (y.value == null || y.value === "") {
-			x.innerHTML = "Por favor seleccione un tipo!";
-		} else if (z.value == null || z.value === "") {
-			x.innerHTML = "Por favor seleccione un lugar!";
-		}  else if (a.value == null || a.value === "") {
-			x.innerHTML = "Por favor seleccione un usuario!";
-		}else {
-			x.innerHTML = "";
-			var y = document.getElementById('aceptarbutton');
-			y.disabled = false;
+		function comparar() {
+			var x = document.getElementById('advertencia');
+			var y = document.getElementById('inputTipo');
+			var z = document.getElementById('inputLugar');
+			var a = document.getElementById("inputUsuario");
+
+			if (y.value == null || y.value === "") {
+				x.innerHTML = "Por favor seleccione un tipo!";
+			} else if (z.value == null || z.value === "") {
+				x.innerHTML = "Por favor seleccione un lugar!";
+			} else if (a.value == null || a.value === "") {
+				x.innerHTML = "Por favor seleccione un usuario!";
+			} else {
+				x.innerHTML = "";
+				var y = document.getElementById('aceptarbutton');
+				y.disabled = false;
+			}
+
 		}
 
-	}
-	
 		function filterFunction2(that, event) {
 			document.getElementById('advertencia').innerHTML = "";
 			document.getElementById('linkEditar').innerHTML = "";
@@ -181,7 +218,7 @@
 				}, 100)
 			}
 		}
-		
+
 		function filterFunction2(that, event) {
 			document.getElementById('advertencia').innerHTML = "";
 			document.getElementById('linkEditar').innerHTML = "";
@@ -269,8 +306,7 @@
 					comparar();
 
 				});
-		
-		
+
 		function botonAceptar() {
 			var listaMatches = document.getElementById('ulArticulos');
 			var lis = listaMatches.getElementsByTagName('li:visible');
