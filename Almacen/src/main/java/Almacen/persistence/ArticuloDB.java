@@ -156,7 +156,6 @@ public class ArticuloDB {
 
 			sess.saveOrUpdate(a);
 
-			a.setCodigoQr(qr);
 
 			tran.commit();
 		} finally {

@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 22/06/2021 08:43:07 by Hibernate Tools 5.2.12.Final
+// Generated 25/07/2021 16:27:06 by Hibernate Tools 5.2.12.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -39,7 +39,8 @@ public class Registro implements java.io.Serializable {
 		this.entidad = entidad;
 	}
 
-	public Registro(Usuario usuarioByUsuario, Date fecha, Boolean entrada, int entidadId, String entidad) {
+	public Registro(Usuario usuarioByUsuario, Date fecha, Boolean entrada, int entidadId,
+			String entidad) {
 		this.usuarioByUsuario = usuarioByUsuario;
 		this.fecha = fecha;
 		this.entrada = entrada;
