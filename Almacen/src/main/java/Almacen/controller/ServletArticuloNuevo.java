@@ -38,8 +38,12 @@ public class ServletArticuloNuevo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("and") != null) {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			response.sendRedirect("Index");
+		} else {
+
 			String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
+
 			proveedor = request.getParameter("inputProveedor");
 			nombre = request.getParameter("inputNombre");
 			stockMinimo = request.getParameter("inputSMinimo");
@@ -48,23 +52,7 @@ public class ServletArticuloNuevo extends HttpServlet {
 			subc = request.getParameter("inputSub");
 
 			ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
-		} else {
-			if (request.getSession().getAttribute("usuarioActual") == null) {
-				response.sendRedirect("Index");
-			} else {
-
-				String proveedor, nombre, stockMinimo, stockMaximo, costo, subc;
-				
-				proveedor = request.getParameter("inputProveedor");
-				nombre = request.getParameter("inputNombre");
-				stockMinimo = request.getParameter("inputSMinimo");
-				stockMaximo = request.getParameter("inputStock");
-				costo = request.getParameter("inputCosto");
-				subc = request.getParameter("inputSub");
-				
-				ArticuloManager.createArticulo(subc, proveedor, nombre, stockMinimo, stockMaximo, costo);
-				response.sendRedirect("ListaArticulos");
-			}
+			response.sendRedirect("ListaArticulos");
 		}
 	}
 
