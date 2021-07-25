@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 27/06/2021 17:05:15 by Hibernate Tools 5.2.12.Final
+// Generated 25/07/2021 16:18:00 by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,17 +21,20 @@ public class Categoria implements java.io.Serializable {
 
 	private Integer categoriaId;
 	private String nombre;
+	private boolean activo;
 	private Set<Subcategoria> subcategorias = new HashSet<Subcategoria>(0);
 
 	public Categoria() {
 	}
 
-	public Categoria(String nombre) {
+	public Categoria(String nombre, boolean activo) {
 		this.nombre = nombre;
+		this.activo = activo;
 	}
 
-	public Categoria(String nombre, Set<Subcategoria> subcategorias) {
+	public Categoria(String nombre, boolean activo, Set<Subcategoria> subcategorias) {
 		this.nombre = nombre;
+		this.activo = activo;
 		this.subcategorias = subcategorias;
 	}
 
@@ -54,6 +57,15 @@ public class Categoria implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")

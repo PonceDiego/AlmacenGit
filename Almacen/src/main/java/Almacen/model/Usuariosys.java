@@ -1,5 +1,5 @@
 package main.java.Almacen.model;
-// Generated 27/06/2021 17:05:15 by Hibernate Tools 5.2.12.Final
+// Generated 25/07/2021 16:18:00 by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
