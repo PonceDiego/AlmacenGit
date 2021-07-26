@@ -1,4 +1,4 @@
-package main.java.Almacen.controller;
+package main.java.Almacen.controller.categoria;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import main.java.Almacen.model.Subcategoria;
+import main.java.Almacen.model.Categoria;
 import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.SubcategoriaDB;
 import main.java.Almacen.utils.Utils;
@@ -21,15 +21,15 @@ import main.java.Almacen.utils.Utils;
 /**
  * Servlet implementation class ServletListaCategorias
  */
-@WebServlet("/ListaSubcategorias")
-public class ServletListaSubcategorias extends HttpServlet {
+@WebServlet("/EliminarCategoria")
+public class EliminarCategoria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletListaSubcategorias() {
+	public EliminarCategoria() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -47,15 +47,24 @@ public class ServletListaSubcategorias extends HttpServlet {
 			response.sendRedirect("Index");
 		} else {
 			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
-			List<Subcategoria> subCats = SubcategoriaDB.getSubcategorias();
+			
+			String strId = request.getParameter("id");
+			int id = -1;
+			try {
+				id = Integer.parseInt(strId);
+			} catch (Exception e) {
+				return;
+			}
+			SubcategoriaDB.deleteCategoriaById(id);
+			
+			List<Categoria> cats = SubcategoriaDB.getCategorias();
 			
 			request.getSession().setAttribute("usuarioActual", actual);
-			request.getSession().setAttribute("subcategorias", subCats);
+			request.getSession().setAttribute("categorias", cats);
 			
-			response.sendRedirect("view/listaDeSubcategorias.jsp");
+			response.sendRedirect("view/listaDeCategorias.jsp");
 			
 		}
-
 	}
 
 	/**

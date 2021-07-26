@@ -59,10 +59,10 @@
 							<td>
 								<c:if test="${usuarioActual.getRol().getNombre() == 'SuperAdmin' ||  usuarioActual.getRol().getNombre() == 'Administrador Tecnica' }">
 									<div>
-										<button class="btn btn-outline-info" type="button" style="cursor: pointer" title="Editar" onclick="window.location.href='../EditarEquipo?equipoEditar=${subcategoria.getId()}'">
+										<button class="btn btn-outline-info" type="button" style="cursor: pointer" title="Editar" onclick="window.location.href='../EditarSubcategoria?subcategoriaId=${subcategoria.getId()}'">
 											<i class="material-icons" style="font-size: 14px"> edit </i>
 										</button>
-										<button class="btn btn-outline-danger" type="button" title="Eliminar" style="cursor: pointer" onclick="confirmar('${pageContext.request.contextPath }/EliminarEquipo?idEliminado=${subcategoria.getId()}');">
+										<button class="btn btn-outline-danger" type="button" title="Eliminar" style="cursor: pointer" onclick="confirmar('${pageContext.request.contextPath }/EliminarSubcategoria?id=${subcategoria.getId()}');">
 											<i class="material-icons" style="font-size: 14px"> delete </i>
 										</button>
 									</div>
