@@ -91,7 +91,7 @@ public class MailManager {
 		Properties props = System.getProperties();
 		props.put("mail.smtp.host", SMTP_SERVER);
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.starttls.enable", true);
 		Session session = Session.getDefaultInstance(props, null);
 
