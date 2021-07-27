@@ -128,6 +128,7 @@
 			var x = document.getElementById("provSelect").value;
 
 			document.getElementById("inputProveedor").value = x;
+			comparar();
 		}
 	</script>
 	<script>
@@ -135,6 +136,7 @@
 			var x = document.getElementById("selectSub").value;
 
 			document.getElementById("inputSub").value = x;
+			comparar();
 		}
 	</script>
 	
@@ -354,11 +356,11 @@
 				var b = document.getElementById('inputSub');
 				var x = document.getElementById('advertencia');
 				var editar = document.getElementById('linkEditar');
-				if (a.value != null || a.value != "") {
+				if (a.value == null || a.value === "") {
 					x.innerHTML = "Seleccione un proveedor!";
 					editar.text = "";
 					editar.href = "";
-				} else if (b.value != null || b.value != "") {
+				} else if (b.value == null || b.value === "") {
 					x.innerHTML = "Seleccione una subcategoría!";
 					editar.text = "";
 					editar.href = "";

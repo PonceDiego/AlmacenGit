@@ -250,4 +250,17 @@ public class EquipoDB {
 			sess.close();
 		}
 	}
+
+	public static void editEquipo(Equipo equipo) {
+		Session sess = null;
+		Transaction tran = null;
+		try {
+			sess = HibernateUtils.openSession();
+			tran = sess.beginTransaction();
+			sess.update(equipo);
+			tran.commit();
+		} finally {
+			sess.close();
+		}
+	}
 }

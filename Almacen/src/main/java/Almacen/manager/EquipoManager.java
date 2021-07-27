@@ -129,4 +129,39 @@ public class EquipoManager {
 	public static void eliminarEquipo(String id) {
 		EquipoDB.eliminarEquipo(Integer.parseInt(id));
 	}
+
+	public static void editEquipo(String id, String serial, String nombre, String tipo, String lugar, String modelo,
+			String user, String observaciones, String accesorios, Usuario actual) {
+		Equipo equipo = EquipoDB.getEquipoByID(Integer.parseInt(id));
+		equipo.setLugar(LugarDB.getLugarByNombre(lugar));
+		equipo.setTipo(TipoDB.getTipoByNombre(tipo));
+		equipo.setNombre(nombre);
+
+		if (serial == null) {
+			equipo.setSerial("N/A");
+		} else
+			equipo.setSerial(serial);
+
+		if (modelo == null) {
+			equipo.setModelo("N/A");
+		} else
+			equipo.setModelo(modelo);
+
+		if (user != null) {
+			equipo.setUsuario(UsuarioDB.getUsuarioByNombreUsuario(user));
+		}
+		if (observaciones == null) {
+			equipo.setObservaciones("N/A");
+		} else
+			equipo.setObservaciones(observaciones);
+
+		if (accesorios == null) {
+			equipo.setAccesorios("N/A");
+		} else
+			equipo.setAccesorios(accesorios);
+
+		equipo.setEstado("Disponible");
+		equipo.setActivo(true);
+		EquipoDB.editEquipo(equipo);
+	}
 }

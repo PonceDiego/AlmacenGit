@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.Almacen.manager.EquipoManager;
 import main.java.Almacen.manager.LugarManager;
 import main.java.Almacen.manager.TipoManager;
+import main.java.Almacen.model.Usuario;
 import main.java.Almacen.persistence.UsuarioDB;
 
 @WebServlet("/EditarEquipo")
@@ -36,7 +37,29 @@ public class EditarEquipo extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			resp.sendRedirect("Index");
+		} else {
+			String id = (String) request.getParameter("equipoEditar");
+			Usuario actual = (Usuario) request.getSession().getAttribute("usuarioActual");
+
+			request.setCharacterEncoding("UTF-8");
+			String nombre, tipo, lugar, accesorios, serial, modelo, user, observaciones;
+			nombre = (String) request.getParameter("inputNombre");
+
+			tipo = (String) request.getParameter("inputTipo");
+
+			lugar = (String) request.getParameter("inputLugar");
+
+			accesorios = (String) request.getParameter("inputAccesorios");
+			serial = (String) request.getParameter("inputSerial");
+			modelo = (String) request.getParameter("inputModelo");
+			user = (String) request.getParameter("inputUsuario");
+			observaciones = (String) request.getParameter("inputObservaciones");
+			EquipoManager.editEquipo(id, serial, nombre, tipo, lugar, modelo, user, observaciones, accesorios, actual);
+			resp.sendRedirect("ListaEquipos");
+		}
 	}
 
 }

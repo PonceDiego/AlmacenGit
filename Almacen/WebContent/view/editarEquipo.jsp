@@ -14,7 +14,7 @@
 
 
 
-<title>Agregar Nuevo Equipo</title>
+<title>Editar Equipo</title>
 <jsp:include page="header.jsp" />
 
 </head>
@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="card card-signin my-5">
 			<div class="card-body">
-				<form class="form-signin" method="post" action="../NuevoEquipo">
+				<form class="form-signin" method="post" action="../EditarEquipo">
 					<h3 class="text-center">Datos del equipo</h3>
 					<div class="row">
 						<div class="column">
@@ -35,6 +35,7 @@
 							<div id="advertencia" style="color: red"></div>
 							<span><a href="" id="linkEditar"> </a></span>
 							<div class="form-label-group> searchable2">
+							<input type="hidden" name="equipoEditar" id="equipoEditar" value="${Equipo.getEquipoId() }">
 								<input type="text" name="inputNombre" id="inputNombre"
 									tabindex="1" value="${Equipo.getNombre()}" class="form-control"
 									placeholder="Nombre" required autocomplete="off" maxlength="50"
@@ -50,7 +51,7 @@
 							<div>Tipo</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputTipo" id="inputTipo"
-									autocomplete="off"> <select
+									autocomplete="off" value="${Equipo.getTipo().getNombre() }"> <select
 									class='form-control input-lg' tabindex="3"
 									onchange="selected(),comparar()" id="tipoSelect" required>
 									<c:forEach items="${listaTipos}" var="tipo">
@@ -68,7 +69,7 @@
 							<div>Ubicación</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputLugar" id="inputLugar"
-									autocomplete="off"> <select
+									autocomplete="off" value="${Equipo.getLugar().getNombre() }"> <select
 									class='form-control input-lg' tabindex="5"
 									onchange="selected2(),comparar()" id="lugarSelect" required>
 									<c:forEach items="${listaLugares}" var="lugar">
@@ -111,7 +112,7 @@
 							<div>Usuario habitual</div>
 							<div class="form-label-group>">
 								<input type="hidden" name="inputUsuario" id="inputUsuario"
-									autocomplete="off"> <select
+									autocomplete="off" value="${Equipo.getUsuario().getNombreUsuario() }"> <select
 									class='form-control input-lg' tabindex="6"
 									onchange="selected3(),comparar()" id="usuarioSelect">
 									<c:forEach items="${listaUsuarios}" var="usuario">
