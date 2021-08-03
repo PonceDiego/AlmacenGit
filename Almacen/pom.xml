@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Almacen</groupId>
 	<artifactId>Almacen</artifactId>
-	<version>1.0.0</version>
+	<version>1.3.0</version>
 	<packaging>war</packaging>
 	<name>Almacen</name>
 	<build>
