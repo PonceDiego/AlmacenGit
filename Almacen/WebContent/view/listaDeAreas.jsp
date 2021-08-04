@@ -60,7 +60,7 @@
 									<i class="material-icons" style="font-size: 18px"> edit </i>
 								</button>
 								<!-- 								<button class="btn btn-outline-danger" type="button"  -->
-								<%-- 									title="Eliminar" style="cursor:pointer"onclick="confirmar('${pageContext.request.contextPath }/EliminarArea?idEliminado=${area.getId() }');"> --%>
+								<%-- 									title="Eliminar" style="cursor:pointer"onclick="confirmar('../EliminarArea?idEliminado=${area.getId() }');"> --%>
 								<!-- 									<i class="material-icons" style="font-size: 18px"> delete </i> -->
 								<!-- 								</button> -->
 							</td>

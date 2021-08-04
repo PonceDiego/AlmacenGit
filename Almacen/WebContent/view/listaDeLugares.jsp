@@ -58,7 +58,7 @@
 								<c:out value="${tipo.getDescripcion()}" />
 							</td>
 							<td>
-								<button class="btn btn-outline-dark" style="cursor: pointer" title="Editar" onclick="window.location.href=('${pageContext.request.contextPath }/EditarLugar?lugarAEditar=${tipo.getLugarId()}')">
+								<button class="btn btn-outline-dark" style="cursor: pointer" title="Editar" onclick="window.location.href=('../EditarLugar?lugarAEditar=${tipo.getLugarId()}')">
 				<i class="material-icons"> edit </i>
 			</button>
 							</td>

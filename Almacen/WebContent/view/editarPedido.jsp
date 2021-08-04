@@ -16,7 +16,7 @@
 		<jsp:param name="activeMenu" value="MenuPedidos" />
 	</jsp:include>
 
-	<form method="post" class="form-singin" action="${pageContext.request.contextPath }/EditarPedido">
+	<form method="post" class="form-singin" action="../EditarPedido">
 
 
 		<p></p>

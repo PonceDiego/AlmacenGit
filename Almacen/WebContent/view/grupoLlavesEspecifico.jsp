@@ -22,16 +22,16 @@
 	<h2 class="mt-5 text-center">${grupoLlaves.getNombre() }
 		<span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Ver código QR"
-				onclick="window.open('${pageContext.request.contextPath }/Qr?entidadId=${grupoLlaves.getGrupoId()}&entidad=GrupoLlaves','_blank')">
+				onclick="window.open('../Qr?entidadId=${grupoLlaves.getGrupoId()}&entidad=GrupoLlaves','_blank')">
 				<i class="material-icons"> border_outer </i>
 			</button></span> <span><button class="btn btn-outline-dark"
 				style="cursor: pointer" title="Editar"
-				onclick="window.location.href=('${pageContext.request.contextPath }/EditarGrupoLlaves?idAEditar=${grupoLlaves.getGrupoId()}')">
+				onclick="window.location.href=('../EditarGrupoLlaves?idAEditar=${grupoLlaves.getGrupoId()}')">
 				<i class="material-icons"> edit </i>
 			</button></span>
 		<button class="btn btn-outline-danger" type="button" title="Eliminar"
 			style="cursor: pointer"
-			onclick="confirmar('${pageContext.request.contextPath }/EliminarGrupoLlaves?idEliminado=${grupoLlaves.getGrupoId()}');">
+			onclick="confirmar('../EliminarGrupoLlaves?idEliminado=${grupoLlaves.getGrupoId()}');">
 			<i class="material-icons"> delete </i>
 		</button>
 	</h2>

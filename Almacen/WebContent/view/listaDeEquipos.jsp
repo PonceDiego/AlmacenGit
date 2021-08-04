@@ -96,13 +96,13 @@
 									<c:when test="${equipo.getEstado()=='Disponible'}">
 										<button class="btn btn-warning" type="button" title="Salida"
 											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
+											onclick="alertar('../CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
 
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','${pageContext.request.contextPath }/CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
+											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','../CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
 											E</button>
 									</c:when>
 								</c:choose>
@@ -119,7 +119,7 @@
 									</button>
 									<button class="btn btn-outline-danger" type="button"
 										title="Eliminar" style="cursor: pointer"
-										onclick="confirmar('${pageContext.request.contextPath }/EliminarEquipo?idEliminado=${equipo.getEquipoId()}');">
+										onclick="confirmar('../EliminarEquipo?idEliminado=${equipo.getEquipoId()}');">
 										<i class="material-icons" style="font-size: 14px"> delete
 										</i>
 									</button>

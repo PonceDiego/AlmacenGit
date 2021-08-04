@@ -74,7 +74,7 @@
 									<c:when test="${Estado=='En Espera'}">
 										<button class="btn btn-warning" type="button" title="Entregar"
 											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											onclick="alertar('../EntregarPedido?idEntregado=${pedido.pedidoId}');">
 											<i class="material-icons"
 												style="width: 18px; font-size: 18px">check_circle_outline</i>
 										</button>
@@ -84,7 +84,7 @@
 										test="${pedido.estadopedido.getNombreEstado()=='En Curso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entregar" style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											onclick="alertar('../EntregarPedido?idEntregado=${pedido.pedidoId}');">
 											<i class="material-icons"
 												style="width: 18px; font-size: 18px">check_circle_outline</i>
 										</button>
@@ -93,7 +93,7 @@
 										test="${pedido.estadopedido.getNombreEstado()== 'En Espera'}">
 										<button class="btn btn-warning" type="button" title="Entregar"
 											style="cursor: pointer"
-											onclick="alertar('${pageContext.request.contextPath }/EntregarPedido?idEntregado=${pedido.pedidoId}');">
+											onclick="alertar('../EntregarPedido?idEntregado=${pedido.pedidoId}');">
 											<i class="material-icons"
 												style="width: 18px; font-size: 18px">check_circle_outline</i>
 										</button>
@@ -110,7 +110,7 @@
 									<button class="btn btn-outline-danger" type="button"
 										id="eliminarPedidoButton" title="Eliminar"
 										style="cursor: pointer"
-										onclick="confirmar('${pageContext.request.contextPath }/EliminarPedido?idEliminado=${pedido.pedidoId }');">
+										onclick="confirmar('../EliminarPedido?idEliminado=${pedido.pedidoId }');">
 										<i class="material-icons" style="font-size: 18px"> delete
 										</i>
 									</button>

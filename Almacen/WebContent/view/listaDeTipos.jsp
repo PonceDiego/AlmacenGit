@@ -60,7 +60,7 @@
 									<button class="btn btn-outline-danger" type="button"
 									title="Eliminar"
 									style="cursor: pointer"
-									onclick="confirmar('${pageContext.request.contextPath }/EliminarTipo?idEliminado=${tipo.getId()}');">
+									onclick="confirmar('../EliminarTipo?idEliminado=${tipo.getId()}');">
 									<i class="material-icons" style="font-size: 16px"> delete </i>
 								</button>
 							</td>

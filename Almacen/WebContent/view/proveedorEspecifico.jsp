@@ -16,13 +16,13 @@
 		<jsp:param name="activeMenu" value="MenuProveedores" />
 	</jsp:include>
 
-	<form method="post" action="${pageContext.request.contextPath }/Proveedor">
+	<form method="post" action="../Proveedor">
 
 
 
 		<p></p>
 		<h2 class="mt-5 text-center">${proveedorNombre }<span>
-				<i class="material-icons" onclick="window.location.href=('${pageContext.request.contextPath }/EditarProveedor?PvI=${provID}')" title="Editar" style="font-size: 18px; cursor: pointer">edit</i>
+				<i class="material-icons" onclick="window.location.href=('../EditarProveedor?PvI=${provID}')" title="Editar" style="font-size: 18px; cursor: pointer">edit</i>
 			</span>
 		</h2>
 		<div class="text-center lead" style="outline: 1px solid black; max-width: 70%; margin: auto">

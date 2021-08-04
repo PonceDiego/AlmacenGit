@@ -78,7 +78,7 @@
 									<i class="material-icons" style="font-size: 18px"> edit </i>
 								</button>
 
-								<button class="btn btn-outline-danger" type="button" title="Eliminar" style="cursor: pointer" onclick="confirmar('${pageContext.request.contextPath }/EliminarUsuario?idEliminado=${usuario.getId() }');">
+								<button class="btn btn-outline-danger" type="button" title="Eliminar" style="cursor: pointer" onclick="confirmar('../EliminarUsuario?idEliminado=${usuario.getId() }');">
 									<i class="material-icons" style="font-size: 18px"> delete </i>
 								</button>
 							</td>

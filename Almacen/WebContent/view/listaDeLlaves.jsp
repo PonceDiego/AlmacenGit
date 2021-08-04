@@ -110,7 +110,7 @@
 								<button class="btn btn-outline-danger" type="button"
 									title="Eliminar"
 									style="cursor: pointer"
-									onclick="confirmar('${pageContext.request.contextPath }/EliminarLlave?idEliminado=${llave.getLlaveId()}');">
+									onclick="confirmar('../EliminarLlave?idEliminado=${llave.getLlaveId()}');">
 									<i class="material-icons" style="font-size: 18px"> delete </i>
 								</button>
 							</td>
