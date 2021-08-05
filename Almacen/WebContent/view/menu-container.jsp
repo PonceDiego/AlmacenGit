@@ -16,7 +16,7 @@
 
 <link href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css" rel="stylesheet">
 
-<!-- Main CSS -->-
+<!-- Main CSS -->
 
 <link rel="stylesheet" href="../vendor/main.css" />
 
