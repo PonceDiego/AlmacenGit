@@ -58,7 +58,7 @@ public class TipoDB {
 		Tipo t;
 		try {
 			sess = HibernateUtils.openSession();
-			Query query = sess.createQuery("select t from Tipo t where t.nombre='" + tipo + "'");
+			Query query = sess.createQuery("select t from Tipo t where t.activo=1 and t.nombre='" + tipo + "'");
 			t = (Tipo) query.getSingleResult();
 			return t;
 		} finally {
