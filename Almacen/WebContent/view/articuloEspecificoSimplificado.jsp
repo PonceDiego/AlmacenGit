@@ -22,7 +22,7 @@
 			<button onclick="window.location.href=('../GenerarPedido?articuloAgregar=${articuloNombre}')" title="Añadir a pedido" style="cursor: pointer" class="btn-outline-info btn">
 				<i class="material-icons">add_shopping_cart</i>
 			</button>
-		</span> <span><button class="btn btn-outline-dark" style="cursor: pointer" title="Ver código QR" onclick="window.open('../Qr?articuloID=${articuloId}','_blank')">
+		</span> <span><button class="btn btn-outline-dark" style="cursor: pointer" title="Ver código QR" onclick="window.open('../Qr?entidadId=${articuloId}&entidad=Articulo','_blank')">
 				<i class="material-icons"> border_outer </i>
 			</button></span>
 	</h2>
