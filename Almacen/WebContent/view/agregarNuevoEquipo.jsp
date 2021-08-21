@@ -68,7 +68,7 @@
 						<div class="column">
 							<div>Modelo</div>
 							<div class="form-label-group>">
-								<input tabindex="2" type="text" name="inpuModelo" class="form-control" placeholder="Modelo" id="inpuModelo" maxlength="50" autocomplete="off">
+								<input tabindex="2" type="text" name="inputModelo" class="form-control" placeholder="Modelo" id="inputModelo" maxlength="50" autocomplete="off">
 							</div>
 							<div>Serial</div>
 							<div class="form-label-group>">
