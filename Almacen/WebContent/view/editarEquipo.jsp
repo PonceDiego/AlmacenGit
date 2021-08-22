@@ -88,7 +88,7 @@
 							<div class="form-label-group>">
 								<input tabindex="7" type="text" name="inputAccesorios"
 									value="${Equipo.getAccesorios() }" class="form-control"
-									placeholder="Accesorios" id="inputAccesorios" maxlength="140"
+									placeholder="Accesorios" onchange="comparar()" id="inputAccesorios" maxlength="140"
 									autocomplete="off">
 							</div>
 						</div>
@@ -98,14 +98,14 @@
 							<div class="form-label-group>">
 								<input tabindex="2" type="text" name="inputModelo"
 									value="${Equipo.getModelo()}" class="form-control"
-									placeholder="Modelo" id="inputModelo" maxlength="50"
+									placeholder="Modelo" onchange="comparar()" id="inputModelo" maxlength="50"
 									autocomplete="off">
 							</div>
 							<div>Serial</div>
 							<div class="form-label-group>">
 								<input tabindex="4" type="text" name="inputSerial"
 									value="${Equipo.getSerial() }" class="form-control"
-									placeholder="Serial" id="inputSerial" maxlength="50"
+									placeholder="Serial" onchange="comparar()" id="inputSerial" maxlength="50"
 									autocomplete="off">
 							</div>
 
@@ -132,7 +132,7 @@
 							<div class="form-label-group>">
 								<input tabindex="8" type="text" name="inputObservaciones"
 									value="${Equipo.getObservaciones() }" class="form-control"
-									placeholder="Observaciones" id="inputObservaciones"
+									placeholder="Observaciones" onchange="comparar()" id="inputObservaciones"
 									maxlength="140" autocomplete="off">
 							</div>
 
