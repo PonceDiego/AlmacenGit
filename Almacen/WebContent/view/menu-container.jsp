@@ -14,7 +14,7 @@
 <script src="../vendor/bootstrap/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 <link href="../vendor/iconfont/material-icons.css" rel="stylesheet">
 
-<link href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="../vendor/Datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <!-- Main CSS -->
 
