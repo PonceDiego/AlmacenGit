@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.Almacen.manager.EquipoManager;
 import main.java.Almacen.manager.RegistroManager;
 import main.java.Almacen.manager.RegistroManager.TIPO_REGISTRO;
+import main.java.Almacen.manager.UsuarioManager;
 import main.java.Almacen.model.Equipo;
 import main.java.Almacen.model.Usuario;
 
@@ -49,6 +50,7 @@ public class ServletListaEquipos extends HttpServlet {
 			request.getSession().setAttribute("equipos", equipos);
 			request.getSession().setAttribute("registros",
 					RegistroManager.getLastRegistrosByEntidadAndId(TIPO_REGISTRO.EQUIPO, ids));
+			request.getSession().setAttribute("usuarios", UsuarioManager.listarUsuariosString());
 			response.sendRedirect("view/listaDeEquipos.jsp");
 		}
 

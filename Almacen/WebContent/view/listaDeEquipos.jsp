@@ -96,8 +96,8 @@
 									<c:when test="${equipo.getEstado()=='Disponible'}">
 										<button class="btn btn-warning" type="button" title="Salida"
 											style="cursor: pointer"
-											onclick="alertar('../CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">S</button>
-
+											data-toggle="modal" onclick="setDataModal('${equipo.getEquipoId()}')"
+											data-target="#modalEquipos">S</button>
 									</c:when>
 									<c:when test="${equipo.getEstado() == 'En uso'}">
 										<button class="btn btn-outline-success" type="button"
@@ -131,6 +131,51 @@
 			</table>
 		</div>
 	</div>
+	
+	<div id="modalEquipos" class="modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div
+				class="modal-content align-content-md-center col-l-6 col-m-6 col-s-auto col-xl-10">
+				<div class="modal-header text-center">
+					<h4 class="modal-titlefont-weight-bold ">Ingrese el usuario
+						solicitante</h4>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						data-target="id01" aria-label="Cerrar">X</button>
+				</div>
+				<div>
+					<form method="get" action="../CambioEstado" id="formMethod">
+						<div class="form-inline mt-2 ml-2 mb-2 mx-2 ">
+							<div class=" form-label-group> searchable">
+							<input type="hidden" id="cambioIdModal" name="cambioId">
+							<input type="hidden" id="salidaModal" name="salida" value = "1">
+							<input type="hidden" id="entidadModal" name="entidad" value="Equipo">
+								<input type="text" placeholder="Buscar usuario"
+									name="solicitanteId" id="solicitanteId"
+									value="${usuarioActual.getNombreUsuario()}"
+									onkeyup="filterFunction(this,event)" required
+									autocomplete="off">
+								<c:set var="usuarios" value="${usuarios }"></c:set>
+								<ul id="ulUsusarios">
+									<c:forEach items="${usuarios}" var="usuario">
+
+										<li value="${usuario}">${usuario}</li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<div class="modal-footer d-flex justify-content-center">
+							<button class="btn btn-lg btn-primary btn-block text-uppercase"
+								id="aceptarbutton"
+								style="max-width: min-content; margin: auto; background-color: #f37321; cursor: pointer;"
+								>Aceptar</button>
+										
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	<script>	
 		function confirmar(url) {
@@ -144,11 +189,13 @@
 
 	<script>
 	
-		function alertar(url) {
-			alert("Realizando salida del equipo");
-			$(location).attr('href', url);
+		function setDataModal(llaveId) {
+			console.log(llaveId);
+			var x = document.getElementById('cambioIdModal');
+			x.value = llaveId;
 		}
-
+		
+		
 		function alertar2(usernameEquipo, usernameActual, rolActual, url) {
 			if (usernameEquipo == usernameActual || rolActual == "SuperAdmin"
 					|| rolActual == "Administrador Tecnica") {
