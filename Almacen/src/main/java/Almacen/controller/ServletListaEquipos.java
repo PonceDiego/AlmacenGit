@@ -50,7 +50,13 @@ public class ServletListaEquipos extends HttpServlet {
 			request.getSession().setAttribute("equipos", equipos);
 			request.getSession().setAttribute("registros",
 					RegistroManager.getLastRegistrosByEntidadAndId(TIPO_REGISTRO.EQUIPO, ids));
-			request.getSession().setAttribute("usuarios", UsuarioManager.listarUsuariosString());
+			if (actual.getRol().getNombre().equals("SuperAdmin")
+					|| actual.getRol().getNombre().equals("Administrador Tecnica")) {
+				System.out.println("Buscando usuarios..");
+				List<String> users = UsuarioManager.listarUsuariosString();
+				request.getSession().setAttribute("usuarios", users);
+				System.out.println(users.get(0));
+			}
 			response.sendRedirect("view/listaDeEquipos.jsp");
 		}
 

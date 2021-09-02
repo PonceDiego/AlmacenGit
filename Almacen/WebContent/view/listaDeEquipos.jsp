@@ -154,7 +154,7 @@
 									value="${usuarioActual.getNombreUsuario()}"
 									onkeyup="filterFunction(this,event)" required
 									autocomplete="off">
-								<c:set var="usuarios" value="${usuarios }"></c:set>
+								<c:set var="usuarios" value="${usuarios}"></c:set>
 								<ul id="ulUsusarios">
 									<c:forEach items="${usuarios}" var="usuario">
 
