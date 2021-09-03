@@ -67,11 +67,18 @@ public class ServletCambioEstado extends HttpServlet {
 				}
 				response.sendRedirect("ListaLlaves");
 			} else if (entidad.equals("Equipo")) {
+				int salida = Integer.parseInt(request.getParameter("salida"));
 
-				EquipoManager.changeStatus(actual.getId(), Integer.parseInt(id));
+				if (salida == 1) {
+					String usuarioSolicitante = (String) request.getParameter("solicitanteId");
+					int user = Integer.parseInt(UsuarioManager.getIdByNombre(usuarioSolicitante));
+					EquipoManager.changeStatus(user, Integer.parseInt(id), actual.getId());
+				} else {
+					EquipoManager.changeStatus(actual.getId(), Integer.parseInt(id), null);
+				}
 				response.sendRedirect("ListaEquipos");
 			} else if (entidad.equals("GrupoEquipos")) {
-				EquipoManager.changeStatusGrupo(actual.getId(), id);
+				EquipoManager.changeStatusGrupo(actual.getId(), id, null);
 				response.sendRedirect("BuscarGrupoEquipos");
 			} else if (entidad.equals("GrupoLlaves")) {
 				// int idEncargado, String idGrupo, String idUserString, bool salida

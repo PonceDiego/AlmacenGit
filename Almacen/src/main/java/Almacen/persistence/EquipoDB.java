@@ -31,7 +31,7 @@ public class EquipoDB {
 		}
 	}
 
-	public static void cambiarEstado(int user, int id) {
+	public static void cambiarEstado(int user, int id, Integer encargado) {
 		Session sess = null;
 		Transaction tran = null;
 		Equipo e = null;
@@ -44,10 +44,10 @@ public class EquipoDB {
 			}
 			sess.update(e);
 			if (e.getEstado().equals("En uso")) {
-				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id, null);
+				RegistroManager.createRegistro(true, user, TIPO_REGISTRO.EQUIPO, id, encargado);
 				e.setEstado("Disponible");
 			} else {
-				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.EQUIPO, id, null);
+				RegistroManager.createRegistro(false, user, TIPO_REGISTRO.EQUIPO, id, encargado);
 				e.setEstado("En uso");
 			}
 			tran.commit();

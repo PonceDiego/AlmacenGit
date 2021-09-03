@@ -102,7 +102,7 @@
 									<c:when test="${equipo.getEstado() == 'En uso'}">
 										<button class="btn btn-outline-success" type="button"
 											title="Entrada" style="cursor: pointer"
-											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','../CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo');">
+											onclick="alertar2('${usuarioEquipo.getNombreUsuario() }','${usuarioActual.getNombreUsuario()}','${usuarioActual.getRol().getNombre() }','../CambioEstado?cambioId=${equipo.getEquipoId()}&entidad=Equipo&salida=0');">
 											E</button>
 									</c:when>
 								</c:choose>

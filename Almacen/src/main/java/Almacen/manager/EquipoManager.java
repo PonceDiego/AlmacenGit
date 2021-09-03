@@ -55,9 +55,9 @@ public class EquipoManager {
 		RegistroManager.createRegistro(true, userActual.getId(), TIPO_REGISTRO.EQUIPO, e.getEquipoId(), null);
 	}
 
-	public static void changeStatus(int user, int id) {
+	public static void changeStatus(int user, int id, Integer encargado) {
 		System.out.println("Cambiando el estado del equipo número " + id);
-		EquipoDB.cambiarEstado(user, id);
+		EquipoDB.cambiarEstado(user, id, encargado);
 	}
 
 	public static List<Equipo> listarEquipos() {
@@ -115,10 +115,10 @@ public class EquipoManager {
 		EquipoDB.editGrupoEquipos(id, equipos);
 	}
 
-	public static void changeStatusGrupo(Integer idUser, String idGrupo) {
+	public static void changeStatusGrupo(Integer idUser, String idGrupo, Integer encargado) {
 		GrupoEquipos grupo = getGrupoEquipo(idGrupo);
 		for (Equipo equipo : grupo.getEquipos()) {
-			changeStatus(idUser, equipo.getEquipoId());
+			changeStatus(idUser, equipo.getEquipoId(), encargado);
 		}
 	}
 
